@@ -1,0 +1,36 @@
+
+add exports to path
+
+export CAFFE_ROOT=/home/ubuntu/caffe/
+export PYTHONPATH=/home/ubuntu/caffe/python:$PYTHONPATH
+
+add those lines to:
+ubuntu@ip-172-31-28-93:~$ vi ~/.bashrc
+
+and then:
+ubuntu@ip-172-31-28-93:~$ source ~/.bashrc
+
+---> also set them in startup script for cron or init.d or rc.local
+
+-----------------
+
+tell caffe to use GPU!!!!!!
+
+in deepdream.py:
+
+import caffe
+# change 0 to the identifier of the GPU you want to use
+# this number can be found with nvidia-smi
+caffe.set_device(0)
+caffe.set_mode_gpu()
+
+---------
+
+STARTUP:
+
+start nginx docker with script myscript2 in init.d
+
+crontab -e
+@reboot /home/ubuntu/start-deepdream.sh
+
+

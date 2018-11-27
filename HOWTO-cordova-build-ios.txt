@@ -1,0 +1,60 @@
+
+Quick for initial:
+
+cordova platform remove ios
+->make name of the app without blanks in cordova config.xml
+cordova platform add ios
+
+and only these two for later iterations after android changes:
+cordova plugin remove cordova-plugin-ad-adcolony
+cordova plugin remove cordova-plugin-admobpro
+- and google play services?
+
+- change app name in XCode "build settings" to InceptionisME (cause motherfucking apple won't allow it to be named Deep Dream)
+- change package to full
+
+
+TODO:
+- dont mention buyin on ios
+- invervals pile up
+
+known bugs:
+- images not visible in list after restart 
+	- only if started from xcode.
+
+
+----------------
+explanations:
+- make sure project path has no blank in it. might be part of the problem with header files not found…
+	- this actually needs to be done before project start, when generating cordova project.
+		
+	——> make name of the app without blanks in cordova config.xml. later rename it back after “cordova platform add ios”
+		-> apparently that is not even needed! the important thing is to “cordova platform add ios” on the OS X directly.
+
+—> just disable motherfucking AdMob and AdColony plugins for building ios
+
+-> install Xcode 6.4 command line tools for newest GCC and clang: 
+	Commandline tool was installed with: xcode-select --install
+
+
+
+————————————————————————————
+	all this shit below is just because blank in project name
+————————————————————————————
+
+
+- open Xcode project from platforms/ios folder
+
+- replace Q with q: http://stackoverflow.com/questions/28898012/cordova-4-3-0-build-command-returns-error-cannot-find-module-q
+	- grep -rl "require('Q" * | xargs sed -i "" "s/'Q'/'q'/g";
+
+- extract headers from AdColony.framework into AdColony Folder
+
+- in Xcode add AdColony and AdMob frameworks to linked packages in build phase settings, even if they are already in the list.
+
+- extract headers GoogleMobileAds.framework into GoogleMobileAds Folder
+
+- remove GoogleMobileAds folder in paths of all imports in GoogleMobileAds.h
+like this:
+- replace all <> with “” in imports in the AdMob header files
+

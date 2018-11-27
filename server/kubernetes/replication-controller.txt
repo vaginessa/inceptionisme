@@ -1,0 +1,119 @@
+{
+  "kind": "ReplicationController",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "dream-controller",
+    "labels": {
+      "state": "serving"
+    },
+    "namespace": ""
+  },
+  "spec": {
+    "replicas": 4,
+    "selector": {
+      "app": "deep-dream-me"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "deep-dream-me"
+        }
+      },
+      "spec": {
+        "volumes": [
+          {
+            "name": "www-vol",
+            "hostPath": {
+              "path": "/var/www"
+            }
+          },
+          {
+            "name": "scripts-vol",
+            "hostPath": {
+              "path": "/var/dream-scripts"
+            }
+          },
+          {
+            "name": "pictures-vol",
+            "hostPath": {
+              "path": "/var/dream-pictures"
+            }
+          },
+          {
+            "name": "log-vol",
+            "hostPath": {
+              "path": "/var/log/dream-upload"
+            }
+          }
+        ],
+        "containers": [
+          {
+            "name": "nginx-php",
+            "image": "million12/nginx-php",
+            "imagePullPolicy": "IfNotPresent",
+            "ports": [
+              {
+                "hostPort": 80,
+                "containerPort": 80,
+                "protocol": "TCP"
+              }
+            ],
+            "volumeMounts": [
+              {
+                "name": "www-vol",
+                "readOnly": false,
+                "mountPath": "/data/www/default"
+              },
+              {
+                "name": "pictures-vol",
+                "readOnly": false,
+                "mountPath": "/upload"
+              },
+              {
+                "name": "log-vol",
+                "readOnly": false,
+                "mountPath": "/data/logs"
+              }
+            ]
+          },
+          {
+            "name": "deepdream",
+            "image": "ryankennedyio/deepdream",
+            "imagePullPolicy": "IfNotPresent",
+            "env": [
+              {
+                "name": "PASSWORD",
+                "value": "password"
+              }
+            ],
+            "volumeMounts": [
+              {
+                "name": "scripts-vol",
+                "readOnly": false,
+                "mountPath": "/scripts"
+              },
+              {
+                "name": "pictures-vol",
+                "readOnly": false,
+                "mountPath": "/src"
+              },
+              {
+                "name": "www-vol",
+                "readOnly": false,
+                "mountPath": "/dst"
+              }
+            ],
+            "command": [
+              "python"
+            ],
+            "args": [
+              "/scripts/deepdream.py"
+            ]
+          }
+        ],
+        "restartPolicy": "Always",
+        "dnsPolicy": "ClusterFirst"
+      }
+    }
+  }
+}

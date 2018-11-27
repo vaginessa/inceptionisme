@@ -1,0 +1,4 @@
+
+if container subcommand is not availabe in gcloud or gcloud preview, try gcloud beta.
+
+	gcloud beta container get-credentials

@@ -1,0 +1,4725 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+
+
+  <!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 lang-en" lang="en"> <![endif]-->
+  <!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 lang-en" lang="en"> <![endif]-->
+  <!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 lang-en" lang="en"> <![endif]-->
+  <!--[if IE 9]>         <html class="no-js lt-ie10 lang-en" lang="en"> <![endif]-->
+  <!--[if gt IE 9]><!--> <html class="no-js lang-en" lang="en"> <!--<![endif]-->
+
+
+<head>
+  <title>
+    AWS Developer Forums: ELB reports "instance stopped", but ...
+  </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="/css/forums-us-east-1.css"/>
+
+  <link rel="icon" type="image/ico" href="https://d36cz9buwru1tt.cloudfront.net/favicon.ico">                  
+  <link rel="shortcut icon" type="image/ico" href="https://d36cz9buwru1tt.cloudfront.net/favicon.ico">         
+  <link rel="apple-touch-icon" sizes="57x57" href="https://d36cz9buwru1tt.cloudfront.net/touch-icon-iphone-114-precomposed.png">       
+  <link rel="apple-touch-icon" sizes="72x72" href="https://d36cz9buwru1tt.cloudfront.net/touch-icon-ipad-144-precomposed.png">         
+  <link rel="apple-touch-icon" sizes="114x114" href="https://d36cz9buwru1tt.cloudfront.net/touch-icon-iphone-114-precomposed.png">     
+  <link rel="apple-touch-icon" sizes="144x144" href="https://d36cz9buwru1tt.cloudfront.net/touch-icon-ipad-144-precomposed.png">   
+  <link rel="stylesheet" href="//d348hmg1ylg9cx.cloudfront.net/css/all.css" type="text/css" />
+  <link rel="stylesheet" href="//d348hmg1ylg9cx.cloudfront.net/css/awsHome2.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="https://d348hmg1ylg9cx.cloudfront.net/css/awsGlobalNav3.css">
+  <!--[if lt IE 7]> <link rel="stylesheet" type="text/css" href="https://d348hmg1ylg9cx.cloudfront.net/css/awsGlobalNav3-ltIE7.css"> <![endif]-->
+  <!--[if lt IE 8]> <link rel="stylesheet" type="text/css" href="https://d348hmg1ylg9cx.cloudfront.net/css/awsGlobalNav3-ltIE8.css"> <![endif]-->
+  <!--[if lt IE 9]> <link rel="stylesheet" type="text/css" href="https://d348hmg1ylg9cx.cloudfront.net/css/awsGlobalNav3-ltIE9.css"> <![endif]-->
+  <script type="text/javascript" src="https://d348hmg1ylg9cx.cloudfront.net/js/jquery-1.5.2.min.js"></script>
+
+
+
+<link rel="alternate" type="application/rss+xml" title="RSS"
+              href="https://forums.aws.amazon.com/rss/rssmessages.jspa?threadID=81118">
+        
+
+        
+        
+        
+        <script language="JavaScript" type="text/javascript" 
+                src="/resources/scripts/prototype/prototype.js"></script>
+        <script language="JavaScript" type="text/javascript" 
+                src="/resources/scripts/scriptaculous/effects.js"></script>
+        <script language="JavaScript" type='text/javascript'
+                src="/dwr/engine.js"></script>
+        <script language="JavaScript" type='text/javascript'
+                src="/dwr/util.js"></script>
+        <script language="JavaScript" type='text/javascript'
+                src="/dwr/interface/TagValidator.js"></script>            
+        <script language="JavaScript" type='text/javascript'
+                src="/resources/scripts/tag-validator.js"></script>
+        <script type="text/javascript">
+            // i18n error message
+            tagHandlerMessage = "The was an error with one or more of your tags. Please ensure that your tags contain only alphanumeric characters and are less than 10 characters.";
+        </script>
+</head>
+<body id="top">
+  <div class="wrapper">
+    <table cellpadding="0" cellspacing="0" border="0" align="center" width="950px">
+      <tr>
+        <td valign="top">
+
+        <header id="hd" class="header">
+          <div id="main-nav" class="nav-lang-en">
+            <a href="https://aws.amazon.com/" id="nav-aws-logo" class="nav-sprite" title="Amazon Web Services"><span>Amazon Web Services</span></a>
+   
+            <div id="nav-bar" class="nav-sprite">
+              <a id="nav-dd-products-solutions" class="nav-link" href="https://aws.amazon.com/products/">
+                <strong>AWS Products</strong> &amp; <strong>Solutions</strong>
+              </a>
+   
+              <form id="nav-search-form" method="get" action="https://aws.amazon.com/search" enctype="multipart/form-data" accept-charset="UTF-8">
+                <div id="nav-searchfield-outer" class="nav-sprite">
+                  <div id="nav-searchfield-inner" class="nav-sprite">
+                    <div id="nav-searchfield-width">
+                      <input id="nav-searchfield" name="searchQuery"></input>
+                    </div>
+                  </div>
+                </div>
+   
+                <span id="nav-search-in" class="nav-sprite">
+                  <span id="nav-search-in-content">Search In</span>
+                  <span class="nav-down-arrow nav-sprite"></span>
+                  <select name="searchPath" id="nav-search-dropdown"></select>
+                </span>
+   
+                <div id="nav-search-button" class="nav-sprite">
+                  <input type="image" alt="Search" id="nav-search-button-inner" title="Search" src="https://d36cz9buwru1tt.cloudfront.net/nav/transparent_pixel.gif">
+                </div>
+              </form>
+   
+              <a id="nav-dd-developers" class="nav-link" href="https://aws.amazon.com/developers/">
+                <strong>Developers</strong>
+              </a>
+   
+              <a id="nav-dd-support" class="nav-link" href="https://aws.amazon.com/support/">
+                <strong>Support</strong>
+              </a>
+            </div>
+ 
+            <div id="global-top-links">
+              <a href="https://portal.aws.amazon.com/gp/aws/developer/registration/index.html" id="gtl-sign-up">Sign Up</a>
+              <a href="https://console.aws.amazon.com/" id="gtl-dd-account-console">My Account / Console</a>
+            </div>
+          </div>
+   
+        </header>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+
+&nbsp;
+
+
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td class="jive-page-title">
+                Discussion Forums
+              </td>
+              <td nowrap align="right">
+                
+<div id="jive-accountbox" class="clearfix">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="right" class="account-box-wrapper">
+Welcome, Guest                 <a class="jive-acc-login" href="/login.jspa">Login</a>
+                 <a href="/help.jspa" class="jive-acc-help" title="Forums Help">Forums Help</a> 
+         </td>
+    </tr>
+    </table>
+</div>
+
+              </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 8px;" colspan="2" valign="top">
+         
+              <div id="jive-breadcrumbs">
+    <em>
+
+
+    <a href="/index.jspa?categoryID=1">Discussion Forums</a>
+
+
+            <span class="bidi">
+            <span class="gt">&gt;</span>
+            <a href="/category.jspa?categoryID=3">Category: Amazon Web Services</a>
+            </span>
+
+            <span class="bidi">
+            <span class="gt">&gt;</span>
+            <a href="/forum.jspa?forumID=30&start=0">Forum: Amazon Elastic Compute Cloud (EC2)</a>
+            </span>
+
+            <span class="bidi">
+            <span class="gt">&gt;</span><span class="bctxt">Thread: ELB reports "instance stopped", but instance is running...</span>
+            </span>
+        
+
+    
+    
+    </em>
+</div>
+  
+
+              <article id="bd" class="content">
+                <form action="search.jspa" id="jive-searchform" enctype="multipart/form-data" accept-charset="UTF-8">
+        <div class="jive-search-form">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td width="1%" nowrap class="jive-description">
+                <label for="q01"> <span
+                    style="font-weight: bold">Search Forum :</span> </label> <input type="hidden"
+                    name="objID" value="f30">
+                <input type="text" name="q" value="" size="30"
+                    maxlength="100" id="q01" accesskey="s"
+                    title="Search Forum (ALT+S)">
+
+                <input type="image" src="https://dn1lvoe5mgzdm.cloudfront.net/images/go-icon.gif"
+                    align="absmiddle"
+                    value="Go"> <a
+                    style="font-size: 8.5pt;"
+                    href="search!default.jspa?objID=f30">Advanced search options</a></td>
+                <td width="1%" class="jive-description" nowrap="nowrap"></td>
+                <td width="98%" align="right" class="jive-description"></td>
+            </tr>
+        </table>
+        </div>
+        </form>
+        
+     
+
+<table border="0" class="jive-main-layout">
+    <tr>
+        <td valign="top" width="99%">
+       
+    <div id="jive-flatpage">
+    
+        
+    
+
+ 
+    
+
+    
+    
+
+
+
+    
+        
+        
+
+        
+        
+
+    
+    
+    
+ 
+        
+        
+
+
+
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%" style="background-color: #f7f7f7; border: 1px solid #cccccc; margin-bottom: 5px">
+    <tr id="jive-message-296269" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296269"></a> ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/expert16x16.gif" border="0"
+            title="Expert" alt="" />
+
+        <a href="profile.jspa?userID=134337"
+            title="James Ross">James Ross</a>  <a href="http://www.amazon.com/exec/obidos/tg/browse/-/14279641/"
+            target="_new"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/amazon/realnamebadge.gif"
+            align="absmiddle" alt="RealName(TM)" 
+            border="0" /></a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 12:00 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296269"
+                    title="Click to reply to this thread"><img
+                    src="https://dn1lvoe5mgzdm.cloudfront.net/images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296269"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+
+
+    <div id="jive-question-box" style="padding-bottom: 10px" class="jive-infobox">
+    <table cellpadding="2" cellspacing="0" border="0">
+    <tbody>
+        <tr valign="top">
+            <td width="1"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/question-possibly_resolved-24x24.gif" alt="" border="0"></td>
+            <td width="99%" style="vertical-align: middle;">
+                
+
+                    
+
+                        
+
+                        
+                            
+                            This question is <span class="unans">not answered</span>.
+
+                        
+
+                        
+                        
+                            
+                            Helpful answers available: <b>0</b>.
+
+                            
+                            Correct answers available: <b>1</b>.
+                        
+
+                    
+
+                
+            </td>
+       </tr>
+    </tbody>
+    </table>
+    </div>
+
+
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                In our "development" account, in the us-west region, we have an ELB named TCP-to-TCP-1935422574.us-west-1.elb.amazonaws.com.  It has two instances assigned to it, i-32080276 and i-32080278 both in us-west-1c zone.  Both instances have been stopped for a few days, but have been up and running for the last half-hour.  We can RDP to the instances, verify their elastic IPs; they are running and happy.<br />
+<br />
+But, the ELB claims "Out of service" for both instances, and the reason states "Instance is in stopped state."<br />
+<br />
+Shouldn't the ELB automatically notice the instances are started?<br />
+<br />
+We also have a health check the hits port 443 every 30 seconds; I see this as independent of the "instance is running or not" case, and I would expect the "reason" to claim something like "health check failed" if in fact it had failed.  But, the only reason stated is "Instance is in stopped state.", so I'm lost.<br />
+<br />
+I know that I can remove/reassign the instances to the ELB and we'll be fine; this kind-of kick-starts things with the ELB.  But, I'm leaving things alone for now in case AWS or others suggest some forensics for me to try during this broken state of affairs.<br />
+<br />
+My goal is to have a system that will just "come up and work", and this ELB not recognizing when instances are back up remains a little snag.  The developer using these instances claims that this used to all work fine, and has "gotten worse" recently.<br />
+<br />
+Any help will be greatly appreciated!<br />
+<br />
+James
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+   
+
+        </td>
+    </tr>
+    
+</table>
+ 
+
+<div style="padding-bottom: 0px" class="jive-table-info">
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+            <table cellpadding="0" cellspacing="0" border="0"
+                width="100%">
+                <tbody>
+                    <tr>
+                        <td width="1%"><a
+                            href="thread.jspa?threadID=81118"
+                            title="Permlink"><img style="padding-left: 12px;"
+                            src="images/permlink-16x16.gif" width="16"
+                            height="16" border="0"
+                            alt="Permlink"></a>
+                        </td>
+                        <td align="left" width="99%"> <nobr>
+                        <span class="bidi"> <b>Replies:</b> </span> 20
+                        </nobr>  |  
+
+                            
+
+                            <nobr> <span class="bidi"> <b>Pages:</b> </span> <span
+                                class="bidi"> 1
+                            </span>  
+                            </nobr>
+
+                           - <nobr> <span class="bidi"> <b><a
+                            href="thread.jspa?threadID=81118&tstart=0&messageID=608883#608883"
+                            title="by: gurujeya">Last Post</a>:</b> </span> <span class="bidi">
+                        Mar 18, 2015 11:11 PM
+                        </span> 
+                        
+                        by: <a href="profile.jspa?userID=329730">gurujeya</a> </nobr> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </th>
+        </tr>
+    </thead>
+</table>
+</div>
+
+</td></tr></table>
+
+ 
+
+  
+
+
+
+
+        <table cellpadding="3" cellspacing="0" style="padding-top: 10px;" border="0" width="100%">
+            <tr>
+
+                <td nowrap width="90%">
+                
+                    <div  style="padding-bottom: 10px;" class="jive-subheader">Replies</div>
+                    
+                </td>
+                <td nowrap align="right" width="10%">
+                        
+         
+ 
+      
+                </td>
+
+            </tr>
+         </table>
+    
+
+    
+ 
+    <div id="jive-message-holder">
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296246" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296246"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/amazonicon.gif" border="0"
+            title="Amazonian" alt="" />
+
+        <a href="profile.jspa?userID=160143"
+            title="ZachT@AWS">ZachT@AWS</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 12:10 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296269#296269"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296269#296269"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296246"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296246"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Hi,<br />
+<br />
+Your ELB currently appears responsive. Are you continuing to experience the issue? Have you refreshed the page to see if your instances are still marked as offline?<br />
+<br />
+<pre class="jive-pre"><code class="jive-code jive-java">~]$ curl -vv TCP-to-TCP-1935422574.us-west-1.elb.amazonaws.com:443
+* About to connect() to TCP-to-TCP-1935422574.us-west-1.elb.amazonaws.com port 443 (#0)
+*   Trying 50.18.63.77... connected
+* Connected to TCP-to-TCP-1935422574.us-west-1.elb.amazonaws.com (50.18.63.77) port 443 (#0)
+&lt;div class=<font color="red">&quot;jive-quote&quot;</font>&gt;GET / HTTP/1.1
+User-Agent: curl/7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.12.9.0 zlib/1.2.3 libidn/1.18 libssh2/1.2.2
+Host: TCP-to-TCP-1935422574.us-west-1.elb.amazonaws.com:443
+Accept: *<font color="darkgreen">/*&lt;/div&gt;
+</font></code></pre><br />
+<br />
+Regards,<br />
+Zach
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296204" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296204"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/ace16x16.gif" border="0"
+            title="Ace" alt="" />
+
+        <a href="profile.jspa?userID=69283"
+            title="D. Svanlund">D. Svanlund</a>  <a href="http://www.amazon.com/exec/obidos/tg/browse/-/14279641/"
+            target="_new"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/amazon/realnamebadge.gif"
+            align="absmiddle" alt="RealName(TM)" 
+            border="0" /></a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 12:10 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296269#296269"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296269#296269"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296204"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296204"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+        <div class="jive-helpful-rating">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/answer-helpful-16x16.gif"
+                    title="5 points"
+                    border="0" alt="" /></td>
+                
+                <td nowrap>Helpful</td>
+            </tr>
+        </table>
+        </div>
+
+        
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                There was an issue a couple of days ago. Some users reported similar problems and it turned out to be caused by recent changes to the ELB service.<br />
+<br />
+<a class="jive-link-external" href="https://forums.aws.amazon.com/message.jspa?messageID=294987#294987">https://forums.aws.amazon.com/message.jspa?messageID=294987#294987</a>
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296217" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296217"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/expert16x16.gif" border="0"
+            title="Expert" alt="" />
+
+        <a href="profile.jspa?userID=134337"
+            title="James Ross">James Ross</a>  <a href="http://www.amazon.com/exec/obidos/tg/browse/-/14279641/"
+            target="_new"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/amazon/realnamebadge.gif"
+            align="absmiddle" alt="RealName(TM)" 
+            border="0" /></a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 1:38 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296246#296246"
+            title="in response to: ZachT@AWS"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: ZachT@AWS"
+            title="in response to: ZachT@AWS" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296246#296246"
+                    title="Go to message">ZachT@AWS</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296217"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296217"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                At this moment, all is well, but sadly I was away at lunch when you replied.  I'm wondering if your CURL command "kicked" things and got them going?  What do you think?<br />
+<br />
+I waited well over 45 minutes and both instances were continually  reported by the ELB, after refreshing the page, as "Instance is in stopped state.", even though they were very alive and well.<br />
+<br />
+I would think that within a few minutes of starting, the instances would be reported by the ELB as anything other than "Instance is in stopped state.".  (For example, the instance isn't "stopped", but is not responding to the health status check.)<br />
+<br />
+So, I have another question, if you would be so kind; does the ELB have some "sense" about instance state, started/stopped, that it derives through some means other than the health check?  (That is, does it really check instance state using some EC2 API-ish mechanism.)  I think I understand the health check part.<br />
+<br />
+Thanks for responding.<br />
+<br />
+James
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296218" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296218"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/expert16x16.gif" border="0"
+            title="Expert" alt="" />
+
+        <a href="profile.jspa?userID=134337"
+            title="James Ross">James Ross</a>  <a href="http://www.amazon.com/exec/obidos/tg/browse/-/14279641/"
+            target="_new"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/amazon/realnamebadge.gif"
+            align="absmiddle" alt="RealName(TM)" 
+            border="0" /></a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 1:40 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296204#296204"
+            title="in response to: D. Svanlund"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: D. Svanlund"
+            title="in response to: D. Svanlund" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296204#296204"
+                    title="Go to message">D. Svanlund</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296218"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296218"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Thank you.  I did suspect that something about the ELB implementation might have changed, though our symptom might differ from the one in your link.  (AWS claims only a few ELBs were affected, and that the problem was rolled-back out.  This is happening today, 11/30.)<br />
+<br />
+Thanks for the link!<br />
+<br />
+James
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296303" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296303"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/amazonicon.gif" border="0"
+            title="Amazonian" alt="" />
+
+        <a href="profile.jspa?userID=154911"
+            title="Luke@AWS">Luke@AWS</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 1:58 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296218#296218"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296218#296218"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296303"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296303"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+        <div class="jive-helpful-rating">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/answer-helpful-16x16.gif"
+                    title="5 points"
+                    border="0" alt="" /></td>
+                
+                <td nowrap>Helpful</td>
+            </tr>
+        </table>
+        </div>
+
+        
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Big Chief,<br />
+<br />
+You should be de-registering from your ELB during a stop/start.<br />
+<br />
+Check out this link in our ELB Developer Guide:<br />
+<a class="jive-link-external" href="http://docs.amazonwebservices.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html">http://docs.amazonwebservices.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html</a><br />
+<br />
+I'm not sure if you actually did complete this process and the ELB recognized the application instances or if the curl did actually kick the health check off. Either way, best practice here would be to de-register on an instance stop to prevent any other issues that may occur.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-296309" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="296309"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/expert16x16.gif" border="0"
+            title="Expert" alt="" />
+
+        <a href="profile.jspa?userID=134337"
+            title="James Ross">James Ross</a>  <a href="http://www.amazon.com/exec/obidos/tg/browse/-/14279641/"
+            target="_new"><img src="https://dn1lvoe5mgzdm.cloudfront.net/images/amazon/realnamebadge.gif"
+            align="absmiddle" alt="RealName(TM)" 
+            border="0" /></a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Nov 30, 2011 2:54 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296303#296303"
+            title="in response to: Luke@AWS"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: Luke@AWS"
+            title="in response to: Luke@AWS" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296303#296303"
+                    title="Go to message">Luke@AWS</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=296309"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=296309"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                <ul>
+<li>
+<ul>
+<li>"Elastic Load Balancing registers your load balancer with your EC2 instance using the instance ID. When the instance is stopped and then restarted, the instance ID changes. " **</li>
+</ul>
+</li>
+</ul>
+<br />
+This is a quote from that de-register link.  Of course, InstanceId (at least the ones I typically talk about) do not change during stop/restart.  (We rely on that; we use an XML file up on S3 to persist instance/EIP mappings, and all instances check there to find the EIP that they are to associate to when they come up.)<br />
+<br />
+So, perhaps the ELB documentation is not correct, or there is some other InstanceID concept (perhaps internal to EC2) to which the documentation refers?  Perhaps you could provide some clarification?<br />
+<br />
+If this is true, that a 'best practice" is to dis-associate/associate an instance to its ELB upon stop/start, we have some serious rethinking to do.<br />
+<br />
+James<br />
+<br />
+P.S.  Truthfully, I don't really believe it is true.  But, maybe it is.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-448837" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="448837"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=260271"
+            title="madscientist2">madscientist2</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">May 7, 2013 1:12 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296309#296309"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296309#296309"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=448837"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=448837"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I am seeing this situation now as well.    The ELB says the instances is stopped, which it is not.  And, why isn't it using the health check as the method to figure out the status?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-451231" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="451231"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=261353"
+            title="eat-more-ume">eat-more-ume</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">May 14, 2013 8:26 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=448837#448837"
+            title="in response to: madscientist2"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: madscientist2"
+            title="in response to: madscientist2" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=448837#448837"
+                    title="Go to message">madscientist2</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=451231"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=451231"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I am seeing this as well.  Does anybody have thoughts on this?  Do we really have to remove the instance and add it back?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-453073" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="453073"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=261353"
+            title="eat-more-ume">eat-more-ume</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">May 20, 2013 10:19 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=451231#451231"
+            title="in response to: eat-more-ume"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: eat-more-ume"
+            title="in response to: eat-more-ume" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=451231#451231"
+                    title="Go to message">eat-more-ume</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=453073"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=453073"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Removing and adding the instance back in seems to be the only solution.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-463835" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="463835"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=227989"
+            title="8kawstraining">8kawstraining</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Jun 26, 2013 12:10 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296303#296303"
+            title="in response to: Luke@AWS"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: Luke@AWS"
+            title="in response to: Luke@AWS" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296303#296303"
+                    title="Go to message">Luke@AWS</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=463835"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=463835"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                makes sense. But why does the behavior is same in the VPC?. <br />
+<br />
+The VPC instances supposed to have private IP which should not change when stopped and started.<br />
+<br />
+We stopped and restarted the VPC instance and confirmed the same private IP is retained. Ideally the ELB should add it in the instance pool, but it doesn't. <br />
+<br />
+Any explanations?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-469198" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="469198"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=211501"
+            title="cloudmagic">cloudmagic</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Jul 16, 2013 3:05 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=463835#463835"
+            title="in response to: 8kawstraining"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: 8kawstraining"
+            title="in response to: 8kawstraining" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=463835#463835"
+                    title="Go to message">8kawstraining</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=469198"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=469198"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+ 
+        <div id="jive-content-tags-469198"
+            class="jive-content-tags">
+         <a href="/tags/ec2">ec2</a>
+        ,  <a href="/tags/elb">elb</a>
+        ,  <a href="/tags/aws">aws</a>
+        ,  <a href="/tags/instance">instance</a>
+        ,  <a href="/tags/problem">problem</a>
+         
+        </div>
+          
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                <div class="jive-quote"><span class="jive-quote-header">8kawstraining wrote:</span><br />
+makes sense. But why does the behavior is same in the VPC?. <br />
+<p />
+The VPC instances supposed to have private IP which should not change when stopped and started.<br />
+<p />
+We stopped and restarted the VPC instance and confirmed the same private IP is retained. Ideally the ELB should add it in the instance pool, but it doesn't. <br />
+<p />
+Any explanations?</div>
+<br />
+We are facing the same problem. We have to wait for ~20mins before ELB recognizes the instances as running.<br />
+<br />
+@AWS Any explanations?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-477230" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="477230"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=273598"
+            title="amodkadam">amodkadam</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Aug 9, 2013 3:55 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=469198#469198"
+            title="in response to: cloudmagic"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: cloudmagic"
+            title="in response to: cloudmagic" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=469198#469198"
+                    title="Go to message">cloudmagic</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=477230"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=477230"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+ 
+        <div id="jive-content-tags-477230"
+            class="jive-content-tags">
+         <a href="/tags/elb">elb</a>
+        ,  <a href="/tags/vpc">vpc</a>
+         
+        </div>
+          
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I am running the instances in VPC. Even I faced this problem and problem persisted for more than hours. The instances were running but ELB did not recognize it healthy. <br />
+<br />
+The only way to address this is to a) ensure that your instances are running b) remove these instances from load balancer  and then 3) register these instance with ELB again.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-491676" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="491676"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=255433"
+            title="theLau1">theLau1</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Oct 1, 2013 5:41 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=477230#477230"
+            title="in response to: amodkadam"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: amodkadam"
+            title="in response to: amodkadam" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=477230#477230"
+                    title="Go to message">amodkadam</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=491676"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=491676"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I just experienced this, stopped an instance then started it, 20 minutes later ELB was still showing "Instance stopped". Had to remove and re-add the instance to the ELB get it operational again. <br />
+<br />
+Any solutions?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-545547" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="545547"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=274214"
+            title="DheerajK">DheerajK</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">May 24, 2014 2:53 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=491676#491676"
+            title="in response to: theLau1"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: theLau1"
+            title="in response to: theLau1" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=491676#491676"
+                    title="Go to message">theLau1</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=545547"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=545547"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I bumped on the same issues just now and that's how I came across this thread. I had to remove and re-add the instances to ELB. And this is May 24h 2014 at my place. This thread seems to be an old thread with and ever persisting issue/bug.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-546044" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="546044"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=298603"
+            title="clementeluigi">clementeluigi</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">May 27, 2014 4:02 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296269#296269"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296269#296269"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=546044"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=546044"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I confirm this is still an issue.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-549830" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="549830"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=292788"
+            title="alexthepixiehead">alexthepixiehead</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Jun 12, 2014 4:39 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296269#296269"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296269#296269"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=549830"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=549830"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                I'm having the exact same issue.<br />
+<br />
+It seems very cumbersome to orchestrate a de-register/register in all ELBs an instance might participate. Is this even under my control? I always thought AWS reserves the right to restart an instance at any time if required for maintenance and stuff?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-550622" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="550622"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:   <img class="jive-status-level-image" align="absmiddle"
+            src="images/status/amazonicon.gif" border="0"
+            title="Amazonian" alt="" />
+
+        <a href="profile.jspa?userID=201522"
+            title="Richard@AWS">Richard@AWS</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Jun 17, 2014 6:44 AM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=549830#549830"
+            title="in response to: alexthepixiehead"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: alexthepixiehead"
+            title="in response to: alexthepixiehead" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=549830#549830"
+                    title="Go to message">alexthepixiehead</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=550622"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=550622"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Hello,<br />
+<br />
+Elastic Load Balancing registers your load balancer with your EC2 instance using the associated IP address. When your EC2 instance launched in EC2-Classic is stopped and then started, the IP address associated with your instance changes. Your load balancer does not recognize the new IP address. When you stop and then start your registered EC2 instance launched in EC2-Classic, you must deregister your stopped instance from your load balancer, and then reregister the restarted instance. Failure to do so may prevent the load balancer from routing the traffic to the restarted instance. <br />
+<br />
+If you have launched your instance in EC2-VPC, by default, the IP address associated with your instance does not change when you stop and then start the instance. However, when you stop and then start your EC2-VPC instance, your load balancer might take sometime to recognize that the stopped instance has started. During this time your load balancer is not connected to the restarted instance. We recommend that you reregister your restarted instance with the load balancer.<br />
+<br />
+This is documented here:<br />
+<br />
+<a class="jive-link-external" href="http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html">http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html</a><br />
+<br />
+I hope this helps.<br />
+<br />
+Richard
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-566642" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="566642"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=308802"
+            title="benweet">benweet</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Aug 30, 2014 4:25 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=550622#550622"
+            title="in response to: Richard@AWS"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: Richard@AWS"
+            title="in response to: Richard@AWS" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=550622#550622"
+                    title="Go to message">Richard@AWS</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=566642"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=566642"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                It's an awkward problem. Why can't OpsWorks handle this use case properly?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-594020" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="594020"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=322562"
+            title="jw-michael">jw-michael</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Jan 9, 2015 3:19 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=550622#550622"
+            title="in response to: Richard@AWS"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: Richard@AWS"
+            title="in response to: Richard@AWS" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=550622#550622"
+                    title="Go to message">Richard@AWS</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=594020"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=594020"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+   
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                Richard, I notice you say "it make take sometime" - any idea what "sometime" means here?  I just waited 30 minutes and ELB still didn't notice my instance was started.  This is a bit excessive, that I have to remove &#38; re-register every time I need to stop/start an instance.  Surely that would be trivial for the service to do on its own?
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        <div class="jive-message-list">
+            <div class="jive-table">
+
+                
+
+
+
+
+<div class="jive-messagebox">
+
+<table summary="Message" cellpadding="0" cellspacing="0" border="0"
+    width="100%">
+    <tr id="jive-message-608883" valign="top">
+        <td class="jive-first" valign="top">
+
+
+        <table class="jive-thread-messagebox" style="padding: 12px;" width="100%">
+            <tr>
+                
+                <td valign="top" width="1%"></td>
+ 
+ 
+     <td width="100%" valign="top">
+
+       <span class="jive-subject"> <a
+            name="608883"></a> Re: ELB reports "instance stopped", but instance is running...
+       </span>
+        
+        
+<div style="padding-top: 5px; font-size: 11px;">
+        
+        
+        
+
+
+ 
+<div class="jive-message-info">Posted by:  <a href="profile.jspa?userID=329730"
+            title="gurujeya">gurujeya</a> 
+   </div>
+        
+        
+        
+        <div class="jive-message-info">
+         Posted on: 
+            
+        <font style="color: #000;">Mar 18, 2015 11:11 PM</font>
+        </div>
+        
+        
+        
+        
+        
+          <div class="jive-message-info"><a
+            href="message.jspa?messageID=296269#296269"
+            title="in response to: James Ross"><img
+            src="images/up-10x10.gif" width="10" height="10" border="0"
+            alt="in response to: James Ross"
+            title="in response to: James Ross" /></a>
+         
+        
+        in response to: <a
+                    href="message.jspa?messageID=296269#296269"
+                    title="Go to message">James Ross</a> 
+ </div>   
+
+
+   
+        
+
+
+
+        
+        
+
+        <div class="jive-attachment-list">
+        <table cellpadding="3" cellspacing="0" border="0">
+            
+            <tr>
+                <td width="1%"><a
+                    href="servlet/JiveServlet/download/30-81118-608883-14229/reregister-instances-to-elbs.py"><img
+                    src="servlet/JiveServlet?attachImage=true&amp;contentType=text%2Fplain&amp;attachment=14229"
+                    border="0"
+                    alt="Attachment"></a></td>
+                <td width="99%" class="jive-description"><a
+                    href="servlet/JiveServlet/download/30-81118-608883-14229/reregister-instances-to-elbs.py">reregister-instances-to-elbs.py</a> (866 bytes)</td>
+            </tr>
+            
+        </table>
+        </div>
+
+        
+        
+        
+        
+        </div>
+        </td>
+        <td align="right" valign="top">
+                
+<div class="jive-buttons">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                
+
+                
+
+                
+
+                
+                
+
+                <td>&nbsp;</td>
+                <td class="jive-icon"><a
+                    href="post!reply.jspa?messageID=608883"
+                    title="Click to reply to this thread"><img
+                    src="images/reply-16x16.gif" width="16" height="16"
+                    border="0"
+                    alt="Click to reply to this thread"></a></td>
+                <td class="jive-icon-label"><a
+                    href="post!reply.jspa?messageID=608883"
+                    title="Click to reply to this thread">Reply</a></td>
+
+                
+            </tr>
+        </table>
+        </div>
+                 
+                 
+                </td>
+            </tr>
+            
+            
+            
+       <tr style="padding: 0px;">
+            <td  style="padding: 0px;" valign="top" colspan="3">
+            
+
+      <table  style="padding: 0px;" width="100%">
+              <tr  style="padding: 0px;">
+              <td width="80%"  style="vertical-align:bottom; padding: 0px; padding-left:11px;" valign="top">
+    
+
+ 
+        <div id="jive-content-tags-608883"
+            class="jive-content-tags">
+         <a href="/tags/reregister">reregister</a>
+         
+        </div>
+          
+        
+              
+              </td>
+              
+              <td  style="padding: 0px;" valign="top" align="right">
+                     
+
+ 
+                 
+
+         
+ 
+ 
+
+ 
+ 
+ 
+              </td>
+              </tr>
+            </table>
+              </td>
+              </tr>
+              
+              
+    <tr><td colspan="3">
+    
+
+    
+        <table  border="0" cellpadding="0" cellspacing="0" width="100%"
+            class="jive-message-body-wrapper">
+            <tr>
+                <td>
+                <div class="jive-message-body">
+                <div style="line-height:1.5; padding-left: 25px;padding-right: 10px;">
+                We recently experienced this issue after a nightly stop and start of instances. We solved it by reregistering the instances to ELB automatically after starting the instances (through cron).<br />
+<br />
+I have attached the sample script used for anybody to use (also in <a class="jive-link-external" href="https://github.com/jeyaram/aws-utils/blob/master/reregister-instances-to-elbs.py">https://github.com/jeyaram/aws-utils/blob/master/reregister-instances-to-elbs.py</a>). The scripts uses boto aws library and requires list of ELBs as a parameter enclosed with double quotes and separated by space.
+                </div>
+                
+                </div>
+                </td>
+            </tr>
+        </table>
+       
+ 
+
+
+        </td>
+    </tr>
+    
+</table>
+
+</td></tr></table>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+
+        
+
+
+            
+        <table cellpadding="3" cellspacing="0" style="padding-top: 10px;" border="0" width="100%">
+            <tr>
+
+                <td nowrap width="90%">
+                
+                <div style="padding-top: 5px"><a
+                    href="rss/rssmessages.jspa?threadID=81118"><img
+                    align="absmiddle" style="padding-right: 8px;"
+                    src="https://dn1lvoe5mgzdm.cloudfront.net/images/feed-icon-16x16.gif" width="16"
+                    height="16" border="0" alt="View Thread RSS Feed"></a>
+                <a
+                    href="rss/rssmessages.jspa?threadID=81118"><b>View
+                Thread RSS Feeds</b></a></div>
+                
+                </td>
+                <td nowrap align="right" width="10%">
+         
+
+                </td>
+
+            </tr>
+         </table>
+      
+ 
+    
+    
+    
+
+    </div>
+
+        </td>
+
+        
+        <td valign="top" width="1%">
+        
+        
+        
+
+
+
+<div id="sideNav">
+<div id="subNavB">
+<div class="decoratedBox">
+<div class="head">
+<h4>Available Actions</h4>
+</div>
+<div class="body">
+<table>
+    <tbody>
+
+
+        
+        <tr>
+            <td class="jive-icon"><a
+                href="post!reply.jspa?threadID=81118"><img
+                src="images/reply-16x16.gif" width="16" height="16"
+                border="0"
+                alt="Reply to this Thread"></a></td>
+            <td class="jive-icon-label">
+            <a id="jive-reply-thread"
+                href="post!reply.jspa?threadID=81118">Reply to this Thread</a></td>
+        </tr>
+        
+
+        
+
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+
+         
+        
+        
+        
+        
+
+
+
+
+
+
+
+<div id="sideNav">
+<div id="subNavB">
+<div class="decoratedBox">
+<div class="head">
+<h4>Icon Legend</h4>
+</div>
+<div class="body">
+<table>
+    
+
+
+    
+
+    <tr>
+        <td valign="top" class="jive-icon"><img
+            src="images/question-resolved-16x16.gif" width="16"
+            height="16" border="0" alt=""></td>
+        <td valign="top" class="jive-icon-label">
+        Answered question</td>
+    </tr>
+    <tr>
+        <td valign="top" class="jive-icon"><img
+            src="images/question-pts-available-16x16.gif" width="16"
+            height="16" border="0" alt=""></td>
+        <td valign="top" class="jive-icon-label">
+          Unanswered question with answer points still available 
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" class="jive-icon"><img
+            src="images/question-16x16.gif" width="16" height="16"
+            border="0" alt=""></td>
+        <td valign="top" class="jive-icon-label">
+        Unanswered question</td>
+    </tr>
+
+
+</table>
+
+
+        
+<div class="jive-portlet-separator"><a style="font-weight:bold;" href="recognition.jsp">AWS Forums Status Icons</a></div>
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+
+
+    
+
+        <tbody class="jive-status-legend-points">
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/ace16x16.gif" border="0" title="Ace" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+
+                        Ace: 2000+      pts
+                    </td>
+                </tr>
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/expert16x16.gif" border="0" title="Expert" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+
+                        Expert: 750-1999
+
+                              pts
+                    </td>
+                </tr>
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/guide16x16.gif" border="0" title="Guide" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+
+                        Guide: 300-749
+
+                              pts
+                    </td>
+                </tr>
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/enthusiast16x16.gif" border="0" title="Enthusiast" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+
+                        Enthusiast: 50-299
+
+                              pts
+                    </td>
+                </tr>
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/newbie16x16.gif" border="0" title="Newbie" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+
+                        Newbie: 5-49
+
+                              pts
+                    </td>
+                </tr>
+
+            
+
+        </tbody>
+
+    
+
+    
+
+        <tbody class="jive-status-legend-groups">
+
+            
+                <tr>
+                    <td valign="top" class="jive-icon">
+                        <img src="images/status/amazonicon.gif" border="0" title="Amazonian" alt="" />
+                    </td>
+                    <td valign="top" class="jive-icon-label">
+                        Amazonian
+                    </td>
+                </tr>
+
+            
+
+        </tbody>
+
+    
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+         
+        
+        </td>
+        
+
+
+    </tr>
+</table> 
+                <br />
+                <br />
+              </article>
+         &nbsp; 
+
+      <footer id="ft" class="footer">
+        <div style="border-top: 1px solid #ccc; margin-bottom: 12px; margin-top: 10px; padding-top: 2px;">
+          <ul class="h_bar">
+            <li class="first">
+              <a href="http://aws.typepad.com/" target="_blank">AWS Blog <img src="https://d36cz9buwru1tt.cloudfront.net/icon_offsite.gif" width="15" height="13" border="0" alt="This link will launch a new browser window or tab."></a>
+            </li>
+            <li><a href="http://phx.corporate-ir.net/phoenix.zhtml?c=176060&p=irol-InfoReq">Press Inquiries</a></li>
+            <li><a href="https://aws.amazon.com/careers/">Careers at AWS</a></li>
+            <li><a href="https://aws.amazon.com/contact-us/">Contact Us</a></li>
+            <li><a href="https://aws.amazon.com/privacy/">Privacy Policy</a></li>
+            <li><a href="https://aws.amazon.com/terms/">Terms of Use</a></li>
+          </ul>
+          <div class="grey666">&#169;2013, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+          <img src="https://d36cz9buwru1tt.cloudfront.net/awsmedia/logo_an_amazon_company.gif" width="160" height="21" vspace="8">
+        </div>
+      </footer>
+              
+            </td>
+          </tr>
+        </table>
+      </div>
+    </tr>
+  </table>
+
+<style>  
+    .aws-footer {
+      font-size:85%;
+      text-align:center;
+    }
+   
+    .h_bar {
+      list-style-image: none;
+      list-style-position:outside;
+      list-style-type: none;
+      margin-left: 0;
+      padding-left: 10px;
+    }
+  
+    .h_bar li{
+      border-left: 1px solid #CCCCCC;
+      padding-left: 18px;
+      padding-right: 18px;
+      display: inline;
+      list-style-type: none;
+    }
+  
+     li.first{
+      border-left: 0px;
+    }
+  </style> 
+  <script src="/js/all_3_en.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://d348hmg1ylg9cx.cloudfront.net/js/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="https://d348hmg1ylg9cx.cloudfront.net/js/jquery.jsonp-1.1.4.min.js"></script>
+  <script type="text/javascript" src="//s3.amazonaws.com/awsmedia/amznUrchin.js"></script>
+  <script type="text/javascript">
+    jQuery.noConflict();
+  </script>
+
+      <script type="text/javascript">
+        AWSGlobalNav.disableLanguageMenu = true;
+
+        AWSGlobalNav.contentBaseURL = "//l0.awsstatic.com/"; 
+
+      </script>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de-formal" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" />
+<title>OpenSSH Public Key Authentifizierung unter Ubuntu – Thomas-Krenn-Wiki</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.9" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/de/wikiDE/opensearch_desc.php" title="Thomas-Krenn-Wiki (de-formal)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.thomas-krenn.com/de/wikiDE/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Atom-Feed für „Thomas-Krenn-Wiki“" href="http://feeds.feedburner.com/tkwiki" />
+<link rel="stylesheet" href="https://www.thomas-krenn.com/de/wikiDE/load.php?debug=false&amp;lang=de-formal&amp;modules=ext.categoryTree.css%7Cext.visualEditor.viewPageTarget.noscript%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.ui.button%7Cskins.vector.styles%7Cskins.ztkskin&amp;only=styles&amp;skin=tkskin&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.thomas-krenn.com/de/wikiDE/load.php?debug=false&amp;lang=de-formal&amp;modules=site&amp;only=styles&amp;skin=tkskin&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wikidb:resourceloader:filter:minify-css:7:b36fd1c042133c9c9b60260f7c29b237 */</style>
+<script src="https://www.thomas-krenn.com/de/wikiDE/load.php?debug=false&amp;lang=de-formal&amp;modules=startup&amp;only=scripts&amp;skin=tkskin&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu","wgTitle":"OpenSSH Public Key Authentifizierung unter Ubuntu","wgCurRevisionId":21983,"wgRevisionId":21983,"wgArticleId":4563,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Ubuntu","SSH"],"wgBreakFrames":false,"wgPageContentLanguage":"de-formal","wgPageContentModel":"wikitext","wgSeparatorTransformTable":[",\t.",".\t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],"wgMonthNamesShort":["","Jan.","Feb.","Mär.","Apr.","Mai","Jun.","Jul.","Aug.","Sep.","Okt.","Nov.","Dez."],"wgRelevantPageName":"OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":false,"previewDialog":false,"publish":false},"wgVisualEditor":{"isPageWatched":false,"magnifyClipIconURL":"/de/wikiDE/skins/common/images/magnify-clip.png","pageLanguageCode":"de-formal","pageLanguageDir":"ltr","svgMaxSize":2048},"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":true,"enotifusertalkpages":1,"enotifwatchlistpages":true,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"tkskin","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"visualeditor-enable":1,"visualeditor-enable-experimental":0,"visualeditor-betatempdisable":0,"language":"de-formal","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":true,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":true,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"de-formal"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wikidb:resourceloader:filter:minify-js:7:64be413721a849da63b5e72894e2dde3 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.visualEditor.viewPageTarget.init","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/de/wikiDE/skins/tkskin/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr capitalize-all-nouns ns-0 ns-subject page-OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu skin-tkskin action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="de-formal"><span dir="auto">OpenSSH Public Key Authentifizierung unter Ubuntu</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">Aus Thomas-Krenn-Wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Wechseln zu:					<a href="#mw-navigation">Navigation</a>, 					<a href="#p-search">Suche</a>
+				</div>
+				<div id='breadcrumb'><a href="/de/wiki/Hauptseite" title="Hauptseite">Hauptseite</a> &gt; <a href="/de/wiki/Kategorie:Server-Software" title="Kategorie:Server-Software">Server-Software</a> &gt; <a href="/de/wiki/Kategorie:Linux" title="Kategorie:Linux">Linux</a> &gt; <a href="/de/wiki/Kategorie:SSH" title="Kategorie:SSH">SSH</a><br />
+<a href="/de/wiki/Hauptseite" title="Hauptseite">Hauptseite</a> &gt; <a href="/de/wiki/Kategorie:Server-Software" title="Kategorie:Server-Software">Server-Software</a> &gt; <a href="/de/wiki/Kategorie:Linux" title="Kategorie:Linux">Linux</a> &gt; <a href="/de/wiki/Kategorie:Ubuntu" title="Kategorie:Ubuntu">Ubuntu</a></div><div id="mw-content-text" lang="de-formal" dir="ltr" class="mw-content-ltr"><p>Dieser Artikel zeigt, wie ein <b>SSH-Zugang</b> für eine Authentifizierung mittels <b>Public-Key-Verfahren</b> konfiguriert wird. Dazu wird am Client ein Schlüsselpaar erstellt, der öffentliche Teil der Schlüssel auf den Server übertragen und anschließend der Server für die Schlüssel-Authentifizierung eingerichtet. Der Benutzer kann sich dadurch ohne Login-Passwort am Server anmelden, es wird ausschließlich das Passwort zum Schutz des privaten Schlüssels benötigt.
+Die verwendeten Betriebssysteme in diesem Artikel sind einerseits ein <b>Ubuntu 12.10 am Client</b> und andererseits ein <b>Ubuntu 12.04 am Server</b>.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Inhaltsverzeichnis</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Am_Client"><span class="tocnumber">1</span> <span class="toctext">Am Client</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Schl.C3.BCsselpaar_generieren"><span class="tocnumber">1.1</span> <span class="toctext">Schlüsselpaar generieren</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#.C3.96ffentl._Schl.C3.BCssel_auf_Server_.C3.BCbertragen"><span class="tocnumber">1.2</span> <span class="toctext">Öffentl. Schlüssel auf Server übertragen</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Testen_der_Key-Authentifizierung"><span class="tocnumber">1.3</span> <span class="toctext">Testen der Key-Authentifizierung</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Am_Server"><span class="tocnumber">2</span> <span class="toctext">Am Server</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#sshd-Konfiguration"><span class="tocnumber">2.1</span> <span class="toctext">sshd-Konfiguration</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Passwort-Authentifizierung_nur_f.C3.BCr_einen_User_verbieten"><span class="tocnumber">2.2</span> <span class="toctext">Passwort-Authentifizierung nur für einen User verbieten</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Am_Client">Am Client</span></h2>
+<h3><span class="mw-headline" id="Schl.C3.BCsselpaar_generieren">Schlüsselpaar generieren</span></h3>
+<p>Im ersten Schritt wird am Client ein Schlüsselpaar mit <code>ssh-keygen</code> erstellt. Für die RSA-Schlüssel wird eine Bitlänge von 4096 Bit ausgewählt:
+</p>
+<pre>
+:~$ ssh-keygen -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/gschoenb/.ssh/id_rsa): /home/gschoenb/.ssh/key_rsa
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/gschoenb/.ssh/key_rsa.
+Your public key has been saved in /home/gschoenb/.ssh/key_rsa.pub.
+The key fingerprint is:
+20:69:c5:c3:e2:2d:a8:09:49:b9:d9:ee:ca:f9:45:5e gschoenb@gschoenb-X220
+The key's randomart image is:
++--[ RSA 4096]----+
+|  .  o.          |
+| o  .o+          |
+|..+o+o..         |
+|oo.oo...         |
+|.o.  o ES        |
+|o  .o .          |
+|  .  o           |
+|. ...            |
+| +o.             |
++-----------------+
+:~$ ls .ssh/
+id_rsa  id_rsa.pub  key_rsa  key_rsa.pub  known_hosts  known_hosts.old
+</pre>
+<p><b>Achtung:</b> Es wird aus sicherheitstechnischen Gründen empfohlen, den Schlüssel auf jeden Fall mit einer Passphrase zu schützen. Dadurch liegt der Schlüssel nicht im Klartext vor, sondern ist AES-CBC verschlüsselt:
+</p>
+<pre>
+:~$ cat .ssh/key_rsa
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,426FD49B9F6277AC00D62B08547D5FDE
+[...]
+</pre>
+<p>Sollte der private Schlüssel von einem Angreifer gestohlen werden, muss dieser, um mit dem Schlüssel auf den Server zugreifen zu können, noch das Passwort des Schlüssels herausfinden. Beim einem Schlüssel, der im Klartext vorliegt, kann ein Angreifer mit einem gestohlenen Schlüssel direkt auf den Server zugreifen.
+</p>
+<h3><span class="mw-headline" id=".C3.96ffentl._Schl.C3.BCssel_auf_Server_.C3.BCbertragen">Öffentl. Schlüssel auf Server übertragen</span></h3>
+<p>Für das Übertragen des öffentlichen Schlüssels auf den Server wird im ersten Schritt noch die SSH-Verbindung mittels Passwort-Authentifizierung genutzt. Das Werkzeug <code>ssh-copy-id</code> kopiert das entsprechende Idendity-File auf den Server:
+</p>
+<pre>
+:~$ ssh-copy-id -i .ssh/key_rsa.pub tktest@192.168.56.101
+tktest@192.168.56.101's password: 
+Now try logging into the machine, with &quot;ssh 'tktest@192.168.56.101'&quot;, and check in:
+
+  ~/.ssh/authorized_keys
+
+to make sure we haven't added extra keys that you weren't expecting.
+</pre>
+<p>Das oben genannte Prozedere hat <b>am Server</b> in der Datei <code>/home/tktest/.ssh/authorized_keys</code> folgenden Eintrag erstellt:
+</p>
+<pre>
+:~$ cat .ssh/authorized_keys 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7qmegDxzv1omqG2cWM+i+qaEGzCoSBwqCeXyGUU93sTqtNYYHJVGj6YZqXeXEGzJtKm2A/uo59Y+WmqhJgW7HcT2Hqvo80NfbIRhqE9TJETyBe
+GiiC8qpiYgPC2zigCNvTsRXh0CH5FJ1qy4QEBjztQDWOqSrsoOSJEEWCJiKJizTiXDmlGdiKE409GBo8lvlbMRWbrMj3iX825WTqy/T0Pio1kqANDotLnPA0sRXUPVyzc/ghzqRHzFetzP9j7C0nh
+EvjiJphiuYvhbgix79FrCQG0lXBGcAWzsWUeAoT/d3kQu79+UTWxm+z4pnJ7gkKVMejqrWys560SdAqD264dc5UBRGI9j6XxVKdraSaEitDneONrSAt2tE/RwRxh2ASxqQfdF88zyDI8/ma608tHc
+FROaNsn5hF+/wzjRK9akdhp5WjA5HXhg2OlkwKvSMhGlSgotRj5pr4Ebxjegysy1mEWRFN/vh/oNq4uHQy8adpfogaVELkI/Z2nuAdQk+uMy6D1hrKhUWubmBPxTbG00IWF25Tyuz8hnFRP9+gB/P
+NRlF59/EHy27a72nirvuOyfxKnx/Mn+FD9Ah59OSLhWuo3sN9Im8yc2cliecwMz+DmTtE7TwzNw9v2zfxU9JDQwyLtppULiGpmKFOLHjz+SVGxSbVsWS//IyNK1GrQ== gschoenb@gschoenb-X220
+</pre>
+<h3><span class="mw-headline" id="Testen_der_Key-Authentifizierung">Testen der Key-Authentifizierung</span></h3>
+<p>Nachdem sich nun der öffentlich. Schlüssel am Server befindet, kann vom Client aus die Verbindung getestet werden. Wichtig ist dabei, dass <b>nicht</b> nach dem Passwort des Benutzers am Server gefragt wird, sondern die Passphrase, mit der der Schlüssel geschützt ist, verlangt wird!
+</p>
+<pre>
+:~$ ssh -i .ssh/key_rsa tktest@192.168.56.101
+</pre>
+<p>Daraufhin erscheint bei GUI-basierten Systemen die folgende Dialog-Box:
+</p>
+<div class="center"><div class="floatnone"><a href="/de/wiki/Datei:OpenSSH-Public-Key-Dialog.png" class="image"><img alt="OpenSSH-Public-Key-Dialog.png" src="/de/wikiDE/images/thumb/7/72/OpenSSH-Public-Key-Dialog.png/500px-OpenSSH-Public-Key-Dialog.png" width="500" height="272" srcset="/de/wikiDE/images/thumb/7/72/OpenSSH-Public-Key-Dialog.png/750px-OpenSSH-Public-Key-Dialog.png 1.5x, /de/wikiDE/images/7/72/OpenSSH-Public-Key-Dialog.png 2x" /></a></div></div>
+<p>Nach Eingabe des Passworts, mit dem der Schlüssel beim Erstellen geschützt wurde, ist man am System authentifiziert:
+</p>
+<pre>
+:~$ ssh -i .ssh/key_rsa tktest@192.168.56.101
+Welcome to Ubuntu 12.04.1 LTS (GNU/Linux 3.2.0-23-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Thu Jan 17 13:51:19 CET 2013
+[...]
+</pre>
+<h2><span class="mw-headline" id="Am_Server">Am Server</span></h2>
+<h3><span class="mw-headline" id="sshd-Konfiguration">sshd-Konfiguration</span></h3>
+<p>Grundsätzlich genügt es unter Ubuntu, das oben angeführte Prozedere für die Public-Key-Authentifizierung durchzuführen. In manchen Situationen macht es dann auch Sinn, Passwort-Authentifizierung komplett zu deaktivieren.
+</p><p><b>Achtung:</b> Nach Änderung der folgenden Einstellung, ist es nicht mehr möglich, sich mit einem Passwort über ssh anzumelden: <code>PasswordAuthentication no</code>.
+</p>
+<pre>
+:~$ sudo diff /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
+51c51
+&lt; PasswordAuthentication no
+---
+&gt; #PasswordAuthentication yes
+</pre>
+<p>Vom <b>Client</b> aus wird die Verbindung ein weiteres Mal getestet:
+</p>
+<pre>
+:~$ ssh -i .ssh/key_rsa tktest@192.168.56.101
+Agent admitted failure to sign using the key.
+Permission denied (publickey).
+</pre>
+<p>Im oben genannten Beispiel wurde der Dialog zum Eingeben des Schlüssel-Passworts abgebrochen. Da das Anmelden via Passwort deaktiviert wurde, war die Anmeldung am System nicht möglich.
+</p>
+<h3><span class="mw-headline" id="Passwort-Authentifizierung_nur_f.C3.BCr_einen_User_verbieten">Passwort-Authentifizierung nur für einen User verbieten</span></h3>
+<p>Eine weitere Möglichkeit, bei der Passwort-Authentifizierung nicht komplett deaktiviert wird, ist die Passwort-Anmeldung für spezielle User zu deaktivieren. Dadurch kann sich z.B. einem User, der am Server keine sudo-Rechte besitzt am Server anmelden. Um root-Rechte zu erlangen muss daraufhin zumindest ein weiteres Passwort eine Users mit sudo-Rechten herausgefunden werden. Außerdem gibt es die Möglichkeit, User komplett von ssh auszunehmen:
+</p>
+<pre>
+:~$ sudo diff /etc/ssh/sshd_config /etc/ssh/sshd_config.orig
+88,91d87
+&lt; 
+&lt; DenyUsers test
+&lt; Match User tktest
+&lt;     PasswordAuthentication no
+</pre>
+<p>Dieses Beispiel:
+</p>
+<ul>
+<li> Verbietet den SSH-Zugang für den User <code>test</code>
+</li>
+<li> Deaktiviert die Passwort-Authentifizierung für den User <code>tktest</code>
+</li>
+<li> Für alle anderen User bleibt die Passwort-Authentifizierung erhalten.
+</li>
+</ul>
+<p><br />
+</p>
+<table class="authortable" width="100%" cellpadding="10">
+<tr>
+<td valign="middle"> <div class="center"><div class="floatnone"><a href="/de/wiki/Datei:Foto_Georg_Sch%C3%B6nberger.jpg" class="image"><img alt="Foto Georg Schönberger.jpg" src="/de/wikiDE/images/thumb/0/09/Foto_Georg_Sch%C3%B6nberger.jpg/125px-Foto_Georg_Sch%C3%B6nberger.jpg" width="125" height="125" class="authorimage" srcset="/de/wikiDE/images/thumb/0/09/Foto_Georg_Sch%C3%B6nberger.jpg/188px-Foto_Georg_Sch%C3%B6nberger.jpg 1.5x, /de/wikiDE/images/0/09/Foto_Georg_Sch%C3%B6nberger.jpg 2x" /></a></div></div>
+</td>
+<td valign="top">
+<p>Autor: <a href="/de/wiki/Benutzer:Gschoenberger" title="Benutzer:Gschoenberger">Georg Schönberger</a>
+</p><p>Georg Schönberger, Abteilung Web Operations &amp; Knowledge Transfer bei <a onclick="_gaq.push(['_trackEvent', 'Wiki', 'sitex-'])" href='https://www.thomas-krenn.com/de/index.html' target='_blank'>Thomas-Krenn</a>, absolvierte an der FH OÖ am Campus Hagenberg sein Studium zum Bachelor Computer- und Mediensicherheit, Studium Master Sichere Informationssysteme. Seit 2012 ist Georg bei Thomas-Krenn beschäftigt und arbeitet sehr lösungsorientiert und hat keine Angst vor schwierigen Aufgaben. Zu seinen Hobbys zählt neben Linux auch Tennis, Klettern und Reisen.
+</p><p><br />
+</p>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.060 seconds
+Real time usage: 0.076 seconds
+Preprocessor visited node count: 133/1000000
+Preprocessor generated node count: 415/1000000
+Post‐expand include size: 1409/2097152 bytes
+Template argument size: 527/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikidb:pcache:idhash:4563-0!*!0!!de-formal!2!* and timestamp 20150817091721 and revision id 21983
+ -->
+</div>										<div class="share-icons">
+					<a href="#" onclick="
+						window.open(
+						    'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+						    'facebook-share-dialog', 
+						    'width=626,height=436'); 
+						    return false;" class="tk tk-fb-share-icon" alt="Share via Facebook" title="Share via Facebook"></a>
+					<a href="#" onclick="
+						     window.open(
+						     'https://twitter.com/share?text='+document.title,
+						     'twitter-popup',
+						     'width=626,height=436');
+						     return false;" class="tk tk-twitter-share-icon" alt="Share via Twitter" title="Share via Twitter"></a>
+					<a href="#" onclick="
+						     window.open(
+						     'https://plus.google.com/share?url='+encodeURIComponent(location.href),
+						     'google-plus-one',
+						     'width=626,height=436');
+						     return false;" class="tk tk-google-share-icon" alt="Share via Google+" title="Share via Google+">
+					      </a>
+					<a href="#" onclick="javascript:window.location='mailto:?subject='+ document.title + '&body=' + encodeURIComponent(location.href);" class="tk tk-mail-share-icon" alt="Share via Mail" title="Share via Mail">
+					      </a>
+					<div class="print-version">
+	
+										    <a href="/de/wiki/Spezial:Kontakt">Feedback zu diesem Artikel</a>
+						<a href="/de/wikiDE/index.php?title=OpenSSH Public Key Authentifizierung unter Ubuntu&printable=yes">Druckversion</a>
+										</div>
+					</div>
+												<div class="similar-pages">
+												<div id="similar-header"><h2>
+																Das k&ouml;nnte Sie auch interessieren
+															</h2></div>
+							<div id="similartable">
+								<div class="mainrow">
+																			<div class="simcell" style="width: 33.333333333333%;"><div class="simheader">3Ware 9750 wird nicht erkannt unter Ubuntu Server 11.10</div></div>
+																			<div class="simcell" style="width: 33.333333333333%;"><div class="simheader">Linux Kernel unter Ubuntu oder Debian kompilieren</div></div>
+																			<div class="simcell" style="width: 33.333333333333%;"><div class="simheader">Oracle Java JRE unter Ubuntu installieren</div></div>
+																</div>
+								<div class="mainrow">
+																			<div class="simcell">
+												<div class="similar-page-button">
+																								<a onclick="_gaq.push(['_trackEvent', 'Wiki', 'SimilarPages'])" href="/de/wiki/3Ware%209750%20wird%20nicht%20erkannt%20unter%20Ubuntu%20Server%2011.10">Zum Artikel
+																								</a>
+												</div>
+											</div>
+																			<div class="simcell">
+												<div class="similar-page-button">
+																								<a onclick="_gaq.push(['_trackEvent', 'Wiki', 'SimilarPages'])" href="/de/wiki/Linux%20Kernel%20unter%20Ubuntu%20oder%20Debian%20kompilieren">Zum Artikel
+																								</a>
+												</div>
+											</div>
+																			<div class="simcell">
+												<div class="similar-page-button">
+																								<a onclick="_gaq.push(['_trackEvent', 'Wiki', 'SimilarPages'])" href="/de/wiki/Oracle%20Java%20JRE%20unter%20Ubuntu%20installieren">Zum Artikel
+																								</a>
+												</div>
+											</div>
+																</div>
+							</div>
+										</div>
+
+				
+<script type="text/javascript">
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-163492-1']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+<script type="text/javascript">
+    var _elqQ = _elqQ || [];
+    _elqQ.push(['elqSetSiteId', '2042991317']);
+    _elqQ.push(['elqTrackPageView']);
+   
+    (function () {
+        function async_load() {
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+            s.src = '//img.en25.com/i/elqCfg.min.js';
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        }
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load);
+    })();
+</script>
+
+<script type="text/javascript">  (function() {
+var ga = document.createElement('script');     ga.type = 'text/javascript'; ga.async = true;           ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>        <!--Google Code -->
+<script type="text/javascript">
+<!--
+var google_conversion_id = 1071009956;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "2hBMCNbH1wEQpKHZ_gM";
+var google_conversion_value = 0;
+//-->
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+<div style="display:inline;">
+<img height="0" width="0" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1071009956/?label=2hBMCNbH1wEQpKHZ_gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+								<div class="printfooter">
+				Von „<a href="https://www.thomas-krenn.com/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;oldid=21983">https://www.thomas-krenn.com/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;oldid=21983</a>“				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/de/wiki/Spezial:Kategorien" title="Spezial:Kategorien">Kategorien</a>: <ul><li><a href="/de/wiki/Kategorie:Ubuntu" title="Kategorie:Ubuntu">Ubuntu</a></li><li><a href="/de/wiki/Kategorie:SSH" title="Kategorie:SSH">SSH</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigationsmenü</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Meine Werkzeuge</h3>
+	<ul>
+<li id="pt-createaccount"><a href="/de/wikiDE/index.php?title=Spezial:Anmelden&amp;returnto=OpenSSH+Public+Key+Authentifizierung+unter+Ubuntu&amp;type=signup">Benutzerkonto erstellen</a></li><li id="pt-login"><a href="/de/wikiDE/index.php?title=Spezial:Anmelden&amp;returnto=OpenSSH+Public+Key+Authentifizierung+unter+Ubuntu" title="Sich anzumelden wird zwar gerne gesehen, ist aber keine Pflicht. [o]" accesskey="o">Anmelden</a></li>	</ul>
+</div>
+				<div id="left-navigation"></div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Ansichten</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/de/wiki/OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu" >Lesen</a></span></li>
+					<li id="ca-viewsource"><span><a href="/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;action=edit"  title="Diese Seite ist geschützt. Ihr Quelltext kann dennoch angesehen und kopiert werden. [e]" accesskey="e">Quelltext anzeigen</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;action=history"  title="Frühere Versionen dieser Seite [h]" accesskey="h">Versionsgeschichte</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Aktionen</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Suche</label></h3>
+	<form action="/de/wikiDE/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Suchen" title="Thomas-Krenn-Wiki durchsuchen [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Spezial:Suche" name="title" /><input type="submit" name="fulltext" value="Suchen" title="Suche nach Seiten, die diesen Text enthalten" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Seite" title="Gehe direkt zu der Seite, die exakt dem eingegebenen Namen entspricht." id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a onclick="_gaq.push(['_trackEvent', 'Wiki', 'TopLogoShop'])" style="background-image: url(/de/wikiDE/skins/tkskin/images/TK_Logo_200x90.png);" href="http://www.thomas-krenn.com/" title="Thomas-Krenn-Webshop" target="_blank"></a></div>
+				<div id="tk-wiki-sidebar-logo">
+                                        <a href="/de/wiki/Hauptseite" title="Wiki Hauptseite">                                        <i class="tk tk-wiki-logo"></i>
+                                <br>Unsere Experten teilen ihr Wissen mit Ihnen.</a>
+                                </a>
+                                </div>
+				<div class="portal" role="navigation" id='p-categorytree-portlet' aria-labelledby='p-categorytree-portlet-label'>
+	<h3 id='p-categorytree-portlet-label'>Kategorien</h3>
+	<div class="body">
+		<div class="CategoryTreeTag" data-ct-mode="0" data-ct-options="{&quot;mode&quot;:0,&quot;hideprefix&quot;:20,&quot;showcount&quot;:false,&quot;namespaces&quot;:false}"><div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Server-Hardware" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Server-Hardware">Server-Hardware</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Server-Software" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Server-Software">Server-Software</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Storage" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Storage">Storage</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Virtualisierung" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Virtualisierung">Virtualisierung</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Netzwerk+Zubehör" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Netzwerk%2BZubeh%C3%B6r">Netzwerk+Zubehör</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Themenschwerpunkte" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Themenschwerpunkte">Themenschwerpunkte</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeEmptyBullet">► </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Projektvorstellungen">Projektvorstellungen</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		<div class="CategoryTreeSection"><div class="CategoryTreeItem"><span class="CategoryTreeBullet"><span class="CategoryTreeToggle" style="display: none;" data-ct-title="Archiv" title="ausklappen" data-ct-state="collapsed">►</span> </span> <a class="CategoryTreeLabel  CategoryTreeLabelNs14 CategoryTreeLabelCategory" href="/de/wiki/Kategorie:Archiv">Archiv</a></div>
+		<div class="CategoryTreeChildren" style="display:none"></div></div>
+		
+		</div>
+			</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Werkzeuge</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/de/wiki/Spezial:Linkliste/OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu" title="Liste aller Seiten, die hierher verlinken [j]" accesskey="j">Links auf diese Seite</a></li>
+			<li id="t-recentchangeslinked"><a href="/de/wiki/Spezial:%C3%84nderungen_an_verlinkten_Seiten/OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu" title="Letzte Änderungen an Seiten, die von hier verlinkt sind [k]" accesskey="k">Änderungen an verlinkten Seiten</a></li>
+			<li id="t-specialpages"><a href="/de/wiki/Spezial:Spezialseiten" title="Liste aller Spezialseiten [q]" accesskey="q">Spezialseiten</a></li>
+			<li id="t-print"><a href="/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;printable=yes" rel="alternate" title="Druckansicht dieser Seite [p]" accesskey="p">Druckversion</a></li>
+			<li id="t-permalink"><a href="/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;oldid=21983" title="Dauerhafter Link zu dieser Seitenversion">Permanenter Link</a></li>
+			<li id="t-info"><a href="/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;action=info">Seiteninformationen</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		<div id="footer" role="contentinfo">
+			<div id="tk-footer-table">
+				<div class="mainrow">
+					<div class="maincell">
+											<ul id="footer-icons" class="noprint">
+									<li id="footer-poweredbyico">
+										<a href="http://www.thomas-krenn.com/"><img src="/de/wikiDE/skins/tkskin/images/thomas-krenn-logo-grey.png" alt="server.hosting.customized" height="90" width="168" onclick="_gaq.push(['_trackEvent', 'Wiki', 'ShopLinkFooter1'])" /></a>
+									</li>
+								</ul>
+										</div>
+					<div class="maincell">
+					<ul id="tk-footer-info">
+												<li>Thomas-Krenn steht f&uuml;r Server Made in Germany.<br>Wir assemblieren und liefern europaweit innerhalb von 24 Stunden.<br>Unter <a onclick="_gaq.push(['_trackEvent', 'Wiki', 'ShopLinkFooter2'])" href="https://www.thomas-krenn.com">www.thomas-krenn.com</a> k&ouml;nnen Sie Ihre Server individuell konfigurieren.</li>
+												<li>
+                        <div class="tk-footer-newsletter">
+														Jetzt Thomas-Krenn Newsletter abonnieren
+							<form class="form-inline" action="https://www.thomas-krenn.com/de/newsletter/newsletter-anmelden.html">
+															<fieldset>
+								<div class="controls">
+								<div class="input-append">
+									<input class="span2" placeholder="email address" type="text" name="newsletter_email">
+									<input class="nwsbtn" type="submit" value="OK">
+								</div>
+								</div>
+								</fieldset>
+							</form>
+							</div>
+                        </li>
+						<li id="tk-footer-icons">
+                        <a href="https://www.facebook.com/thomaskrenn.ag" class="tk tk-fb-icon" target="_blank"></a>
+						<a href="https://twitter.com/ThomasKrennAG" class="tk tk-twitter-icon" target="_blank"></a>
+						<a href="https://google.com/+thomaskrenn" class="tk tk-google_-icon" target="_blank"></a>
+                        <a href="https://www.youtube.com/user/ThomasKrenn" class="tk tk-youtube-icon" target="_blank"></a>
+                        <a href="https://www.linkedin.com/company/thomas-krenn.ag" class="tk tk-linkedin-icon" target="_blank"></a>
+                        <a href="https://www.xing.com/companies/thomas-krenn.ag" class="tk tk-xing-icon" target="_blank"></a>
+						</li> 
+					</ul>
+					</div>
+					<div class="maincell">
+											<ul id="footer-info">
+															<li id="footer-info-lastmod"> Diese Seite wurde zuletzt am 13. Juni 2013 um 09:17 Uhr geändert.</li>
+															<li id="footer-info-viewcount">Diese Seite wurde bisher 34.741 mal abgerufen.</li>
+													</ul>
+											<ul id="footer-places">
+															<li id="footer-places-privacy"><a href="/de/wiki/Thomas-Krenn-Wiki:Datenschutz" title="Thomas-Krenn-Wiki:Datenschutz">Datenschutz</a></li>
+															<li id="footer-places-about"><a href="/de/wiki/Thomas-Krenn-Wiki:%C3%9Cber_Thomas-Krenn-Wiki" title="Thomas-Krenn-Wiki:Über Thomas-Krenn-Wiki">Über Thomas-Krenn-Wiki</a></li>
+															<li id="footer-places-disclaimer"><a href="/de/wiki/Thomas-Krenn-Wiki:Impressum" title="Thomas-Krenn-Wiki:Impressum">Impressum</a></li>
+															<li id="footer-places-mobileview"><a href="https://www.thomas-krenn.com/de/wikiDE/index.php?title=OpenSSH_Public_Key_Authentifizierung_unter_Ubuntu&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile Ansicht</a></li>
+													</ul>
+										</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.FancyBoxThumbs","ext.categoryTree","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script>
+var fbtFancyBoxOptions = {"openEffect":"elastic","closeEffect":"elastic","helpers":{"title":{"type":"inside"}}};
+</script>
+<script src="https://www.thomas-krenn.com/de/wikiDE/load.php?debug=false&amp;lang=de-formal&amp;modules=site&amp;only=scripts&amp;skin=tkskin&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":97});
+}</script>	</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+        <script type="text/javascript" src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        <title>Deep Dream Photo Filter</title>
+
+    </head>
+    <body class="page-index">
+
+        <div data-role="page">
+            <div id="iosSpacer" style="height: 20px; display: none;">
+            </div>
+
+            <!--
+            <div id="balticAd" style="background-color: #0075cc;">
+                <img src="img/baltic-servers-banner.png" style="display: block; width: 257px; margin: 0 auto;">
+            </div>-->
+
+            <div data-role="header" theme="a" data-overlay-theme="a" data-mini="true">
+
+                <a href="store.html" id="store-button" class="store-button ui-btn-left" data-ajax="false"><img src="img/shopping-cart.png" /></a>
+
+                <div class="iap-stuff" id="iap-stuff" st___yle="display: none;">
+                    <div id="dream-tokens" style="float: left;"></div>
+                </div>
+
+                <a href="" id="reward-button" class="reward-button ui-btn-left" style="display: none;" data-ajax="false">Watch Ad</a>
+                    
+                    
+
+                <!--<label for="select-choice-0" class="select ">Shipping method:</label>-->
+                <select name="select-choice-0" id="mode-select" class="ui-btn-right" data-native-menu="false" data-overlay-theme="b">
+                  <option value="basic">Basic</option>
+                  <!-- <option value="hires">High Res</option> -->
+                  <option value="zoom">Zoom Journey</option>
+                  <!--<option value="express">Travel Deep</option>-->
+                </select>
+
+            </div>
+            <div class="ui-content" role="main">
+                <div class="logo-container">
+                    <img src="img/logo.png"/>
+                </div>
+
+                <div class="app">
+                    <!-- if not free -->
+                    <!-- -->
+                    
+                    <h1 id="titleText"></h1>
+                    <div id="deviceready" class="blink">
+                        <p class="event listening">Connecting to Device...</p>
+                        <p class="event received">Device is Ready</p>
+                    </div>
+
+                    <a id="uploadButton" href="#flipperUpload" class="flipper-container" style="display: none;">
+                      <div id="flipperUpload" class="flipper">
+                        <div class="front-face" data-icon="&#x27a3;"><span data-hover="Clicked">Upload Photo</span></div>
+                        <div class="back-face" data-icon="&#10003;">Working</div>
+                      </div>
+                    </a>
+
+                    <a id="abortButton" href="#flipperAbort" class="flipper-container" style="display: none;">
+                      <div id="flipperAbort" class="flipper">
+                        <div class="front-face" data-icon="&#x27a3;"><span data-hover="Clicked">Cancel</span></div>
+                        <div class="back-face" data-icon="&#10003;">Aborting ...</div>
+                      </div>
+                    </a>
+
+                    <a id="deeperButton" href="#flipperDeeper" class="flipper-container" style="display: none;">
+                      <div id="flipperDeeper" class="flipper">
+                        <div class="front-face" data-icon="&#x27a3;"><span data-hover="Clicked">Dream Deeper!</span></div>
+                        <div class="back-face" data-icon="&#10003;">Working</div>
+                      </div>
+                    </a>
+
+                    <div id="loading-spinner" style="display: none;">
+                        <div style="margin: 20px auto; width: 100px;">
+                            <img src="img/electric-sheep.png" class="rotimg" />
+                            <br />
+                        </div>
+                            
+                        <div class="blink">
+                            <p class="event listening">
+                                <br />
+                                Dreaming of <br />
+                                electric sheep.<br />
+                                <br />
+                                Please be patient. <br />
+                                <br />
+                                This will take<br />
+                                a few minutes.<br />
+                                <br />
+                                <span id="seconds-counter">0</span>
+                                <br />
+                                <br />
+                            </p>
+                        </div>
+                    </div>
+
+                    <br />
+                    Style: <span id="currStyle"></span>
+                    <br />
+                    <br />
+                    <div id="styleButton" class="btn" style="width: 100px; margin: 0 auto;">Choose style</div>
+
+                    <br />
+
+                    <div class="result-wrapper" id="images-container">
+                        <div class="result-entry" id="gallery-hint" style="display: none;">
+                            See all dreams in your phones image gallery.
+                        </div>
+                    </div>
+
+                    <div class="result-wrapper" id="images-container">
+                        <div class="result-entry" id="gallery-hint">
+                            See dreams of other people on <br />
+                            <a id="website-link" href="#">deepdream.bitwhirl.com</a>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/shared.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+
+    </body>
+</html>

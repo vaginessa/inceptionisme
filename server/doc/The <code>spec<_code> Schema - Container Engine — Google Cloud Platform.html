@@ -1,0 +1,1557 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="maia-cloud">
+  <head>
+    
+    <script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(c){a.readyCallbacks.push(c)};window.devsite.ready=a.ready;a.timing={};window.devsite=a;window.devsite.timing=a.timing;a.timing.timers=[];a.timing.tick=function(c,b,g){for(var d=0;d<a.timing.timers.length;d++)a.timing.timers[d].tick(c,b,g)};window.devsite.timing.tick=a.timing.tick;a.timing.report=function(c){a.setTimeout(function(){for(var b=0;b<a.timing.timers.length;b++)window.jstiming.report(a.timing.timers[b],c)},500)};
+a.timing.init=function(c){a.timing.timers.push(window.jstiming.load);if(c){var b=new window.jstiming.Timer;b.name=c;a.timing.timers.push(b)}document.addEventListener&&window.addEventListener&&(document.addEventListener("DOMContentLoaded",a.timing.handleDomContentLoaded,!1),window.addEventListener("load",a.timing.handleLoad,!1))};a.timing.handleDomContentLoaded=function(){a.timing.tick("ol");document.removeEventListener("DOMContentLoaded",a.timing.handleDomContentLoaded,!1)};
+a.timing.handleLoad=function(){window.removeEventListener("load",a.timing.handleLoad,!1);var c=document.querySelector("#devsite-request-elapsed");c&&(c=parseInt(c.getAttribute("data-request-elapsed"),10))&&(a.timing.tick("_st_start",null,1),a.timing.tick("st","_st_start",1+c));a.timing.tick("prt");a.timing.report()};(function(){function c(b){this.t={};this.tick=function(b,c,d){var e=void 0!=d?d:(new Date).getTime();this.t[b]=[e,c];if(void 0==d)try{window.console.timeStamp("CSI/"+b)}catch(f){}};this.tick("start",null,b)}var b;window.performance&&(b=window.performance.timing);var g=b?new c(b.responseStart):new c;window.jstiming={Timer:c,load:g};if(b){var d=b.navigationStart,f=b.responseStart;0<d&&f>=d&&(window.jstiming.srt=f-d)}if(b){var e=window.jstiming.load;0<d&&f>=d&&(e.tick("_wtsrt",void 0,d),e.tick("wtsrt_",
+"_wtsrt",f),e.tick("tbsd_","wtsrt_"))}try{b=null,window.chrome&&window.chrome.csi&&(b=Math.floor(window.chrome.csi().pageT),e&&0<d&&(e.tick("_tbnd",void 0,window.chrome.csi().startE),e.tick("tbnd_","_tbnd",d))),null==b&&window.gtbExternal&&(b=window.gtbExternal.pageT()),null==b&&window.external&&(b=window.external.pageT,e&&0<d&&(e.tick("_tbnd",void 0,window.external.startE),e.tick("tbnd_","_tbnd",d))),b&&(window.jstiming.pt=b)}catch(h){}})();
+devsite.timing.init('DocPage');</script>
+    
+      <link href="https://cloud.google.com/container-engine/docs/spec-schema" rel="canonical">
+    
+    <meta charset="utf-8" />
+    
+      
+    
+    <meta name="xsrf_token" content="8TtdINKp9znnT0T1m4yXUPVfidVFL_8mNxCtONkvKto6MTQzNzU3NTM1MDgxODI4MA" />
+      <link rel="stylesheet" type="text/css" href="https://cloud.google.com/_static/543c756aae/css/screen-maia.css" />
+      <link href='//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500,500italic,300,300italic' rel='stylesheet' type='text/css'>
+    
+    <link rel="shortcut icon" href="/images/gcp-favicon.ico">
+    <link rel="apple-touch-icon" href="https://cloud.google.com/_static/543c756aae/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//www.google.com/css/maia.experimental.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" href="https://cloud.google.com/_static/543c756aae/css/maia-cloud.css" />
+    
+    
+    
+    
+      
+
+
+
+
+
+<!-- GTM implementation -->
+
+<!-- Start dataLayer -->
+  <script>
+  window['dataLayer'] = window['dataLayer'] || [];
+  dataLayer.push({
+      'country': '',
+      'region': '',
+      
+      'signedIn': 'true',
+      'language': 'de'
+    });
+  </script>
+  
+  <script>
+    window['dataLayer'] = window['dataLayer'] || [];
+    dataLayer.push({
+      'freeTrialEligibleUser': 'false'
+    });
+  </script>
+
+<!-- End dataLayer -->
+
+
+<link rel="stylesheet" type="text/css" href="/css/default-docs.css" />
+
+
+
+
+<link rel="shortcut icon" href="/images/gcp-favicon.ico" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+<link href="https://plus.google.com/+googlecloudplatform/" rel="publisher"/>
+<meta name="google-site-verification" content="8dOEM3Xenm6yaBc83y2WKgqQG0iHI7Ph6Rl_YLIZLQ8" />
+<meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
+
+<!-- GSAP animation frameworks -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//www.gstatic.com/external_hosted/gsap/TweenMax.min.js"></script>
+<script src="//www.gstatic.com/external_hosted/gsap/TimelineMax.min.js"></script>
+<script src="/js/floodlight.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.min.js"></script>
+<script src="/js/base.min.js"></script>
+
+
+<!-- Google Customer Surveys Script, site wide, non-reference -->
+<script async="" defer=""
+        src="//survey.g.doubleclick.net/async_survey?site=5tjyemi7pnz7qrqthpyihmordy"></script>
+
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cloud.google.com/_static/543c756aae/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <meta property="og:site_name" content="Google Developers">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cloud.google.com/container-engine/docs/spec-schema">
+  <meta property="og:locale" content="en">
+
+  <script type="text/javascript">
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'de';
+  </script>
+  
+    <title>The <code>spec</code> Schema - Container Engine &mdash; Google Cloud Platform</title>
+    <meta property="og:title" content="The <code>spec</code> Schema">
+  
+  
+
+  
+  
+  
+
+
+
+    <style>
+    
+    </style>
+  </head>
+  <body class="  two-column docs normal-width">
+
+  <div class="maia-max">
+
+    
+
+    <div id="maia-header">
+        
+        
+
+        
+        
+          
+            <div class="maia-aux">
+              
+
+
+
+
+
+<div class="logo-wrapper">
+  <a href="https://cloud.google.com"><img src="/_static/images/gcp-logo.png" srcset="/_static/images/gcp-logo_2x.png 2x" alt="Google Cloud Platform"> </a>
+</div>
+
+<div class="search-container devsite-search">
+  <form action="https://cloud.google.com/s/results" class="maia-search" id="search-wrapper">
+    <div id="searchbox" class="devsite-searchbox">
+      <input type="text" placeholder="Search this site" class="devsite-search-query" name="q" autocomplete="off">
+    </div>
+    <button id="search-button" class="button button-blue big">
+      <img src="/_static/images/v2/search.png" alt="Search">
+    </button>
+  
+    
+      <input type="hidden" name="p" id="search_project" value="/container-engine" data-project-name="Container Engine" data-project-path="/container-engine" data-query-match=""/>
+    
+    
+
+
+  
+  <input type="hidden" id="suggest-category-label-2" value="Seiten in Container Engine" />
+  
+  <input type="hidden" id="suggest-category-label-3" value="Referenz in Container Engine" />
+
+
+<input type="hidden" id="suggest-category-label-1" value="Produkte" />
+
+<input type="hidden" id="suggest-all-results-label" value="Alle Ergebnisse anzeigen" />
+
+  
+  </form>
+</div>
+
+<div id="social-wrapper" class="social">
+  
+    
+      <span class="signed-in">
+        <div>
+          <a href="https://console.developers.google.com" track-type="navigateTo" track-name="console">My console</a>
+        </div>
+        <img class="avatar" src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=40"/>
+      </span>
+    
+
+  
+</div>
+
+
+<script>
+  if (window.jQuery) {
+    $(document).ready(function() {
+      if (window.devsite && window.devsite.search) {
+        window.devsite.search.init('de', true, null)
+      }
+    });
+  }
+</script>
+
+
+            </div>
+          
+        
+    </div>
+    
+
+    
+    <div class="kd-butterbar">
+      <span>
+        <span class="message"></span>
+        
+        <a href="#" class="kd-butterbar-dismiss">Ausblenden</a>
+      </span>
+    </div>
+    
+    <div  itemscope itemtype="http://schema.org/Article">
+      
+
+      
+      
+      
+        <div id="maia-nav-x" class="maia-nav">
+          <div class="maia-aux">
+          <ul>
+            
+            
+            
+            <li>
+              <a href="/why-google/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Why Google">Why Google</a>
+              
+            </li>
+            
+            <li id="main-nav-product-dropdown" class="dropdown">
+              <a href="/products/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Products">Products</a>
+              
+            </li>
+            
+            <li>
+              <a href="/solutions/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Solutions">Solutions</a>
+              
+            </li>
+            
+            <li>
+              <a href="/launcher/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Launcher">Launcher</a>
+              
+            </li>
+            
+            <li>
+              <a href="/pricing/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Pricing">Pricing</a>
+              
+            </li>
+            
+            <li>
+              <a href="/customers/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Customers">Customers</a>
+              
+            </li>
+            
+            <li>
+              <a href="/docs/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Documentation">Documentation</a>
+              
+            </li>
+            
+            <li>
+              <a href="/support/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Support">Support</a>
+              
+            </li>
+            
+            <li>
+              <a href="/partners/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Partners">Partners</a>
+              
+            </li>
+            
+
+            
+            
+            </ul>
+
+            
+            
+              
+                <div class="cp-cta">
+                  
+
+                  <a class="maia-button maia-button-secondary white-button" id="contact-nav" href="/contact/" track-type="sales" track-name="contact" track-metadata-position="nav">Anfrage beim Vertrieb</a>
+                </div>
+              
+            
+          </div>
+        </div>
+
+        
+        
+          <!-- Products subnav -->
+<div id="maia-nav-x" class="maia-nav products-nav">
+  <div class="maia-aux">
+    <div class="products-nav-dropdown maia-cols">
+
+      <div id="compute-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Compute</span>
+        <div class="dropdown-item-container">
+          <a href="/compute/">
+            <span class="product-name">Compute Engine</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/appengine/">
+            <span class="product-name">App Engine</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/container-engine/">
+            <span class="product-name">Container Engine</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="storage-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Storage</span>
+        <div class="dropdown-item-container">
+          <a href="/storage/">
+            <span class="product-name">Storage</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/bigtable/">
+            <span class="product-name">Bigtable</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/datastore/">
+            <span class="product-name">Datastore</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/sql/">
+            <span class="product-name">SQL</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="networking-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Networking</span>
+        <div class="dropdown-item-container">
+          <a href="/networking/#loadbalancing">
+            <span class="product-name">Load Balancing</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/networking/#interconnect">
+            <span class="product-name">Interconnect</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/dns/">
+            <span class="product-name">DNS</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="big-data-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Big Data</span>
+        <div class="dropdown-item-container">
+          <a href="/bigquery/">
+            <span class="product-name">BigQuery</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/dataflow/">
+            <span class="product-name">Dataflow</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/pubsub/">
+            <span class="product-name">Pub/Sub</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="services-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Services</span>
+        <div class="dropdown-item-container">
+          <a href="/translate/">
+            <span class="product-name">Translate API</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/prediction/">
+            <span class="product-name">Prediction API</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/endpoints/">
+            <span class="product-name">Endpoints</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="management-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Management</span>
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/deployment-manager/">Deployment Manager</a></span>
+        </div>
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/logging/">Logging</a></span>
+        </div>
+
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/monitoring/">Monitoring</a></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+        
+
+      
+      
+      
+
+      
+
+<div id="gc-appnav" class="maia-aux">
+  <ol class="breadcrumbs">
+    
+    <li><a href="/products/">Produkte</a></li>
+    
+    <li><a href="/docs/">Documentation</a></li>
+    
+    <li><a href="/container-engine">Container Engine</a></li>
+    
+  </ol>
+</div>
+
+
+
+      
+        
+        
+          <div class="maia-aux" id="gc-appbar">
+
+          
+          
+
+  <a href="/container-engine" class="gc-appbar-title">
+    
+    Container Engine
+  </a>
+
+
+
+<div class="plusone-container" style="height:27px">
+  <div class="g-plusone"
+    data-href="https://cloud.google.com/container-engine/docs/spec-schema"
+    data-size="medium"
+    data-source="google:developers"></div>
+</div>
+
+
+
+
+
+
+
+<div class="devsite-rating-container ">
+  <div class="devsite-rating-stars">
+    <div data-rating-val="1" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 1"></div>
+    <div data-rating-val="2" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 2"></div>
+    <div data-rating-val="3" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 3"></div>
+    <div data-rating-val="4" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 4"></div>
+    <div data-rating-val="5" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 5"></div>
+  </div>
+  
+  <div class="devsite-rating-description">Bewerten Sie diese Seite.</div>
+  <div class="devsite-rating-internal"><span class="devsite-rating-stats"></span></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  devsite.ratings.init(
+    document.querySelectorAll('#devsite-feedback-project'),
+        false
+        
+  );
+});
+</script>
+
+
+
+  <div id="devsite-feedback-box">
+    <div class="devsite-feedback-dropcloth" style="display:none"></div>
+    <div class="devsite-feedback-step1" style="display:none">
+      
+      <p>Feedback geben zu...
+        <span class="devsite-feedback-cancel gc-analytics-event"
+              data-category="Site-Wide Custom Events" data-label="Cancel Feedback Button"></span>
+      </p>
+      <div class="devsite-feedback-table">
+        <div class="devsite-feedback-row">
+          <div class="devsite-feedback-cell">
+            <a data-type="documentation"  class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Docs Feedback Image">
+              <img src="/_static/543c756aae/images/feedback/doc_feedback_56px.svg">
+            </a>
+            <br>
+            
+            Diese Seite
+            <br>
+            <a data-type="documentation"  class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Docs Feedback Text">
+              
+              Feedback zur Dokumentation</a>
+          </div>
+          <div class="devsite-feedback-cell">
+            <a data-type="product" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Product Feedback Image"
+               >
+            
+              <img src="/_static/543c756aae/images/feedback/google_56px.svg">
+            
+            </a>
+            <br>
+            Container Engine
+            <br>
+            <a data-type="product" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Product Feedback Text"
+               >
+              
+              Feedback zum Produkt</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="google-feedback-container ">
+    <a id='devsite-feedback-project' class="google-feedback gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Send Feedback Button">
+      
+      Feedback geben</a>
+  </div>
+
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+    new devsite.feedback.Widget({
+        'product_id': '101662',
+        'bucket': 'documentation',
+        'context': '',
+        'version': 'devsite-20150721-r00-rc01.default'
+      },
+      document.querySelectorAll('#devsite-feedback-project'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-dropcloth'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-step1'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-cancel'),
+      document.querySelectorAll('#devsite-feedback-box .devsite-feedback-cell a:not([href])')
+    );
+  });
+  </script>
+
+
+
+
+ 
+
+          
+          </div>
+
+        
+      
+
+      
+        
+          <div id="maia-main" class="main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar" class="wide">
+        
+
+  <nav class="devsite-section-nav devsite-nav gc-toc"><ul class="devsite-nav-expandable"><li class="devsite-nav-item"><a href="/container-engine/docs" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">What is Google Container Engine?</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/before-you-begin" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Before You Begin</a></li><li class="devsite-nav-item"><a href="/container-engine/release-notes" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Release Notes</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Concepts</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/clusters/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Container Clusters</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/replicationcontrollers/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Replication Controllers</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/services/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Services</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Walkthroughs</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/hello-node" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Deploy Your Node.js Code</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/hello-wordpress" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Running Wordpress with a Single Pod</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/guestbook" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Create a Guestbook with Redis and PHP</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/persistent-disk" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using Persistent Storage with WordPress and MySQL</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Common Tasks</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/clusters/operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Container Clusters</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/single-container" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Single-Container Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/multi-container" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Multi-Container Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/replicationcontrollers/operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Replication Controllers</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/services/operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Services</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/load-balancer" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating an External Load Balancer</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/resize-replication-controller" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Resizing a Replication Controller</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/rolling-updates" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Rolling Updates</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/clusters/upgrade" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Upgrading Container Clusters</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">kubectl Reference</a></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a href="/container-engine/docs/kubectl/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">kubectl</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/api-versions" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">api-versions</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/cluster-info" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">cluster-info</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-cluster" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-cluster</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-context" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-context</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-credentials" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-credentials</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-unset" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-unset</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-use-context" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-use-context</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-view" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-view</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/create" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">create</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/delete" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">delete</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/describe" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">describe</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/exec" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">exec</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/expose" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">expose</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/label" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">label</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/logs" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">logs</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/namespace" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">namespace</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/port-forward" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">port-forward</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/proxy" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">proxy</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/rolling-update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">rolling-update</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/run" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">run</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/scale" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">scale</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/stop" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">stop</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">update</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/version" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">version</a></li></ul></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Cluster Management REST API Reference</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a class="devsite-nav-title devsite-nav-title-no-path ">projects.zones.clusters</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/create" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">create</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/delete" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">delete</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/list" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">list</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">update</a></li></ul></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a class="devsite-nav-title devsite-nav-title-no-path ">projects.zones.operations</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations/list" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">list</a></li></ul></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Legal</a></li><li class="devsite-nav-item"><a href="/terms/aup" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Acceptable Use Policy</a></li><li class="devsite-nav-item"><a href="/cloud/terms/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Terms of Service</a></li></ul></nav>
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           class="wide-sidebar"
+           >
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title" >The <code>spec</code> Schema</h1>
+  
+  <div itemprop="articleBody">
+  
+<style>
+
+body.docs .signature-container .strong {
+   font-weight: bold;
+   margin-top: 1em;
+}
+
+body.docs .signature-container span.propName.propOpt,
+body.docs .signature-container span.propName.propReq {
+  font-family: 'Droid Sans Mono';
+  color: rgb(0, 136, 0);
+  font-weight: 600;
+}
+
+body.docs .signature-container div.description div {
+  padding-left: 42px ;
+  text-indent: -22px ;
+}
+
+body.docs .signature-container span.propDesc:first-letter {
+  text-transform:uppercase;
+}
+
+</style>
+
+
+<pre style="height:500px" class=prettyprint>
+{
+  "kind": "",
+  "apiVersion": "",
+  "metadata": {
+    "name": "",
+    "generateName": "",
+    "namespace": "",
+    "selfLink": "",
+    "uid": "",
+    "resourceVersion": "",
+    "creationTimestamp": "",
+    "deletionTimestamp": "",
+    "labels": "any",
+    "annotations": "any"
+  },
+  "spec": {
+    "volumes": [
+      {
+        "name": "",
+        "hostPath": {
+          "path": ""
+        },
+        "emptyDir": {
+          "medium": ""
+        },
+        "gcePersistentDisk": {
+          "pdName": "",
+          "fsType": "",
+          "partition": 0,
+          "readOnly": false
+        },
+        "awsElasticBlockStore": {
+          "volumeID": "",
+          "fsType": "",
+          "partition": 0,
+          "readOnly": false
+        },
+        "gitRepo": {
+          "repository": "",
+          "revision": ""
+        },
+        "secret": {
+          "secretName": ""
+        },
+        "nfs": {
+          "server": "",
+          "path": "",
+          "readOnly": false
+        },
+        "iscsi": {
+          "targetPortal": "",
+          "iqn": "",
+          "lun": 0,
+          "fsType": "",
+          "readOnly": false
+        },
+        "glusterfs": {
+          "endpoints": "",
+          "path": "",
+          "readOnly": false
+        },
+        "persistentVolumeClaim": {
+          "claimName": "",
+          "readOnly": false
+        },
+        "rbd": {
+          "monitors": [
+            ""
+          ],
+          "image": "",
+          "fsType": "",
+          "pool": "",
+          "user": "",
+          "keyring": "",
+          "secretRef": {
+            "name": ""
+          },
+          "readOnly": false
+        }
+      }
+    ],
+    "containers": [
+      {
+        "name": "",
+        "image": "",
+        "command": [
+          ""
+        ],
+        "args": [
+          ""
+        ],
+        "workingDir": "",
+        "ports": [
+          {
+            "name": "",
+            "hostPort": 0,
+            "containerPort": 0,
+            "protocol": "",
+            "hostIP": ""
+          }
+        ],
+        "env": [
+          {
+            "name": "",
+            "value": "",
+            "valueFrom": {
+              "fieldRef": {
+                "apiVersion": "",
+                "fieldPath": ""
+              }
+            }
+          }
+        ],
+        "resources": {
+          "limits": "any",
+          "requests": "any"
+        },
+        "volumeMounts": [
+          {
+            "name": "",
+            "readOnly": false,
+            "mountPath": ""
+          }
+        ],
+        "livenessProbe": {
+          "exec": {
+            "command": [
+              ""
+            ]
+          },
+          "httpGet": {
+            "path": "",
+            "port": "",
+            "host": ""
+          },
+          "tcpSocket": {
+            "port": ""
+          },
+          "initialDelaySeconds": 0,
+          "timeoutSeconds": 0
+        },
+        "readinessProbe": {
+          "exec": {
+            "command": [
+              ""
+            ]
+          },
+          "httpGet": {
+            "path": "",
+            "port": "",
+            "host": ""
+          },
+          "tcpSocket": {
+            "port": ""
+          },
+          "initialDelaySeconds": 0,
+          "timeoutSeconds": 0
+        },
+        "lifecycle": {
+          "postStart": {
+            "exec": {
+              "command": [
+                ""
+              ]
+            },
+            "httpGet": {
+              "path": "",
+              "port": "",
+              "host": ""
+            },
+            "tcpSocket": {
+              "port": ""
+            }
+          },
+          "preStop": {
+            "exec": {
+              "command": [
+                ""
+              ]
+            },
+            "httpGet": {
+              "path": "",
+              "port": "",
+              "host": ""
+            },
+            "tcpSocket": {
+              "port": ""
+            }
+          }
+        },
+        "terminationMessagePath": "",
+        "imagePullPolicy": "",
+        "securityContext": {
+          "capabilities": {
+            "add": [
+              {}
+            ],
+            "drop": [
+              {}
+            ]
+          },
+          "privileged": false,
+          "seLinuxOptions": {
+            "user": "",
+            "role": "",
+            "type": "",
+            "level": ""
+          },
+          "runAsUser": 0
+        }
+      }
+    ],
+    "restartPolicy": "",
+    "terminationGracePeriodSeconds": 0,
+    "activeDeadlineSeconds": 0,
+    "dnsPolicy": "",
+    "nodeSelector": "any",
+    "serviceAccount": "",
+    "nodeName": "",
+    "hostNetwork": false,
+    "imagePullSecrets": [
+      {
+        "name": ""
+      }
+    ]
+  },
+  "status": {
+    "phase": "",
+    "conditions": [
+      {
+        "type": "",
+        "status": ""
+      }
+    ],
+    "message": "",
+    "hostIP": "",
+    "podIP": "",
+    "startTime": "",
+    "containerStatuses": [
+      {
+        "name": "",
+        "state": {
+          "waiting": {
+            "reason": ""
+          },
+          "running": {
+            "startedAt": ""
+          },
+          "terminated": {
+            "exitCode": 0,
+            "signal": 0,
+            "reason": "",
+            "message": "",
+            "startedAt": "",
+            "finishedAt": "",
+            "containerID": ""
+          }
+        },
+        "lastState": {
+          "waiting": {
+            "reason": ""
+          },
+          "running": {
+            "startedAt": ""
+          },
+          "terminated": {
+            "exitCode": 0,
+            "signal": 0,
+            "reason": "",
+            "message": "",
+            "startedAt": "",
+            "finishedAt": "",
+            "containerID": ""
+          }
+        },
+        "ready": false,
+        "restartCount": 0,
+        "image": "",
+        "imageID": "",
+        "containerID": ""
+      }
+    ]
+  }
+}
+</pre>
+
+<div>
+
+<div class="signature-container">
+  <div class="description" style="">
+    <span class="strong">v1.Pod {</span><div><span class="propName propOpt">kind</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">kind of object, in CamelCase; cannot be updated</span>,</div><div><span class="propName propOpt">apiVersion</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">version of the schema the object should have</span>,</div><div><span class="propName propOpt">metadata</span> (<span class="propType">v1.ObjectMeta</span>, <span class="propOptKey">optional</span>): <span class="propDesc">standard object metadata; see http://docs.k8s.io/api-conventions.md#metadata</span>,</div><div><span class="propName propOpt">spec</span> (<span class="propType">v1.PodSpec</span>, <span class="propOptKey">optional</span>): <span class="propDesc">specification of the desired behavior of the pod; http://docs.k8s.io/api-conventions.md#spec-and-status</span>,</div><div><span class="propName propOpt">status</span> (<span class="propType">v1.PodStatus</span>, <span class="propOptKey">optional</span>): <span class="propDesc">most recently observed status of the pod; populated by the system, read-only; http://docs.k8s.io/api-conventions.md#spec-and-status</span></div><span class="strong">}</span><br><span class="strong">v1.ObjectMeta {</span><div><span class="propName propOpt">name</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">string that identifies an object. Must be unique within a namespace; cannot be updated</span>,</div><div><span class="propName propOpt">generateName</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">an optional prefix to use to generate a unique name; has the same validation rules as name; optional, and is applied only name if is not specified</span>,</div><div><span class="propName propOpt">namespace</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">namespace of the object; must be a DNS_LABEL; cannot be updated</span>,</div><div><span class="propName propOpt">selfLink</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">URL for the object; populated by the system, read-only</span>,</div><div><span class="propName propOpt">uid</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">unique UUID across space and time; populated by the system; read-only</span>,</div><div><span class="propName propOpt">resourceVersion</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">string that identifies the internal version of this object that can be used by clients to determine when objects have changed; populated by the system, read-only; value must be treated as opaque by clients and passed unmodified back to the server: http://docs.k8s.io/api-conventions.md#concurrency-control-and-consistency</span>,</div><div><span class="propName propOpt">creationTimestamp</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">RFC 3339 date and time at which the object was created; populated by the system, read-only; null for lists</span>,</div><div><span class="propName propOpt">deletionTimestamp</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">RFC 3339 date and time at which the object will be deleted; populated by the system when a graceful deletion is requested, read-only; if not set, graceful deletion of the object has not been requested</span>,</div><div><span class="propName propOpt">labels</span> (<span class="propType">any</span>, <span class="propOptKey">optional</span>): <span class="propDesc">map of string keys and values that can be used to organize and categorize objects; may match selectors of replication controllers and services</span>,</div><div><span class="propName propOpt">annotations</span> (<span class="propType">any</span>, <span class="propOptKey">optional</span>): <span class="propDesc">map of string keys and values that can be used by external tooling to store and retrieve arbitrary metadata about objects</span></div><span class="strong">}</span><br><span class="strong">v1.PodSpec {</span><div><span class="propName propOpt">volumes</span> (<span class="propType">array[v1.Volume]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">list of volumes that can be mounted by containers belonging to the pod</span>,</div><div><span class="propName propReq">containers</span> (<span class="propType">array[v1.Container]</span>): <span class="propDesc">list of containers belonging to the pod; cannot be updated; containers cannot currently be added or removed; there must be at least one container in a Pod</span>,</div><div><span class="propName propOpt">restartPolicy</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">restart policy for all containers within the pod; one of Always, OnFailure, Never; defaults to Always</span>,</div><div><span class="propName propOpt">terminationGracePeriodSeconds</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">optional duration in seconds the pod needs to terminate gracefully; may be decreased in delete request; value must be non-negative integer; the value zero indicates delete immediately; if this value is not set, the default grace period will be used instead; the grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal; set this value longer than the expected cleanup time for your process</span>,</div><div><span class="propName propOpt">activeDeadlineSeconds</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>),</div><div><span class="propName propOpt">dnsPolicy</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">DNS policy for containers within the pod; one of 'ClusterFirst' or 'Default'</span>,</div><div><span class="propName propOpt">nodeSelector</span> (<span class="propType">any</span>, <span class="propOptKey">optional</span>): <span class="propDesc">selector which must match a node's labels for the pod to be scheduled on that node</span>,</div><div><span class="propName propOpt">serviceAccount</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">name of the ServiceAccount to use to run this pod</span>,</div><div><span class="propName propOpt">nodeName</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">node requested for this pod</span>,</div><div><span class="propName propOpt">hostNetwork</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">host networking requested for this pod</span>,</div><div><span class="propName propOpt">imagePullSecrets</span> (<span class="propType">array[v1.LocalObjectReference]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">list of references to secrets in the same namespace available for pulling the container images</span></div><span class="strong">}</span><br><span class="strong">v1.Volume {</span><div><span class="propName propReq">name</span> (<span class="propType">string</span>): <span class="propDesc">volume name; must be a DNS_LABEL and unique within the pod</span>,</div><div><span class="propName propOpt">hostPath</span> (<span class="propType">v1.HostPathVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">pre-existing host file or directory; generally for privileged system daemons or other agents tied to the host</span>,</div><div><span class="propName propOpt">emptyDir</span> (<span class="propType">v1.EmptyDirVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">temporary directory that shares a pod's lifetime</span>,</div><div><span class="propName propOpt">gcePersistentDisk</span> (<span class="propType">v1.GCEPersistentDiskVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">GCE disk resource attached to the host machine on demand</span>,</div><div><span class="propName propOpt">awsElasticBlockStore</span> (<span class="propType">v1.AWSElasticBlockStoreVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">AWS disk resource attached to the host machine on demand</span>,</div><div><span class="propName propOpt">gitRepo</span> (<span class="propType">v1.GitRepoVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">git repository at a particular revision</span>,</div><div><span class="propName propOpt">secret</span> (<span class="propType">v1.SecretVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">secret to populate volume</span>,</div><div><span class="propName propOpt">nfs</span> (<span class="propType">v1.NFSVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">NFS volume that will be mounted in the host machine</span>,</div><div><span class="propName propOpt">iscsi</span> (<span class="propType">v1.ISCSIVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">iSCSI disk attached to host machine on demand</span>,</div><div><span class="propName propOpt">glusterfs</span> (<span class="propType">v1.GlusterfsVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">Glusterfs volume that will be mounted on the host machine </span>,</div><div><span class="propName propOpt">persistentVolumeClaim</span> (<span class="propType">v1.PersistentVolumeClaimVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">a reference to a PersistentVolumeClaim in the same namespace</span>,</div><div><span class="propName propOpt">rbd</span> (<span class="propType">v1.RBDVolumeSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">rados block volume that will be mounted on the host machine</span></div><span class="strong">}</span><br><span class="strong">v1.HostPathVolumeSource {</span><div><span class="propName propReq">path</span> (<span class="propType">string</span>): <span class="propDesc">path of the directory on the host</span></div><span class="strong">}</span><br><span class="strong">v1.EmptyDirVolumeSource {</span><div><span class="propName propOpt">medium</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">type of storage used to back the volume; must be an empty string (default) or Memory</span></div><span class="strong">}</span><br><span class="strong">v1.GCEPersistentDiskVolumeSource {</span><div><span class="propName propReq">pdName</span> (<span class="propType">string</span>): <span class="propDesc">unique name of the PD resource in GCE</span>,</div><div><span class="propName propReq">fsType</span> (<span class="propType">string</span>): <span class="propDesc">file system type to mount, such as ext4, xfs, ntfs</span>,</div><div><span class="propName propOpt">partition</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">partition on the disk to mount (e.g., '1' for /dev/sda1); if omitted the plain device name (e.g., /dev/sda) will be mounted</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">read-only if true, read-write otherwise (false or unspecified)</span></div><span class="strong">}</span><br><span class="strong">v1.AWSElasticBlockStoreVolumeSource {</span><div><span class="propName propReq">volumeID</span> (<span class="propType">string</span>): <span class="propDesc">unique id of the PD resource in AWS</span>,</div><div><span class="propName propReq">fsType</span> (<span class="propType">string</span>): <span class="propDesc">file system type to mount, such as ext4, xfs, ntfs</span>,</div><div><span class="propName propOpt">partition</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">partition on the disk to mount (e.g., '1' for /dev/sda1); if omitted the plain device name (e.g., /dev/sda) will be mounted</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">read-only if true, read-write otherwise (false or unspecified)</span></div><span class="strong">}</span><br><span class="strong">v1.GitRepoVolumeSource {</span><div><span class="propName propReq">repository</span> (<span class="propType">string</span>): <span class="propDesc">repository URL</span>,</div><div><span class="propName propReq">revision</span> (<span class="propType">string</span>): <span class="propDesc">commit hash for the specified revision</span></div><span class="strong">}</span><br><span class="strong">v1.SecretVolumeSource {</span><div><span class="propName propReq">secretName</span> (<span class="propType">string</span>): <span class="propDesc">secretName is the name of a secret in the pod's namespace</span></div><span class="strong">}</span><br><span class="strong">v1.NFSVolumeSource {</span><div><span class="propName propReq">server</span> (<span class="propType">string</span>): <span class="propDesc">the hostname or IP address of the NFS server</span>,</div><div><span class="propName propReq">path</span> (<span class="propType">string</span>): <span class="propDesc">the path that is exported by the NFS server</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">forces the NFS export to be mounted with read-only permissions</span></div><span class="strong">}</span><br><span class="strong">v1.ISCSIVolumeSource {</span><div><span class="propName propReq">targetPortal</span> (<span class="propType">string</span>): <span class="propDesc">iSCSI target portal</span>,</div><div><span class="propName propReq">iqn</span> (<span class="propType">string</span>): <span class="propDesc">iSCSI Qualified Name</span>,</div><div><span class="propName propReq">lun</span> (<span class="propType">integer</span>): <span class="propDesc">iscsi target lun number</span>,</div><div><span class="propName propReq">fsType</span> (<span class="propType">string</span>): <span class="propDesc">file system type to mount, such as ext4, xfs, ntfs</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">read-only if true, read-write otherwise (false or unspecified)</span></div><span class="strong">}</span><br><span class="strong">v1.GlusterfsVolumeSource {</span><div><span class="propName propReq">endpoints</span> (<span class="propType">string</span>): <span class="propDesc">gluster hosts endpoints name</span>,</div><div><span class="propName propReq">path</span> (<span class="propType">string</span>): <span class="propDesc">path to gluster volume</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">glusterfs volume to be mounted with read-only permissions</span></div><span class="strong">}</span><br><span class="strong">v1.PersistentVolumeClaimVolumeSource {</span><div><span class="propName propReq">claimName</span> (<span class="propType">string</span>): <span class="propDesc">the name of the claim in the same namespace to be mounted as a volume</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">mount volume as read-only when true; default false</span></div><span class="strong">}</span><br><span class="strong">v1.RBDVolumeSource {</span><div><span class="propName propReq">monitors</span> (<span class="propType">array[string]</span>): <span class="propDesc">a collection of Ceph monitors</span>,</div><div><span class="propName propReq">image</span> (<span class="propType">string</span>): <span class="propDesc">rados image name</span>,</div><div><span class="propName propOpt">fsType</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">file system type to mount, such as ext4, xfs, ntfs</span>,</div><div><span class="propName propReq">pool</span> (<span class="propType">string</span>): <span class="propDesc">rados pool name; default is rbd; optional</span>,</div><div><span class="propName propReq">user</span> (<span class="propType">string</span>): <span class="propDesc">rados user name; default is admin; optional</span>,</div><div><span class="propName propReq">keyring</span> (<span class="propType">string</span>): <span class="propDesc">keyring is the path to key ring for rados user; default is /etc/ceph/keyring; optional</span>,</div><div><span class="propName propReq">secretRef</span> (<span class="propType">v1.LocalObjectReference</span>): <span class="propDesc">name of a secret to authenticate the RBD user; if provided overrides keyring; optional</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">rbd volume to be mounted with read-only permissions</span></div><span class="strong">}</span><br><span class="strong">v1.LocalObjectReference {</span><div><span class="propName propOpt">name</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">name of the referent</span></div><span class="strong">}</span><br><span class="strong">v1.Container {</span><div><span class="propName propReq">name</span> (<span class="propType">string</span>): <span class="propDesc">name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated</span>,</div><div><span class="propName propOpt">image</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">Docker image name</span>,</div><div><span class="propName propOpt">command</span> (<span class="propType">array[string]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">entrypoint array; not executed within a shell; the docker image's entrypoint is used if this is not provided; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not</span>,</div><div><span class="propName propOpt">args</span> (<span class="propType">array[string]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">command array; the docker image's cmd is used if this is not provided; arguments to the entrypoint; cannot be updated; variable references $(VAR_NAME) are expanded using the container's environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not</span>,</div><div><span class="propName propOpt">workingDir</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">container's working directory; defaults to image's default; cannot be updated</span>,</div><div><span class="propName propOpt">ports</span> (<span class="propType">array[v1.ContainerPort]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">list of ports to expose from the container; cannot be updated</span>,</div><div><span class="propName propOpt">env</span> (<span class="propType">array[v1.EnvVar]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">list of environment variables to set in the container; cannot be updated</span>,</div><div><span class="propName propOpt">resources</span> (<span class="propType">v1.ResourceRequirements</span>, <span class="propOptKey">optional</span>): <span class="propDesc">Compute Resources required by this container; cannot be updated</span>,</div><div><span class="propName propOpt">volumeMounts</span> (<span class="propType">array[v1.VolumeMount]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">pod volumes to mount into the container's filesyste; cannot be updated</span>,</div><div><span class="propName propOpt">livenessProbe</span> (<span class="propType">v1.Probe</span>, <span class="propOptKey">optional</span>): <span class="propDesc">periodic probe of container liveness; container will be restarted if the probe fails; cannot be updated</span>,</div><div><span class="propName propOpt">readinessProbe</span> (<span class="propType">v1.Probe</span>, <span class="propOptKey">optional</span>): <span class="propDesc">periodic probe of container service readiness; container will be removed from service endpoints if the probe fails; cannot be updated</span>,</div><div><span class="propName propOpt">lifecycle</span> (<span class="propType">v1.Lifecycle</span>, <span class="propOptKey">optional</span>): <span class="propDesc">actions that the management system should take in response to container lifecycle events; cannot be updated</span>,</div><div><span class="propName propOpt">terminationMessagePath</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">path at which the file to which the container's termination message will be written is mounted into the container's filesystem; message written is intended to be brief final status, such as an assertion failure message; defaults to /dev/termination-log; cannot be updated</span>,</div><div><span class="propName propOpt">imagePullPolicy</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">image pull policy; one of Always, Never, IfNotPresent; defaults to Always if :latest tag is specified, or IfNotPresent otherwise; cannot be updated</span>,</div><div><span class="propName propOpt">securityContext</span> (<span class="propType">v1.SecurityContext</span>, <span class="propOptKey">optional</span>): <span class="propDesc">security options the pod should run with</span></div><span class="strong">}</span><br><span class="strong">v1.ContainerPort {</span><div><span class="propName propOpt">name</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">name for the port that can be referred to by services; must be a DNS_LABEL and unique without the pod</span>,</div><div><span class="propName propOpt">hostPort</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">number of port to expose on the host; most containers do not need this</span>,</div><div><span class="propName propReq">containerPort</span> (<span class="propType">integer</span>): <span class="propDesc">number of port to expose on the pod's IP address</span>,</div><div><span class="propName propOpt">protocol</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">protocol for port; must be UDP or TCP; TCP if unspecified</span>,</div><div><span class="propName propOpt">hostIP</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">host IP to bind the port to</span></div><span class="strong">}</span><br><span class="strong">v1.EnvVar {</span><div><span class="propName propReq">name</span> (<span class="propType">string</span>): <span class="propDesc">name of the environment variable; must be a C_IDENTIFIER</span>,</div><div><span class="propName propOpt">value</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">value of the environment variable; defaults to empty string; variable references $(VAR_NAME) are expanded using the previously defined environment varibles in the container and any service environment variables; if a variable cannot be resolved, the reference in the input string will be unchanged; the $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME) ; escaped references will never be expanded, regardless of whether the variable exists or not</span>,</div><div><span class="propName propOpt">valueFrom</span> (<span class="propType">v1.EnvVarSource</span>, <span class="propOptKey">optional</span>): <span class="propDesc">source for the environment variable's value; cannot be used if value is not empty</span></div><span class="strong">}</span><br><span class="strong">v1.EnvVarSource {</span><div><span class="propName propReq">fieldRef</span> (<span class="propType">v1.ObjectFieldSelector</span>): <span class="propDesc">selects a field of the pod; only name and namespace are supported</span></div><span class="strong">}</span><br><span class="strong">v1.ObjectFieldSelector {</span><div><span class="propName propOpt">apiVersion</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">version of the schema that fieldPath is written in terms of; defaults to v1</span>,</div><div><span class="propName propReq">fieldPath</span> (<span class="propType">string</span>): <span class="propDesc">path of the field to select in the specified API version</span></div><span class="strong">}</span><br><span class="strong">v1.ResourceRequirements {</span><div><span class="propName propOpt">limits</span> (<span class="propType">any</span>, <span class="propOptKey">optional</span>): <span class="propDesc">Maximum amount of compute resources allowed</span>,</div><div><span class="propName propOpt">requests</span> (<span class="propType">any</span>, <span class="propOptKey">optional</span>): <span class="propDesc">Minimum amount of resources requested; requests are honored only for persistent volumes as of now</span></div><span class="strong">}</span><br><span class="strong">v1.VolumeMount {</span><div><span class="propName propReq">name</span> (<span class="propType">string</span>): <span class="propDesc">name of the volume to mount</span>,</div><div><span class="propName propOpt">readOnly</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">mounted read-only if true, read-write otherwise (false or unspecified)</span>,</div><div><span class="propName propReq">mountPath</span> (<span class="propType">string</span>): <span class="propDesc">path within the container at which the volume should be mounted</span></div><span class="strong">}</span><br><span class="strong">v1.Probe {</span><div><span class="propName propOpt">exec</span> (<span class="propType">v1.ExecAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">exec-based handler</span>,</div><div><span class="propName propOpt">httpGet</span> (<span class="propType">v1.HTTPGetAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">HTTP-based handler</span>,</div><div><span class="propName propOpt">tcpSocket</span> (<span class="propType">v1.TCPSocketAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">TCP-based handler; TCP hooks not yet supported</span>,</div><div><span class="propName propOpt">initialDelaySeconds</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">number of seconds after the container has started before liveness probes are initiated</span>,</div><div><span class="propName propOpt">timeoutSeconds</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">number of seconds after which liveness probes timeout; defaults to 1 second</span></div><span class="strong">}</span><br><span class="strong">v1.ExecAction {</span><div><span class="propName propOpt">command</span> (<span class="propType">array[string]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">command line to execute inside the container; working directory for the command is root ('/') in the container's file system; the command is exec'd, not run inside a shell; exit status of 0 is treated as live/healthy and non-zero is unhealthy</span></div><span class="strong">}</span><br><span class="strong">v1.HTTPGetAction {</span><div><span class="propName propOpt">path</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">path to access on the HTTP server</span>,</div><div><span class="propName propReq">port</span> (<span class="propType">string</span>): <span class="propDesc">number or name of the port to access on the container</span>,</div><div><span class="propName propOpt">host</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">hostname to connect to; defaults to pod IP</span></div><span class="strong">}</span><br><span class="strong">v1.TCPSocketAction {</span><div><span class="propName propReq">port</span> (<span class="propType">string</span>): <span class="propDesc">number of name of the port to access on the container</span></div><span class="strong">}</span><br><span class="strong">v1.Lifecycle {</span><div><span class="propName propOpt">postStart</span> (<span class="propType">v1.Handler</span>, <span class="propOptKey">optional</span>): <span class="propDesc">called immediately after a container is started; if the handler fails, the container is terminated and restarted according to its restart policy; other management of the container blocks until the hook completes</span>,</div><div><span class="propName propOpt">preStop</span> (<span class="propType">v1.Handler</span>, <span class="propOptKey">optional</span>): <span class="propDesc">called before a container is terminated; the container is terminated after the handler completes; other management of the container blocks until the hook completes</span></div><span class="strong">}</span><br><span class="strong">v1.Handler {</span><div><span class="propName propOpt">exec</span> (<span class="propType">v1.ExecAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">exec-based handler</span>,</div><div><span class="propName propOpt">httpGet</span> (<span class="propType">v1.HTTPGetAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">HTTP-based handler</span>,</div><div><span class="propName propOpt">tcpSocket</span> (<span class="propType">v1.TCPSocketAction</span>, <span class="propOptKey">optional</span>): <span class="propDesc">TCP-based handler; TCP hooks not yet supported</span></div><span class="strong">}</span><br><span class="strong">v1.SecurityContext {</span><div><span class="propName propOpt">capabilities</span> (<span class="propType">v1.Capabilities</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the linux capabilites that should be added or removed</span>,</div><div><span class="propName propOpt">privileged</span> (<span class="propType">boolean</span>, <span class="propOptKey">optional</span>): <span class="propDesc">run the container in privileged mode</span>,</div><div><span class="propName propOpt">seLinuxOptions</span> (<span class="propType">v1.SELinuxOptions</span>, <span class="propOptKey">optional</span>): <span class="propDesc">options that control the SELinux labels applied</span>,</div><div><span class="propName propOpt">runAsUser</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the user id that runs the first process in the container</span></div><span class="strong">}</span><br><span class="strong">v1.Capabilities {</span><div><span class="propName propOpt">add</span> (<span class="propType">array[v1.Capability]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">added capabilities</span>,</div><div><span class="propName propOpt">drop</span> (<span class="propType">array[v1.Capability]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">droped capabilities</span></div><span class="strong">}</span><br><span class="strong">v1.Capability {</span><div></div><span class="strong">}</span><br><span class="strong">v1.SELinuxOptions {</span><div><span class="propName propOpt">user</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the user label to apply to the container</span>,</div><div><span class="propName propOpt">role</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the role label to apply to the container</span>,</div><div><span class="propName propOpt">type</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the type label to apply to the container</span>,</div><div><span class="propName propOpt">level</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">the level label to apply to the container</span></div><span class="strong">}</span><br><span class="strong">v1.PodStatus {</span><div><span class="propName propOpt">phase</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">current condition of the pod.</span>,</div><div><span class="propName propOpt">conditions</span> (<span class="propType">array[v1.PodCondition]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">current service state of pod</span>,</div><div><span class="propName propOpt">message</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">human readable message indicating details about why the pod is in this condition</span>,</div><div><span class="propName propOpt">hostIP</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">IP address of the host to which the pod is assigned; empty if not yet scheduled</span>,</div><div><span class="propName propOpt">podIP</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">IP address allocated to the pod; routable at least within the cluster; empty if not yet allocated</span>,</div><div><span class="propName propOpt">startTime</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">RFC 3339 date and time at which the object was acknowledged by the Kubelet.  This is before the Kubelet pulled the container image(s) for the pod.</span>,</div><div><span class="propName propOpt">containerStatuses</span> (<span class="propType">array[v1.ContainerStatus]</span>, <span class="propOptKey">optional</span>): <span class="propDesc">list of container statuses</span></div><span class="strong">}</span><br><span class="strong">v1.PodCondition {</span><div><span class="propName propReq">type</span> (<span class="propType">string</span>): <span class="propDesc">kind of the condition, currently only Ready</span>,</div><div><span class="propName propReq">status</span> (<span class="propType">string</span>): <span class="propDesc">status of the condition, one of True, False, Unknown</span></div><span class="strong">}</span><br><span class="strong">v1.ContainerStatus {</span><div><span class="propName propReq">name</span> (<span class="propType">string</span>): <span class="propDesc">name of the container; must be a DNS_LABEL and unique within the pod; cannot be updated</span>,</div><div><span class="propName propOpt">state</span> (<span class="propType">v1.ContainerState</span>, <span class="propOptKey">optional</span>): <span class="propDesc">details about the container's current condition</span>,</div><div><span class="propName propOpt">lastState</span> (<span class="propType">v1.ContainerState</span>, <span class="propOptKey">optional</span>): <span class="propDesc">details about the container's last termination condition</span>,</div><div><span class="propName propReq">ready</span> (<span class="propType">boolean</span>): <span class="propDesc">specifies whether the container has passed its readiness probe</span>,</div><div><span class="propName propReq">restartCount</span> (<span class="propType">integer</span>): <span class="propDesc">the number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed</span>,</div><div><span class="propName propReq">image</span> (<span class="propType">string</span>): <span class="propDesc">image of the container</span>,</div><div><span class="propName propReq">imageID</span> (<span class="propType">string</span>): <span class="propDesc">ID of the container's image</span>,</div><div><span class="propName propOpt">containerID</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">container's ID in the format 'docker://<container_id>'</container_id></span></div><span class="strong">}</span><br><span class="strong">v1.ContainerState {</span><div><span class="propName propOpt">waiting</span> (<span class="propType">v1.ContainerStateWaiting</span>, <span class="propOptKey">optional</span>): <span class="propDesc">details about a waiting container</span>,</div><div><span class="propName propOpt">running</span> (<span class="propType">v1.ContainerStateRunning</span>, <span class="propOptKey">optional</span>): <span class="propDesc">details about a running container</span>,</div><div><span class="propName propOpt">terminated</span> (<span class="propType">v1.ContainerStateTerminated</span>, <span class="propOptKey">optional</span>): <span class="propDesc">details about a terminated container</span></div><span class="strong">}</span><br><span class="strong">v1.ContainerStateWaiting {</span><div><span class="propName propOpt">reason</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">(brief) reason the container is not yet running, such as pulling its image</span></div><span class="strong">}</span><br><span class="strong">v1.ContainerStateRunning {</span><div><span class="propName propOpt">startedAt</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">time at which the container was last (re-)started</span></div><span class="strong">}</span><br><span class="strong">v1.ContainerStateTerminated {</span><div><span class="propName propReq">exitCode</span> (<span class="propType">integer</span>): <span class="propDesc">exit status from the last termination of the container</span>,</div><div><span class="propName propOpt">signal</span> (<span class="propType">integer</span>, <span class="propOptKey">optional</span>): <span class="propDesc">signal from the last termination of the container</span>,</div><div><span class="propName propOpt">reason</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">(brief) reason from the last termination of the container</span>,</div><div><span class="propName propOpt">message</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">message regarding the last termination of the container</span>,</div><div><span class="propName propOpt">startedAt</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">time at which previous execution of the container started</span>,</div><div><span class="propName propOpt">finishedAt</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">time at which the container last terminated</span>,</div><div><span class="propName propOpt">containerID</span> (<span class="propType">string</span>, <span class="propOptKey">optional</span>): <span class="propDesc">container's ID in the format 'docker://<container_id>'</container_id></span></div><span class="strong">}</span>
+  </div>
+
+  <div class="snippet" style="display: none;">
+    <pre><code class="json">{
+  "<span class="attribute">kind</span>": <span class="value"><span class="string">""</span></span>,
+  "<span class="attribute">apiVersion</span>": <span class="value"><span class="string">""</span></span>,
+  "<span class="attribute">metadata</span>": <span class="value">{
+    "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">generateName</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">namespace</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">selfLink</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">uid</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">resourceVersion</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">creationTimestamp</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">deletionTimestamp</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">labels</span>": <span class="value"><span class="string">"any"</span></span>,
+    "<span class="attribute">annotations</span>": <span class="value"><span class="string">"any"</span>
+  }</span></span>,
+  "<span class="attribute">spec</span>": <span class="value">{
+    "<span class="attribute">volumes</span>": <span class="value">[
+      {
+        "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">hostPath</span>": <span class="value">{
+          "<span class="attribute">path</span>": <span class="value"><span class="string">""</span>
+        }</span></span>,
+        "<span class="attribute">emptyDir</span>": <span class="value">{
+          "<span class="attribute">medium</span>": <span class="value"><span class="string">""</span>
+        }</span></span>,
+        "<span class="attribute">gcePersistentDisk</span>": <span class="value">{
+          "<span class="attribute">pdName</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">fsType</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">partition</span>": <span class="value"><span class="number">0</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">awsElasticBlockStore</span>": <span class="value">{
+          "<span class="attribute">volumeID</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">fsType</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">partition</span>": <span class="value"><span class="number">0</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">gitRepo</span>": <span class="value">{
+          "<span class="attribute">repository</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">revision</span>": <span class="value"><span class="string">""</span>
+        }</span></span>,
+        "<span class="attribute">secret</span>": <span class="value">{
+          "<span class="attribute">secretName</span>": <span class="value"><span class="string">""</span>
+        }</span></span>,
+        "<span class="attribute">nfs</span>": <span class="value">{
+          "<span class="attribute">server</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">iscsi</span>": <span class="value">{
+          "<span class="attribute">targetPortal</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">iqn</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">lun</span>": <span class="value"><span class="number">0</span></span>,
+          "<span class="attribute">fsType</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">glusterfs</span>": <span class="value">{
+          "<span class="attribute">endpoints</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">persistentVolumeClaim</span>": <span class="value">{
+          "<span class="attribute">claimName</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span></span>,
+        "<span class="attribute">rbd</span>": <span class="value">{
+          "<span class="attribute">monitors</span>": <span class="value">[
+            <span class="string">""</span>
+          ]</span>,
+          "<span class="attribute">image</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">fsType</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">pool</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">user</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">keyring</span>": <span class="value"><span class="string">""</span></span>,
+          "<span class="attribute">secretRef</span>": <span class="value">{
+            "<span class="attribute">name</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span>
+        }</span>
+      }</span>
+    ]</span>,
+    "<span class="attribute">containers</span>": <span class="value">[
+      {
+        "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">image</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">command</span>": <span class="value">[
+          <span class="string">""</span>
+        ]</span>,
+        "<span class="attribute">args</span>": <span class="value">[
+          <span class="string">""</span>
+        ]</span>,
+        "<span class="attribute">workingDir</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">ports</span>": <span class="value">[
+          {
+            "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">hostPort</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">containerPort</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">protocol</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">hostIP</span>": <span class="value"><span class="string">""</span>
+          }</span>
+        ]</span>,
+        "<span class="attribute">env</span>": <span class="value">[
+          {
+            "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">value</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">valueFrom</span>": <span class="value">{
+              "<span class="attribute">fieldRef</span>": <span class="value">{
+                "<span class="attribute">apiVersion</span>": <span class="value"><span class="string">""</span></span>,
+                "<span class="attribute">fieldPath</span>": <span class="value"><span class="string">""</span>
+              }</span>
+            }</span>
+          }</span>
+        ]</span>,
+        "<span class="attribute">resources</span>": <span class="value">{
+          "<span class="attribute">limits</span>": <span class="value"><span class="string">"any"</span></span>,
+          "<span class="attribute">requests</span>": <span class="value"><span class="string">"any"</span>
+        }</span></span>,
+        "<span class="attribute">volumeMounts</span>": <span class="value">[
+          {
+            "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">readOnly</span>": <span class="value"><span class="literal">false</span></span>,
+            "<span class="attribute">mountPath</span>": <span class="value"><span class="string">""</span>
+          }</span>
+        ]</span>,
+        "<span class="attribute">livenessProbe</span>": <span class="value">{
+          "<span class="attribute">exec</span>": <span class="value">{
+            "<span class="attribute">command</span>": <span class="value">[
+              <span class="string">""</span>
+            ]
+          }</span></span>,
+          "<span class="attribute">httpGet</span>": <span class="value">{
+            "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">port</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">host</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">tcpSocket</span>": <span class="value">{
+            "<span class="attribute">port</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">initialDelaySeconds</span>": <span class="value"><span class="number">0</span></span>,
+          "<span class="attribute">timeoutSeconds</span>": <span class="value"><span class="number">0</span>
+        }</span></span>,
+        "<span class="attribute">readinessProbe</span>": <span class="value">{
+          "<span class="attribute">exec</span>": <span class="value">{
+            "<span class="attribute">command</span>": <span class="value">[
+              <span class="string">""</span>
+            ]
+          }</span></span>,
+          "<span class="attribute">httpGet</span>": <span class="value">{
+            "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">port</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">host</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">tcpSocket</span>": <span class="value">{
+            "<span class="attribute">port</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">initialDelaySeconds</span>": <span class="value"><span class="number">0</span></span>,
+          "<span class="attribute">timeoutSeconds</span>": <span class="value"><span class="number">0</span>
+        }</span></span>,
+        "<span class="attribute">lifecycle</span>": <span class="value">{
+          "<span class="attribute">postStart</span>": <span class="value">{
+            "<span class="attribute">exec</span>": <span class="value">{
+              "<span class="attribute">command</span>": <span class="value">[
+                <span class="string">""</span>
+              ]
+            }</span></span>,
+            "<span class="attribute">httpGet</span>": <span class="value">{
+              "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+              "<span class="attribute">port</span>": <span class="value"><span class="string">""</span></span>,
+              "<span class="attribute">host</span>": <span class="value"><span class="string">""</span>
+            }</span></span>,
+            "<span class="attribute">tcpSocket</span>": <span class="value">{
+              "<span class="attribute">port</span>": <span class="value"><span class="string">""</span>
+            }</span>
+          }</span></span>,
+          "<span class="attribute">preStop</span>": <span class="value">{
+            "<span class="attribute">exec</span>": <span class="value">{
+              "<span class="attribute">command</span>": <span class="value">[
+                <span class="string">""</span>
+              ]
+            }</span></span>,
+            "<span class="attribute">httpGet</span>": <span class="value">{
+              "<span class="attribute">path</span>": <span class="value"><span class="string">""</span></span>,
+              "<span class="attribute">port</span>": <span class="value"><span class="string">""</span></span>,
+              "<span class="attribute">host</span>": <span class="value"><span class="string">""</span>
+            }</span></span>,
+            "<span class="attribute">tcpSocket</span>": <span class="value">{
+              "<span class="attribute">port</span>": <span class="value"><span class="string">""</span>
+            }</span>
+          }</span>
+        }</span></span>,
+        "<span class="attribute">terminationMessagePath</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">imagePullPolicy</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">securityContext</span>": <span class="value">{
+          "<span class="attribute">capabilities</span>": <span class="value">{
+            "<span class="attribute">add</span>": <span class="value">[
+              {}
+            ]</span>,
+            "<span class="attribute">drop</span>": <span class="value">[
+              {}
+            ]
+          }</span></span>,
+          "<span class="attribute">privileged</span>": <span class="value"><span class="literal">false</span></span>,
+          "<span class="attribute">seLinuxOptions</span>": <span class="value">{
+            "<span class="attribute">user</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">role</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">type</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">level</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">runAsUser</span>": <span class="value"><span class="number">0</span>
+        }</span>
+      }</span>
+    ]</span>,
+    "<span class="attribute">restartPolicy</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">terminationGracePeriodSeconds</span>": <span class="value"><span class="number">0</span></span>,
+    "<span class="attribute">activeDeadlineSeconds</span>": <span class="value"><span class="number">0</span></span>,
+    "<span class="attribute">dnsPolicy</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">nodeSelector</span>": <span class="value"><span class="string">"any"</span></span>,
+    "<span class="attribute">serviceAccount</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">nodeName</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">hostNetwork</span>": <span class="value"><span class="literal">false</span></span>,
+    "<span class="attribute">imagePullSecrets</span>": <span class="value">[
+      {
+        "<span class="attribute">name</span>": <span class="value"><span class="string">""</span>
+      }</span>
+    ]
+  }</span></span>,
+  "<span class="attribute">status</span>": <span class="value">{
+    "<span class="attribute">phase</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">conditions</span>": <span class="value">[
+      {
+        "<span class="attribute">type</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">status</span>": <span class="value"><span class="string">""</span>
+      }</span>
+    ]</span>,
+    "<span class="attribute">message</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">hostIP</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">podIP</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">startTime</span>": <span class="value"><span class="string">""</span></span>,
+    "<span class="attribute">containerStatuses</span>": <span class="value">[
+      {
+        "<span class="attribute">name</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">state</span>": <span class="value">{
+          "<span class="attribute">waiting</span>": <span class="value">{
+            "<span class="attribute">reason</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">running</span>": <span class="value">{
+            "<span class="attribute">startedAt</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">terminated</span>": <span class="value">{
+            "<span class="attribute">exitCode</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">signal</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">reason</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">message</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">startedAt</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">finishedAt</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">containerID</span>": <span class="value"><span class="string">""</span>
+          }</span>
+        }</span></span>,
+        "<span class="attribute">lastState</span>": <span class="value">{
+          "<span class="attribute">waiting</span>": <span class="value">{
+            "<span class="attribute">reason</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">running</span>": <span class="value">{
+            "<span class="attribute">startedAt</span>": <span class="value"><span class="string">""</span>
+          }</span></span>,
+          "<span class="attribute">terminated</span>": <span class="value">{
+            "<span class="attribute">exitCode</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">signal</span>": <span class="value"><span class="number">0</span></span>,
+            "<span class="attribute">reason</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">message</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">startedAt</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">finishedAt</span>": <span class="value"><span class="string">""</span></span>,
+            "<span class="attribute">containerID</span>": <span class="value"><span class="string">""</span>
+          }</span>
+        }</span></span>,
+        "<span class="attribute">ready</span>": <span class="value"><span class="literal">false</span></span>,
+        "<span class="attribute">restartCount</span>": <span class="value"><span class="number">0</span></span>,
+        "<span class="attribute">image</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">imageID</span>": <span class="value"><span class="string">""</span></span>,
+        "<span class="attribute">containerID</span>": <span class="value"><span class="string">""</span>
+      }</span>
+    ]
+  }</span>
+}</span></code></pre>
+    <small class="notice">Click to set as parameter value</small>
+  </div>
+</div>
+
+</div>
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+<div id="gc-content-license">
+
+    
+      <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="/site-policies">Site Policies</a>.</p>
+    
+    
+    
+
+</div>
+
+
+
+<div itemprop="datePublished" content="2015-06-24T02:00:45.080290" id="gc-content-last-updated">Zuletzt aktualisiert am Juni 24, 2015</div>
+
+</div>
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+      
+
+      
+
+  
+
+  
+      
+      <div id="maia-signature"></div>
+      <div id="maia-footer">
+
+            
+              
+<div id="maia-footer-local">
+  <div class="maia-aux">
+    <nav class="menu-nav-wrapper">
+      <ul class="menu-nav">
+        <li class="nav-cat products">
+        <input type="checkbox" id="footer-nav-products">
+        <label for="footer-nav-products"><h3>Products</h3></label>
+        <ul>
+        <li><a href="/appengine/" class="tooltip" track-type="productsDoc" track-name="appengine" track-metadata-position="footer">App Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run your Python, Java, PHP and Go applications on a fully-managed Platform-as-a-Service (PaaS)
+        </span></a></li>
+
+        <li><a href="/compute/" class="tooltip" track-type="productsDoc" track-name="compute" track-metadata-position="footer">Compute Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run large-scale workloads on virtual machines hosted on Google's infrastructure
+        </span></a></li>
+
+        <li><a href="/container-engine/" class="tooltip" track-type="productsDoc" track-name="containerEngine" track-metadata-position="footer">Container Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run Docker containers on Google Cloud Platform, powered by Kubernetes
+        </span></a></li>
+
+        <li><a href="/bigquery/" class="tooltip" track-type="productsDoc" track-name="bigQuery" track-metadata-position="footer">BigQuery
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run fast, SQL-like queries against multi-terabyte datasets in seconds
+        </span> </a></li>
+
+        <li><a href="/networking/" class="tooltip" track-type="productsDoc" track-name="networking" track-metadata-position="footer">Networking
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Google's network technology helps provide fast and consistent performance for your apps and services
+        </span>
+        </a></li>
+        <li><a href="/storage/" class="tooltip" track-type="productsDoc" track-name="storage" track-metadata-position="footer">Storage
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Use a durable and highly available object storage service
+        </span>
+        </a></li>
+
+        <li><a href="/sql/" class="tooltip" track-type="productsDoc" track-name="sql" track-metadata-position="footer">SQL
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Store and manage data using a fully-managed, relational MySQL database
+        </span>
+        </a></li>
+
+        <li><a href="/datastore/" class="tooltip" track-type="productsDoc" track-name="datastore" track-metadata-position="footer">Datastore
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+           Use a managed, NoSQL, schemaless database for storing non-relational data
+        </span></a></li>
+
+        <li><a href="/dataflow/" class="tooltip" track-type="productsDoc" track-name="dataflow" track-metadata-position="footer">Dataflow
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Build, deploy, and run data processing pipelines that scale to solve your key business challenges
+        </span></a></li>
+
+        <li><a href="/products/" track-type="productsDoc" track-name="more" track-metadata-position="footer">More...</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-learn">
+      <label for="footer-nav-learn"><h3>Learn</h3></label>
+      <ul>
+        <li><a href="/appengine/docs/java/gettingstarted/introduction" track-type="learn" track-name="appengine" track-metadata-position="footer">App Engine Tutorial</a></li>
+        <li><a href="/compute/docs/quickstart" track-type="learn" track-name="compute" track-metadata-position="footer">Compute Engine Tutorial</a></li>
+        <li><a href="/bigquery/web-ui-quickstart" track-type="learn" track-name="bigquery" track-metadata-position="footer">BigQuery Tutorial</a></li>
+        <li><a href="/docs/" track-type="learn" track-name="documentation" track-metadata-position="footer">Documentation</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-deploy">
+      <label for="footer-nav-deploy"><h3>Deploy</h3></label>
+      <ul>
+        <li><a href="/launcher/explore?q=lamp" class="tooltip" track-type="deployDoc" track-name="LAMP" track-metadata-position="footer">LAMP
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          The LAMP development stack combines the power of Debian Linux, Apache HTTP Server, MySQL, and PHP
+        </span></a></li>
+        <li><a href="/launcher/explore?q=mongodb" class="tooltip" track-type="deployDoc" track-name="mongoDB" track-metadata-position="footer">MongoDB
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          An open-source document database, and the leading NoSQL database
+        </span></a></li>
+        <li><a href="/launcher/explore?q=hadoop" class="tooltip" track-type="deployDoc" track-name="hadoop" track-metadata-position="footer">Hadoop
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          A framework that allows for the distributed processing of large data sets across clusters of computers
+        </span></a></li>
+        <li><a href="/launcher/explore?q=mean" class="tooltip" track-type="deployDoc" track-name="mean" track-metadata-position="footer">MEAN
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          MongoDB, Express Node Framework, AngularJS, and NodeJS
+        </span></a></li>
+        <li><a href="/solutions/" track-type="deployDoc" track-name="more" track-metadata-position="footer">More...</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-resources">
+      <label for="footer-nav-resources"><h3>Resources</h3></label>
+      <ul>
+        <li><a href="/why-google/" track-type="resourcesDoc" track-name="whyGoogle" track-metadata-position="footer">Why Google</a></li>
+        <li><a href="/customers/" track-type="resourcesDoc" track-name="customers" track-metadata-position="footer">Customers</a></li>
+        <li><a href="/partners/" track-type="resourcesDoc" track-name="partners" track-metadata-position="footer">Partners</a></li>
+        <li><a href="/security/" track-type="resourcesDoc" track-name="security" track-metadata-position="footer">Security</a></li>
+        <li><a href="/security/compliance/" track-type="resourcesDoc" track-name="compliance" track-metadata-position="footer">Compliance</a></li>
+        <li><a href="/support/" track-type="resourcesDoc" track-name="support" track-metadata-position="footer">Support</a></li>
+        <li><a href="https://status.cloud.google.com/" track-type="resourcesDoc" track-name="systemStatus" track-metadata-position="footer">System Status</a></li>
+        <li><a href="/training/" track-type="resourcesTraining" track-name="training" track-metadata-position="footer">Training</a></li>
+        <li><a href="/usability" track-type="resourcesUsability" track-name="usability" track-metadata-position="footer">UX Research</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-pricing">
+      <label for="footer-nav-pricing"><h3>Pricing</h3></label>
+      <ul>
+        <li><a href="/pricing/" track-type="pricingDoc" track-name="pricing" track-metadata-position="footer">Pricing</a></li>
+        <li><a href="/products/calculator/" track-type="pricingDoc" track-name="calculator" track-metadata-position="footer">Calculator</a></li>
+        <li><a href="/pricing/philosophy/" track-type="pricingDoc" track-name="philosophy" track-metadata-position="footer">Philosophy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<br class="clear" />
+</div>
+</div>
+
+<script>
+  
+    new lfl.cloud.GlobalProductMenu();
+  
+    new lfl.ui.ScrollNav({});
+    cloud.forms.Tracking.addTracking();
+</script>
+
+              
+            
+
+        <div id="maia-footer-global">
+          
+          <div class="maia-locales">
+            <form action="/i18n/setlang/" method="post">
+            <input type="hidden" name="xsrf_token" value="8TtdINKp9znnT0T1m4yXUPVfidVFL_8mNxCtONkvKto6MTQzNzU3NTM1MDgxODI4MA" />
+            <select name="language" onchange="this.form.submit(); return false;">
+              <option value="en">English</option>
+              <option value="ja">日本語</option>
+            </select>
+            </form>
+          </div>
+          
+
+          <div class="maia-aux">
+            <ul>
+              <li><a href="http://www.google.com/">Google</a></li>
+              
+                <li><a href="/terms/">Nutzungsbedingungen</a></li>
+              
+              <li><a href="http://www.google.com/intl/en/privacy/">Datenschutzerklärung</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+  
+    
+
+  
+
+    </div>
+
+    <script type="text/javascript" async="" defer="" src="//www.gstatic.com/feedback/api.js"></script>
+
+    
+    <script>
+      (function($) {
+        var cssHref = $('#screen-foot').attr('data-href');
+        $('#screen-foot').attr('href', cssHref);
+        $('#screen-foot').load(function() {
+          
+          devsite.timing.tick('cl');
+        });
+      })(jQuery);
+    </script>
+    
+
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    
+    <script type="text/javascript" src="https://cloud.google.com/_static2/543c756aae/jsi18n/?hl=de"></script>
+    <script src="https://cloud.google.com/_static/543c756aae/js/script_foot_closure__de.js"></script>
+    <script src="https://cloud.google.com/_static/543c756aae/js/script_foot.js"></script>
+    <script>
+      
+      devsite.timing.tick('jl');
+      (function($) {
+        devsite.devsite.Init($, 'cloud',
+            '[]', '',
+            'de', true,
+            '543c756aae', 'lukas.saegesser@scydev.ch',
+            false,
+            {"296e8173cd0024b4839dd7f3d7fa4387": true, "04f8c40014dc472fb1b95e175fb1b9fd": true, "6749dcb526ce9bde6993550c7d928d24": true, "993b1906435224595bd618f6f331ee45": true});
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+    </script>
+
+    
+
+    
+
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if (navigator.userAgent.match(/msie/i)) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+
+    
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CVQBG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5CVQBG');</script>
+    <!-- End Google Tag Manager -->
+    
+
+    
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+      <img style="display:none;" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+    </noscript>
+
+    
+    <script src="//www.google.com/js/maia.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    
+
+    
+    
+
+    
+
+
+
+<script type="text/javascript" defer>
+
+
+</script>
+
+  </div><!-- END DIV.MAIA-MAX -->
+  </body>
+
+  
+</html>

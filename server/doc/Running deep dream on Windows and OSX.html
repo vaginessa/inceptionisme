@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Running deep dream on Windows and OSX</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="http://ryankennedy.io/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/screen.css">
+    <link rel="stylesheet" type="text/css" href="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/css.css">
+
+    <link rel="canonical" href="http://ryankennedy.io/running-the-deep-dream/">
+    
+    <meta property="og:site_name" content="Ryan Kennedy">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Running deep dream on Windows and OSX">
+    <meta property="og:description" content="A few days ago, Google released a Python Notebook to let you play with some of their very recent work on visualisation with neural networks. Despite being designed to rely on as few dependancies as possible, a recurring complaint I...">
+    <meta property="og:url" content="http://ryankennedy.io/running-the-deep-dream/">
+    <meta property="article:published_time" content="2015-07-03T23:44:19.537Z">
+    <meta property="article:modified_time" content="2015-07-06T21:52:54.571Z">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Running deep dream on Windows and OSX">
+    <meta name="twitter:description" content="A few days ago, Google released a Python Notebook to let you play with some of their very recent work on visualisation with neural networks. Despite being designed to rely on as few dependancies as possible, a recurring complaint I...">
+    <meta name="twitter:url" content="http://ryankennedy.io/running-the-deep-dream/">
+    
+    <script src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/analytics.js" async=""></script><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Ryan Kennedy",
+    "author": {
+        "@type": "Person",
+        "name": "Ryan Kennedy",
+        "url": "http://ryankennedy.io/author/ryan",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Running deep dream on Windows and OSX",
+    "url": "http://ryankennedy.io/running-the-deep-dream/",
+    "datePublished": "2015-07-03T23:44:19.537Z",
+    "dateModified": "2015-07-06T21:52:54.571Z",
+    "description": "A few days ago, Google released a Python Notebook to let you play with some of their very recent work on visualisation with neural networks. Despite being designed to rely on as few dependancies as possible, a recurring complaint I..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6">
+    <link rel="alternate" type="application/rss+xml" title="Ryan Kennedy" href="http://ryankennedy.io/rss/">
+    <meta name="google-site-verification" content="4xYhTjHSCmMul9oXM9iiRdj_1kJACOZY8L5JfEZA_4A">
+<style>
+.main-header {
+  height: 50vh;
+}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64802746-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/embed.js" async="" type="text/javascript"></script><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="http://ryankennedy.io/">Home</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://ryankennedy.io/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Running deep dream on Windows and OSX</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-07-04">04 July 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>A few days ago, Google released a <a href="http://googleresearch.blogspot.com.au/2015/07/deepdream-code-example-for-visualizing.html">Python Notebook</a> to let you play with some of their very recent <a href="http://googleresearch.blogspot.com.au/2015/06/inceptionism-going-deeper-into-neural.html">work on visualisation</a> with neural networks.</p>
+
+<p>Despite being designed to rely on as few dependancies as possible, a 
+recurring complaint I saw is that it's so difficult for non-programmers 
+to set up and start playing with.</p>
+
+<p>If that sounds like you, then you're in luck! I've built and packaged
+ a complete virtual environment, with all dependancies included &amp; 
+ready to go. We can do the entire thing from scratch in a few lines at 
+the terminal (after chewing through a few GB of bandwidth). The tool is 
+called Docker, and the virtual environments are called Containers. What 
+we're going to do is install Docker, pull my deepdream container, and 
+run the container so we can play with the tool in our web-browser.</p>
+
+<p>I'm on a mac, so the guide will follow that. If you're on Linux, you 
+know what to do. If you're on Windows, most things should still work, 
+but you'll need to apply this guide to your environment. I haven't used 
+Windows properly in ~5 years, so I can't provide much help (Boot2docker 
+is available on Windows, so the steps should be extremely similar).</p>
+
+<p><strong>First</strong> you'll need <code>Docker</code> - a tool to 
+let you easily use pre-packaged virtual computers on your own computer. 
+To get a good understanding of what we're actually doing, you should 
+read the <a href="https://docs.docker.com/installation/mac/">installation guide</a>. Or if you just want to speed through and get to the cool stuff -</p>
+
+<ul>
+<li>Download the <a href="https://github.com/boot2docker/osx-installer/releases/tag/v1.7.0">boot2docker installer</a> and run it.</li>
+<li>Open <code>Boot2docker</code> by searching for it in Spotlight (⌘ + space)</li>
+</ul>
+
+<p>You should have something like this now <br>
+<img src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/Screen-Shot-2015-07-04-at-8-17-38-am.png" alt=""></p>
+
+<p><strong>Second</strong> you'll need to get the Docker container somehow. The easiest way to do this is to run <code>docker pull ryankennedyio/deepdream</code> at the terminal we've now got open. This is about 3GB, so go and get a coffee (or three). </p>
+
+<p>Alternatively, you can get the source from <a href="https://github.com/ryankennedyio/deep-dream-generator">Github</a> by downloading as a Zip, extractive, navigating the <code>boot2docker</code> terminal window to that location and executing <code>docker build -t ryankennedy/deepdream .</code> to build the image yourself</p>
+
+<p><strong>Third</strong> you need to 'boot' the container. This is done with </p>
+
+<pre><code>docker run -d -p 443:8888 -e "PASSWORD=password" -v /path/to/this/repository:/src ryankennedyio/deepdream
+</code></pre>
+
+<p><em>Special note:</em> <code>path/to/this/repository</code> should be the location where you want to play with input images. In my case, that would be <code>/Users/ryankennedy/Pictures</code>. This directory is being shared with the Docker container, so that you can access your input pictures.</p>
+
+<p><strong>Finally</strong> enter <code>boot2docker ip</code> at the terminal. Copy and paste it, and enter <code>https://&lt;that-ip-address&gt;</code> into your browser (don't miss the http<strong>s</strong>). You'll get some warnings about an unsafe connection, but that's OK. Enter <code>password</code> when prompted for it.</p>
+
+<p>If we've done everything right until this point, we should now see this. <br>
+<img src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/Screen-Shot-2015-07-04-at-8-44-34-am.png" alt=""></p>
+
+<p>Click <code>dream.ipynb</code> to start Google's python notebook. You might get <code>Failed to retrieve MathJax from ...</code> popup, but that's OK.</p>
+
+<h5 id="nowwhat">Now what?</h5>
+
+<p>Python Notebooks are an interactive way to play with code in a more 
+beginner-friendly manner (I may have just offended the entire scientific
+ Python community with that).</p>
+
+<p>Click on a code block and press the play button at the top. The <code>In[*]</code>
+ on the left indicates that this code block is currently running. When 
+the * turns into a number, the code has finished and you're ready to do 
+the next one.</p>
+
+<p>When you run this code block</p>
+
+<pre><code>img = np.float32(PIL.Image.open('/src/input.jpg'))
+showarray(img)
+</code></pre>
+
+<p>the file named <code>input.jpg</code> will be shown. You can edit the code just by double clicking, should you want to change the input image. </p>
+
+<p>If you start getting errors like <code>IOError: [Errno 2] No such file or directory: '/src/input.jpg'</code>, then you didn't correctly mount the shared folder to the docker container in the <strong>third</strong> step. It's important to note that the <code>/path/to/this/repository</code> part in the <code>run</code> command will be shared to the docker container, and the docker container can access this using <code>/src</code>.</p>
+
+<p>The generation may take a little while, but you can see it updating in real time, each iteration over the image.</p>
+
+<p>For an explanation of what's actually happening here, I'd encourage you to read the <a href="http://googleresearch.blogspot.com.au/2015/06/inceptionism-going-deeper-into-neural.html">google research blog post</a>. There's a really nice gallery <a href="https://goo.gl/photos/fFcivHZ2CDhqCkZdA">here</a>, and of course following the #deepdream tag on your <del>choice of poison</del> favourite social network.</p>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p><strong>No such directory or can’t find folder.</strong> Because 
+we’re essentially working in a VM within a VM, (docker inside 
+boot2docker), your host folder needs to be available to boot2docker. By 
+default, only folders inside /Users/ will work, because boot2docker will
+ mount /Users/ when it’s first installed.</p>
+
+<p>For example, on Windows you'd want to do something like <code>//c/Users/me/pictures:/src/</code> as the parameter to the <code>-v</code> option.</p>
+
+<p>To see what's actually mounted at <code>/src</code> when the VM is running, do the following in boot2docker.</p>
+
+<p><code>docker ps</code> - then find the 'NAME' of the current container (something weird, like 'insane_babbage' for example).</p>
+
+<p><code>docker exec -it insane_babbage bash</code> will launch you into terminal <em>inside</em> the container. Once inside, <code>ls /src</code>
+ will show you the contents of the directory that you've mounted. This 
+should give you a clue as to which folder been mounted to the container 
+(if anything).</p>
+
+<p><strong>WebSocket connection failed.</strong> Apparently will happen on OSX with Safari. Try with firefox or chrome.</p>
+
+<p><strong>Cannot start container [...] Bind for 0.0.0.0:443 failed: port is already allocated.</strong>
+You'll be getting this error because you have a program already running 
+on port 443 (the HTTPS default port). The most common case would be that
+ you already have a container running, and you're trying to run another 
+one. Two containers cannot run at the same time, on the same port. 
+Either try to use 4430 instead of 443 (or any number above 1024), or do <code>docker ps</code> and <code>docker stop &lt;container-name&gt;</code>, where <code>&lt;container name&gt;</code> is something like 'insane_babbage'.</p>
+
+<p><strong>Restarting the container.</strong> You may deem it necessary to restart the container, if the kernel locks up or the whole app becomes unresponsive. In <code>boot2docker</code>, just stop the container (as explained in the above paragraph) and restart it with the <code>run</code> (step 3) command again.</p>
+
+<p><strong>If all else fails...</strong> A lot of the issues I've seen 
+are due to unfamiliarity with Docker. That's expected, since it's a very
+ new tool - and while it has had explosive popularity in the engineering
+ world, it's no surprise that you might not have used it yet. Try to 
+spend 20 minutes running through the <a href="https://docs.docker.com/userguide/">introduction tutorials</a>.</p>
+
+<h3 id="goingfurther">Going Further</h3>
+
+<p><strong>Different Models.</strong> The default 'puppy-slug' model might be boring you by now. Great! I only included the bvlc_googlenet container by default. </p>
+
+<p>You will need to download the models from <a href="https://github.com/BVLC/caffe/tree/master/models">BVLC's repository</a>.
+ If you go into any of the model folders, there is a link to download 
+the model file (models are not included in the repository). Make sure to
+ download deploy.prototxt from each of those directories too.</p>
+
+<p>Create a new folder for each model you want to play with, and download the <code>.caffemodel</code> and <code>deploy.prototxt</code>
+ into that model's folder. Make sure those folders are inside the shared
+ directory you're mounting, and access them by editing the python block:</p>
+
+<pre><code>model_path = '../caffe/models/bvlc_googlenet/' # substitute your path here
+net_fn   = model_path + 'deploy.prototxt'
+param_fn = model_path + 'bvlc_googlenet.caffemodel'
+</code></pre>
+
+<p>to be something like </p>
+
+<pre><code>model_path = '/src/&lt;model-folder-here&gt;/' # substitute your path here
+net_fn   = model_path + 'deploy.prototxt'
+param_fn = model_path + '&lt;put-model-name-here&gt;.caffemodel'
+</code></pre>
+
+<p>(Don't miss the '/' on the end of model_path).</p>
+
+<p><strong>Alternative Containers.</strong> The team at <a href="http://vision.ai/">vision.ai</a> have produced another container <a href="https://github.com/VISIONAI/clouddream">available here</a>.
+ You might need to be a little more comfortable with programming to 
+follow along, but the result is a website running locally, like <a href="http://deepdream.vision.ai/">http://deepdream.vision.ai/</a></p>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="http://ryankennedy.io/author/ryan/">Ryan Kennedy</a></h4>
+
+                    <p>Read <a href="http://ryankennedy.io/author/ryan/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Running%20deep%20dream%20on%20Windows%20and%20OSX&amp;url=http://ryankennedy.io/running-the-deep-dream/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ryankennedy.io/running-the-deep-dream/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ryankennedy.io/running-the-deep-dream/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/a.html" style="width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 10292px ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" data-disqus-uid="1" id="dsq-1" width="100%" frameborder="0"></iframe><iframe style="width: 710px ! important; border: medium none ! important; overflow: hidden ! important; top: 0px ! important; min-width: 710px ! important; max-width: 710px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 29px ! important; min-height: 29px ! important; max-height: 29px ! important; display: none ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" data-disqus-uid="indicator-north" id="dsq-indicator-north" frameborder="0"></iframe><iframe style="width: 710px ! important; border: medium none ! important; overflow: hidden ! important; bottom: 0px ! important; min-width: 710px ! important; max-width: 710px ! important; position: fixed ! important; z-index: 2147483646 ! important; height: 29px ! important; min-height: 29px ! important; max-height: 29px ! important; display: none ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" data-disqus-uid="indicator-south" id="dsq-indicator-south" frameborder="0"></iframe></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ryankennedyio'; // required: replace example with your forum shortname
+    var disqus_identifier = ''; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev no-cover" href="http://ryankennedy.io/performance-profiling-in-android-with-syncadapter/">
+        <section class="post">
+            <h2>Performance Profiling in Android</h2>
+            <p>Or, how to quickly pinpoint bottlenecks with systrace. The What Application lets you shoot videos. Videos are chunked &amp;…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://ryankennedy.io/">Ryan Kennedy</a> © 2015</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org/">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/jquery_002.js"></script>
+
+    <script type="text/javascript" src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/jquery.js"></script>
+    <script type="text/javascript" src="Running%20deep%20dream%20on%20Windows%20and%20OSX_files/index.js"></script>
+
+
+
+</body></html>

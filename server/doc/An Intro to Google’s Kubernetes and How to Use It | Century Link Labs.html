@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:addthis="http://www.addthis.com/help/api-spec">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+    <title>An Intro to Google&#8217;s Kubernetes and How to Use It | Century Link Labs</title>
+    <link media="all" rel="stylesheet" href="https://labs.ctl.io/wp-content/themes/centurylinklabs/style.css">
+    <link media="all" rel="stylesheet" href="https://labs.ctl.io/wp-content/themes/centurylinklabs/theme.css">
+    <script type="text/javascript">
+		var pathInfo = {
+			base: 'https://labs.ctl.io/wp-content/themes/centurylinklabs/',
+			css: 'css/',
+			js: 'js/',
+			swf: 'swf/'
+		}
+    </script>
+
+    	<script type="text/javascript">
+	    function refreshDisqus(){
+		var disqus_shortname = 'ctlc';
+		(function () {
+		    var nodes = document.getElementsByTagName('span');
+		    for (var i = 0, url; i < nodes.length; i++) {
+			if (nodes[i].className.indexOf('dsq-postid') != -1) {
+			    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('rel'));
+			    url = nodes[i].parentNode.href.split('#', 1);
+			    if (url.length == 1) { url = url[0]; }
+			    else { url = url[1]; }
+			    nodes[i].parentNode.href = url + '#disqus_thread';
+			}
+		    }
+		    var s = document.createElement('script'); 
+		    s.async = true;
+		    s.type = 'text/javascript';
+		    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+		    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+	    }
+	</script>
+        
+    
+<!-- Push notifications for this website enabled by Roost. Support for Chrome, Safari, and Firefox. (v 2.3.2) - https://goroost.com/ -->
+
+<!-- All in One SEO Pack 2.2.7.1 by Michael Torbert of Semper Fi Web Design[210,294] -->
+<meta name="description" itemprop="description" content="What do you do when you want Docker containers managed across vast fleets of servers and infrastructure? You use Docker orchestration tools like Kubernetes." />
+
+<meta name="keywords" itemprop="keywords" content="google,kubernetes,orchestration" />
+
+<link rel="canonical" href="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" />
+			<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-43568801-2', 'auto');
+			
+			ga('send', 'pageview');
+			</script>
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="Century Link Labs &raquo; Feed" href="https://labs.ctl.io/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Century Link Labs &raquo; Comments Feed" href="https://labs.ctl.io/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Century Link Labs &raquo; An Intro to Google&#8217;s Kubernetes and How to Use It Comments Feed" href="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/labs.ctl.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='https://labs.ctl.io/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='ubermenu-css'  href='https://labs.ctl.io/wp-content/plugins/ubermenu/pro/assets/css/ubermenu.min.css?ver=3.1.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='ubermenu-flat-custom-css'  href='https://labs.ctl.io/wp-content/themes/centurylinklabs/ubermenu-skin/custom.css?ver=4.2.2' type='text/css' media='all' />
+<link rel='stylesheet' id='ubermenu-font-awesome-css'  href='https://labs.ctl.io/wp-content/plugins/ubermenu/assets/css/fontawesome/css/font-awesome.min.css?ver=4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://labs.ctl.io/wp-content/plugins/jetpack/css/jetpack.css?ver=3.6' type='text/css' media='all' />
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/themes/centurylinklabs/js/comment-reply.js?ver=4.2.2'></script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://labs.ctl.io/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://labs.ctl.io/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Using Wetty to Create Docker Containers for CLIs' href='https://labs.ctl.io/using-wetty-to-create-docker-containers-for-clis/' />
+<link rel='next' title='Panamax Adds Private Networks and Port Forwarding' href='https://labs.ctl.io/panamax-adds-private-networks-and-port-forwarding/' />
+<link rel='shortlink' href='https://wp.me/p5s5AD-tj' />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45856849-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<meta property="og:title" content="An Intro to Google&#8217;s Kubernetes and How to Use It" /><meta property="og:type" content="article" /><meta property="og:image" content="https://labs.ctl.io/wp-content/uploads/2014/11/kubernetes.jpg" /><meta property="og:image:width" content="600" /><meta property="og:image:height" content="360" /><meta property="og:url" content="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" /><meta property="og:site_name" content="Century Link Labs" /><meta property="og:description" content="What do you do when you want Docker containers managed across vast fleets of servers and infrastructure? You use Docker orchestration tools like Kubernetes." /><style id="ubermenu-custom-generated-css">
+/** UberMenu Custom Menu Styles (Customizer) **/
+/* main */
+.ubermenu-main { background:#8ec643; }
+.ubermenu-main .ubermenu-item-level-0 > .ubermenu-target { color:#ffffff; padding-top:20px; padding-bottom:20px; }
+.ubermenu-main .ubermenu-submenu.ubermenu-submenu-drop { color:#000000; }
+.ubermenu-main .ubermenu-item-normal > .ubermenu-target { color:#000000; }
+
+
+/** UberMenu Custom Menu Item Styles (Menu Item Settings) **/
+/* 213 */   .ubermenu .ubermenu-item.ubermenu-item-213 > .ubermenu-target { color:#777777; }
+            .ubermenu .ubermenu-item.ubermenu-item-213.ubermenu-active > .ubermenu-target, .ubermenu .ubermenu-item.ubermenu-item-213:hover > .ubermenu-target, .ubermenu .ubermenu-submenu .ubermenu-item.ubermenu-item-213.ubermenu-active > .ubermenu-target, .ubermenu .ubermenu-submenu .ubermenu-item.ubermenu-item-213:hover > .ubermenu-target { color:#000000; }
+            .ubermenu .ubermenu-submenu.ubermenu-submenu-id-213 .ubermenu-target, .ubermenu .ubermenu-submenu.ubermenu-submenu-id-213 .ubermenu-target > .ubermenu-target-description { color:#8224e3; }
+/* 319 */   .ubermenu .ubermenu-item.ubermenu-item-319 > .ubermenu-target { color:#8dc543; }
+/* 232 */   .ubermenu .ubermenu-item.ubermenu-item-232 > .ubermenu-target { background:#293b47; }
+            .ubermenu .ubermenu-item.ubermenu-item-232 > .ubermenu-target,.ubermenu .ubermenu-item.ubermenu-item-232 > .ubermenu-content-block,.ubermenu .ubermenu-item.ubermenu-item-232.ubermenu-custom-content-padded { padding:0 10; }
+/* 320 */   .ubermenu .ubermenu-item.ubermenu-item-320 > .ubermenu-target { color:#8dc543; }
+/* 240 */   .ubermenu .ubermenu-item.ubermenu-item-240 > .ubermenu-target { color:#0098da; }
+/* 241 */   .ubermenu .ubermenu-item.ubermenu-item-241 > .ubermenu-target { color:#616365; }
+
+
+/** UberMenu Custom Tweaks (General Settings) **/
+.ubermenu-description {
+font-weight:100;
+margin-top:-20px;
+}
+/* Status: Loaded from Transient */
+
+</style><style type='text/css'>img#wpstats{display:none}</style></head>
+<body >
+    <div id="wrapper">
+	<header id="header">
+            <div class="logo">
+                <a href="https://labs.ctl.io">
+                    <span data-picture data-alt="Century Link Labs">
+                        <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo.png" ></span>
+                        <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo-2x.png" data-width="200" data-height="40" data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+                        <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo-small.png" data-media="(max-width:767px)" ></span>
+                        <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo-small2x.png" data-width="155" data-height="31" data-media="(max-width:767px) and (-webkit-min-device-pixel-ratio:1.5), (max-width:767px) and (min-resolution:144dpi)" ></span>
+                        <!--[if (lt IE 9) & (!IEMobile)]>
+                            <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo.png"></span>
+                        <![endif]-->
+                        <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                        <noscript><img src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/logo.png" width="200" height="40" alt="Century Link Labs" ></noscript>
+                    </span>
+                </a>
+            </div>
+            <span class="slogan">Innovations Lab</span>
+	    
+            	    
+		<ul class="social">
+		    <li><a href="https://github.com/CenturyLinkLabs" class="icon-mark-github"></a></li>		    <li><a href="https://twitter.com/centurylinklabs" class="icon-twitter"></a></li>		    		</ul>
+		
+            	    
+		
+		    <div class="nav-wrap">
+			<a class="ubermenu-responsive-toggle ubermenu-responsive-toggle-main ubermenu-skin-flat-custom ubermenu-loc-" data-ubermenu-target="ubermenu-main-2"><i class="fa fa-bars"></i></a><nav id="ubermenu-main-2" class="ubermenu ubermenu-nojs ubermenu-main ubermenu-menu-2 ubermenu-responsive ubermenu-responsive-default ubermenu-responsive-collapse ubermenu-horizontal ubermenu-transition-shift ubermenu-trigger-hover_intent ubermenu-skin-flat-custom ubermenu-bar-align-full ubermenu-items-align-left ubermenu-bound ubermenu-sub-indicators ubermenu-retractors-responsive"><ul id="ubermenu-nav-main-2" class="ubermenu-nav"><li id="menu-item-8" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-8 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Home</span></a></li><li id="menu-item-10" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-10 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/about/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">About</span></a></li><li id="menu-item-2819" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-item-2819 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/projects/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Projects</span></a><ul class="ubermenu-submenu ubermenu-submenu-id-2819 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width ubermenu-submenu-grid" ><li id="menu-item-2826" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-project ubermenu-item-2826 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-4" ><a class="ubermenu-target ubermenu-target-with-image ubermenu-item-layout-image_above" href="https://labs.ctl.io/projects/panamax-docker-management-for-humans/"><img class="ubermenu-image ubermenu-image-size-full" src="https://labs.ctl.io/wp-content/uploads/2014/11/panamax.jpg" width="600" height="360" alt="Panamax Logo"  /><span class="ubermenu-target-title ubermenu-target-text">Panamax</span></a><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="ubermenu-description">Docker Management for Humans</div></div></li><li id="menu-item-2827" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-project ubermenu-item-2827 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-4" ><a class="ubermenu-target ubermenu-target-with-image ubermenu-item-layout-image_above" href="https://labs.ctl.io/projects/dray/"><img class="ubermenu-image ubermenu-image-size-full" src="https://labs.ctl.io/wp-content/uploads/2015/03/dray.jpg" width="600" height="360" alt="Dray"  /><span class="ubermenu-target-title ubermenu-target-text">Dray</span></a><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="ubermenu-description">Docker Workflow Engine</div></div></li><li id="menu-item-2825" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-project ubermenu-item-2825 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-4" ><a class="ubermenu-target ubermenu-target-with-image ubermenu-item-layout-image_above" href="https://labs.ctl.io/projects/image-layers/"><img class="ubermenu-image ubermenu-image-size-full" src="https://labs.ctl.io/wp-content/uploads/2015/03/image_layers.jpg" width="600" height="360" alt="Image Layers"  /><span class="ubermenu-target-title ubermenu-target-text">Image Layers</span></a><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="ubermenu-description">Image Layer Visualization</div></div></li><li id="menu-item-2824" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-project ubermenu-item-2824 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-4" ><a class="ubermenu-target ubermenu-target-with-image ubermenu-item-layout-image_above" href="https://labs.ctl.io/projects/lorry/"><img class="ubermenu-image ubermenu-image-size-full" src="https://labs.ctl.io/wp-content/uploads/2015/03/lorry.jpg" width="600" height="360" alt="Lorry"  /><span class="ubermenu-target-title ubermenu-target-text">Lorry</span></a><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="ubermenu-description">Docker Compose YAML Editor</div></div></li></ul></li><li id="menu-item-2534" class="ubermenu-item ubermenu-item-type-taxonomy ubermenu-item-object-category ubermenu-current-post-ancestor ubermenu-current-menu-parent ubermenu-current-post-parent ubermenu-item-2534 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/category/docker/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Docker</span></a></li><li id="menu-item-16" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-current_page_parent ubermenu-item-16 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/blog/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Blog</span></a></li><li id="menu-item-2365" class="tutorial-drop ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2365 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Tutorials</span></a><ul class="ubermenu-submenu ubermenu-submenu-id-2365 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width" ><li class="  ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-246 ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-246"><ul class="ubermenu-submenu ubermenu-submenu-id-246 ubermenu-submenu-type-stack" ><li id="menu-item-250" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-250 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><h5>Tutorial Categories</h5></div></li><li id="menu-item-249" class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-249 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-image_above" href="https://labs.ctl.io/tutorials/"><span class="ubermenu-target-title ubermenu-target-text">View All Tutorials ></span></a></li></ul></li><li id="menu-item-2221" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2221 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">Docker</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2221 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2472] count[2] --><li id="menu-item-2472-post-2702" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2472 ubermenu-item-2472-post-2702 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/how-to-secure-your-private-docker-registry/"><span class="ubermenu-target-title ubermenu-target-text">How to Secure Your Private Docker Registry</span></a></li><li id="menu-item-2472-post-2624" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2472 ubermenu-item-2472-post-2624 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/docker-on-the-mac-without-boot2docker/"><span class="ubermenu-target-title ubermenu-target-text">Docker on the Mac (without boot2docker)</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2472] --></ul></li><li id="menu-item-2222" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2222 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">Open Source</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2222 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2473] count[2] --><li id="menu-item-2473-post-2715" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2473 ubermenu-item-2473-post-2715 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/installing-coreos-rocket-on-the-centurylink-cloud/"><span class="ubermenu-target-title ubermenu-target-text">Installing CoreOS Rocket on the CenturyLink Cloud</span></a></li><li id="menu-item-2473-post-2702" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2473 ubermenu-item-2473-post-2702 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/how-to-secure-your-private-docker-registry/"><span class="ubermenu-target-title ubermenu-target-text">How to Secure Your Private Docker Registry</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2473] --></ul></li><li id="menu-item-2223" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2223 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">Continuous Integration</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2223 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2474] count[2] --><li id="menu-item-2474-post-1638" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2474 ubermenu-item-2474-post-1638 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/automate-a-centurylink-cloud-server-using-chef/"><span class="ubermenu-target-title ubermenu-target-text">Automate a CenturyLink Cloud Server using Chef</span></a></li><li id="menu-item-2474-post-1495" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2474 ubermenu-item-2474-post-1495 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/installing-chef-on-the-centurylink-cloud/"><span class="ubermenu-target-title ubermenu-target-text">Installing Chef on the CenturyLink Cloud</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2474] --></ul></li><li id="menu-item-2225" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2225 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">Openstack</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2225 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2475] count[2] --><li id="menu-item-2475-post-1701" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2475 ubermenu-item-2475-post-1701 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/openstack-networking-on-the-centurylink-cloud/"><span class="ubermenu-target-title ubermenu-target-text">OpenStack Networking on the CenturyLink Cloud</span></a></li><li id="menu-item-2475-post-1014" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2475 ubermenu-item-2475-post-1014 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/installing-coreos/"><span class="ubermenu-target-title ubermenu-target-text">Installing CoreOS on CenturyLink Cloud</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2475] --></ul></li><li id="menu-item-2227" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2227 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">Ubuntu</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2227 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2476] count[2] --><li id="menu-item-2476-post-1139" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2476 ubermenu-item-2476-post-1139 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/installing-ruby-2-1-2-on-rails-4-1-2-on-ubuntu-trusty-14-04/"><span class="ubermenu-target-title ubermenu-target-text">Installing Ruby (2.1.2) on Rails (4.1.2) on Ubuntu Trusty (14.04)</span></a></li><li id="menu-item-2476-post-1098" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2476 ubermenu-item-2476-post-1098 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/upgrading-to-ubuntu-14-04-trusty-tahr/"><span class="ubermenu-target-title ubermenu-target-text">Upgrading to Ubuntu 14.04 (Trusty Tahr)</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2476] --></ul></li><li id="menu-item-2228" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2228 ubermenu-item-auto ubermenu-item-header ubermenu-item-level-1 ubermenu-column ubermenu-column-1-7 ubermenu-has-submenu-stack" ><span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"><span class="ubermenu-target-title ubermenu-target-text">ManageIQ</span></span><ul class="ubermenu-submenu ubermenu-submenu-id-2228 ubermenu-submenu-type-auto ubermenu-submenu-type-stack" ><!-- begin Dynamic Posts: [Dynamic Posts] ID[2461] count[2] --><li id="menu-item-2461-post-1235" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2461 ubermenu-item-2461-post-1235 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/install-manageiq-on-ubuntu-14-04-on-the-centurylink-cloud/"><span class="ubermenu-target-title ubermenu-target-text">Install ManageIQ on Ubuntu 14.04 on the CenturyLink Cloud</span></a></li><li id="menu-item-2461-post-1324" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2461 ubermenu-item-2461-post-1324 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/tutorials/using-manageiq-to-manage-openstack/"><span class="ubermenu-target-title ubermenu-target-text">Using ManageIQ to manage OpenStack</span></a></li><!-- end Dynamic Posts: [Dynamic Posts] ID[2461] --></ul></li></ul></li><li id="menu-item-2362" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-2362 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://labs.ctl.io/interviews/" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Interviews</span></a></li><li id="menu-item-2535" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-2535 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="https://itunes.apple.com/us/podcast/centurylink-labs-podcast/id885167126" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Podcasts</span></a></li><li id="menu-item-2625" class="newsletter-drop ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-2625 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega" ><a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only" href="#" tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Newsletter</span></a><ul class="ubermenu-submenu ubermenu-submenu-id-2625 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width" ><li class="  ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-235 ubermenu-item-level-1 ubermenu-column ubermenu-column-full ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-235"><ul class="ubermenu-submenu ubermenu-submenu-id-235 ubermenu-submenu-type-stack" ><li class=" drop-content ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-236 ubermenu-item-level-2 ubermenu-column ubermenu-column-7-10 ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-236"><ul class="ubermenu-submenu ubermenu-submenu-id-236 ubermenu-submenu-type-stack" ><li id="menu-item-2637" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2637 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-3 ubermenu-column ubermenu-column-auto" ><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="scroll-bar jcf-scrollable">
+    <div class="scroll-content">
+<h2>Get Content Like This Every Week!</h2>
+<p>Dear Subscriber,</p>
+<p>It seems like every week the noise keeps getting louder and louder around Docker. This week for example, Amazon announced new tools for Docker container hosting on AWS. Last week, it was Google's Container Engine being announced.</p>
+<p>With all this noise, how much is signal? What should executive leaders be watching when it comes to Docker? This is the question that Panamax's head of engineering set out to answer in a blog post.</p> 
+<div class="drop-bar">
+		<h5><a href="https://labs.ctl.io/should-cios-care-about-docker/">SHOULD CIO'S CARE ABOUT DOCKER?</a></h5>
+		<a href="https://labs.ctl.io/should-cios-care-about-docker/">https://labs.ctl.io/should-cios-care-about-docker/</a>
+	</div>
+	<span data-picture data-alt="image_description">
+		<span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-39.png" ></span>
+		<span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-39-2x.png" data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+		<!--[if (lt IE 9) & (!IEMobile)]>
+			<span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-39.png"></span>
+		<![endif]-->
+		<!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+		<noscript><img src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-39.png" width="580" height="142" alt="image description" ></noscript>
+	</span>
+<p>Would love your thoughts. Are you planning on incorporating Docker into your roadmap? Let me know, just reply to this email.</p.>
+</br>
+<p>-Lucas Carlson</br>
+Chief Innovation Officer, CenturyLink</br>
+@CenturyLinkLabs</p>
+    </div>
+</div></div></li></ul></li><li class=" drop-cloumn ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-237 ubermenu-item-level-2 ubermenu-column ubermenu-column-3-10 ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-237"><ul class="ubermenu-submenu ubermenu-submenu-id-237 ubermenu-submenu-type-stack" ><li id="menu-item-2636" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-2636 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-3 ubermenu-column ubermenu-column-auto" ><div class="ubermenu-content-block ubermenu-custom-content ubermenu-custom-content-padded"><div class="drop-cloumn">
+        <span data-picture data-alt="image_description">
+                <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-22.png" ></span>
+                <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-22-2x.png" data-width="40" data-height="40" data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+                <!--[if (lt IE 9) & (!IEMobile)]>
+                        <span data-src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-22.png"></span>
+                <![endif]-->
+                <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                <noscript><img src="https://labs.ctl.io/wp-content/themes/centurylinklabs/images/img-22.png" width="40" height="40" alt="image description" ></noscript>
+        </span>
+        <h3>Like what you see?</h3>
+        <p>Sign up for our newsletter and get all the latest news, tips & tricks for Panamax, Docker, &amp; more.</p>
+        <form  method="post" action="//centurylinklabs.us3.list-manage.com/subscribe/post?u=021d5aea02a4ed5dec0c1c96c&amp;id=d971fc65c9" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="email-form " target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll" class="row">
+                <div class="mc-field-group">
+                    <input type="text" value="" name="FNAME" class="name_field_mailchimp_home" id="mce-FNAME" placeholder="Your First Name">
+                    <input type="email" placeholder="Your email address" name="EMAIL" class="email" id="mce-EMAIL" required="required">
+                </div>
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+                <input type="text" name="b_021d5aea02a4ed5dec0c1c96c_d971fc65c9" tabindex="-1" value="" style="display:none;">
+                <button class="button submit" name="subscribe" type="submit" id="mc-embedded-subscribe" ><i class="icon-angle-right"></i></button>
+            </div>
+        </form>
+</div></div></li></ul></li></ul></li></ul></li><li id="menu-item-103" class="search-item ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-103 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega" ><a class="ubermenu-target ubermenu-target-with-icon ubermenu-item-layout-icon_left ubermenu-content-align-right ubermenu-item-notext" href="#" tabindex="0"><i class="ubermenu-icon fa fa-search"></i></a><ul class="ubermenu-submenu ubermenu-submenu-id-103 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width" ><li class="  ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-317 ubermenu-item-level-1 ubermenu-column ubermenu-column-7-10 ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-317"><ul class="ubermenu-submenu ubermenu-submenu-id-317 ubermenu-submenu-type-stack" ><li id="menu-item-318" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-318 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-auto" ></li></ul></li><li class="  ubermenu-item ubermenu-item-type-custom ubermenu-item-object-ubermenu-custom ubermenu-item-has-children ubermenu-item-314 ubermenu-item-level-1 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-stack ubermenu-item-type-column ubermenu-column-id-314"><ul class="ubermenu-submenu ubermenu-submenu-id-314 ubermenu-submenu-type-stack" ><li id="menu-item-104" class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-104 ubermenu-item-auto ubermenu-item-normal ubermenu-item-level-2 ubermenu-column ubermenu-column-full" ><ul class="ubermenu-content-block ubermenu-widget-area ubermenu-row ubermenu-autoclear"><li id="search-2" class="widget widget_search ubermenu-column-1-1 ubermenu-widget ubermenu-column ubermenu-item-header">        <form method="get" action="https://labs.ctl.io" class="serach-bar">
+            <fieldset>
+                <input type="search" name="s" placeholder="Search">
+                <button type="submit" class="submit icon-search"></button>
+            </fieldset>
+        </form>
+        </li></ul></li></ul></li></ul></li></ul></nav>		    </div>
+
+		
+	    	    
+        </header><main id="main" role="main">
+	
+   <ul class="breadcrumbs">
+      
+      
+            <li class="home">
+               <span typeof="v:Breadcrumb">
+                  <a class="home" href="https://labs.ctl.io" title="Go to Century Link Labs." property="v:title" rel="v:url">Home</a>
+               </span>
+            </li>
+            <li>
+               <span typeof="v:Breadcrumb">
+                  <a class="taxonomy category" href="https://labs.ctl.io/blog/" title="Go to Blog." property="v:title" rel="v:url">Blog</a>
+               </span>
+            </li>
+            
+            
+   </ul>
+   
+	<h1>An Intro to Google&#8217;s Kubernetes and How to Use It</h1>	<div class="details">
+		<div class="post-info-block">
+			<div class="col">
+				<ul class="post-info-list">
+					<li>
+						<time datetime="2014-10-02">Oct 2, 2014</time> by						<a href="https://labs.ctl.io/author/laurafrank/"> Laura Frank</a>
+					</li>
+					<li>Posted in <a href="https://labs.ctl.io/category/docker/" rel="tag">Docker</a>, <a href="https://labs.ctl.io/category/open-source/" rel="tag">Open Source</a>, <a href="https://labs.ctl.io/category/technology/" rel="tag">Technology</a></li>
+				</ul>
+			</div>
+			<div class="col">
+				<ul class="share-list">
+					<li class=" ">
+						<a href="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/#comments"><span class="dsq-postid" data-dsqidentifier="1817 http://WhatdoyoudowhenyouwantDockercontainersmanagedacrossvastfleetsofserversandinfrastructure?YouuseDockerorchestrationtoolslikeKubernetes.DevelopedbyGoogle,"><b>3</b> Comments</span></a>					</li>
+					<li class=" ">
+												<a><b>0</b> Shares</a>
+						<div class="counter-drop">
+							<ul class="share-counter">
+								<li>
+									<a><i class="icon-twitter2"></i>0</a>
+								</li>
+								<li>
+									<a><i class="icon-linkedin-square"></i>0</a>
+								</li>
+								<li>
+									<a><i class="icon-facebook"></i>0</a>
+								</li>
+								<li>
+									<a><i class="icon-google-plus2"></i>0</a>
+								</li>
+							</ul>
+							<span class="arrow"></span>
+						</div>
+					</li>
+				</ul>
+				<ul rel="1817" class="post-social addthis_toolbox" addthis:url="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" addthis:title="An Intro to Google&#8217;s Kubernetes and How to Use It">
+        <li class="discuss_comments"><i class="icon-bubble-24"></i><a href="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/#disqus_thread"></a></li>
+        <li><a class="addthis_button_twitter"><i class="icon-twitter2"></i></a></li>
+        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/&title=An Intro to Google&#8217;s Kubernetes and How to Use It&summary=&source=" target="_blank" onClick="popupWin = window.open(this.href, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); popupWin.focus(); return false;"><i class="icon-linkedin-square"></i></a></li>
+                <li><a class="addthis_button_facebook"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://plus.google.com/share?url=https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" target="_blank" onClick="popupWin = window.open(this.href, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); popupWin.focus(); return false;"><i class="icon-google-plus2"></i></a></li>
+</ul>
+
+	
+	
+			</div>
+		</div>
+		<ul class="tag-list"><li><a href="https://labs.ctl.io/tag/google/" rel="tag">Google</a></li><li><a href="https://labs.ctl.io/tag/kubernetes/" rel="tag">Kubernetes</a></li><li><a href="https://labs.ctl.io/tag/orchestration/" rel="tag">Orchestration</a></li> </ul>	</div>
+	<div id="two-columns">
+		<div id="content">
+							<div class="content-holder">
+					<div class="post-detail">
+												
+						    <div class="img-box">
+							<span data-picture data-alt="Kubernetes">
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2014/11/kubernetes.jpg" ></span>
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2014/11/kubernetes.jpg"  data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+				       <!--[if (lt IE 9) & (!IEMobile)]>
+					       <span data-src="https://labs.ctl.io/wp-content/uploads/2014/11/kubernetes.jpg"></span>
+				       <![endif]-->
+				       <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+				       <noscript><img src="https://labs.ctl.io/wp-content/uploads/2014/11/kubernetes.jpg" width="600" height="360" alt="Kubernetes" ></noscript>
+			       </span>													    </div>
+						    
+						<p class="summary-text">What do you do when you want Docker containers managed across vast fleets of servers and infrastructure? You use Docker orchestration tools like Kubernetes.</p>
+<p>Developed by Google, <a href="https://github.com/GoogleCloudPlatform/kubernetes">Kubernetes</a> is essentially a cluster manager for Docker. With it, you can schedule and deploy any number of container replicas onto a node cluster and Kubernetes will take care of making decisions like which containers go on which servers for you.</p>
+<p>The name Kubernetes originates from Greek, meaning &quot;helmsman&quot; or &quot;pilot,&quot; and that&#39;s the role it will fill in your Docker workflow. Kubernetes is a solution for overseeing and managing multiple containers at scale, rather than just working with Docker on a manually-configured host.</p>
+<h3 class="red">What Docker Is&#8230; and What it Isn&#39;t</h3>
+<p>Docker and its ecosystem are great for managing images, and running containers in a specific host. But these interactions are local; Docker alone can&#39;t manage your containers across multiple nodes, or schedule and manage tasks to be completed across your cluster. Docker alone works best when you&#39;re able to manually manipulate and configure the host. But we all know that only takes us so far.</p>
+<p>In order to manage a Docker workload on a distributed cluster, you need to bring some other players into the mix. Several other services are available to make working with Docker more efficient and streamlined. Fleet, Geard, and Marathon are designed to schedule and orchestrate jobs on the host; Fleet also functions as a cluster manager, along with Apache Mesos. Theoretically speaking, you could mix and match these different components and come up with a roll-your-own solution.</p>
+<h3 class="red">Why Kubernetes?</h3>
+<p>While Kubernetes was designed to make working with containers on Google Compute Engine easier, the bits are available for anyone to use, and you need not be running GCE. Kubernetes offers a few distinct advantages, first and foremost being that it packages all necessary tools &#8212; orchestration, service discovery, load balancing &#8212; together in one nice package for you. Kubernetes also boasts heavy involvement from the developer community. Written in go, <a href="https://github.com/GoogleCloudPlatform/kubernetes">the Kubernetes project</a> has close to 2500 commits from over 100 different contributors. Despite heavy development, Kubernetes is still in beta, so you may discover some bugs.</p>
+<h3 class="red">Deconstructing the Parts of Kubernetes</h3>
+<p>While Kubernetes does work as a cohesive package, there are several components at play, each with a specific role. Kubernetes also has a specific collection of terms, some of which are overloaded in the container/cloud space.</p>
+<ul>
+<li><em>Master</em>: the managing machine, which oversees one or more minions.</li>
+<li><em>Minion</em>: a slave that runs tasks as delegated by the user and Kubernetes master.</li>
+<li><em>Pod</em>: an application (or part of an application) that runs on a minion. This is the basic unit of manipulation in Kubernetes.</li>
+<li><em>Replication Controller</em>: ensures that the requested number of pods are running on minions at all times.</li>
+<li><em>Label</em>: an arbitrary key/value pair that the Replication Controller uses for service discovery</li>
+<li><em>kubecfg</em>: the command line config tool</li>
+<li><em>Service</em>: an endpoint that provides load balancing across a replicated group of pods</li>
+</ul>
+<p>To manage resources within Kubernetes, you will interact with the Kubernetes API. Pulling down the Kubernetes binaries will give you all the services necessary to get your Kubernetes configuration up and running. Like most other cluster management solutions, Kubernetes works by creating a master, which exposes the Kubernetes API, allowing you to request certain tasks to be completed. The master then spawns containers to handle the workload you&#39;ve asked for.</p>
+<p><img src="https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/docs/architecture.png" alt="" /></p>
+<p>Aside from running Docker, each node runs the Kubelet service &#8212; which is an agent that works with the container manifest &#8212; and a proxy service.</p>
+<p>The Kubernetes control plane is comprised of many components, but they all run on the single Kubernetes master node.</p>
+<h3 class="red">How to Use Kubernetes</h3>
+<p>Let&#39;s assume you&#39;ve pulled down and started the Kubernetes services, and you&#39;re ready to build your first pod. Interacting with Kubernetes is quite simple, even outside of the context of Google Compute Engine. Kubernetes provides a RESTful API in order to manipulate the three main resources: pods, services, and replicationControllers.</p>
+<h4>Pods</h4>
+<p>A <code>pod</code> file is a json representation of the task you want to run. A simple pod configuration for a Redis master container might look like this:</p>
+<p><script src="https://gist.github.com/ad8fe83c3cbf0fdc3c19.js"></script><noscript>
+<pre><code class="language-json json">{
+  &quot;apiVersion&quot;: &quot;v1beta1&quot;,
+  &quot;kind&quot;: &quot;Pod&quot;,
+  &quot;id&quot;: &quot;redis-master-pod&quot;,
+  &quot;desiredState&quot;: {
+    &quot;manifest&quot;: {
+      &quot;version&quot;: &quot;v1beta1&quot;,
+      &quot;id&quot;: &quot;redis-master-pod&quot;,
+      &quot;containers&quot;: [{
+        &quot;name&quot;: &quot;redis-master&quot;,
+        &quot;image&quot;: &quot;gurpartap/redis&quot;,
+        &quot;ports&quot;: [{ &quot;name&quot;: &quot;redis-server&quot;, &quot;containerPort&quot;: 6379 }]
+      }]
+    }
+  },
+  &quot;labels&quot;: { &quot;name&quot;: &quot;redis&quot;, &quot;role&quot;: &quot;master&quot; }
+}
+</code></pre>
+<p></noscript></p>
+<p>In this example &#8212; from the Kubernetes <a href="https://github.com/GoogleCloudPlatform/kubernetes/tree/master/examples/guestbook">example project</a> &#8212; you can see information pertaining to the service&#39;s source image, but also some Kuberentes-specific information, like the labels used for service discovery.</p>
+<p>Let&#39;s take this pod and actually run it on a single-node cluster using Kubernetes. You can use the kubecfg tool to send a request to your running Kubernetes API server:</p>
+<div class="preformatted-text">$ kubecfg -c my-pod-directory/redis-master-pod.json create /pods
+</div>
+<p>Then, the kubelet starts the service. Verify the pod is running by listing the pods:</p>
+<div class="preformatted-text">$ kubecfg list /pods
+</div>
+<p>After you&#39;re finished, you can delete your pod:</p>
+<div class="preformatted-text">$ kubecfg delete /pods/redis-master-pod
+</div>
+<p>This is a very rudimentary example of working with Kubernetes, but it does illustrate the way in which you interact with the Kubernetes API in order to manipulate resources. For this example, only <code>pods</code> were handled, though the API also handles <code>replicationControllers</code> and <code>services</code>.</p>
+<h4>Replication Controllers</h4>
+<p>Along with the <code>service</code>, the <code>replicationController</code> uses the pod&#39;s labels in order to do its job. In short, the role of the <code>replicationController</code> is to ensure that a certain number of replicas of each pod are running. If there are too many, it will kill them, and if there are too few, it spins them up. The pods that the <code>replicationController</code> monitors is determined via labels.</p>
+<p>A simple example of a redisSlaveController looks something like this, again coming from the Kubernetes example application:</p>
+<p><script src="https://gist.github.com/2e91ab943a172a7906f9.js"></script><noscript>
+<pre><code class="language-json json">{
+  &quot;id&quot;: &quot;redisSlaveController&quot;,
+  &quot;kind&quot;: &quot;ReplicationController&quot;,
+  &quot;apiVersion&quot;: &quot;v1beta1&quot;,
+  &quot;desiredState&quot;: {
+    &quot;replicas&quot;: 2,
+    &quot;replicaSelector&quot;: {&quot;name&quot;: &quot;redisslave&quot;},
+    &quot;podTemplate&quot;: {
+      &quot;desiredState&quot;: {
+         &quot;manifest&quot;: {
+           &quot;version&quot;: &quot;v1beta1&quot;,
+           &quot;id&quot;: &quot;redisSlaveController&quot;,
+           &quot;containers&quot;: [{
+             &quot;name&quot;: &quot;slave&quot;,
+             &quot;image&quot;: &quot;brendanburns/redis-slave&quot;,
+             &quot;ports&quot;: [{&quot;containerPort&quot;: 6379, &quot;hostPort&quot;: 6380}]
+           }]
+         }
+       },
+       &quot;labels&quot;: {&quot;name&quot;: &quot;redisslave&quot;}
+      }},
+  &quot;labels&quot;: {&quot;name&quot;: &quot;redisslave&quot;}
+}</code></pre>
+<p></noscript></p>
+<p>In short, this file tells Kubernetes that you want two replicas of the Redis template you&#39;ve defined, and from there, Kubernetes works to make sure you have two running at all times.</p>
+<h4>Services</h4>
+<p>Kubernetes perhaps chose a poor word for this resource, since service is already so overloaded. But to Kubernetes, a <code>service</code> is a config unit for the proxies running on the minion nodes. It too can have a name and labels, and it points to one or more pods. It provides an endpoint for load balancing across a replicated group of pods.</p>
+<p>Below, you can see a simple schematic of what an example application could look like with Kubernetes.</p>
+<p><img class="alignnone size-full wp-image-1821" src="http://ctlio.wpengine.com/wp-content/uploads/2014/10/68747470733a2f2f7777772e657665726e6f74652e636f6d2f73686172642f7331352f73682f62616635643631662d396238332d346136302d626539622d6431653231333730316131352f66323837336632663433666565376564623332343536386636353839616430302f7265732f39326461326537372d39663062.png" alt="68747470733a2f2f7777772e657665726e6f74652e636f6d2f73686172642f7331352f73682f62616635643631662d396238332d346136302d626539622d6431653231333730316131352f66323837336632663433666565376564623332343536386636353839616430302f7265732f39326461326537372d39663062" width="800" height="979" /></p>
+<h3 class="red">Useful Links</h3>
+<p>Now that you have a basic understanding of Kubernetes, go forth and built something! Here are a few resources to help you get started.</p>
+<ul>
+<li><a href="https://github.com/GoogleCloudPlatform/kubernetes/blob/master/DESIGN.md#the-kubernetes-node">A deeper dive in to the design and architecture of Kubernetes</a></li>
+<li><a href="https://github.com/GoogleCloudPlatform/kubernetes/tree/master/docs">Kubernetes Documentation</a></li>
+<li><a href="https://coreos.com/blog/running-kubernetes-example-on-CoreOS-part-1/">Running Kubernetes on CoreOS</a></li>
+<li><a href="http://www.youtube.com/watch?v=tsk0pWf4ipw">Google IO 2014: Containerizing the Cloud</a></li>
+</ul>
+						<div class="text-box">
+							<h3 class="red">Did you like what you read?</h3>
+<p>Stay on the bleeding edge with the weekly CenturyLink Labs newsletter featuring Docker tutorials, news, jobs, and much more.</p>							<div id="mc_embed_signup">
+    <form  method="post" action="//centurylinklabs.us3.list-manage.com/subscribe/post?u=021d5aea02a4ed5dec0c1c96c&amp;id=d971fc65c9" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="content-form validate" target="_blank" novalidate>
+        <fieldset>
+            <div id="mc_embed_signup_scroll">
+                <!-- <div class="mc-field-group cell"> -->
+                    
+                <!-- </div> -->
+                <div class="cell">
+                    <div class="mc-field-group">
+                        <input type="text" class="name_field_mailchimp" id="mce-FNAME" name="FNAME" placeholder="Your First Name">
+                        <input type="email" placeholder="Your Email Address" name="EMAIL" class="required email" id="mce-EMAIL" required="required">
+                        <button class="button submit" name="subscribe" type="submit" id="mc-embedded-subscribe" ><i class="icon-angle-right"></i></button>
+                    </div>
+                </div>
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+                <input type="text" name="b_021d5aea02a4ed5dec0c1c96c_d971fc65c9" tabindex="-1" value="" style="display:none;">
+            </div>
+        </fieldset>
+    </form>
+</div>						</div>
+						 
+    <div class="author-info">
+    	<ul class="filter">
+            <li class="active"><a href="https://labs.ctl.io/author/laurafrank/">About the Author</a></li>
+            <li><a href="https://labs.ctl.io/author/laurafrank/">Other Content by this Author</a></li>
+        </ul>
+        <div class="info-box">
+                        <div class="img-box">
+                <span data-picture data-alt="Laura Frank">
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/team_laura_frank-140x140.jpg" ></span>
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/team_laura_frank.jpg"  data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+				       <!--[if (lt IE 9) & (!IEMobile)]>
+					       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/team_laura_frank-140x140.jpg"></span>
+				       <![endif]-->
+				       <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+				       <noscript><img src="https://labs.ctl.io/wp-content/uploads/2015/05/team_laura_frank-140x140.jpg" width="140" height="140" alt="Laura Frank" ></noscript>
+			       </span>            </div>
+                        <div class="header">
+                                    <ul class="social">
+                        <li><a href="https://github.com/rheinwein" class="icon-mark-github"></a></li>                        <li><a href="https://twitter.com/rhein_wein" class="icon-twitter"></a></li>                                            </ul>
+            	                                <div class="header-holder">
+                    <h3><a href="https://labs.ctl.io/author/laurafrank/">Laura Frank</a></h3>
+                    <span class="position">Software Developer, <a href="https://labs.ctl.io/author/laurafrank/">CenturyLink Labs</a></span>
+                </div>
+                            </div>
+            
+                        <div class="text">
+                Laura Frank is a developer who creates tools to make development processes simpler. She started coding after receiving a hand-me-down DOS system and has been lost in the code mines ever since. She is currently a senior software engineer at CenturyLink Labs and lives in Chicago. When she’s not coding, she’s working toward her MS in computer science.            </div>
+                    </div>
+    </div>
+
+					</div>
+					<div class="discussion">
+						<div class="col">
+							<h5>Join the Discussion or Share</h5>
+							<ul rel="1817" class="post-social addthis_toolbox" addthis:url="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" addthis:title="An Intro to Google&#8217;s Kubernetes and How to Use It">
+        <li class="discuss_comments"><i class="icon-bubble-24"></i><a href="https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/#disqus_thread"></a></li>
+        <li><a class="addthis_button_twitter"><i class="icon-twitter2"></i></a></li>
+        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/&title=An Intro to Google&#8217;s Kubernetes and How to Use It&summary=&source=" target="_blank" onClick="popupWin = window.open(this.href, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); popupWin.focus(); return false;"><i class="icon-linkedin-square"></i></a></li>
+                <li><a class="addthis_button_facebook"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://plus.google.com/share?url=https://labs.ctl.io/what-is-kubernetes-and-how-to-use-it/" target="_blank" onClick="popupWin = window.open(this.href, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes'); popupWin.focus(); return false;"><i class="icon-google-plus2"></i></a></li>
+</ul>
+
+	
+	
+						</div>
+													<div class="col">
+								<h5>Related Content</h5>
+								<div class="row">
+    <h4><a href="https://labs.ctl.io/monitoring-docker-services-with-prometheus/" rel="bookmark">Monitoring Docker services with Prometheus</a></h4>    <div class="post-info-row">
+        <ul class="post-info-list">
+             <li>
+                <time datetime="2015-07-21">Jul 21, 2015</time> by                <a href="https://labs.ctl.io/author/rupak-ganguly/"> Rupak Ganguly</a>
+            </li>
+        </ul>
+        <ul class="share-list">
+            <li class=" ">
+                 <a href="https://labs.ctl.io/monitoring-docker-services-with-prometheus/#comments"><span class="dsq-postid" data-dsqidentifier="3046 http://ctlio.wpengine.com/?p=3046"><strong>1</strong> Comment</span></a>            </li>
+            <li class=" ">
+                                <a><strong>15</strong> Shares</a>
+                <div class="counter-drop">
+                        <ul class="share-counter">
+                                <li>
+                                        <a><i class="icon-twitter2"></i>11</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-linkedin-square"></i>0</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-facebook"></i>1</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-google-plus2"></i>3</a>
+                                </li>
+                        </ul>
+                        <span class="arrow"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div><div class="row">
+    <h4><a href="https://labs.ctl.io/ctllabs-goes-to-dockercon-2015/" rel="bookmark">CenturyLink Labs Goes to DockerCon 2015</a></h4>    <div class="post-info-row">
+        <ul class="post-info-list">
+             <li>
+                <time datetime="2015-07-07">Jul 7, 2015</time> by                <a href="https://labs.ctl.io/author/rupak-ganguly/"> Rupak Ganguly</a>
+            </li>
+        </ul>
+        <ul class="share-list">
+            <li class=" ">
+                 <a href="https://labs.ctl.io/ctllabs-goes-to-dockercon-2015/#comments"><span class="dsq-postid" data-dsqidentifier="3021 http://ctlio.wpengine.com/?p=3021"><strong>1</strong> Comment</span></a>            </li>
+            <li class=" ">
+                                <a><strong>2</strong> Shares</a>
+                <div class="counter-drop">
+                        <ul class="share-counter">
+                                <li>
+                                        <a><i class="icon-twitter2"></i>1</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-linkedin-square"></i>0</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-facebook"></i>0</a>
+                                </li>
+                                <li>
+                                        <a><i class="icon-google-plus2"></i>1</a>
+                                </li>
+                        </ul>
+                        <span class="arrow"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>							</div>
+											</div>
+					
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="comment even thread-even depth-1" id="dsq-comment-307">
+        <div id="dsq-comment-header-307" class="dsq-comment-header">
+            <cite id="dsq-cite-307">
+                <span id="dsq-author-user-307">carlivar</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-307" class="dsq-comment-body">
+            <div id="dsq-comment-message-307" class="dsq-comment-message"><p>Any chance of a Mesos/Marathon versus Kubernetes comparison? I notice that there&#39;s no mention of running with criteria such as rack diversity, for example, which I believe Mesos offers.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-507">
+        <div id="dsq-comment-header-507" class="dsq-comment-header">
+            <cite id="dsq-cite-507">
+                <span id="dsq-author-user-507">Chris Jansen van Vuuren</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-507" class="dsq-comment-body">
+            <div id="dsq-comment-message-507" class="dsq-comment-message"><p>Question: What are the main benefits(or differences) of using Kubernetes over Google&#39;s App engine? Both can run an app, both scale according to use. There are some similarities as well, for instance both have docker integration and loadbalancing. I suppose a better question would be, when should one consider App Engine over Kubernetes?</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment even depth-2" id="dsq-comment-560">
+        <div id="dsq-comment-header-560" class="dsq-comment-header">
+            <cite id="dsq-cite-560">
+                <span id="dsq-author-user-560">Yannovitch</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-560" class="dsq-comment-body">
+            <div id="dsq-comment-message-560" class="dsq-comment-message"><p>It&#39;s for me not the same thing at all. Using Kubernetes, you can for example glue  10 GCE instances together, and then launch containers with Kubernetes across them in an highly-available and distributed way.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+				</div>
+					</div>
+		
+	<aside id="sidebar">
+		
+		<div class="side-block ajax-holder"><h5 class="red">Most Popular Content in Docker, Open Source, Technology</h5>		
+			<ul class="share-list most ajax-tabs">
+				<li>
+					<a href="https://labs.ctl.io/wp-content/themes/centurylinklabs/ajax/most-shared.php?posts_per_page=3&post_id=1817" class="active"><i class="icon-heart2"></i>Most Shared</a>
+				</li>
+				<li>
+					<a href="https://labs.ctl.io/wp-content/themes/centurylinklabs/ajax/most-comments.php?posts_per_page=3&post_id=1817"><i class="icon-bubble-24"></i>Most Comments</a>
+				</li>
+			</ul>
+			<div class="ajax-content"></div>
+		
+		</div><div class="side-block"><h5 class="red">Latest Interview</h5>		                	<div class="video">
+                <a href="https://labs.ctl.io/interviews/docker-swarm-and-compose-with-ben-firshman-product-manager-at-docker/">
+                    <span data-picture data-alt="Ben Firshman">
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/featured_swarm_profile-300x180.jpg" ></span>
+				       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/featured_swarm_profile.jpg"  data-media="(-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi)" ></span>
+				       <!--[if (lt IE 9) & (!IEMobile)]>
+					       <span data-src="https://labs.ctl.io/wp-content/uploads/2015/05/featured_swarm_profile-300x180.jpg"></span>
+				       <![endif]-->
+				       <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+				       <noscript><img src="https://labs.ctl.io/wp-content/uploads/2015/05/featured_swarm_profile-300x180.jpg" width="300" height="180" alt="Ben Firshman" ></noscript>
+			       </span>                </a>
+            </div>
+                <h4><a href="https://labs.ctl.io/interviews/docker-swarm-and-compose-with-ben-firshman-product-manager-at-docker/" rel="bookmark">Docker Swarm and Compose with Ben Firshman, Product Manager at Docker</a></h4>        <ul class="share-list">
+	<li>
+		<a><i class="icon-heart-o"></i><strong>0</strong> Shares</a>
+		<div class="counter-drop">
+			<ul class="share-counter">
+				<li>
+					<a><i class="icon-twitter2"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-linkedin-square"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-facebook"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-google-plus2"></i>0</a>
+				</li>
+			</ul>
+			<span class="arrow"></span>
+		</div>
+	</li>
+	<li>
+		<a href="https://labs.ctl.io/interviews/docker-swarm-and-compose-with-ben-firshman-product-manager-at-docker/#comments"><span class="dsq-postid" data-dsqidentifier="2941 http://ctlio.wpengine.com/?post_type=interview&amp;p=2941"><i class="icon-speech-bubble"></i><strong>1</strong> Comment</span></a>	</li>
+</ul>    
+    	
+	</div><div class="side-block"><h5 class="red">Latest Tutorial</h5>		                <h4><a href="https://labs.ctl.io/tutorials/installing-coreos-rocket-on-the-centurylink-cloud/" rel="bookmark">Installing CoreOS Rocket on the CenturyLink Cloud</a></h4>        <ul class="share-list">
+	<li>
+		<a><i class="icon-heart-o"></i><strong>0</strong> Shares</a>
+		<div class="counter-drop">
+			<ul class="share-counter">
+				<li>
+					<a><i class="icon-twitter2"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-linkedin-square"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-facebook"></i>0</a>
+				</li>
+				<li>
+					<a><i class="icon-google-plus2"></i>0</a>
+				</li>
+			</ul>
+			<span class="arrow"></span>
+		</div>
+	</li>
+	<li>
+		<a href="https://labs.ctl.io/tutorials/installing-coreos-rocket-on-the-centurylink-cloud/#respond"><span class="dsq-postid" data-dsqidentifier="2715 http://ctlio.wpengine.com/?post_type=tutorial&amp;p=2715"><i class="icon-speech-bubble"></i><strong>0</strong> Comments</span></a>	</li>
+</ul>    
+    	
+	</div><div class="widget_tag_cloud" id="tag_cloud-2"><h5 class="red">Tags</h5><ul class="tag-list"><li><a href='https://labs.ctl.io/tag/ambassador/' class='tag-link-6' title='2 topics' style='font-size: 13px;'>Ambassador</a></li><li><a href='https://labs.ctl.io/tag/bromium/' class='tag-link-7' title='2 topics' style='font-size: 13px;'>Bromium</a></li><li><a href='https://labs.ctl.io/tag/building/' class='tag-link-8' title='2 topics' style='font-size: 13px;'>Building</a></li><li><a href='https://labs.ctl.io/tag/buildpack/' class='tag-link-9' title='2 topics' style='font-size: 13px;'>Buildpack</a></li><li><a href='https://labs.ctl.io/tag/chef/' class='tag-link-177' title='3 topics' style='font-size: 13px;'>Chef</a></li><li><a href='https://labs.ctl.io/tag/cloud-foundry/' class='tag-link-111' title='3 topics' style='font-size: 13px;'>Cloud Foundry</a></li><li><a href='https://labs.ctl.io/tag/containers/' class='tag-link-11' title='6 topics' style='font-size: 13px;'>Containers</a></li><li><a href='https://labs.ctl.io/tag/continuous-integration-2/' class='tag-link-104' title='3 topics' style='font-size: 13px;'>Continuous Integration</a></li><li><a href='https://labs.ctl.io/tag/coreos/' class='tag-link-12' title='10 topics' style='font-size: 13px;'>CoreOS</a></li><li><a href='https://labs.ctl.io/tag/deis/' class='tag-link-13' title='4 topics' style='font-size: 13px;'>Deis</a></li><li><a href='https://labs.ctl.io/tag/diego/' class='tag-link-113' title='2 topics' style='font-size: 13px;'>Diego</a></li><li><a href='https://labs.ctl.io/tag/docker/' class='tag-link-3' title='66 topics' style='font-size: 13px;'>Docker</a></li><li><a href='https://labs.ctl.io/tag/docker-images/' class='tag-link-119' title='2 topics' style='font-size: 13px;'>Docker Images</a></li><li><a href='https://labs.ctl.io/tag/dokku/' class='tag-link-16' title='2 topics' style='font-size: 13px;'>Dokku</a></li><li><a href='https://labs.ctl.io/tag/drone/' class='tag-link-17' title='2 topics' style='font-size: 13px;'>Drone</a></li><li><a href='https://labs.ctl.io/tag/dropbox/' class='tag-link-18' title='2 topics' style='font-size: 13px;'>Dropbox</a></li><li><a href='https://labs.ctl.io/tag/etcd/' class='tag-link-19' title='2 topics' style='font-size: 13px;'>ETCD</a></li><li><a href='https://labs.ctl.io/tag/fig/' class='tag-link-20' title='6 topics' style='font-size: 13px;'>Fig</a></li><li><a href='https://labs.ctl.io/tag/fleet/' class='tag-link-22' title='2 topics' style='font-size: 13px;'>Fleet</a></li><li><a href='https://labs.ctl.io/tag/flocker/' class='tag-link-114' title='2 topics' style='font-size: 13px;'>Flocker</a></li><li><a href='https://labs.ctl.io/tag/flynn/' class='tag-link-67' title='5 topics' style='font-size: 13px;'>Flynn</a></li><li><a href='https://labs.ctl.io/tag/interview/' class='tag-link-26' title='16 topics' style='font-size: 13px;'>Interview</a></li><li><a href='https://labs.ctl.io/tag/java/' class='tag-link-27' title='2 topics' style='font-size: 13px;'>Java</a></li><li><a href='https://labs.ctl.io/tag/kubernetes/' class='tag-link-128' title='6 topics' style='font-size: 13px;'>Kubernetes</a></li><li><a href='https://labs.ctl.io/tag/lucas-carlson/' class='tag-link-125' title='2 topics' style='font-size: 13px;'>Lucas Carlson</a></li><li><a href='https://labs.ctl.io/tag/mesos/' class='tag-link-129' title='6 topics' style='font-size: 13px;'>Mesos</a></li><li><a href='https://labs.ctl.io/tag/mesosphere/' class='tag-link-160' title='3 topics' style='font-size: 13px;'>Mesosphere</a></li><li><a href='https://labs.ctl.io/tag/node-js/' class='tag-link-28' title='2 topics' style='font-size: 13px;'>Node.js</a></li><li><a href='https://labs.ctl.io/tag/open-source-2/' class='tag-link-29' title='3 topics' style='font-size: 13px;'>Open-Source</a></li><li><a href='https://labs.ctl.io/tag/openshift/' class='tag-link-116' title='2 topics' style='font-size: 13px;'>Openshift</a></li><li><a href='https://labs.ctl.io/tag/open-source/' class='tag-link-70' title='3 topics' style='font-size: 13px;'>Open Source</a></li><li><a href='https://labs.ctl.io/tag/openstack/' class='tag-link-30' title='6 topics' style='font-size: 13px;'>Openstack</a></li><li><a href='https://labs.ctl.io/tag/optimize/' class='tag-link-31' title='2 topics' style='font-size: 13px;'>Optimize</a></li><li><a href='https://labs.ctl.io/tag/orchestration/' class='tag-link-147' title='5 topics' style='font-size: 13px;'>Orchestration</a></li><li><a href='https://labs.ctl.io/tag/paas/' class='tag-link-92' title='4 topics' style='font-size: 13px;'>Paas</a></li><li><a href='https://labs.ctl.io/tag/panamax-2/' class='tag-link-34' title='18 topics' style='font-size: 13px;'>Panamax</a></li><li><a href='https://labs.ctl.io/tag/podcast/' class='tag-link-35' title='17 topics' style='font-size: 13px;'>Podcast</a></li><li><a href='https://labs.ctl.io/tag/remote-deployment/' class='tag-link-200' title='4 topics' style='font-size: 13px;'>Remote Deployment</a></li><li><a href='https://labs.ctl.io/tag/serf/' class='tag-link-37' title='5 topics' style='font-size: 13px;'>Serf</a></li><li><a href='https://labs.ctl.io/tag/shippable/' class='tag-link-38' title='2 topics' style='font-size: 13px;'>Shippable</a></li><li><a href='https://labs.ctl.io/tag/ubuntu/' class='tag-link-54' title='4 topics' style='font-size: 13px;'>Ubuntu</a></li><li><a href='https://labs.ctl.io/tag/vagrant/' class='tag-link-46' title='4 topics' style='font-size: 13px;'>Vagrant</a></li><li><a href='https://labs.ctl.io/tag/vagrant-cloud/' class='tag-link-71' title='2 topics' style='font-size: 13px;'>Vagrant Cloud</a></li><li><a href='https://labs.ctl.io/tag/video/' class='tag-link-48' title='2 topics' style='font-size: 13px;'>Video</a></li><li><a href='https://labs.ctl.io/tag/virtualbox/' class='tag-link-49' title='2 topics' style='font-size: 13px;'>Virtualbox</a></li></ul>
+</div>		
+	</aside>
+
+	</div>
+</main>
+
+		<footer id="footer">
+			<div class="footer-wrap">
+				<div class="bottom-col">
+					
+										
+						<strong class="title">Sign up for our newsletter and get all the latest news, tips &amp; tricks for Panamax, Docker, etc.</strong>
+					
+					<div id="mc_embed_signup">
+    <form  method="post" action="//centurylinklabs.us3.list-manage.com/subscribe/post?u=021d5aea02a4ed5dec0c1c96c&amp;id=d971fc65c9" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="email-form validate" target="_blank" novalidate>
+        
+        <div id="mc_embed_signup_scroll" class="row">
+            <div class="mc-field-group">
+                <input type="text" value="" name="FNAME" class="name_field_mailchimp_home" id="mce-FNAME" placeholder="Your First Name">
+                <input type="email" placeholder="Your Email Address" name="EMAIL" class="required email" id="mce-EMAIL" required="required">
+            </div>
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+            <input type="text" name="b_021d5aea02a4ed5dec0c1c96c_d971fc65c9" tabindex="-1" value="" style="display:none;">
+            <button class="button submit" name="subscribe" type="submit" id="mc-embedded-subscribe" ><i class="icon-angle-right"></i></button>
+        </div>
+    </form>
+</div>					
+				</div>
+				
+								
+					<div class="bottom-bar">
+                	
+						<ul id="menu-footer-menu" class="sub-nav"><li id="menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-53"><a href="https://labs.ctl.io/">Home</a></li>
+<li id="menu-item-55" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55"><a href="https://labs.ctl.io/about/">About</a></li>
+<li id="menu-item-56" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-56"><a href="https://labs.ctl.io/projects/">Projects</a></li>
+<li id="menu-item-57" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-57"><a href="https://labs.ctl.io/blog/">Blog</a></li>
+<li id="menu-item-58" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58"><a href="https://labs.ctl.io/tutorials/">Tutorials</a></li>
+<li id="menu-item-59" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-59"><a href="https://labs.ctl.io/interviews/">Interviews</a></li>
+<li id="menu-item-2670" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2670"><a href="https://itunes.apple.com/us/podcast/centurylink-labs-podcast/id885167126">Podcasts</a></li>
+</ul>					
+					</div>
+					
+								
+			</div>
+			<div class="sub-row">
+				<p>&copy; 2015 CenturyLink. All Rights Reserved.							
+								<span class="item"><a href="https://labs.ctl.io/legal-privacy-policy/">Legal &amp; Privacy Policy</a></span>
+								
+											</p> 
+			</div>
+		</footer>
+		<a href="#wrapper" class="btn-top icon-angle-up"></a>
+	</div>
+	
+	
+            <script src="//cdn.goroost.com/roostjs/d5ac0922be414b44aef1e3b0889f4f31" async></script>
+        	<div style="display:none">
+	</div>
+	<script type="text/javascript" >
+		
+		var ajaxUrl = 'https://labs.ctl.io/wp-admin/admin-ajax.php';
+		
+		jQuery('.post-social li a').on( "click", function() {
+			var data = {
+				'action' : 'check_counter',
+				'id' : jQuery(this).parent().parent().attr('rel'),
+				};
+			
+			setTimeout(function(){
+				jQuery.ajax({
+					type: 'post',
+					url: ajaxUrl,
+					data: data,
+				});
+			}, 5000);
+			
+		});
+
+	</script> <script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"https:\/\/labs.ctl.io\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.2.1'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201530'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2015Julaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.2.2'></script>
+<script type='text/javascript' src='//maps.googleapis.com/maps/api/js?sensor=false&#038;ver=4.2.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ubermenu_data = {"remove_conflicts":"on","reposition_on_load":"off","intent_delay":"300","intent_interval":"100","intent_threshold":"7","scrollto_offset":"50","scrollto_duration":"1000","responsive_breakpoint":"0","accessible":"on","retractor_display_strategy":"responsive","touch_off_close":"on","v":"3.1.0.1","ajax_url":"https:\/\/labs.ctl.io\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/ubermenu/assets/js/ubermenu.min.js?ver=3.1.0.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.2.2","language":""},"disqusIdentifier":"1817 http:\/\/WhatdoyoudowhenyouwantDockercontainersmanagedacrossvastfleetsofserversandinfrastructure?YouuseDockerorchestrationtoolslikeKubernetes.DevelopedbyGoogle,","disqusShortname":"ctlc","disqusTitle":"An Intro to Google\u2019s Kubernetes and How to Use It","disqusUrl":"https:\/\/labs.ctl.io\/what-is-kubernetes-and-how-to-use-it\/","options":{"manualSync":false},"postId":"1817"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/disqus-comment-system/media/js/disqus.js?ver=4.2.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"ctlc"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://labs.ctl.io/wp-content/plugins/disqus-comment-system/media/js/count.js?ver=4.2.2'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201530.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.6',blog:'80576355',post:'1817',tz:'-7',srv:'labs.ctl.io'} ]);
+	_stq.push([ 'clickTrackerInit', '80576355', '1817' ]);
+</script>
+	
+	<script type="text/javascript" src="https://labs.ctl.io/wp-content/themes/centurylinklabs/js/jquery.main.js"></script>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5460dfe044da62cb" async="async"></script>
+		<script type="text/javascript" src="https://www.youtube.com/player_api"></script>
+	<script type="text/javascript" src="https://labs.ctl.io/wp-content/themes/centurylinklabs/js/froogaloop.min.js"></script>
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	
+
+
+</body>
+</html>

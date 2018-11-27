@@ -1,0 +1,210 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<meta-data android:name=\"com.google.android.gms.version\" android:value=\"@integer/google_play_services_version\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 7
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECORD_VIDEO\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"com.smartmobilesoftware.inappbilling.InAppBillingPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"OrientationLock\"><param name=\"android-package\" value=\"com.plugin.phonegap.OrientationLock\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Capture\"><param name=\"android-package\" value=\"org.apache.cordova.mediacapture.Capture\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UniqueDeviceID\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.UniqueDeviceID\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ScanMedia\"><param name=\"android-package\" value=\"org.brycem.ScanMedia\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Canvas2ImagePlugin\"><param name=\"android-package\" value=\"org.devgeeks.Canvas2ImagePlugin.Canvas2ImagePlugin\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/values/billing_key_param.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<string name=\"billing_key_param\">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApDVjQl2BsaDetehCBRTcL3trTvTJp9kzlpjmRVWXv+jOS0fd67imEvUU5VyQenIxD6k1GJIitfhQPVEn5IkSdtZZfqTNJSSM1kBSDiKVCKNZ0UTZD+/7MsTtuDv+3SoBrW7JAle6aszyF5SjyQgtt/ECMJdw6/se7pNEaPIs5zIKgVKLiZ1bq/LP/GiKkNZtCrWzhjbrt4vHgf7qja6+tTvPf/yO//CqC2nWqDBInIWDAYj/7lIli7orlhkavXhU7zh7P7jTradIAeDGJlRK33C+5hwvdT86yP55jqszxN88BnHvHbZdFQDArV4XtbYem/SuIfqe74bFZVMhdmhy2QIDAQAB</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"FullScreenImage\"><param name=\"android-package\" value=\"es.keensoft.fullscreenimage.FullScreenImage\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cc.fovea.cordova.purchase": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApDVjQl2BsaDetehCBRTcL3trTvTJp9kzlpjmRVWXv+jOS0fd67imEvUU5VyQenIxD6k1GJIitfhQPVEn5IkSdtZZfqTNJSSM1kBSDiKVCKNZ0UTZD+/7MsTtuDv+3SoBrW7JAle6aszyF5SjyQgtt/ECMJdw6/se7pNEaPIs5zIKgVKLiZ1bq/LP/GiKkNZtCrWzhjbrt4vHgf7qja6+tTvPf/yO//CqC2nWqDBInIWDAYj/7lIli7orlhkavXhU7zh7P7jTradIAeDGJlRK33C+5hwvdT86yP55jqszxN88BnHvHbZdFQDArV4XtbYem/SuIfqe74bFZVMhdmhy2QIDAQAB",
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "com.phonegap.plugins.OrientationLock": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "es.keensoft.fullscreenimage": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "hu.dpal.phonegap.plugins.UniqueDeviceID": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "org.apache.cordova.vibration": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "org.brycem.scanmedia": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "org.devgeeks.Canvas2ImagePlugin": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "cordova-plugin-crop": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        },
+        "info.protonet.imageresizer": {
+            "PACKAGE_NAME": "ch.scydev.inceptionisme.full"
+        }
+    },
+    "dependent_plugins": {}
+}

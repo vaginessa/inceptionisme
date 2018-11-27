@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+        <script type="text/javascript" src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Deep Dream Photo Filter</title>
+
+    </head>
+    <body class="page-styles">
+        <div data-role="page">
+            <div id="iosSpacer" style="height: 20px; display: none;">
+            </div>
+            
+            <div data-role="header" theme="a" data-overlay-theme="a" data-mini="true">
+                <a href="#" data-rel="back">back</a>
+            </div>
+
+            <div class="ui-content" role="main">
+                <div class="app">
+
+
+                    <div data-role="tabs" id="tabs">
+
+                        <div data-role="navbar">
+                            <ul>
+                              <li><a href="#one" data-ajax="false" class="ui-btn-active ui-state-persist">Styles</a></li>
+                              <li><a href="#two" data-ajax="false">Guide</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="one">
+                            <br/>
+                            <h1>Choose Style</h1>
+                            <br/>
+                                    <span>Original</span>
+                                    <br/>
+                                    <img src="img/style_demos/IMG_20150816_184650.jpg" style="width: 70%;">
+                            <br/>
+                            <br/>
+
+                            <h2>Tap one below</h2> <!-- adl -->
+                            <br/>
+
+                            <div id="style-demos" class="style-demos">
+                                <div data-dreamstyle="normal_" data-dreamstylename="Puppyslug Strangeness">
+                                    <span>Puppyslug Strangeness</span>
+                                    <br/>
+                                    <img src="img/style_demos/normal_dd2af2ec-21d8-4c9b-a530-9938841c7acf.jpg">
+                                </div>
+
+                                <div data-dreamstyle="inception_" data-dreamstylename="Inceptionism">
+                                    <span>Inceptionism</span>
+                                    <br/>
+                                    <img src="img/style_demos/inception_7319b150-f484-4177-bcbc-3a37931754b3.jpg">
+                                </div>
+
+                                <div data-dreamstyle="eyes_and_orbs_" data-dreamstylename="Eyes and Orbs">
+                                    <span>Eyes and Orbs</span>
+                                    <br/>
+                                    <img src="img/style_demos/eyes_and_orbs_26356c19-9e45-40b5-b368-34c0f7872599.jpg">
+                                </div>
+
+                                <div data-dreamstyle="iterative_arcs_" data-dreamstylename="Iterative Arcs">
+                                    <span>Iterative Arcs</span>
+                                    <br/>
+                                    <img src="img/style_demos/iterative_arcs_7e2a9547-b69e-4f61-ace9-9aecf7fa2a66.jpg">
+                                </div>
+
+                                <div data-dreamstyle="fluffy_stuff_" data-dreamstylename="Fluffy Stuff">
+                                    <span>Fluffy Stuff</span>
+                                     <br/>
+                                    <img src="img/style_demos/fluffy_stuff_c9532790-56c5-448c-b604-094aada162ee.jpg">
+                                </div>
+
+                                <div data-dreamstyle="snake_eyes_" data-dreamstylename="Snake Eyes">
+                                    <span>Snake Eyes</span>
+                                    <br/>
+                                    <img src="img/style_demos/snake_eyes_30bac0f3-2101-48b2-9f89-504521e6583a.jpg">
+                                </div>
+
+                                <div data-dreamstyle="machine_madness_" data-dreamstylename="Machine Madness">
+                                    <span>Machine Madness</span>
+                                    <br/>
+                                    <img src="img/style_demos/machine_madness_8907dd1e-b9d1-4871-a640-b2f2dd49a8cd.jpg">
+                                </div>
+
+                                <div data-dreamstyle="fractal_birdcars_" data-dreamstylename="Fractal Birdcars">
+                                    <span>Fractal Birdcars</span>
+                                    <br/>
+                                    <img src="img/style_demos/fractal_birdcars_78861ba8-1048-4eb3-b71a-d71b9f1d3558.jpg">
+                                </div>
+
+                                <div data-dreamstyle="alien_gods_" data-dreamstylename="Alien Gods">
+                                    <span>Alien Gods</span>
+                                    <br/>
+                                    <img src="img/style_demos/alien_gods_99dd5133-51bb-4557-b0f8-030cf3fa663e.jpg">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="two" class="ui-body-d ui-content">
+                            <h1>Set Guide Image</h1>
+                            <br/>
+                                <div id="guide-style" data-dreamstyle="guided_" data-dreamstylename="My Guide Image" style="display: none;">
+                                    <img id="guide-img" src="" style="width: 70%;">
+                                </div>
+                                <div id="loading-spinner" style="display: none;">
+                                    <div style="margin: 20px auto; width: 100px;">
+                                        <img src="img/electric-sheep.png" class="rotimg" />
+                                        <br />
+                                    </div>
+                                </div>
+
+                                <p>This image will<br /> 
+                                    influence the dreams<br /> 
+                                    in a style of your own.</p>
+
+                                <p>
+                                    Crop the guide image.<br />
+                                    It should consist only of the particular pattern that you would like to see on your dreamed image.</p>
+
+                                <div class="btn" id="upload-guide">Upload a Guide Image</div>
+
+                                <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
+
+                            <br/>
+                            <br/>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/shared.js"></script>
+        <script type="text/javascript" src="js/styles.js"></script>
+    </body>
+</html>

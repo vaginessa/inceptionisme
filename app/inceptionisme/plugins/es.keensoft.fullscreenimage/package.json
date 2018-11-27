@@ -1,0 +1,26 @@
+{
+    "version": "1.0.0",
+    "name": "es.keensoft.fullscreenimage",
+    "cordova_name": "Full Screen Image",
+    "description": "Show image in full screen mode with native components.",
+    "license": "MIT",
+    "keywords": [
+        "cordova",
+        " image",
+        " spanish",
+        " fullscreen",
+        " photos",
+        " keensoft",
+        " gallery"
+    ],
+    "platforms": [
+        "ios",
+        "android"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        }
+    ]
+}

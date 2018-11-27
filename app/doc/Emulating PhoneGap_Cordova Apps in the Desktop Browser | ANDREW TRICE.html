@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="msvalidate.01" content="C7F779B7E7F66872BDEB5B27FA646D11" />
+	<title>Emulating PhoneGap/Cordova Apps in the Desktop Browser | ANDREW TRICE</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.tricedesigns.com/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://www.tricedesigns.com/wp-content/themes/twentyfourteen/js/html5.js"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="ANDREW TRICE &raquo; Feed" href="http://www.tricedesigns.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ANDREW TRICE &raquo; Comments Feed" href="http://www.tricedesigns.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ANDREW TRICE &raquo; Emulating PhoneGap/Cordova Apps in the Desktop Browser Comments Feed" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/feed/" />
+<link rel='stylesheet' id='style.css-css'  href='http://www.tricedesigns.com/wp-content/plugins/google-language-translator/css/style.css?ver=4.1.5' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-jetpack-css'  href='http://www.tricedesigns.com/wp-content/plugins/jetpack/modules/theme-tools/compat/twentyfourteen.css?ver=3.4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='http://www.tricedesigns.com/wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css?ver=3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='twentyfourteen-style-css'  href='http://www.tricedesigns.com/wp-content/themes/twentyfourteen/style.css?ver=4.1.5' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://www.tricedesigns.com/wp-content/themes/twentyfourteen/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='jetpack_css-css'  href='http://www.tricedesigns.com/wp-content/plugins/jetpack/css/jetpack.css?ver=3.4.3' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-content/plugins/google-language-translator/js/flags.js?ver=4.1.5'></script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.4.8'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.tricedesigns.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.tricedesigns.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='PhoneGap 2.0 Released' href='http://www.tricedesigns.com/2012/07/20/phonegap-2-0-released/' />
+<link rel='next' title='Presentations: Intro To PhoneGap, Web Data Viz &amp; PhoneGap Native Plugins' href='http://www.tricedesigns.com/2012/08/13/presentations-intro-to-phonegap-web-data-viz-phonegap-native-plugins/' />
+<meta name="generator" content="WordPress 4.1.5" />
+<link rel='canonical' href='http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/' />
+<link rel='shortlink' href='http://wp.me/p5eZjw-B6' />
+<style type="text/css">p.hello { font-size:12px; color:darkgray; }#google_language_translator, #flags { text-align:left; }#google_language_translator { clear:both; }#flags { width:165px; }#flags a { display:inline-block; margin-right:2px; }.goog-tooltip {display: none !important;}.goog-tooltip:hover {display: none !important;}.goog-text-highlight {background-color: transparent !important; border: none !important; box-shadow: none !important;}#google_language_translator a {display: none !important; }.goog-te-gadget {color:transparent !important;}.goog-te-gadget { font-size:0px !important; }.goog-branding { display:none; }.goog-te-banner-frame{visibility:hidden !important;}body { top:0px !important;}</style><style type='text/css'>img#wpstats{display:none}</style>	<style type="text/css" id="twentyfourteen-header-css">
+			.site-title a {
+			color: #1e73be;
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Emulating PhoneGap/Cordova Apps in the Desktop Browser" />
+<meta property="og:url" content="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/" />
+<meta property="og:description" content="Earlier this month the PhoneGap team held the first PhoneGap day.  This was in part to celebrate the release of PhoneGap 2.0, but more importantly to bring together members of the PhoneGap communit..." />
+<meta property="article:published_time" content="2012-07-31T20:52:26+00:00" />
+<meta property="article:modified_time" content="2012-08-01T14:43:51+00:00" />
+<meta property="article:author" content="http://www.tricedesigns.com/author/admin/" />
+<meta property="og:site_name" content="ANDREW TRICE" />
+<meta property="og:image" content="http://www.tricedesigns.com/wp-content/uploads/2012/07/04-accelerometer1.png" />
+<meta property="og:image" content="http://www.tricedesigns.com/wp-content/uploads/2012/07/09-config1.png" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@andytrice" />
+<meta name="twitter:image" content="http://www.tricedesigns.com/wp-content/uploads/2012/07/eumlator-chrome-small.png?w=240" />
+<meta name="twitter:card" content="summary" />
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-2356684-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+	<link rel="icon" type="image/png" href="http://www.tricedesigns.com/icons/icon_128x128.png" />
+</head>
+
+<body class="single single-post postid-2300 single-format-standard masthead-fixed singular">
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+			<h1 class="site-title"><a href="http://www.tricedesigns.com/" rel="home">ANDREW TRICE</a></h1>
+
+			<div class="search-toggle">
+				<a href="#search-container" class="screen-reader-text">Search</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<button class="menu-toggle">Primary Menu</button>
+				<a class="screen-reader-text skip-link" href="#content">Skip to content</a>
+				<div class="menu-top-nav-container"><ul id="menu-top-nav" class="nav-menu"><li id="menu-item-62" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62"><a href="http://www.tricedesigns.com/about/">About</a></li>
+</ul></div>			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="http://www.tricedesigns.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+	<div id="main" class="site-main">
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			
+<article id="post-2300" class="post-2300 post type-post status-publish format-standard hentry category-cordova category-development category-html5 category-javascript category-mobile category-open-source category-phonegap-2 tag-cordova-2 tag-development-2 tag-javascript tag-mobile-2 tag-phonegap">
+	
+	<div class="post-thumbnail ">
+
+<span class="featuredImage-fill" style="background-image:url('')"></span>
+	</div>
+
+	
+	<header class="entry-header">
+				<div class="entry-meta">
+			<span class="cat-links"><a href="http://www.tricedesigns.com/category/cordova/" rel="category tag">Cordova</a>, <a href="http://www.tricedesigns.com/category/development/" rel="category tag">Development</a>, <a href="http://www.tricedesigns.com/category/html5/" rel="category tag">HTML5</a>, <a href="http://www.tricedesigns.com/category/javascript/" rel="category tag">JavaScript</a>, <a href="http://www.tricedesigns.com/category/mobile/" rel="category tag">Mobile</a>, <a href="http://www.tricedesigns.com/category/open-source/" rel="category tag">open source</a>, <a href="http://www.tricedesigns.com/category/phonegap-2/" rel="category tag">PhoneGap</a></span>
+		</div>
+		<h1 class="entry-title">Emulating PhoneGap/Cordova Apps in the Desktop Browser</h1>
+		<div class="entry-meta">
+			<span class="entry-date"><a href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/" rel="bookmark"><time class="entry-date" datetime="2012-07-31T16:52:26+00:00">July 31, 2012</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="http://www.tricedesigns.com/author/admin/" rel="author">Andrew</a></span></span>			<span class="comments-link"><a href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/#comments" title="Comment on Emulating PhoneGap/Cordova Apps in the Desktop Browser"><span class="dsq-postid" data-dsqidentifier="2300 http://www.tricedesigns.com/?p=2300">21 Comments</span></a></span>
+					</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+		<div class="entry-content">
+		<p>Earlier this month the PhoneGap team held the first PhoneGap day.  This was in part to celebrate the release of PhoneGap 2.0, but more importantly to bring together members of the PhoneGap community to share and learn from each other.   There are great recaps of PhoneGap Day from <a href="http://redmonk.com/dberkholz/2012/07/30/phonegap-day-the-future-looks-golden/?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+thestoryofdata+%28The+Story+of+Data%29" target="_blank">RedMonk</a>, as well as on the <a href="http://phonegap.com/blog/2012/07/27/a-look-back-at-phonegap-day/" target="_blank">PhoneGap blog</a>. One of the new services announced on PhoneGap Day was <a href="http://emulate.phonegap.com/" target="_blank">emulate.phonegap.com</a>.  <a href="http://emulate.phonegap.com/" target="_blank">Emulate.phonegap.com</a> enables an in-browser simulator for developing and debugging PhoneGap/Cordova applications, complete with Cordova API emulation.  It is built off of the <a href="http://ripple.tinyhippos.com/" target="_blank">Ripple Emulator</a>, which itself is <a href="https://github.com/blackberry/Ripple-UI" target="_blank">open source</a> and may even be contributed <a href="http://markmail.org/message/i6urugruobtql5m3#query:+page:1+mid:i6urugruobtql5m3+state:results" target="_blank">to the Apache Cordova project</a>.</p>
+<p><a href="http://emulate.phonegap.com" target="_blank">Emulate.phonegap.com</a> is built as a <a href="http://code.google.com/chrome/extensions/index.html" target="_blank">Google Chrome Extension</a>, so it requires the <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Chrome browser</a>.  It also uses the <a href="http://ripple.tinyhippos.com/" target="_blank">Ripple Operating Environment</a> (another Chrome Extension).   Once you have the dependencies installed you can emulate any site as a PhoneGap/Cordova application by either going to <a href="http://emulate.phonegap.com/" target="_blank">emulate.phonegap.com</a> and entering the target URL, by launching the emulator from a<strong> right-click -&gt; Emulator -&gt; Enable</strong>, or by clicking on the Ripple icon in the Chrome toobar, and selecting the &#8220;Enable&#8221; option.</p>
+<p>Once launched, the URL that you want to simulate will be displayed within the Ripple operating environment view.</p>
+<p><em><del>Note: This only works with assets that are on a live URL</del>. You can use a local http server with references to localhost, however the emulator will fail if you try to access your application directly from the local file system using a file:// URI.</em></p>
+<p><em>Update: You can enable access to local files by changing a few settings on the Ripple emulator.  See the first comment on this post for additional detail.</em></p>
+<p><em></em><br />
+<a href="http://www.tricedesigns.com/wp-content/uploads/2012/07/eumlator-chrome.png"><img class="aligncenter size-full wp-image-2301" title="eumlator-chrome-small" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/eumlator-chrome-small.png" alt="" width="600" height="375" /></a></p>
+<p style="text-align: center;"><em>(click for full-size image)</em></p>
+<p>The emulator environment gives you the ability to emulate PhoneGap events and API calls, without having to deploy to a device or run inside of the iOS, Android, Blackberry, or other emulator.  Not only can you simulate the PhoneGap/Cordova API, but you can also use Chrome&#8217;s debugging tools to test &amp; debug your code &#8211; complete with breakpoints, memory inspection, and resource monitoring. This is a handy development configuration. It enables app development within a rich debugging environment that is familiar, fast &amp; easy to use. This does not replace on-device debugging however&#8230; nothing will replace that.   On-device debugging is extremely important; this helps increase your productivity as a developer.</p>
+<p>So how do you use this environment? The environment will handle Cordova API requests, and you can also simulate device events.</p>
+<p>First, the &#8220;Devices&#8221; panel&#8230; In this panel you can select a device configuration &#8211; Everything from iOS, to Android, to BlackBerry.  Changing the device configuration will not only change the physical dimensions, but will also change Device/OS/user agent settings reported by the application.   Here you can also select the device orientation, which will change the visual area within the simulator.</p>
+<p><img class="aligncenter size-full wp-image-2309" title="01-devices" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/01-devices.png" alt="" width="342" height="121" /></p>
+<p>Within the &#8220;Platforms&#8221; panel you can choose the platform you wish to emulate.  With respect to PhoneGap applications, you will want to choose &#8220;Apache Cordova&#8221;, and then select the API version that you are using.  By default, it uses &#8220;PhoneGap 1.0.0&#8243;, however you can chose &#8220;Apache Cordova 2.0.0&#8243; to get the most recent version.   The Ripple emulator also simulates BlackBerry WebWorks and mobile web configurations as well.</p>
+<p><img class="aligncenter size-full wp-image-2310" title="02-platforms" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/02-platforms.png" alt="" width="343" height="157" /></p>
+<p>The &#8220;Information&#8221; panel shows you information about your current simulator configuration.  It shows the platform, device, simulated OS, user agent etc&#8230;</p>
+<p><img class="aligncenter size-full wp-image-2311" title="03-information" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/03-information.png" alt="" width="345" height="339" /></p>
+<p>The &#8220;Accelerometer&#8221; panel can be used to simulate device orientation/accelerometer events.  Just click and drag on the device icon (the gray and black boxes), and the icon will rotate in 3D.   As you drag, accelerometer events will be dispatched and handled within your application.  From here, you can even trigger a &#8220;shake&#8221; event.</p>
+<p><img class="aligncenter size-full wp-image-2326" title="04-accelerometer" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/04-accelerometer1.png" alt="" width="343" height="543" /></p>
+<p>The &#8220;Settings&#8221; panel lets you turn on/off the cross domain policy, adjust the UI color theme, and view additional data about the Ripple emulator.</p>
+<p><img class="aligncenter size-full wp-image-2313" title="05-settings" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/05-settings.png" alt="" width="343" height="195" /></p>
+<p>The &#8220;Device &amp; Network Settings&#8221; panel enables you to simulate and throttle the network connection type: &#8220;Ethernet&#8221;, &#8220;WIFI&#8221;, &#8220;CELL_3G&#8221;, etc&#8230;</p>
+<p><img class="aligncenter size-full wp-image-2318" title="06-network" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/06-network1.png" alt="" width="343" height="189" /></p>
+<p>The &#8220;Geolocation&#8221; panel enables you to simulate your geographic position within your PhoneGap/Cordova application.  You can specify a latitude, longitude, altitude, speed, etc&#8230;  You can even drag the map and use it to specify your geographic position. The position that you set within the geolocation panel will be reported when using navigator.geolocation.getCurrentLocation().</p>
+<p><img class="aligncenter size-full wp-image-2315" title="07-geolocation" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/07-geolocation.png" alt="" width="344" height="733" /></p>
+<p>The &#8220;Config&#8221; panel is a graphical representation of your <a href="http://build.phonegap.com" target="_blank">PhoneGap Build</a> <a href="https://build.phonegap.com/docs/config-xml/" target="_blank">Config.xml</a> file.   You can use this to easily view/analyze what&#8217;s in your application configuration.</p>
+<p><img class="aligncenter size-full wp-image-2319" title="09-config" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/09-config1.png" alt="" width="344" height="689" /></p>
+<p>The &#8220;Events&#8221; panel can be used to simulate PhoneGap specific events, including &#8220;deviceready&#8221;, &#8220;backbutton&#8221;, &#8220;menubutton&#8221;, &#8220;online&#8221;, and &#8220;offline&#8221; (among others).  Just select the event type, and click on the &#8220;Fire Event&#8221; button.</p>
+<p><img class="aligncenter size-full wp-image-2320" title="10-events" src="http://www.tricedesigns.com/wp-content/uploads/2012/07/10-events1.png" alt="" width="343" height="155" /></p>
+<p>As I mentioned earlier, this won&#8217;t replace on-device debugging.  It also won&#8217;t handle execution of native code for PhoneGap native plugins, however you can test/develop against the JavaScript interfaces for those native plugins.  <a href="http://emulate.phonegap.com" target="_blank">Emulate.phonegap.com</a> will definitely help with development of PhoneGap applications in many scenarios, and is a nice complement to the <a href="https://developers.google.com/chrome-developer-tools/docs/overview" target="_blank">Chrome Developer Tools</a>.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-2300" class="share-twitter sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-2300" class="share-facebook sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=facebook" target="_blank" title="Share on Facebook"><span></span><span class="sharing-screen-reader-text">Share on Facebook (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-2300" class="share-google-plus-1 sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-2300" class="share-linkedin sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-reddit"><a rel="nofollow" data-shared="" class="share-reddit sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=reddit" target="_blank" title="Click to share on Reddit"><span></span><span class="sharing-screen-reader-text">Click to share on Reddit (Opens in new window)</span></a></li><li class="share-pinterest"><a rel="nofollow" data-shared="sharing-pinterest-2300" class="share-pinterest sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=pinterest" target="_blank" title="Click to share on Pinterest"><span></span><span class="sharing-screen-reader-text">Click to share on Pinterest (Opens in new window)</span></a></li><li class="share-stumbleupon"><a rel="nofollow" data-shared="" class="share-stumbleupon sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=stumbleupon" target="_blank" title="Click to share on StumbleUpon"><span></span><span class="sharing-screen-reader-text">Click to share on StumbleUpon (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow" data-shared="" class="share-tumblr sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-print"><a rel="nofollow" data-shared="" class="share-print sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/#print" target="_blank" title="Click to print"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li><a href="#" class="sharing-anchor sd-button share-more"><span>More</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;width:150px;"><ul style="background-image:none;"><li class="share-email"><a rel="nofollow" data-shared="" class="share-email sd-button share-icon no-text" href="http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div></div></div>	</div><!-- .entry-content -->
+	
+	<footer class="entry-meta"><span class="tag-links"><a href="http://www.tricedesigns.com/tag/cordova-2/" rel="tag">cordova</a><a href="http://www.tricedesigns.com/tag/development-2/" rel="tag">development</a><a href="http://www.tricedesigns.com/tag/javascript/" rel="tag">JavaScript</a><a href="http://www.tricedesigns.com/tag/mobile-2/" rel="tag">mobile</a><a href="http://www.tricedesigns.com/tag/phonegap/" rel="tag">phonegap</a></span></footer></article><!-- #post-## -->
+	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<a href="http://www.tricedesigns.com/2012/07/20/phonegap-2-0-released/" rel="prev"><span class="meta-nav">Previous Post</span>PhoneGap 2.0 Released</a><a href="http://www.tricedesigns.com/2012/08/13/presentations-intro-to-phonegap-web-data-viz-phonegap-native-plugins/" rel="next"><span class="meta-nav">Next Post</span>Presentations: Intro To PhoneGap, Web Data Viz &#038; PhoneGap Native Plugins</a>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+<div id="disqus_thread">
+            <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="comment even thread-even depth-1" id="dsq-comment-1872">
+        <div id="dsq-comment-header-1872" class="dsq-comment-header">
+            <cite id="dsq-cite-1872">
+http://developer.blackberry.com/html5                <span id="dsq-author-user-1872">Dan Silivestru</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1872" class="dsq-comment-body">
+            <div id="dsq-comment-message-1872" class="dsq-comment-message"><p>Hey Andrew,</p>
+<p>Great post, thanks so much for doing a write up on Ripple. </p>
+<p>Just wanted to mention quickly that you can actually run off of the file:/// scheme, just need a couple of steps:</p>
+<p>1. you need to close chrome and then start it with the &#8211;allow-file-access-from-files flag</p>
+<p>2. go to chrome://extensions page, find Ripple and check off the &#8220;Allow access to file URLs&#8221; checkbox</p>
+<p>3. enable Ripple as you describe and it should all work</p>
+<p>Finally, I also wanted to mention that we do have support for custom plugins in Ripple (under the Cordova platform only). If a call is made through to exec() in Cordova that Ripple does not know about, it will present you with a popup dialogue where you can enter the expected return JSON and then manually call your success or fail callbacks. You can see this at work if you enable ripple over this URL and then click the button: <a href="http://dansilivestru.github.com/phonegap-day-slides/#/19" rel="nofollow">http://dansilivestru.github.com/phonegap-day-slides/#/19</a></p>
+<p>Again, great post <img src="http://www.tricedesigns.com/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" /></p>
+<p>Dan.</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="dsq-comment-1878">
+        <div id="dsq-comment-header-1878" class="dsq-comment-header">
+            <cite id="dsq-cite-1878">
+http://www.tricedesigns.com                <span id="dsq-author-user-1878">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1878" class="dsq-comment-body">
+            <div id="dsq-comment-message-1878" class="dsq-comment-message"><p>Thanks Dan! This is very helpful. I was not aware of the file:/// URI support in the Ripple emulator.  So that other readers understand clearly: the plugin support in the Ripple emulator allows you to invoke the native plugin&#8217;s JS interface and allows you to specify a return value, but there is no execution of any native code.   This is great for debugging the native plugin&#8217;s &#8220;hooks&#8221; into your application.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-1882">
+        <div id="dsq-comment-header-1882" class="dsq-comment-header">
+            <cite id="dsq-cite-1882">
+                <span id="dsq-author-user-1882">Brad</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1882" class="dsq-comment-body">
+            <div id="dsq-comment-message-1882" class="dsq-comment-message"><p>If you dont want to setup the file path you can use httpster to create a local file server from any directory.</p>
+<p>check it out here. <a href="http://simbco.github.com/httpster/" rel="nofollow">http://simbco.github.com/httpster/</a></p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="dsq-comment-1886">
+        <div id="dsq-comment-header-1886" class="dsq-comment-header">
+            <cite id="dsq-cite-1886">
+http://www.tricedesigns.com                <span id="dsq-author-user-1886">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1886" class="dsq-comment-body">
+            <div id="dsq-comment-message-1886" class="dsq-comment-message"><p>On OSX, you can also open up a terminal, go to the appropriate folder, and enter this command: <strong>python -m SimpleHTTPServer 8000</strong>   This will start a http server rooted in whatever folder that you launched it in.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-even depth-1" id="dsq-comment-1977">
+        <div id="dsq-comment-header-1977" class="dsq-comment-header">
+            <cite id="dsq-cite-1977">
+http://www.appocentric.com                <span id="dsq-author-user-1977">Per Quested Aronsson</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1977" class="dsq-comment-body">
+            <div id="dsq-comment-message-1977" class="dsq-comment-message"><p>Hello,</p>
+<p>It would seem as one should exclude the reference to the cordova Javascript file when working in Ripple..?</p>
+<p>Am I right here? If not, where should I get this file from, and which dependencies exist?</p>
+<p>Thanks for good articles!<br />
+Per Q A</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="dsq-comment-1998">
+        <div id="dsq-comment-header-1998" class="dsq-comment-header">
+            <cite id="dsq-cite-1998">
+http://www.tricedesigns.com                <span id="dsq-author-user-1998">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-1998" class="dsq-comment-body">
+            <div id="dsq-comment-message-1998" class="dsq-comment-message"><p>You can have it in there, but I don&#8217;t think that you HAVE to have it.  I have sample apps that include the cordova.js file.   However, I think the emulator overrides it.   Just make sure that you select the correct platform and version in the emulator window for it to behave properly: <br /><img src="http://www.tricedesigns.com/wp-content/uploads/2012/07/02-platforms.png" alt="Emulator Platform" />   <br />You get the cordova.js file as part of the download from <a href="http://www.phonegap.com/download" rel="nofollow">phonegap.com/download</a></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-2002">
+        <div id="dsq-comment-header-2002" class="dsq-comment-header">
+            <cite id="dsq-cite-2002">
+                <span id="dsq-author-user-2002">daniel silivestru</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-2002" class="dsq-comment-body">
+            <div id="dsq-comment-message-2002" class="dsq-comment-message"><p>You shouldn&#8217;t comment out the cordova.js file, for Cordova 2.x, ripple&#8217;s emulation happens below the exec(&#8230;) call, so we actually depend on Cordova.js being there. This is so that you&#8217;re testing the exact same code base as you would be packaging up to put on the device.</p>
+<p>I think the confusion stems from the fact that in our emulation of PhoneGap 1.x we do completely override the phonegap.js file and recommend that you comment that file out.</p>
+<p>We had to do this in the past before the massive refactoring of Cordova to the unified JS project. However, we the new structure in Cordova.js today, we can take the much more elegant approach to emulation as mentioned in my first paragraph.</p>
+<p>Hope this helps clear things up <img src="http://www.tricedesigns.com/wp-includes/images/smilies/icon_smile.gif" alt=":-)" class="wp-smiley" /></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-3475">
+        <div id="dsq-comment-header-3475" class="dsq-comment-header">
+            <cite id="dsq-cite-3475">
+                <span id="dsq-author-user-3475">meme</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-3475" class="dsq-comment-body">
+            <div id="dsq-comment-message-3475" class="dsq-comment-message"><p>hello<br />
+im computer system engineering student , and my graduation project is building cross plat form application<br />
+and after made alot of searches about the best tool , i choose phonegap<br />
+now , i want to convince my instructor why i choose the phonegap<br />
+i made simple application , i wanna to test the emulator , and i read allot of articles , actually im not really understanding , how the html file could load to the Ripple emulator<br />
+plz help me ASAP</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor even depth-2" id="dsq-comment-3747">
+        <div id="dsq-comment-header-3747" class="dsq-comment-header">
+            <cite id="dsq-cite-3747">
+http://www.tricedesigns.com                <span id="dsq-author-user-3747">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-3747" class="dsq-comment-body">
+            <div id="dsq-comment-message-3747" class="dsq-comment-message"><p>You just need to click on the Ripple emulator icon in the Chrome address bar, and select &#8220;Enable&#8221;.   More detail here: <a href="http://emulate.phonegap.com/" rel="nofollow">http://emulate.phonegap.com/</a> and here: <a href="http://developer.blackberry.com/html5/documentation/getting_started_with_ripple_1866966_11.html" rel="nofollow">http://developer.blackberry.com/html5/documentation/getting_started_with_ripple_1866966_11.html</a></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="dsq-comment-3873">
+        <div id="dsq-comment-header-3873" class="dsq-comment-header">
+            <cite id="dsq-cite-3873">
+                <span id="dsq-author-user-3873">meme</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-3873" class="dsq-comment-body">
+            <div id="dsq-comment-message-3873" class="dsq-comment-message"><p>thanks too much<br />
+i try it and it&#8217;s work<br />
+i have a question<br />
+it seems that the simulator work with chrome<br />
+is it possible to work with another browser , like Firefox ?</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor even depth-2" id="dsq-comment-5551">
+        <div id="dsq-comment-header-5551" class="dsq-comment-header">
+            <cite id="dsq-cite-5551">
+http://www.tricedesigns.com                <span id="dsq-author-user-5551">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-5551" class="dsq-comment-body">
+            <div id="dsq-comment-message-5551" class="dsq-comment-message"><p>No it is not possible to use another browser.  The PhoneGap/Ripple emulator is built as a Google Chrome plugin.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt depth-2" id="dsq-comment-10905">
+        <div id="dsq-comment-header-10905" class="dsq-comment-header">
+            <cite id="dsq-cite-10905">
+                <span id="dsq-author-user-10905">Thirtified</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-10905" class="dsq-comment-body">
+            <div id="dsq-comment-message-10905" class="dsq-comment-message"><p>Yes, you can: check out the <a href="http://ripple.incubator.apache.org/" rel="nofollow">Apache Ripple project</a>. It has a npm package <code>ripple-emulator</code> which runs a local web server for your application and injects all the Ripple happiness to use in any browser you want.</p>
+<p><code><br />
+   npm install -g ripple-emulator<br />
+   ripple emulate --port 1234 --path path/to/my/application/root<br />
+</code></p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor even depth-3" id="dsq-comment-12404">
+        <div id="dsq-comment-header-12404" class="dsq-comment-header">
+            <cite id="dsq-cite-12404">
+http://www.tricedesigns.com                <span id="dsq-author-user-12404">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-12404" class="dsq-comment-body">
+            <div id="dsq-comment-message-12404" class="dsq-comment-message"><p>Thanks for sharing!  This can be very helpful for anyone not running Chrome.</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-11270">
+        <div id="dsq-comment-header-11270" class="dsq-comment-header">
+            <cite id="dsq-cite-11270">
+                <span id="dsq-author-user-11270">afields</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-11270" class="dsq-comment-body">
+            <div id="dsq-comment-message-11270" class="dsq-comment-message"><p>very good piece of soft! i&#8217;m making some tests and they include the creation of a database. As it is needed to have some tables and also records i thought it would be possible, with sqlitemanager to create those tables and records. but where do i find the database create with emulator phonegap?<br />
+thx!!!</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment byuser comment-author-admin bypostauthor even depth-2" id="dsq-comment-12411">
+        <div id="dsq-comment-header-12411" class="dsq-comment-header">
+            <cite id="dsq-cite-12411">
+http://www.tricedesigns.com                <span id="dsq-author-user-12411">Andrew</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-12411" class="dsq-comment-body">
+            <div id="dsq-comment-message-12411" class="dsq-comment-message"><p>You must create your tables using JavaScript in the application (SQLLite syntax).  Details: <a href="http://docs.phonegap.com/en/2.7.0/cordova_storage_storage.md.html#Storage" rel="nofollow">http://docs.phonegap.com/en/2.7.0/cordova_storage_storage.md.html#Storage</a>  You can change data using SQL queries inside the Chrome Developer Tools.</p>
+</div>
+        </div>
+
+    <ul class="children">
+    <li class="comment odd alt depth-3" id="dsq-comment-12513">
+        <div id="dsq-comment-header-12513" class="dsq-comment-header">
+            <cite id="dsq-cite-12513">
+                <span id="dsq-author-user-12513">Afields Campos</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-12513" class="dsq-comment-body">
+            <div id="dsq-comment-message-12513" class="dsq-comment-message"><p>thank you Andrew. i&#8217;m working on it&#8230; however another question:</p>
+<p>I want to populate several tables from a database with data that&#8217;s in text file. I wanted to emulate that but it&#8217;s not working. how can i indicate the path of a file with emulator and where should that file be?</p>
+<p>thx again!!</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-12661">
+        <div id="dsq-comment-header-12661" class="dsq-comment-header">
+            <cite id="dsq-cite-12661">
+                <span id="dsq-author-user-12661">Gopal Agrawal</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-12661" class="dsq-comment-body">
+            <div id="dsq-comment-message-12661" class="dsq-comment-message"><p>Good tutorial. Thanks. </p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-12811">
+        <div id="dsq-comment-header-12811" class="dsq-comment-header">
+            <cite id="dsq-cite-12811">
+                <span id="dsq-author-user-12811">DanTheMan</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-12811" class="dsq-comment-body">
+            <div id="dsq-comment-message-12811" class="dsq-comment-message"><p>Hi a few months too late possibly.</p>
+<p>Can you use the emulator to test upload to server using ajax in phonegap?</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-13074">
+        <div id="dsq-comment-header-13074" class="dsq-comment-header">
+            <cite id="dsq-cite-13074">
+                <span id="dsq-author-user-13074">Bhaskar Gandavabi</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-13074" class="dsq-comment-body">
+            <div id="dsq-comment-message-13074" class="dsq-comment-message"><p>Does Ripple support &#8220;Media&#8221; plugin? I am trying to some audio playing functionality in Ripple, doesn&#8217;t seem to work, keep getting Media is not defined</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment odd alt thread-even depth-1" id="dsq-comment-13260">
+        <div id="dsq-comment-header-13260" class="dsq-comment-header">
+            <cite id="dsq-cite-13260">
+                <span id="dsq-author-user-13260">Gene Mishchenko</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-13260" class="dsq-comment-body">
+            <div id="dsq-comment-message-13260" class="dsq-comment-message"><p>Andrew, I think you have to have the &#8220;cordova.js&#8221; file executed in your application AND it has to match the version supported by the Ripple Emulator (2.0.0 as of right now) for it to work properly.</p>
+<p>PhoneGap Build, on the other hand, does  not need it, as it automatically replaces it with the latest version.</p>
+<p>Until I placed the file there, the &#8220;deviceready&#8221; event could not be triggered for my emulated device. In Cordova documentation it is strongly advised to not execute anything in the Web part of the application until the &#8220;deviceready&#8221; event is received. It&#8217;s a dependency that you want to enforce in your code, therefore you do need the script executed.</p>
+<p>According to the below post on StackOverflow, there may be other dependencies as well. It has the full explanation and the full set of instructions:</p>
+<p><a href="http://stackoverflow.com/questions/17695875/how-to-use-ripple-emulator-for-windows-to-test-phonegap-application" rel="nofollow">http://stackoverflow.com/questions/17695875/how-to-use-ripple-emulator-for-windows-to-test-phonegap-application</a></p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+    <li class="comment even thread-odd thread-alt depth-1" id="dsq-comment-13753">
+        <div id="dsq-comment-header-13753" class="dsq-comment-header">
+            <cite id="dsq-cite-13753">
+                <span id="dsq-author-user-13753">eslachance</span>
+            </cite>
+        </div>
+        <div id="dsq-comment-body-13753" class="dsq-comment-body">
+            <div id="dsq-comment-message-13753" class="dsq-comment-message"><p>I don&#8217;t know if I&#8217;m missing anything but the greatest majority of the thigns I&#8217;d like to test seem ignored by the emulator. The date selector doesn&#8217;t work, there`s no way to simulate pictures, signatures (SVG note taking, basically) doesn&#8217;t work&#8230; Am I missing something?</p>
+</div>
+        </div>
+
+    </li><!-- #comment-## -->
+            </ul>
+
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+var disqus_url = 'http://www.tricedesigns.com/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/';
+var disqus_identifier = '2300 http://www.tricedesigns.com/?p=2300';
+var disqus_container_id = 'disqus_thread';
+var disqus_shortname = 'tricedesigns';
+var disqus_title = "Emulating PhoneGap\/Cordova Apps in the Desktop Browser";
+var disqus_config_custom = window.disqus_config;
+var disqus_config = function () {
+    /*
+    All currently supported events:
+    onReady: fires when everything is ready,
+    onNewComment: fires when a new comment is posted,
+    onIdentify: fires when user is authenticated
+    */
+    
+    
+    this.language = '';
+        this.callbacks.onReady.push(function () {
+
+        // sync comments in the background so we don't block the page
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = '?cf_action=sync_comments&post_id=2300';
+
+        var firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(script, firstScript);
+    });
+    
+    if (disqus_config_custom) {
+        disqus_config_custom.call(this);
+    }
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+<div id="content-sidebar" class="content-sidebar widget-area" role="complementary">
+	<aside id="text-5" class="widget widget_text">			<div class="textwidget"><div style="padding-bottom:4px">
+<img src="http://www.tricedesigns.com/wp-content/uploads/2013/01/feed.png" style="vertical-align:top"> <a href="http://www.tricedesigns.com/?feed=rss" target="_blank" >RSS</a> | <a href="http://www.tricedesigns.com/?feed=atom" target="_blank" >ATOM</a>
+</div>
+
+<a href="http://www.linkedin.com/in/andrewtrice" target="_blank"><img src="http://www.tricedesigns.com/wp-content/uploads/2013/01/linkedin.png" width="32" height="32"></a>
+
+
+<a href="http://www.twitter.com/andytrice" target="_blank"><img class="alignnone" src="http://www.tricedesigns.com/wp-content/uploads/2013/01/twitter.png" alt="" width="32" height="32"></a>
+
+
+<a href="https://github.com/triceam" target="_blank"> <img src="http://www.tricedesigns.com/wp-content/uploads/2013/01/github.png" width="32" height="32"></a>
+
+
+<!-- Place this code where you want the badge to render. -->
+<a href="//plus.google.com/107345611998130992042?prsrc=3" rel="publisher" style="text-decoration:none;" target="_blank">
+<img src="//ssl.gstatic.com/images/icons/gplus-32.png" alt="Google+" style="border:0;width:32px;height:32px;"/></a>
+
+<a href="http://www.youtube.com/user/triceam" target="_blank"><img src="//s.ytimg.com/yt/img/creators_corner/YouTube/youtube_32x32.png" alt="Subscribe to me on YouTube"/></a>
+
+<a href="http://www.flickr.com/photos/andytrice/" target="_blank"><img src="http://www.tricedesigns.com/wp-content/uploads/2013/06/flickr.png" alt="Flickr Photostream"/></a>
+
+</div>
+		</aside><aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><a class="twitter-timeline" data-widget-id="524926266885951488" data-theme="light" data-link-color="#1e73be" data-chrome="noscrollbar" data-tweet-limit="5" width="250" height="400" lang="EN">My Tweets</a></aside><aside id="archives-2" class="widget widget_archive"><h1 class="widget-title">Archives</h1>		<ul>
+	<li><a href='http://www.tricedesigns.com/2015/07/'>July 2015</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2015/06/'>June 2015</a>&nbsp;(3)</li>
+	<li><a href='http://www.tricedesigns.com/2015/05/'>May 2015</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2015/04/'>April 2015</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2015/03/'>March 2015</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2015/02/'>February 2015</a>&nbsp;(2)</li>
+	<li><a href='http://www.tricedesigns.com/2015/01/'>January 2015</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2014/12/'>December 2014</a>&nbsp;(5)</li>
+	<li><a href='http://www.tricedesigns.com/2014/11/'>November 2014</a>&nbsp;(3)</li>
+	<li><a href='http://www.tricedesigns.com/2014/10/'>October 2014</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2014/06/'>June 2014</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2014/04/'>April 2014</a>&nbsp;(3)</li>
+	<li><a href='http://www.tricedesigns.com/2014/03/'>March 2014</a>&nbsp;(2)</li>
+	<li><a href='http://www.tricedesigns.com/2014/02/'>February 2014</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2014/01/'>January 2014</a>&nbsp;(9)</li>
+	<li><a href='http://www.tricedesigns.com/2013/12/'>December 2013</a>&nbsp;(5)</li>
+	<li><a href='http://www.tricedesigns.com/2013/11/'>November 2013</a>&nbsp;(5)</li>
+	<li><a href='http://www.tricedesigns.com/2013/10/'>October 2013</a>&nbsp;(11)</li>
+	<li><a href='http://www.tricedesigns.com/2013/09/'>September 2013</a>&nbsp;(8)</li>
+	<li><a href='http://www.tricedesigns.com/2013/08/'>August 2013</a>&nbsp;(7)</li>
+	<li><a href='http://www.tricedesigns.com/2013/07/'>July 2013</a>&nbsp;(2)</li>
+	<li><a href='http://www.tricedesigns.com/2013/06/'>June 2013</a>&nbsp;(6)</li>
+	<li><a href='http://www.tricedesigns.com/2013/05/'>May 2013</a>&nbsp;(8)</li>
+	<li><a href='http://www.tricedesigns.com/2013/04/'>April 2013</a>&nbsp;(3)</li>
+	<li><a href='http://www.tricedesigns.com/2013/03/'>March 2013</a>&nbsp;(7)</li>
+	<li><a href='http://www.tricedesigns.com/2013/02/'>February 2013</a>&nbsp;(6)</li>
+	<li><a href='http://www.tricedesigns.com/2013/01/'>January 2013</a>&nbsp;(2)</li>
+	<li><a href='http://www.tricedesigns.com/2012/12/'>December 2012</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2012/11/'>November 2012</a>&nbsp;(1)</li>
+	<li><a href='http://www.tricedesigns.com/2012/10/'>October 2012</a>&nbsp;(5)</li>
+	<li><a href='http://www.tricedesigns.com/2012/08/'>August 2012</a>&nbsp;(8)</li>
+	<li><a href='http://www.tricedesigns.com/2012/07/'>July 2012</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2012/06/'>June 2012</a>&nbsp;(5)</li>
+	<li><a href='http://www.tricedesigns.com/2012/05/'>May 2012</a>&nbsp;(8)</li>
+	<li><a href='http://www.tricedesigns.com/2012/04/'>April 2012</a>&nbsp;(3)</li>
+	<li><a href='http://www.tricedesigns.com/2012/03/'>March 2012</a>&nbsp;(8)</li>
+	<li><a href='http://www.tricedesigns.com/2012/02/'>February 2012</a>&nbsp;(10)</li>
+	<li><a href='http://www.tricedesigns.com/2012/01/'>January 2012</a>&nbsp;(9)</li>
+	<li><a href='http://www.tricedesigns.com/2011/12/'>December 2011</a>&nbsp;(4)</li>
+	<li><a href='http://www.tricedesigns.com/2011/11/'>November 2011</a>&nbsp;(9)</li>
+	<li><a href='http://www.tricedesigns.com/2011/10/'>October 2011</a>&nbsp;(9)</li>
+	<li><a href='http://www.tricedesigns.com/2011/09/'>September 2011</a>&nbsp;(15)</li>
+	<li><a href='http://www.tricedesigns.com/2011/08/'>August 2011</a>&nbsp;(10)</li>
+	<li><a href='http://www.tricedesigns.com/2011/07/'>July 2011</a>&nbsp;(4)</li>
+		</ul>
+</aside></div><!-- #content-sidebar -->
+<div id="secondary">
+		<h2 class="site-description">Explorations and Evangelism in Technology</h2>
+	
+	
+		<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://www.tricedesigns.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form></aside><aside id="glt_widget-4" class="widget widget_glt_widget"><div id="flags" class="size18"><ul id="sortable" class="ui-sortable" style="float:left"><li id='Arabic'><a title='Arabic' class='notranslate flag ar'></a></li><li id='Chinese(Simplified)'><a title='Chinese(Simplified)' class='notranslate flag zh-CN'></a></li><li id='Dutch'><a title='Dutch' class='notranslate flag nl'></a></li><li id='English'><a title='English' class='notranslate flag en'></a></li><li id='French'><a title='French' class='notranslate flag fr'></a></li><li id='Hebrew'><a title='Hebrew' class='notranslate flag iw'></a></li><li id='Hindi'><a title='Hindi' class='notranslate flag hi'></a></li><li id='Italian'><a title='Italian' class='notranslate flag it'></a></li><li id='Japanese'><a title='Japanese' class='notranslate flag ja'></a></li><li id='Korean'><a title='Korean' class='notranslate flag ko'></a></li><li id='Norwegian'><a title='Norwegian' class='notranslate flag no'></a></li><li id='Persian'><a title='Persian' class='notranslate flag fa'></a></li><li id='Polish'><a title='Polish' class='notranslate flag pl'></a></li><li id='Russian'><a title='Russian' class='notranslate flag ru'></a></li><li id='Spanish'><a title='Spanish' class='notranslate flag es'></a></li><li id='Turkish'><a title='Turkish' class='notranslate flag tr'></a></li></ul></div><div id="google_language_translator"></div></aside><aside id="text-3" class="widget widget_text">			<div class="textwidget"><br/>
+<div id="disclaimer">
+<img src="http://www.tricedesigns.com/wp-content/uploads/2014/10/IBM.png" /><br/> <br/> <a href="http://www.tricedesigns.com/about/">Andrew</a> is a Developer Advocate for <a href="http://www.ibm.com" target="_blank">IBM</a>.  <i>Disclaimer: This blog contains my personal thoughts and not those of my employer.</i></div>
+<br/>
+
+</div>
+		</aside>		<aside id="recent-posts-3" class="widget widget_recent_entries">		<h1 class="widget-title">Recent Posts</h1>		<ul>
+					<li>
+				<a href="http://www.tricedesigns.com/2015/07/13/voice-driven-native-mobile-apps-with-ibm-watson/">Voice-Driven Native Mobile Apps with IBM Watson &#038; IBM MobileFirst</a>
+						</li>
+					<li>
+				<a href="http://www.tricedesigns.com/2015/06/12/wwdc-recap-for-mobile-devs/">Apple WWDC Recap for Mobile Devs</a>
+						</li>
+					<li>
+				<a href="http://www.tricedesigns.com/2015/06/03/serving-data-to-the-apple-watch-with-ibm-mobilefirst/">Serving Data to the Apple Watch with IBM MobileFirst</a>
+						</li>
+					<li>
+				<a href="http://www.tricedesigns.com/2015/06/01/using-code-blocks-instead-of-delegates-with-ibm-mobilefirst-platform-native-ios-apps/">Using Code Blocks Instead of Delegates with IBM MobileFirst Platform in Native iOS Apps</a>
+						</li>
+					<li>
+				<a href="http://www.tricedesigns.com/2015/05/20/say-what-live-video-chat-between-ios-webrtc-with-ibm-watson-cognitive-computing-in-real-time/">Say What? Live video chat between iOS &#038; WebRTC with Twilio &#038; IBM Watson Cognitive Computing in Real Time</a>
+						</li>
+				</ul>
+		</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud"><h1 class="widget-title">Tag Cloud</h1><div class="tagcloud"><a href='http://www.tricedesigns.com/tag/actionscript-2/' class='tag-link-47' title='3 topics' style='font-size: 8pt;'>actionscript</a>
+<a href='http://www.tricedesigns.com/tag/adobe/' class='tag-link-6' title='97 topics' style='font-size: 20.973333333333pt;'>adobe</a>
+<a href='http://www.tricedesigns.com/tag/aerial-2/' class='tag-link-144' title='6 topics' style='font-size: 10.333333333333pt;'>aerial</a>
+<a href='http://www.tricedesigns.com/tag/after-effects/' class='tag-link-145' title='6 topics' style='font-size: 10.333333333333pt;'>after effects</a>
+<a href='http://www.tricedesigns.com/tag/air/' class='tag-link-15' title='31 topics' style='font-size: 16.493333333333pt;'>air</a>
+<a href='http://www.tricedesigns.com/tag/android-2/' class='tag-link-17' title='45 topics' style='font-size: 17.893333333333pt;'>android</a>
+<a href='http://www.tricedesigns.com/tag/apple/' class='tag-link-203' title='4 topics' style='font-size: 8.9333333333333pt;'>Apple</a>
+<a href='http://www.tricedesigns.com/tag/audio/' class='tag-link-101' title='4 topics' style='font-size: 8.9333333333333pt;'>audio</a>
+<a href='http://www.tricedesigns.com/tag/blackberry/' class='tag-link-64' title='6 topics' style='font-size: 10.333333333333pt;'>blackberry</a>
+<a href='http://www.tricedesigns.com/tag/bluemix/' class='tag-link-179' title='7 topics' style='font-size: 10.8pt;'>Bluemix</a>
+<a href='http://www.tricedesigns.com/tag/cloud/' class='tag-link-176' title='7 topics' style='font-size: 10.8pt;'>cloud</a>
+<a href='http://www.tricedesigns.com/tag/cordova-2/' class='tag-link-110' title='31 topics' style='font-size: 16.493333333333pt;'>cordova</a>
+<a href='http://www.tricedesigns.com/tag/creative-cloud-2/' class='tag-link-127' title='47 topics' style='font-size: 18.08pt;'>creative cloud</a>
+<a href='http://www.tricedesigns.com/tag/data-vizualization/' class='tag-link-114' title='4 topics' style='font-size: 8.9333333333333pt;'>data vizualization</a>
+<a href='http://www.tricedesigns.com/tag/desktop-2/' class='tag-link-22' title='3 topics' style='font-size: 8pt;'>desktop</a>
+<a href='http://www.tricedesigns.com/tag/development-2/' class='tag-link-72' title='90 topics' style='font-size: 20.693333333333pt;'>development</a>
+<a href='http://www.tricedesigns.com/tag/devices/' class='tag-link-19' title='13 topics' style='font-size: 13.133333333333pt;'>devices</a>
+<a href='http://www.tricedesigns.com/tag/edge-2/' class='tag-link-26' title='10 topics' style='font-size: 12.106666666667pt;'>Edge</a>
+<a href='http://www.tricedesigns.com/tag/flash/' class='tag-link-49' title='8 topics' style='font-size: 11.266666666667pt;'>flash</a>
+<a href='http://www.tricedesigns.com/tag/flex-2/' class='tag-link-14' title='26 topics' style='font-size: 15.746666666667pt;'>flex</a>
+<a href='http://www.tricedesigns.com/tag/gopro/' class='tag-link-149' title='4 topics' style='font-size: 8.9333333333333pt;'>GoPro</a>
+<a href='http://www.tricedesigns.com/tag/html5/' class='tag-link-23' title='88 topics' style='font-size: 20.6pt;'>HTML5</a>
+<a href='http://www.tricedesigns.com/tag/hybrid-2/' class='tag-link-191' title='4 topics' style='font-size: 8.9333333333333pt;'>hybrid</a>
+<a href='http://www.tricedesigns.com/tag/ibm/' class='tag-link-175' title='23 topics' style='font-size: 15.28pt;'>IBM</a>
+<a href='http://www.tricedesigns.com/tag/ios-2/' class='tag-link-18' title='78 topics' style='font-size: 20.133333333333pt;'>ios</a>
+<a href='http://www.tricedesigns.com/tag/javascript/' class='tag-link-71' title='82 topics' style='font-size: 20.32pt;'>JavaScript</a>
+<a href='http://www.tricedesigns.com/tag/lightroom/' class='tag-link-147' title='5 topics' style='font-size: 9.68pt;'>lightroom</a>
+<a href='http://www.tricedesigns.com/tag/max/' class='tag-link-55' title='4 topics' style='font-size: 8.9333333333333pt;'>MAX</a>
+<a href='http://www.tricedesigns.com/tag/mobile-2/' class='tag-link-16' title='126 topics' style='font-size: 22pt;'>mobile</a>
+<a href='http://www.tricedesigns.com/tag/mobilefirst/' class='tag-link-177' title='19 topics' style='font-size: 14.533333333333pt;'>MobileFirst</a>
+<a href='http://www.tricedesigns.com/tag/multidevice/' class='tag-link-38' title='16 topics' style='font-size: 13.88pt;'>multidevice</a>
+<a href='http://www.tricedesigns.com/tag/open-source/' class='tag-link-89' title='55 topics' style='font-size: 18.733333333333pt;'>open source</a>
+<a href='http://www.tricedesigns.com/tag/phonegap/' class='tag-link-67' title='78 topics' style='font-size: 20.133333333333pt;'>phonegap</a>
+<a href='http://www.tricedesigns.com/tag/photography/' class='tag-link-152' title='18 topics' style='font-size: 14.346666666667pt;'>Photography</a>
+<a href='http://www.tricedesigns.com/tag/photoshop/' class='tag-link-138' title='24 topics' style='font-size: 15.466666666667pt;'>PhotoShop</a>
+<a href='http://www.tricedesigns.com/tag/pltaform/' class='tag-link-45' title='7 topics' style='font-size: 10.8pt;'>pltaform</a>
+<a href='http://www.tricedesigns.com/tag/premiere/' class='tag-link-142' title='9 topics' style='font-size: 11.733333333333pt;'>premiere</a>
+<a href='http://www.tricedesigns.com/tag/presentations/' class='tag-link-42' title='4 topics' style='font-size: 8.9333333333333pt;'>presentations</a>
+<a href='http://www.tricedesigns.com/tag/runtime/' class='tag-link-32' title='3 topics' style='font-size: 8pt;'>runtime</a>
+<a href='http://www.tricedesigns.com/tag/stage3d/' class='tag-link-30' title='7 topics' style='font-size: 10.8pt;'>stage3d</a>
+<a href='http://www.tricedesigns.com/tag/video/' class='tag-link-119' title='32 topics' style='font-size: 16.586666666667pt;'>video</a>
+<a href='http://www.tricedesigns.com/tag/watson/' class='tag-link-187' title='4 topics' style='font-size: 8.9333333333333pt;'>Watson</a>
+<a href='http://www.tricedesigns.com/tag/web/' class='tag-link-125' title='4 topics' style='font-size: 8.9333333333333pt;'>web</a>
+<a href='http://www.tricedesigns.com/tag/webinar/' class='tag-link-54' title='3 topics' style='font-size: 8pt;'>webinar</a>
+<a href='http://www.tricedesigns.com/tag/worklight/' class='tag-link-178' title='13 topics' style='font-size: 13.133333333333pt;'>Worklight</a></div>
+</aside>	</div><!-- #primary-sidebar -->
+	</div><!-- #secondary -->
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+			<div class="site-info">
+				&copy; 2015 Andrew Trice
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+	        <script type="text/javascript">
+        // <![CDATA[
+        var disqus_shortname = 'tricedesigns';
+        (function () {
+            var nodes = document.getElementsByTagName('span');
+            for (var i = 0, url; i < nodes.length; i++) {
+                if (nodes[i].className.indexOf('dsq-postid') != -1) {
+                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
+                    url = nodes[i].parentNode.href.split('#', 1);
+                    if (url.length == 1) { url = url[0]; }
+                    else { url = url[1]; }
+                    nodes[i].parentNode.href = url + '#disqus_thread';
+                }
+            }
+            var s = document.createElement('script'); 
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        // ]]>
+        </script>
+        
+    <script>
+      jQuery(document).ready(function($) {
+        $("a.nturl").on("click",function() {
+	  default_lang = "en";
+	  lang_prefix = $(this).attr("class").split(" ")[2];
+			  
+	  if (lang_prefix == default_lang) {			   
+	    load_default();
+	  } else {
+	    load_selected_language();
+	  }
+			 
+	  function load_default() {
+	    doGoogleLanguageTranslator(default_lang + "|" + default_lang);
+	  }
+			 
+	  function load_selected_language() {
+	    doGoogleLanguageTranslator(default_lang + "|" + lang_prefix);
+	  }
+        });
+		  
+        $("a.flag").on("click",function() {
+          default_lang = "en";
+	  lang_prefix = $(this).attr("class").split(" ")[2];
+			  
+	  if (lang_prefix == default_lang) {			   
+	    load_default();
+	  } else {
+	    load_selected_language();
+          }
+			 
+	  function load_default() {
+	    doGoogleLanguageTranslator(default_lang + "|" + default_lang);
+	  }
+			 
+	  function load_selected_language() {
+	    doGoogleLanguageTranslator(default_lang + "|" + lang_prefix);
+	  }
+        });
+
+        if ($ ("body > #google_language_translator").length == 0) {
+          $("#glt-footer").html("<div id='google_language_translator'></div>");
+        }
+      });
+    </script>
+
+    <div id='glt-footer'></div><script type='text/javascript'>function GoogleLanguageTranslatorInit() { new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_language_translator');}</script><script type='text/javascript' src='//translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit'></script>	<div style="display:none">
+	</div>
+		<script type="text/javascript">
+			!function(d,s,id){
+				var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+				if(!d.getElementById(id)){
+					js=d.createElement(s);
+					js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+					fjs.parentNode.insertBefore(js,fjs);
+				}
+			}(document,"script","twitter-wjs");
+		</script>
+		
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/www.tricedesigns.com\/2012\/07\/31\/emulating-phonegapcordova-apps-in-the-browser\/":2300}	</script>
+		<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+							<script type="text/javascript">
+			jQuery(document).on('ready', function(){
+				jQuery('body').on('click', 'a.share-pinterest', function(e){
+					e.preventDefault();
+
+					// Load Pinterest Bookmarklet code
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = window.location.protocol + "//assets.pinterest.com/js/pinmarklet.js?r=" + ( Math.random() * 99999999 );
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+
+					// Trigger Stats
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = this + ( this.toString().indexOf( '?' ) ? '&' : '?' ) + 'js_only=1';
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+				});
+			});
+			</script>
+				<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-tumblr' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+		});
+		</script>
+			<div id="sharing_email" style="display: none;">
+		<form action="/2012/07/31/emulating-phonegapcordova-apps-in-the-browser/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+			
+			
+			<img style="float: right; display: none" class="loading" src="http://www.tricedesigns.com/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='http://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201529'></script>
+<script type='text/javascript' src='http://s.gravatar.com/js/gprofiles.js?ver=2015Julaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.1.5'></script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-includes/js/comment-reply.min.js?ver=4.1.5'></script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-content/themes/twentyfourteen/js/functions.js?ver=20140616'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.tricedesigns.com/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=3.4.3'></script>
+<script type='text/javascript' src='http://stats.wp.com/e-201529.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.4.3',blog:'77453966',post:'2300',tz:'-4'} ]);
+	_stq.push([ 'clickTrackerInit', '77453966', '2300' ]);
+</script>
+</body>
+</html>
+<!-- Dynamic page generated in 1.914 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-07-16 08:46:05 -->
+
+<!-- super cache -->

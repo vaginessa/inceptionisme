@@ -1,0 +1,1051 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="maia-cloud">
+  <head>
+    
+    <script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(c){a.readyCallbacks.push(c)};window.devsite.ready=a.ready;a.timing={};window.devsite=a;window.devsite.timing=a.timing;a.timing.timers=[];a.timing.tick=function(c,b,g){for(var d=0;d<a.timing.timers.length;d++)a.timing.timers[d].tick(c,b,g)};window.devsite.timing.tick=a.timing.tick;a.timing.report=function(c){a.setTimeout(function(){for(var b=0;b<a.timing.timers.length;b++)window.jstiming.report(a.timing.timers[b],c)},500)};
+a.timing.init=function(c){a.timing.timers.push(window.jstiming.load);if(c){var b=new window.jstiming.Timer;b.name=c;a.timing.timers.push(b)}document.addEventListener&&window.addEventListener&&(document.addEventListener("DOMContentLoaded",a.timing.handleDomContentLoaded,!1),window.addEventListener("load",a.timing.handleLoad,!1))};a.timing.handleDomContentLoaded=function(){a.timing.tick("ol");document.removeEventListener("DOMContentLoaded",a.timing.handleDomContentLoaded,!1)};
+a.timing.handleLoad=function(){window.removeEventListener("load",a.timing.handleLoad,!1);var c=document.querySelector("#devsite-request-elapsed");c&&(c=parseInt(c.getAttribute("data-request-elapsed"),10))&&(a.timing.tick("_st_start",null,1),a.timing.tick("st","_st_start",1+c));a.timing.tick("prt");a.timing.report()};(function(){function c(b){this.t={};this.tick=function(b,c,d){var e=void 0!=d?d:(new Date).getTime();this.t[b]=[e,c];if(void 0==d)try{window.console.timeStamp("CSI/"+b)}catch(f){}};this.tick("start",null,b)}var b;window.performance&&(b=window.performance.timing);var g=b?new c(b.responseStart):new c;window.jstiming={Timer:c,load:g};if(b){var d=b.navigationStart,f=b.responseStart;0<d&&f>=d&&(window.jstiming.srt=f-d)}if(b){var e=window.jstiming.load;0<d&&f>=d&&(e.tick("_wtsrt",void 0,d),e.tick("wtsrt_",
+"_wtsrt",f),e.tick("tbsd_","wtsrt_"))}try{b=null,window.chrome&&window.chrome.csi&&(b=Math.floor(window.chrome.csi().pageT),e&&0<d&&(e.tick("_tbnd",void 0,window.chrome.csi().startE),e.tick("tbnd_","_tbnd",d))),null==b&&window.gtbExternal&&(b=window.gtbExternal.pageT()),null==b&&window.external&&(b=window.external.pageT,e&&0<d&&(e.tick("_tbnd",void 0,window.external.startE),e.tick("tbnd_","_tbnd",d))),b&&(window.jstiming.pt=b)}catch(h){}})();
+devsite.timing.init('DocPage');</script>
+    
+      <link href="https://cloud.google.com/container-engine/docs/clusters/operations" rel="canonical">
+    
+    <meta charset="utf-8" />
+    
+      
+    
+    <meta name="xsrf_token" content="vHoV1zFn21QPKb3cFz0AcNWoRHyfw5D5WVQ5EQmHHso6MTQzNzU2NDMzMjkxNDIwMA" />
+      <link rel="stylesheet" type="text/css" href="https://cloud.google.com/_static/543c756aae/css/screen-maia.css" />
+      <link href='//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500,500italic,300,300italic' rel='stylesheet' type='text/css'>
+    
+    <link rel="shortcut icon" href="/images/gcp-favicon.ico">
+    <link rel="apple-touch-icon" href="https://cloud.google.com/_static/543c756aae/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//www.google.com/css/maia.experimental.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" href="https://cloud.google.com/_static/543c756aae/css/maia-cloud.css" />
+    
+    
+    
+    
+      
+
+
+
+
+
+<!-- GTM implementation -->
+
+<!-- Start dataLayer -->
+  <script>
+  window['dataLayer'] = window['dataLayer'] || [];
+  dataLayer.push({
+      'country': '',
+      'region': '',
+      
+      'signedIn': 'true',
+      'language': 'de'
+    });
+  </script>
+  
+  <script>
+    window['dataLayer'] = window['dataLayer'] || [];
+    dataLayer.push({
+      'freeTrialEligibleUser': 'false'
+    });
+  </script>
+
+<!-- End dataLayer -->
+
+
+<link rel="stylesheet" type="text/css" href="/css/default-docs.css" />
+
+
+
+
+<link rel="shortcut icon" href="/images/gcp-favicon.ico" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+<link href="https://plus.google.com/+googlecloudplatform/" rel="publisher"/>
+<meta name="google-site-verification" content="8dOEM3Xenm6yaBc83y2WKgqQG0iHI7Ph6Rl_YLIZLQ8" />
+<meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
+
+<!-- GSAP animation frameworks -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//www.gstatic.com/external_hosted/gsap/TweenMax.min.js"></script>
+<script src="//www.gstatic.com/external_hosted/gsap/TimelineMax.min.js"></script>
+<script src="/js/floodlight.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-sanitize.min.js"></script>
+<script src="/js/base.min.js"></script>
+
+
+<!-- Google Customer Surveys Script, site wide, non-reference -->
+<script async="" defer=""
+        src="//survey.g.doubleclick.net/async_survey?site=5tjyemi7pnz7qrqthpyihmordy"></script>
+
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cloud.google.com/_static/543c756aae/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <meta property="og:site_name" content="Google Developers">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cloud.google.com/container-engine/docs/clusters/operations">
+  <meta property="og:locale" content="en">
+
+  <script type="text/javascript">
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'de';
+  </script>
+  
+    <title>Container Cluster Operations - Container Engine &mdash; Google Cloud Platform</title>
+    <meta property="og:title" content="Container Cluster Operations">
+  
+  
+
+  
+  
+  
+
+
+
+    <style>
+    
+    </style>
+  </head>
+  <body class="  two-column docs normal-width">
+
+  <div class="maia-max">
+
+    
+
+    <div id="maia-header">
+        
+        
+
+        
+        
+          
+            <div class="maia-aux">
+              
+
+
+
+
+
+<div class="logo-wrapper">
+  <a href="https://cloud.google.com"><img src="/_static/images/gcp-logo.png" srcset="/_static/images/gcp-logo_2x.png 2x" alt="Google Cloud Platform"> </a>
+</div>
+
+<div class="search-container devsite-search">
+  <form action="https://cloud.google.com/s/results" class="maia-search" id="search-wrapper">
+    <div id="searchbox" class="devsite-searchbox">
+      <input type="text" placeholder="Search this site" class="devsite-search-query" name="q" autocomplete="off">
+    </div>
+    <button id="search-button" class="button button-blue big">
+      <img src="/_static/images/v2/search.png" alt="Search">
+    </button>
+  
+    
+      <input type="hidden" name="p" id="search_project" value="/container-engine" data-project-name="Container Engine" data-project-path="/container-engine" data-query-match=""/>
+    
+    
+
+
+  
+  <input type="hidden" id="suggest-category-label-2" value="Seiten in Container Engine" />
+  
+  <input type="hidden" id="suggest-category-label-3" value="Referenz in Container Engine" />
+
+
+<input type="hidden" id="suggest-category-label-1" value="Produkte" />
+
+<input type="hidden" id="suggest-all-results-label" value="Alle Ergebnisse anzeigen" />
+
+  
+  </form>
+</div>
+
+<div id="social-wrapper" class="social">
+  
+    
+      <span class="signed-in">
+        <div>
+          <a href="https://console.developers.google.com" track-type="navigateTo" track-name="console">My console</a>
+        </div>
+        <img class="avatar" src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=40"/>
+      </span>
+    
+
+  
+</div>
+
+
+<script>
+  if (window.jQuery) {
+    $(document).ready(function() {
+      if (window.devsite && window.devsite.search) {
+        window.devsite.search.init('de', true, null)
+      }
+    });
+  }
+</script>
+
+
+            </div>
+          
+        
+    </div>
+    
+
+    
+    <div class="kd-butterbar">
+      <span>
+        <span class="message"></span>
+        
+        <a href="#" class="kd-butterbar-dismiss">Ausblenden</a>
+      </span>
+    </div>
+    
+    <div  itemscope itemtype="http://schema.org/Article">
+      
+
+      
+      
+      
+        <div id="maia-nav-x" class="maia-nav">
+          <div class="maia-aux">
+          <ul>
+            
+            
+            
+            <li>
+              <a href="/why-google/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Why Google">Why Google</a>
+              
+            </li>
+            
+            <li id="main-nav-product-dropdown" class="dropdown">
+              <a href="/products/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Products">Products</a>
+              
+            </li>
+            
+            <li>
+              <a href="/solutions/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Solutions">Solutions</a>
+              
+            </li>
+            
+            <li>
+              <a href="/launcher/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Launcher">Launcher</a>
+              
+            </li>
+            
+            <li>
+              <a href="/pricing/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Pricing">Pricing</a>
+              
+            </li>
+            
+            <li>
+              <a href="/customers/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Customers">Customers</a>
+              
+            </li>
+            
+            <li>
+              <a href="/docs/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Documentation">Documentation</a>
+              
+            </li>
+            
+            <li>
+              <a href="/support/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Support">Support</a>
+              
+            </li>
+            
+            <li>
+              <a href="/partners/" event="autotrack-data-g" data-g-event="Global Nav" data-g-action="Nav Bar" data-g-label="Partners">Partners</a>
+              
+            </li>
+            
+
+            
+            
+            </ul>
+
+            
+            
+              
+                <div class="cp-cta">
+                  
+
+                  <a class="maia-button maia-button-secondary white-button" id="contact-nav" href="/contact/" track-type="sales" track-name="contact" track-metadata-position="nav">Anfrage beim Vertrieb</a>
+                </div>
+              
+            
+          </div>
+        </div>
+
+        
+        
+          <!-- Products subnav -->
+<div id="maia-nav-x" class="maia-nav products-nav">
+  <div class="maia-aux">
+    <div class="products-nav-dropdown maia-cols">
+
+      <div id="compute-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Compute</span>
+        <div class="dropdown-item-container">
+          <a href="/compute/">
+            <span class="product-name">Compute Engine</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/appengine/">
+            <span class="product-name">App Engine</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/container-engine/">
+            <span class="product-name">Container Engine</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="storage-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Storage</span>
+        <div class="dropdown-item-container">
+          <a href="/storage/">
+            <span class="product-name">Storage</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/bigtable/">
+            <span class="product-name">Bigtable</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/datastore/">
+            <span class="product-name">Datastore</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/sql/">
+            <span class="product-name">SQL</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="networking-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Networking</span>
+        <div class="dropdown-item-container">
+          <a href="/networking/#loadbalancing">
+            <span class="product-name">Load Balancing</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/networking/#interconnect">
+            <span class="product-name">Interconnect</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/dns/">
+            <span class="product-name">DNS</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="big-data-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Big Data</span>
+        <div class="dropdown-item-container">
+          <a href="/bigquery/">
+            <span class="product-name">BigQuery</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/dataflow/">
+            <span class="product-name">Dataflow</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/pubsub/">
+            <span class="product-name">Pub/Sub</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="services-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Services</span>
+        <div class="dropdown-item-container">
+          <a href="/translate/">
+            <span class="product-name">Translate API</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/prediction/">
+            <span class="product-name">Prediction API</span>
+          </a>
+        </div>
+        <div class="dropdown-item-container">
+          <a href="/endpoints/">
+            <span class="product-name">Endpoints</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="management-dropdown" class="products-column maia-col-2">
+        <span class="product-list-title">Management</span>
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/deployment-manager/">Deployment Manager</a></span>
+        </div>
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/logging/">Logging</a></span>
+        </div>
+
+        <div class="dropdown-item-container">
+          <span class="product-name"><a href="/monitoring/">Monitoring</a></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+        
+
+      
+      
+      
+
+      
+
+<div id="gc-appnav" class="maia-aux">
+  <ol class="breadcrumbs">
+    
+    <li><a href="/products/">Produkte</a></li>
+    
+    <li><a href="/docs/">Documentation</a></li>
+    
+    <li><a href="/container-engine">Container Engine</a></li>
+    
+  </ol>
+</div>
+
+
+
+      
+        
+        
+          <div class="maia-aux" id="gc-appbar">
+
+          
+          
+
+  <a href="/container-engine" class="gc-appbar-title">
+    
+    Container Engine
+  </a>
+
+
+
+<div class="plusone-container" style="height:27px">
+  <div class="g-plusone"
+    data-href="https://cloud.google.com/container-engine/docs/clusters/operations"
+    data-size="medium"
+    data-source="google:developers"></div>
+</div>
+
+
+
+
+
+
+
+<div class="devsite-rating-container ">
+  <div class="devsite-rating-stars">
+    <div data-rating-val="1" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 1"></div>
+    <div data-rating-val="2" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 2"></div>
+    <div data-rating-val="3" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 3"></div>
+    <div data-rating-val="4" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 4"></div>
+    <div data-rating-val="5" src="/_static/543c756aae/images/ic_star_outline_24px.svg"
+         class="devsite-rating-star gc-analytics-event" data-category="Site-Wide Custom Events"
+         data-label="Star Rating 5"></div>
+  </div>
+  
+  <div class="devsite-rating-description">Bewerten Sie diese Seite.</div>
+  <div class="devsite-rating-internal"><span class="devsite-rating-stats"></span></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  devsite.ratings.init(
+    document.querySelectorAll('#devsite-feedback-project'),
+        false
+        
+  );
+});
+</script>
+
+
+
+  <div id="devsite-feedback-box">
+    <div class="devsite-feedback-dropcloth" style="display:none"></div>
+    <div class="devsite-feedback-step1" style="display:none">
+      
+      <p>Feedback geben zu...
+        <span class="devsite-feedback-cancel gc-analytics-event"
+              data-category="Site-Wide Custom Events" data-label="Cancel Feedback Button"></span>
+      </p>
+      <div class="devsite-feedback-table">
+        <div class="devsite-feedback-row">
+          <div class="devsite-feedback-cell">
+            <a data-type="documentation"  class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Docs Feedback Image">
+              <img src="/_static/543c756aae/images/feedback/doc_feedback_56px.svg">
+            </a>
+            <br>
+            
+            Diese Seite
+            <br>
+            <a data-type="documentation"  class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Docs Feedback Text">
+              
+              Feedback zur Dokumentation</a>
+          </div>
+          <div class="devsite-feedback-cell">
+            <a data-type="product" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Product Feedback Image"
+               >
+            
+              <img src="/_static/543c756aae/images/feedback/google_56px.svg">
+            
+            </a>
+            <br>
+            Container Engine
+            <br>
+            <a data-type="product" class="gc-analytics-event"
+               data-category="Site-Wide Custom Events" data-label="Product Feedback Text"
+               >
+              
+              Feedback zum Produkt</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="google-feedback-container ">
+    <a id='devsite-feedback-project' class="google-feedback gc-analytics-event"
+       data-category="Site-Wide Custom Events" data-label="Send Feedback Button">
+      
+      Feedback geben</a>
+  </div>
+
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+    new devsite.feedback.Widget({
+        'product_id': '101662',
+        'bucket': 'documentation',
+        'context': '',
+        'version': 'devsite-20150721-r00-rc01.default'
+      },
+      document.querySelectorAll('#devsite-feedback-project'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-dropcloth'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-step1'),
+      document.querySelector('#devsite-feedback-box .devsite-feedback-cancel'),
+      document.querySelectorAll('#devsite-feedback-box .devsite-feedback-cell a:not([href])')
+    );
+  });
+  </script>
+
+
+
+
+ 
+
+          
+          </div>
+
+        
+      
+
+      
+        
+          <div id="maia-main" class="main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar" class="wide">
+        
+
+  <nav class="devsite-section-nav devsite-nav gc-toc"><ul class="devsite-nav-expandable"><li class="devsite-nav-item"><a href="/container-engine/docs" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">What is Google Container Engine?</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/before-you-begin" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Before You Begin</a></li><li class="devsite-nav-item"><a href="/container-engine/release-notes" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Release Notes</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Concepts</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/clusters/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Container Clusters</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/replicationcontrollers/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Replication Controllers</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/services/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Services</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Walkthroughs</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/hello-node" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Deploy Your Node.js Code</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/hello-wordpress" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Running Wordpress with a Single Pod</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/guestbook" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Create a Guestbook with Redis and PHP</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/tutorials/persistent-disk" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Using Persistent Storage with WordPress and MySQL</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Common Tasks</a></li><li class="devsite-nav-item devsite-nav-active"><a href="/container-engine/docs/clusters/operations" class="devsite-nav-title gc-analytics-event devsite-nav-active" data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Container Clusters</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/single-container" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Single-Container Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/pods/multi-container" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Multi-Container Pods</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/replicationcontrollers/operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Replication Controllers</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/services/operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating Services</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/load-balancer" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Creating an External Load Balancer</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/resize-replication-controller" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Resizing a Replication Controller</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/rolling-updates" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Rolling Updates</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/clusters/upgrade" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Upgrading Container Clusters</a></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">kubectl Reference</a></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a href="/container-engine/docs/kubectl/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">kubectl</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/api-versions" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">api-versions</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/cluster-info" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">cluster-info</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-cluster" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-cluster</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-context" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-context</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set-credentials" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set-credentials</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-set" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-set</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-unset" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-unset</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-use-context" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-use-context</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/config-view" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">config-view</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/create" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">create</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/delete" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">delete</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/describe" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">describe</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/exec" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">exec</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/expose" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">expose</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/label" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">label</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/logs" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">logs</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/namespace" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">namespace</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/port-forward" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">port-forward</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/proxy" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">proxy</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/rolling-update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">rolling-update</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/run" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">run</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/scale" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">scale</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/stop" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">stop</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">update</a></li><li class="devsite-nav-item"><a href="/container-engine/docs/kubectl/version" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">version</a></li></ul></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Cluster Management REST API Reference</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a class="devsite-nav-title devsite-nav-title-no-path ">projects.zones.clusters</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/create" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">create</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/delete" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">delete</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/list" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">list</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.clusters/update" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">update</a></li></ul></li><li class="devsite-nav-item devsite-nav-item-section-expandable"><a class="devsite-nav-title devsite-nav-title-no-path ">projects.zones.operations</a><a class="devsite-nav-toggle devsite-nav-toggle-collapsed"></a><ul class="devsite-nav-section devsite-nav-section-collapsed"><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Overview</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations/get" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">get</a></li><li class="devsite-nav-item"><a href="/container-engine/reference/rest/v1/projects.zones.operations/list" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">list</a></li></ul></li><li class="devsite-nav-item"><hr class="devsite-nav-break"></li><li class="devsite-nav-item devsite-nav-item-heading"><a class="devsite-nav-title devsite-nav-title-no-path ">Legal</a></li><li class="devsite-nav-item"><a href="/terms/aup" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Acceptable Use Policy</a></li><li class="devsite-nav-item"><a href="/cloud/terms/" class="devsite-nav-title gc-analytics-event " data-category="Site-Wide Custom Events" data-label="Left nav" data-action="click">Terms of Service</a></li></ul></nav>
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           class="wide-sidebar"
+           >
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title" >Container Cluster Operations</h1>
+  
+  <div itemprop="articleBody">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><link rel="stylesheet" type="text/css"
+  href="/container-engine/container-engine.css"></p>
+
+<nav class="inline-toc"><ol class="toc"><li><a href="#before_you_begin">Before you begin</a></li><li><a href="#creating_a_container_cluster">Creating a container cluster</a></li><li><a href="#viewing_a_container_cluster">Viewing a container cluster</a></li><li><a href="#deleting_a_container_cluster">Deleting a container cluster</a></li><li><a href="#passing_cluster_credentials_to_kubectl">Passing cluster credentials to kubectl</a></li></ol></nav>
+<h2 id="before_you_begin">Before you begin</h2>
+<p><a href="/container-engine/docs/before-you-begin">Follow the directions</a> to:</p>
+<ul>
+<li>
+<p>Enable the API.</p>
+</li>
+<li>
+<p>Install the <code>gcloud</code> and <code>kubectl</code> command line interfaces.</p>
+</li>
+</ul>
+<h2 id="creating_a_container_cluster">Creating a container cluster</h2>
+<p>Container clusters can be created using the <code>gcloud</code> command line
+interface, or through the Developers Console.</p>
+<p>A container cluster consists of the specified number and type of Google Compute
+Engine instances. Container Engine takes care of managing the Kubernetes API.</p>
+<p>The cluster is created in the project's <code>default</code> network.</p>
+<p>One firewall is added for the cluster. After cluster creation, the cluster
+creates routes for each node to allow the containers on that node to
+communicate with all other instances in the cluster.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3> Developers Console </h3><p>You can create and delete container clusters in the Google Developers Console.</p><ol><li>Visit the Developers Console at
+ <a href="https://console.developers.google.com/">https://console.developers.google.com/</a>.</li><li>Select your Container Engine project. If you haven't activated the
+  Container Engine API, read and follow the directions in
+  <a href="/container-engine/docs/before-you-begin">Before You Begin</a>.</li><li>In the left nav, select <strong>Compute</strong> then <strong>Container Engine</strong>.</li><li><p>Click <strong>New container cluster</strong>. The following fields are
+  required:</p><ul><li><strong>Name</strong>: The name of this container cluster. It must be unique
+    within the project and the zone.</li><li><strong>Zone</strong>: The Google Compute Engine
+    <a href="/compute/docs/zones#available">zone</a> in which to create the
+    container cluster.</li><li><strong>Cluster size</strong>: The number of instances to include in this
+    container cluster.
+    You must have enough <a href="/compute/docs/resource-quotas">quota</a> for the
+    number of nodes plus one (to include the master) as well as
+    sufficient route and firewall quota.</li><li><strong>Machine type</strong>: The Compute Engine
+    <a href="/compute/docs/machine-types">machine type</a> to use for the
+    instances. Each machine type is billed differently. For pricing
+    information, review the
+    <a href="/compute/docs/pricing#machinetypes">price sheet</a>.</li></ul></li><li><p>Click <strong>Create</strong> to create the container cluster.</p></li></ol></section><section><h3>Gcloud command line interface</h3><p>Container clusters are created using the <code>container clusters</code> sub-command
+of <code>gcloud beta</code>.</p><pre class="prettyprint notranslate" translate="no"><code>$ gcloud beta container clusters create NAME --zone ZONE
+</code></pre><p>Optional flags:</p><ul><li><code>--machine-type</code>: The Google Compute Engine
+  <a href="/compute/docs/machine-types">machine type</a> (e.g. <code>n1-standard-1</code>) to use
+  for instances in this container cluster. If unspecified, the default
+  machine type is <code>n1-standard-1</code>.</li><li><code>--num-nodes</code>: Specifies the number of nodes to create in the container
+  cluster. Default is 3. Your Developers Console project must have
+  enough <a href="/compute/docs/resource-quotas">quota</a> for the number
+  of nodes plus one (to include the master) as well as sufficient route and
+  firewall quota.</li><li><code>--password</code>: The password to use for authentication to the master. The
+  service will create a strong password if this flag is not specified. If
+  specifying your own password, make sure to create a strong one, as the
+  master endpoint is open to the public Internet.</li><li><code>--username</code>: The username to use for authentication to the master.
+  Default is <code>admin</code>.</li></ul><p>A successful container cluster create request returns the cluster resource:</p><pre class="prettyprint notranslate" translate="no"><code>Creating cluster doc-example...done.
+Created [.../projects/container-engine-docs/zones/us-central1-a/clusters/doc-example].
+kubeconfig entry generated for doc-example. To switch context to the cluster, run
+
+$ kubectl config use-context gke_container-engine-docs_us-central1-a_doc-example
+
+NAME         ZONE           CLUSTER_API_VERSION  MASTER_IP  MACHINE_TYPE   STATUS
+doc-example  us-central1-a  0.19.1               x.x.x.x    n1-standard-1  running
+</code></pre><p>Tip: The note about <code>kubectl config use-context</code> in 
+the create response gives directions for switching between clusters when
+using <code>kubectl</code>. By creating the cluster, you are automatically setting
+the context to that cluster, so the command isn't required at this point.</p></section></div><h2 id="viewing_a_container_cluster">Viewing a container cluster</h2>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3> Developers Console </h3><p>To view your container clusters in the Developers Console:</p><ol><li>Visit the <a href="https://console.developers.google.com/">Developers Console</a>.</li><li>Select the appropriate project.</li><li>In the left navigation menu, select <strong>Compute</strong> and then
+   <strong>Container Engine</strong>.</li></ol><p>Your container clusters are listed. Click a cluster name for more
+information about that cluster.</p></section><section><h3>Gcloud command line interface</h3><p><strong>To view a particular container cluster</strong> with <code>gcloud beta</code>, use the
+<code>clusters describe</code> sub-command:</p><pre class="prettyprint notranslate" translate="no"><code>$ gcloud beta container clusters describe NAME --zone ZONE
+</code></pre><p><strong>To list the project's container clusters within a specific zone</strong> with
+<code>gcloud beta</code>, use the <code>clusters list</code> sub-command:</p><pre class="prettyprint notranslate" translate="no"><code>$ gcloud beta container clusters list --zone ZONE
+</code></pre></section></div><h2 id="deleting_a_container_cluster">Deleting a container cluster</h2>
+<p>Deleting a container cluster deletes all of the node instances, the master instance,
+any pods that are running on those instances, and any firewalls and
+routes created by the Container Engine service at the time of container cluster
+creation.</p>
+<div class="ds-selector-tabs" data-ds-scope="code-sample"><section><h3> Developers Console </h3><p>To delete a container cluster using the Developers Console:</p><ol><li>Visit the <a href="https://console.developers.google.com/">Developers Console</a>.</li><li>Select the appropriate project.</li><li>In the left navigation menu, select <strong>Compute</strong> and then
+   <strong>Container Engine</strong>. Your clusters are listed.</li><li>Select the checkbox next to the cluster to be deleted.</li><li>Click <strong>Delete</strong>. At the confirmation prompt, click <strong>Delete</strong> again.</li></ol></section><section><h3>Gcloud command line interface</h3><p>To delete a container cluster with <code>gcloud beta</code>, use the
+<code>clusters delete</code> sub-command:</p><pre class="prettyprint notranslate" translate="no"><code>$ gcloud beta container clusters delete NAME --zone ZONE
+</code></pre></section></div><h2 id="passing_cluster_credentials_to_kubectl">Passing cluster credentials to kubectl</h2>
+<p>Once your cluster has been created, you'll use the <code>kubectl</code> command to
+create and manage resources on the cluster.</p>
+<p>If your cluster was created through the Developers Console, or
+with <code>gcloud</code> from a different machine, you'll need to run an additional command
+to make your credentials available to <code>kubectl</code>. <strong>Your default zone and cluster
+must be already set or should be passed as flags to the command</strong>.</p>
+<pre class="prettyprint notranslate" translate="no"><code>$ gcloud beta container get-credentials
+    [--zone ZONE] [--cluster CLUSTER_NAME]
+</code></pre>
+<p>You only need to run this once per cluster per machine; for example, if you
+created your cluster from your laptop, you'll need to run <code>get-credentials</code> on
+your desktop before you're able to access the cluster from that machine.</p>
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+<div id="gc-content-license">
+
+    
+      <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="/site-policies">Site Policies</a>.</p>
+    
+    
+    
+
+</div>
+
+
+
+<div itemprop="datePublished" content="2015-07-16T21:10:45.986410" id="gc-content-last-updated">Zuletzt aktualisiert am Juli 16, 2015</div>
+
+</div>
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+      
+
+      
+
+  
+
+  
+      
+      <div id="maia-signature"></div>
+      <div id="maia-footer">
+
+            
+              
+<div id="maia-footer-local">
+  <div class="maia-aux">
+    <nav class="menu-nav-wrapper">
+      <ul class="menu-nav">
+        <li class="nav-cat products">
+        <input type="checkbox" id="footer-nav-products">
+        <label for="footer-nav-products"><h3>Products</h3></label>
+        <ul>
+        <li><a href="/appengine/" class="tooltip" track-type="productsDoc" track-name="appengine" track-metadata-position="footer">App Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run your Python, Java, PHP and Go applications on a fully-managed Platform-as-a-Service (PaaS)
+        </span></a></li>
+
+        <li><a href="/compute/" class="tooltip" track-type="productsDoc" track-name="compute" track-metadata-position="footer">Compute Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run large-scale workloads on virtual machines hosted on Google's infrastructure
+        </span></a></li>
+
+        <li><a href="/container-engine/" class="tooltip" track-type="productsDoc" track-name="containerEngine" track-metadata-position="footer">Container Engine
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run Docker containers on Google Cloud Platform, powered by Kubernetes
+        </span></a></li>
+
+        <li><a href="/bigquery/" class="tooltip" track-type="productsDoc" track-name="bigQuery" track-metadata-position="footer">BigQuery
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Run fast, SQL-like queries against multi-terabyte datasets in seconds
+        </span> </a></li>
+
+        <li><a href="/networking/" class="tooltip" track-type="productsDoc" track-name="networking" track-metadata-position="footer">Networking
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Google's network technology helps provide fast and consistent performance for your apps and services
+        </span>
+        </a></li>
+        <li><a href="/storage/" class="tooltip" track-type="productsDoc" track-name="storage" track-metadata-position="footer">Storage
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Use a durable and highly available object storage service
+        </span>
+        </a></li>
+
+        <li><a href="/sql/" class="tooltip" track-type="productsDoc" track-name="sql" track-metadata-position="footer">SQL
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Store and manage data using a fully-managed, relational MySQL database
+        </span>
+        </a></li>
+
+        <li><a href="/datastore/" class="tooltip" track-type="productsDoc" track-name="datastore" track-metadata-position="footer">Datastore
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+           Use a managed, NoSQL, schemaless database for storing non-relational data
+        </span></a></li>
+
+        <li><a href="/dataflow/" class="tooltip" track-type="productsDoc" track-name="dataflow" track-metadata-position="footer">Dataflow
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          Build, deploy, and run data processing pipelines that scale to solve your key business challenges
+        </span></a></li>
+
+        <li><a href="/products/" track-type="productsDoc" track-name="more" track-metadata-position="footer">More...</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-learn">
+      <label for="footer-nav-learn"><h3>Learn</h3></label>
+      <ul>
+        <li><a href="/appengine/docs/java/gettingstarted/introduction" track-type="learn" track-name="appengine" track-metadata-position="footer">App Engine Tutorial</a></li>
+        <li><a href="/compute/docs/quickstart" track-type="learn" track-name="compute" track-metadata-position="footer">Compute Engine Tutorial</a></li>
+        <li><a href="/bigquery/web-ui-quickstart" track-type="learn" track-name="bigquery" track-metadata-position="footer">BigQuery Tutorial</a></li>
+        <li><a href="/docs/" track-type="learn" track-name="documentation" track-metadata-position="footer">Documentation</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-deploy">
+      <label for="footer-nav-deploy"><h3>Deploy</h3></label>
+      <ul>
+        <li><a href="/launcher/explore?q=lamp" class="tooltip" track-type="deployDoc" track-name="LAMP" track-metadata-position="footer">LAMP
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          The LAMP development stack combines the power of Debian Linux, Apache HTTP Server, MySQL, and PHP
+        </span></a></li>
+        <li><a href="/launcher/explore?q=mongodb" class="tooltip" track-type="deployDoc" track-name="mongoDB" track-metadata-position="footer">MongoDB
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          An open-source document database, and the leading NoSQL database
+        </span></a></li>
+        <li><a href="/launcher/explore?q=hadoop" class="tooltip" track-type="deployDoc" track-name="hadoop" track-metadata-position="footer">Hadoop
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          A framework that allows for the distributed processing of large data sets across clusters of computers
+        </span></a></li>
+        <li><a href="/launcher/explore?q=mean" class="tooltip" track-type="deployDoc" track-name="mean" track-metadata-position="footer">MEAN
+        <span>
+          <div class="tooltip-box-arrow">&#9660;</div>
+          MongoDB, Express Node Framework, AngularJS, and NodeJS
+        </span></a></li>
+        <li><a href="/solutions/" track-type="deployDoc" track-name="more" track-metadata-position="footer">More...</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-resources">
+      <label for="footer-nav-resources"><h3>Resources</h3></label>
+      <ul>
+        <li><a href="/why-google/" track-type="resourcesDoc" track-name="whyGoogle" track-metadata-position="footer">Why Google</a></li>
+        <li><a href="/customers/" track-type="resourcesDoc" track-name="customers" track-metadata-position="footer">Customers</a></li>
+        <li><a href="/partners/" track-type="resourcesDoc" track-name="partners" track-metadata-position="footer">Partners</a></li>
+        <li><a href="/security/" track-type="resourcesDoc" track-name="security" track-metadata-position="footer">Security</a></li>
+        <li><a href="/security/compliance/" track-type="resourcesDoc" track-name="compliance" track-metadata-position="footer">Compliance</a></li>
+        <li><a href="/support/" track-type="resourcesDoc" track-name="support" track-metadata-position="footer">Support</a></li>
+        <li><a href="https://status.cloud.google.com/" track-type="resourcesDoc" track-name="systemStatus" track-metadata-position="footer">System Status</a></li>
+        <li><a href="/training/" track-type="resourcesTraining" track-name="training" track-metadata-position="footer">Training</a></li>
+        <li><a href="/usability" track-type="resourcesUsability" track-name="usability" track-metadata-position="footer">UX Research</a></li>
+      </ul>
+    </li>
+    <li class="nav-cat">
+      <input type="checkbox" id="footer-nav-pricing">
+      <label for="footer-nav-pricing"><h3>Pricing</h3></label>
+      <ul>
+        <li><a href="/pricing/" track-type="pricingDoc" track-name="pricing" track-metadata-position="footer">Pricing</a></li>
+        <li><a href="/products/calculator/" track-type="pricingDoc" track-name="calculator" track-metadata-position="footer">Calculator</a></li>
+        <li><a href="/pricing/philosophy/" track-type="pricingDoc" track-name="philosophy" track-metadata-position="footer">Philosophy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<br class="clear" />
+</div>
+</div>
+
+<script>
+  
+    new lfl.cloud.GlobalProductMenu();
+  
+    new lfl.ui.ScrollNav({});
+    cloud.forms.Tracking.addTracking();
+</script>
+
+              
+            
+
+        <div id="maia-footer-global">
+          
+          <div class="maia-locales">
+            <form action="/i18n/setlang/" method="post">
+            <input type="hidden" name="xsrf_token" value="vHoV1zFn21QPKb3cFz0AcNWoRHyfw5D5WVQ5EQmHHso6MTQzNzU2NDMzMjkxNDIwMA" />
+            <select name="language" onchange="this.form.submit(); return false;">
+              <option value="en">English</option>
+              <option value="ja">日本語</option>
+            </select>
+            </form>
+          </div>
+          
+
+          <div class="maia-aux">
+            <ul>
+              <li><a href="http://www.google.com/">Google</a></li>
+              
+                <li><a href="/terms/">Nutzungsbedingungen</a></li>
+              
+              <li><a href="http://www.google.com/intl/en/privacy/">Datenschutzerklärung</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      
+  
+    
+
+  
+
+    </div>
+
+    <script type="text/javascript" async="" defer="" src="//www.gstatic.com/feedback/api.js"></script>
+
+    
+    <script>
+      (function($) {
+        var cssHref = $('#screen-foot').attr('data-href');
+        $('#screen-foot').attr('href', cssHref);
+        $('#screen-foot').load(function() {
+          
+          devsite.timing.tick('cl');
+        });
+      })(jQuery);
+    </script>
+    
+
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    
+    <script type="text/javascript" src="https://cloud.google.com/_static2/543c756aae/jsi18n/?hl=de"></script>
+    <script src="https://cloud.google.com/_static/543c756aae/js/script_foot_closure__de.js"></script>
+    <script src="https://cloud.google.com/_static/543c756aae/js/script_foot.js"></script>
+    <script>
+      
+      devsite.timing.tick('jl');
+      (function($) {
+        devsite.devsite.Init($, 'cloud',
+            '[]', '',
+            'de', true,
+            '543c756aae', 'lukas.saegesser@scydev.ch',
+            false,
+            {"296e8173cd0024b4839dd7f3d7fa4387": true, "04f8c40014dc472fb1b95e175fb1b9fd": true, "6749dcb526ce9bde6993550c7d928d24": true, "993b1906435224595bd618f6f331ee45": true});
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+    </script>
+
+    
+
+    
+
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if (navigator.userAgent.match(/msie/i)) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+
+    
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CVQBG"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5CVQBG');</script>
+    <!-- End Google Tag Manager -->
+    
+
+    
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+      <img style="display:none;" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+    </noscript>
+
+    
+    <script src="//www.google.com/js/maia.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    
+
+    
+    
+
+    
+
+
+
+<script type="text/javascript" defer>
+
+
+</script>
+
+  </div><!-- END DIV.MAIA-MAX -->
+  </body>
+
+  
+</html>

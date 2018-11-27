@@ -1,0 +1,964 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    <meta content="origin-when-crossorigin" name="referrer" />
+    
+    <title>Default firewall configuration using iptables for a fresh Ubuntu 14.04 server.</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://gist.github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="Default firewall configuration using iptables for a fresh Ubuntu 14.04 server." name="twitter:title" /><meta content="Default firewall configuration using iptables for a fresh Ubuntu 14.04 server." name="twitter:description" /><meta content="https://avatars0.githubusercontent.com/u/668657?v=3&amp;s=400" name="twitter:image:src" />
+      <meta content="Gist" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars0.githubusercontent.com/u/668657?v=3&amp;s=400" property="og:image" /><meta content="Default firewall configuration using iptables for a fresh Ubuntu 14.04 server." property="og:title" /><meta content="https://gist.github.com/sandcastle/d49b211ad56c45a032c9" property="og:url" /><meta content="Default firewall configuration using iptables for a fresh Ubuntu 14.04 server." property="og:description" />
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="web-socket" href="wss://live.github.com/_sockets/MTMwNzE0NjpiMzU3NmY1YmQyYzIzZWU4MmQ0ZjA5MDRkMjRlNWRiNDpiYzlmYzI4ZDc4OTZkYTA2YThjNjY5MmRkNTEzZDA0YTI0N2I3YjNiNjJkY2EyOTdhODAyMWVhZDdhMjRhNjEx--0499bcca384f8f4e3f9ee0fe2485ee3f09390043">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="gist_code" data-pjax-transient>
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+        <meta name="google-analytics" content="UA-3769691-4">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="gist" name="octolytics-app-id" /><meta content="B2262076:10B9:6F5593:56015532" name="octolytics-dimension-request_id" /><meta content="1307146" name="octolytics-actor-id" /><meta content="ScyDev" name="octolytics-actor-login" /><meta content="48c93a11dc79c004b5f21fd0af29cb191f4247745b457c0c872b63349ad5f679" name="octolytics-actor-hash" />
+    
+    <meta content="Rails, view, gists/gists#show" data-pjax-transient="true" name="analytics-event" />
+    <meta class="js-ga-set" name="dimension1" content="Logged In">
+      <meta class="js-ga-set" name="dimension4" content="Current repo nav">
+    <meta name="is-dotcom" content="true">
+        <meta name="hostname" content="gist.github.com">
+    <meta name="user-login" content="ScyDev">
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <!-- </textarea> --><!-- '"` --><meta content="authenticity_token" name="csrf-param" />
+<meta content="o5ILkWEbdI06qW948ZWC24B4xdSslk15394W0ubGqC7iFfe411cGPakZlK/gdOUDLtDKBOJrPvXOZ5mCZvwtCA==" name="csrf-token" />
+    <meta content="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" name="form-nonce" />
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-aef3088517c60128e10c5cce8d392985504018745a58a13691f1a278951852bb.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-0a487d1219bbb95aeab8914ad0ff2cd1b0eedd19661a2d3fe22eb62ceee0354c.css" media="all" rel="stylesheet" />
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="e812add62ef94248e786e6cabe737463">
+
+        <link href="/sandcastle.atom" rel="alternate" title="atom" type="application/atom+xml">
+  <meta content="true" name="octolytics-dimension-public" /><meta content="11820318" name="octolytics-dimension-gist_id" /><meta content="d49b211ad56c45a032c9" name="octolytics-dimension-gist_name" /><meta content="false" name="octolytics-dimension-anonymous" /><meta content="668657" name="octolytics-dimension-owner_id" /><meta content="sandcastle" name="octolytics-dimension-owner_login" /><meta content="false" name="octolytics-dimension-forked" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/gist-7b3d14648bb5a0c55397e9034a5a2c32815f49272e705bfb5409680a19afd131.css" media="all" rel="stylesheet" />
+
+  </head>
+
+
+  <body class="logged_in  env-production linux">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+        <div class="header gist-header header-logged-in" role="banner">
+  <div class="container clearfix">
+
+    <a href="/" aria-label="Gist Homepage" class="header-logo-wordmark" data-hotkey="g d">
+      <span class="mega-octicon octicon-logo-github"></span>
+      <span class="mega-octicon octicon-gist-logo"></span>
+</a>
+    <div class="site-search js-site-search" role="search">
+        <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <input type="text"
+      class="js-site-search-focus chromeless-input js-navigation-enable js-quicksearch-field"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search…"
+      tabindex="1"
+      autocorrect="off"
+      autocomplete="off"
+      autocapitalize="off">
+  </label>
+
+    <div class="gist-quicksearch-results js-quicksearch-results js-navigation-container" data-quicksearch-url="/search/quick"></div>
+</form>
+    </div>
+    <ul class="header-nav left" role="navigation">
+      <li class="header-nav-item">
+        <a href="/discover" class="header-nav-link" data-ga-click="Header, go to all gists, text:all gists">All gists</a>
+      </li>
+
+      <li class="header-nav-item">
+        <a href="https://github.com" class="header-nav-link" data-ga-click="Header, go to GitHub, text:GitHub">GitHub</a>
+      </li>
+    </ul>
+
+      <ul class="header-nav user-nav right" id="user-links">
+        <li class="header-nav-item">
+          <a href="/" aria-label="New Gist" class="header-nav-link tooltipped tooltipped-s" data-ga-click="Header, go to new gist, :icon:plus">
+            <span class="octicon octicon-plus"></span>
+</a>        </li>
+
+        <li class="header-nav-item dropdown js-menu-container">
+          <a class="header-nav-link name tooltipped tooltipped-s js-menu-target" href="#"
+            aria-label="View profile and more"
+            data-ga-click="New header, show menu, icon:avatar">
+            <img alt="@ScyDev" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/1307146?v=3&amp;s=40" width="20" />
+            <span class="dropdown-caret"></span>
+          </a>
+
+          <div class="dropdown-menu-content js-menu-content">
+            <div class="dropdown-menu dropdown-menu-sw">
+              <div class="dropdown-header header-nav-current-user css-truncate">
+                Signed in as <strong class="css-truncate-target">ScyDev</strong>
+              </div>
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="/ScyDev" data-ga-click="New header, go to your gists, text:your gists">
+                Your gists
+              </a>
+
+              <a class="dropdown-item" href="/ScyDev/starred" data-ga-click="New header, go to starred gists, text:starred gists">
+                Starred gists
+              </a>
+
+              <a class="dropdown-item" href="https://help.github.com" data-ga-click="New header, go to help, text:help">
+                Help
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="https://github.com/ScyDev" data-ga-click="Header, go to profile, text:your profile">
+                Your GitHub profile
+              </a>
+
+              <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="https://gist.github.com/auth/github/logout" class="logout-form" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="czgIyPcPvVbZx8OB3KAdvXU00uCOC2x8G1C0CHY5zNxZ8Vy0CAjhhKjuowxcepRgs1zLg9BPSeTLWSgHsAEeNA==" /></div>
+                <button class="dropdown-item dropdown-signout" data-ga-click="New header, sign out, icon:logout">
+                  Sign out
+                </button>
+</form>            </div>
+          </div>
+        </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+      
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+      
+  <div itemscope itemtype="http://schema.org/WebPage">
+    <div id="gist-pjax-container" class="gist-content-wrapper" data-pjax-container>
+        <div class="gisthead pagehead repohead instapaper_ignore readability-menu">
+    <div class="container">
+        
+<h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public css-truncate">
+  <img alt="@sandcastle" class="avatar gist-avatar" height="26" src="https://avatars3.githubusercontent.com/u/668657?v=3&amp;s=52" width="26" />
+  <span class="author"><a href="/sandcastle" class="url fn" itemprop="url" rel="author"><span itemprop="title">sandcastle</span></a></span><!--
+       --><span class="path-divider">/</span><!--
+       --><strong class="gist-header-title css-truncate-target"><a href="/sandcastle/d49b211ad56c45a032c9">iptables.sh</a></strong>
+
+  <span class="page-context-loader">
+    <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+  </span>
+
+  <div class="gist-timestamp">Last active <time datetime="2015-08-29T14:01:31Z" is="time-ago">Aug 29, 2015</time></div>
+</h1>
+
+<ul class="pagehead-actions">
+
+
+
+    <li>
+      
+  <div class="js-toggler-container js-social-container starring-container ">
+
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/sandcastle/d49b211ad56c45a032c9/unstar" class="js-toggler-form starred js-unstar-button" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="iCCNS0IhSK98IBRioPv76gtqAcZnP+vLvoIAPmDf8sWNGZtUdU8+3B6pbpkp9UZWxarAgFoPxsl1Zopy7WmLIg==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Unstar this gist" title="Unstar sandcastle/d49b211ad56c45a032c9"
+        data-ga-click="Repository, click unstar button, action:gists/gists#show; text:Unstar">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="/sandcastle/d49b211ad56c45a032c9/stargazers">
+          3
+        </a>
+</form>
+    <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/sandcastle/d49b211ad56c45a032c9/star" class="js-toggler-form unstarred js-star-button" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="tdCHTQTOxoFj2dDBfb2huIZWGuqcFTmTTMOShGZM1KqZRQwqd9bI6vdegWszQsL3NWkbFZ5dSZcJwFmIVQCkAw==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Star this gist" title="Star sandcastle/d49b211ad56c45a032c9"
+        data-ga-click="Repository, click star button, action:gists/gists#show; text:Star">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="/sandcastle/d49b211ad56c45a032c9/stargazers">
+          3
+        </a>
+</form>  </div>
+
+    </li>
+
+    <li>
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/sandcastle/d49b211ad56c45a032c9/fork" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="FVpHiMOd2C2eUyJ+f5LEdpQPEtYs+hDETJe4SX3srWJ+1IvwjMiSf6C2BXKZebcmI9P4HYU3jCunuNN//3fipQ==" /></div>
+        <button class="btn btn-sm btn-with-count" type="submit">
+          <span class="octicon octicon-repo-forked"></span>
+          Fork
+        </button>
+          <a class="social-count js-social-count" href="/sandcastle/d49b211ad56c45a032c9/forks">5</a>
+</form>    </li>
+
+      <li>
+        <div class="select-menu js-menu-container js-select-menu gist-user-actions">
+
+          <span class="btn btn-sm select-menu-button icon-only js-menu-target" role="button" aria-haspopup="true" aria-label="Report user">
+            <span class="octicon octicon-stop"></span>
+          </span>
+
+          <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+            <div class="select-menu-modal">
+              <div class="select-menu-header">
+                <span class="select-menu-title">User actions</span>
+                <span class="octicon octicon-x js-menu-close"></span>
+              </div>
+              <div class="select-menu-list">
+                <div class="select-menu-item js-navigation-item">
+                  <!-- </textarea> --><!-- '"` --><form action="/sandcastle/d49b211ad56c45a032c9/report" class="inline-form" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" method="post"><div><input class="btn-plain select-menu-item-text js-navigation-open" type="submit" value="Report abuse" /><input name="authenticity_token" type="hidden" value="1K+YDEjcEYJ8dhI+sM5VNp+6fmtAu+8EyYsOWccWONDyBo3klxvD0pG86A0/Za0hS5iVvOl6jWSCetFgqHGmbA==" /></div></form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+</ul>
+
+
+    </div><!-- /.container -->
+  </div><!-- /.repohead -->
+
+<div class="container">
+  <div class="repository-with-sidebar repo-container new-discussion-timeline with-full-navigation ">
+    <div class="repository-sidebar clearfix">
+        <div class="sunken-menu repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     data-pjax="#gist-pjax-container">
+  <ul class="sunken-menu-group">
+    <li class="tooltipped tooltipped-w" aria-label="Code">
+      <a href="/sandcastle/d49b211ad56c45a032c9" aria-label="Code" aria-selected="true" class="js-selected-navigation-item selected sunken-menu-item" data-hotkey="g c" data-pjax="true" data-selected-links="gist_code /sandcastle/d49b211ad56c45a032c9">
+        <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>    </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Revisions">
+        <a href="/sandcastle/d49b211ad56c45a032c9/revisions" aria-label="Revisions" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g r" data-pjax="true" data-selected-links="gist_revisions /sandcastle/d49b211ad56c45a032c9/revisions">
+          <span class="octicon octicon-git-commit"></span> <span class="full-word">Revisions</span>
+          <span class="counter">11</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Stars">
+        <a href="/sandcastle/d49b211ad56c45a032c9/stargazers" aria-label="Stars" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g s" data-pjax="true" data-selected-links="gist_stars /sandcastle/d49b211ad56c45a032c9/stargazers">
+          <span class="octicon octicon-star"></span> <span class="full-word">Stars</span>
+          <span class="counter">3</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Forks">
+        <a href="/sandcastle/d49b211ad56c45a032c9/forks" aria-label="Forks" class="js-selected-navigation-item sunken-menu-item" data-hotkey="g f" data-pjax="true" data-selected-links="gist_forks /sandcastle/d49b211ad56c45a032c9/forks">
+          <span class="octicon octicon-git-branch"></span> <span class="full-word">Forks</span>
+          <span class="counter">5</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+  </ul>
+</div>
+
+
+  <div class="only-with-full-nav">
+    <div class="embed-url open">
+  <h3><span class="text-emphasized">Embed</span> URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target" value="&lt;script src=&quot;https://gist.github.com/sandcastle/d49b211ad56c45a032c9.js&quot;&gt;&lt;/script&gt;"
+           readonly="readonly" aria-label="Gist Embed URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+      
+<div class="js-clone-url clone-url open"
+  data-protocol-type="http">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://gist.github.com/d49b211ad56c45a032c9.git" readonly="readonly" aria-label="HTTPS clone URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="js-clone-url clone-url "
+  data-protocol-type="ssh">
+  <h3><span class="text-emphasized">SSH</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="git@gist.github.com:d49b211ad56c45a032c9.git" readonly="readonly" aria-label="SSH clone URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="js-clone-url clone-url "
+  data-protocol-type="subversion">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/d49b211ad56c45a032c9" readonly="readonly" aria-label="Subversion checkout URL">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+
+<div class="clone-options">You can clone with
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="luPhXRGBcdrExP87JeGj3YMeZwPOf/bhG/Ql5FVPNOKCgwV4chYxshMOHki+T4alx0AkaduCxj/3mYHvMaFvPg==" /></div><button class="btn-link js-clone-selector" data-protocol="http" type="submit">HTTPS</button></form>, <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="273RWyag+crZLS3+Ak/7uWNyCimip/+Okocawa8lFQt8/73G83wftsf4eIHJOpJE3ZIZImNfCIMrmuPwXkQHyg==" /></div><button class="btn-link js-clone-selector" data-protocol="ssh" type="submit">SSH</button></form>, or <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone" class="inline-form js-clone-selector-form is-enabled" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="inOaR1+tQLaRiFVR7VEy16oC5pJ+yHm5h6yBnk1wQY447z8RaxDSaOjXFw1VC32ptfZQojjd4t8Z3brH7V4wBA==" /></div><button class="btn-link js-clone-selector" data-protocol="subversion" type="submit">Subversion</button></form>.
+  <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+    <span class="octicon octicon-question"></span>
+  </a>
+</div>
+
+
+      <a href="/sandcastle/d49b211ad56c45a032c9/archive/ddd091ea6527e4fbd5153d1e5babed6b69bd56a6.zip"
+          class="btn btn-block"
+          aria-label="Download the contents of sandcastle/d49b211ad56c45a032c9 as a zip file"
+          title="Download the contents of sandcastle/d49b211ad56c45a032c9 as a zip file"
+          rel="nofollow">
+        <span class="octicon octicon-cloud-download"></span>
+        Download ZIP
+      </a>
+  </div>
+
+
+    </div><!-- /.repository-sidebar -->
+
+    <div class="repository-content gist-content context-loader-container">
+      
+
+
+
+<span id="js-show-full-navigation"></span>
+
+<div>
+  <div class="repository-meta js-details-container">
+  <div class="repository-description">
+    Default firewall configuration using iptables for a fresh Ubuntu 14.04 server.
+  </div>
+</div>
+
+      <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-iptables-sh" class="file">
+      <div class="file-header">
+        <div class="file-actions">
+
+          <a href="/sandcastle/d49b211ad56c45a032c9/raw/ddd091ea6527e4fbd5153d1e5babed6b69bd56a6/iptables.sh" class="btn btn-sm ">Raw</a>
+        </div>
+        <div class="file-info">
+          <span class="icon">
+            <b class="octicon octicon-gist"></b>
+          </span>
+          <a class="tooltipped tooltipped-s css-truncate" aria-label="Permalink" href="#file-iptables-sh">
+            <strong class="user-select-contain gist-blob-name css-truncate-target">
+              iptables.sh
+            </strong>
+          </a>
+        </div>
+      </div>
+    
+
+  <div class="blob-wrapper data type-shell">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tr>
+        <td id="file-iptables-sh-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-iptables-sh-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#!/bin/sh -x</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-iptables-sh-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-iptables-sh-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># ================================== </span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-iptables-sh-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># iptables default configuration script</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-iptables-sh-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-iptables-sh-LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># - this locks down our servers port access</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-iptables-sh-LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># ==================================</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-iptables-sh-LC8" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-iptables-sh-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># install fail2ban</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-iptables-sh-LC10" class="blob-code blob-code-inner js-file-line">sudo apt-get update</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-iptables-sh-LC11" class="blob-code blob-code-inner js-file-line">sudo apt-get install fail2ban -y</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-iptables-sh-LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-iptables-sh-LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-c">#reset the default input / output policies and flush any existing rules</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-iptables-sh-LC14" class="blob-code blob-code-inner js-file-line">sudo iptables -P INPUT ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-iptables-sh-LC15" class="blob-code blob-code-inner js-file-line">sudo iptables -P OUTPUT ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-iptables-sh-LC16" class="blob-code blob-code-inner js-file-line">sudo iptables -F</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-iptables-sh-LC17" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-iptables-sh-LC18" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># Accept incoming packets from established or existing connections</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-iptables-sh-LC19" class="blob-code blob-code-inner js-file-line">sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-iptables-sh-LC20" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-iptables-sh-LC21" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># enable SSH and web ports</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-iptables-sh-LC22" class="blob-code blob-code-inner js-file-line">sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-iptables-sh-LC23" class="blob-code blob-code-inner js-file-line">sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-iptables-sh-LC24" class="blob-code blob-code-inner js-file-line">sudo iptables -A INPUT -p tcp --dport 443 -j ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-iptables-sh-LC25" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-iptables-sh-LC26" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># enable loopback (localhost) access</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-iptables-sh-LC27" class="blob-code blob-code-inner js-file-line">sudo iptables -I INPUT 1 -i lo -j ACCEPT</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-iptables-sh-LC28" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-iptables-sh-LC29" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># add any reuquired subnet restrictions</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-iptables-sh-LC30" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># sudo iptables -A INPUT -s 10.0.0.0/24 -j ACCEPT</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-iptables-sh-LC31" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-iptables-sh-LC32" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># set the last rule to drop all traffic, this is better than</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-iptables-sh-LC33" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># changing the defualt policy as this can lock you out</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-iptables-sh-LC34" class="blob-code blob-code-inner js-file-line">sudo iptables -A INPUT -j DROP</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-iptables-sh-LC35" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-iptables-sh-LC36" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># clone the config file (its updated with package updates), so we need a clone</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-iptables-sh-LC37" class="blob-code blob-code-inner js-file-line">sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.<span class="pl-k">local</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-iptables-sh-LC38" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-iptables-sh-LC39" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># Note:</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="file-iptables-sh-LC40" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># - if running nginx, then edit the file and enable the jail for it</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="file-iptables-sh-LC41" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># - we might also want to extend the bantime to something like 1800</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="file-iptables-sh-LC42" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># sudo nano /etc/fail2ban/jail.local</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="file-iptables-sh-LC43" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="file-iptables-sh-LC44" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># restart the service</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="file-iptables-sh-LC45" class="blob-code blob-code-inner js-file-line">sudo service fail2ban stop</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="file-iptables-sh-LC46" class="blob-code blob-code-inner js-file-line">sudo service fail2ban start</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="file-iptables-sh-LC47" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L48" class="blob-num js-line-number" data-line-number="48"></td>
+        <td id="file-iptables-sh-LC48" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># persist the changes across restarts</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L49" class="blob-num js-line-number" data-line-number="49"></td>
+        <td id="file-iptables-sh-LC49" class="blob-code blob-code-inner js-file-line">sudo apt-get install iptables-persistent</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L50" class="blob-num js-line-number" data-line-number="50"></td>
+        <td id="file-iptables-sh-LC50" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L51" class="blob-num js-line-number" data-line-number="51"></td>
+        <td id="file-iptables-sh-LC51" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># save for restarts</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L52" class="blob-num js-line-number" data-line-number="52"></td>
+        <td id="file-iptables-sh-LC52" class="blob-code blob-code-inner js-file-line">iptables-save <span class="pl-k">&gt;</span> /etc/iptables/rules.v4</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L53" class="blob-num js-line-number" data-line-number="53"></td>
+        <td id="file-iptables-sh-LC53" class="blob-code blob-code-inner js-file-line">ip6tables-save <span class="pl-k">&gt;</span> /etc/iptables/rules.v6</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L54" class="blob-num js-line-number" data-line-number="54"></td>
+        <td id="file-iptables-sh-LC54" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L55" class="blob-num js-line-number" data-line-number="55"></td>
+        <td id="file-iptables-sh-LC55" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># check the policy</span></td>
+      </tr>
+      <tr>
+        <td id="file-iptables-sh-L56" class="blob-num js-line-number" data-line-number="56"></td>
+        <td id="file-iptables-sh-LC56" class="blob-code blob-code-inner js-file-line"><span class="pl-c"># sudo iptables -S</span></td>
+      </tr>
+</table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+
+  <a name="comments"></a>
+  <div class="discussion-timeline gist-discussion-timeline js-quote-selection-container">
+    <div class="js-discussion js-socket-channel" data-channel="sandcastle/d49b211ad56c45a032c9:marked-as-read:11820318">
+      
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/sandcastle"><img alt="@sandcastle" class="timeline-comment-avatar" height="48" src="https://avatars2.githubusercontent.com/u/668657?v=3&amp;s=96" width="48" /></a>
+    <div id="gistcomment-1230368"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container owner-comment"
+     data-body-version="15502e920d1d0b51394085887cee0574">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Owner</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/sandcastle" class="author">sandcastle</a>
+    </strong>
+
+    commented
+
+    <a href="#gistcomment-1230368" class="timestamp">
+      <time datetime="2014-05-17T12:48:23Z" is="relative-time">May 17, 2014</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p>Inspiration: </p>
+
+<p><a href="https://www.digitalocean.com/community/articles/how-to-set-up-a-firewall-using-iptables-on-ubuntu-14-04">https://www.digitalocean.com/community/articles/how-to-set-up-a-firewall-using-iptables-on-ubuntu-14-04</a><br>
+<a href="https://www.digitalocean.com/community/articles/how-to-install-and-use-fail2ban-on-ubuntu-14-04">https://www.digitalocean.com/community/articles/how-to-install-and-use-fail2ban-on-ubuntu-14-04</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="/sandcastle"><img alt="@sandcastle" class="timeline-comment-avatar" height="48" src="https://avatars2.githubusercontent.com/u/668657?v=3&amp;s=96" width="48" /></a>
+    <div id="gistcomment-1230403"
+     class="comment previewable-edit timeline-comment js-comment js-task-list-container owner-comment"
+     data-body-version="8c73108df3ac784053dc56b5b471928c">
+
+  <div class="timeline-comment-header ">
+
+
+    <span class="timeline-comment-label">Owner</span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="/sandcastle" class="author">sandcastle</a>
+    </strong>
+
+    commented
+
+    <a href="#gistcomment-1230403" class="timestamp">
+      <time datetime="2014-05-17T15:26:57Z" is="relative-time">May 17, 2014</time>
+    </a>
+  </div>
+</div>
+
+
+  <div class="comment-content">
+
+    <div class="edit-comment-hide">
+      <div class="comment-body markdown-body markdown-format js-comment-body">
+          <p>To add an IP restriction, use the following:</p>
+
+<pre><code># list with line numbers
+sudo iptables -L --line-numbers
+
+# remove last rule (drop all)
+iptables -D INPUT &lt;line&gt;
+
+# add ip restriction
+sudo iptables -A INPUT -s xx.xx.xx.xx -j ACCEPT
+sudo iptables -A INPUT -j DROP
+
+# save changes
+iptables-save &gt; /etc/iptables/rules.v4
+ip6tables-save &gt; /etc/iptables/rules.v6
+
+# verify changes
+sudo iptables -S
+</code></pre>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+
+
+<!-- Rendered timeline since 2015-08-29 07:01:31 -->
+<div id="partial-timeline-marker"
+      class="js-timeline-marker js-socket-channel js-updatable-content"
+      data-channel="sandcastle/d49b211ad56c45a032c9:gist:11820318"
+      data-url="/sandcastle/d49b211ad56c45a032c9/show_partial?partial=gist%2Ftimeline_marker&amp;since=1440856891"
+      data-last-modified="Sat, 29 Aug 2015 14:01:31 GMT">
+</div>
+
+
+      <div class="discussion-timeline-actions">
+          <div class="timeline-comment-wrapper timeline-new-comment js-comment-container">
+  <a href="/ScyDev"><img alt="@ScyDev" class="timeline-comment-avatar" height="48" src="https://avatars1.githubusercontent.com/u/1307146?v=3&amp;s=96" width="48" /></a>
+
+  <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/sandcastle/d49b211ad56c45a032c9/comments" class="js-new-comment-form" data-form-nonce="8ab5dd949ef7260e8fedc3e74d2741ebb906c521" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="FaeT6eio6ZZfy8PEbYq9tmuwvJmFoho7JZxQS6Go6epuV8VI1F55SuY51RMpQ4k6RyS/EvWvDxBppwLnQIgbFA==" /></div>
+    <div class="timeline-comment">
+      
+<div class="js-previewable-comment-form js-suggester-container previewable-comment-form write-selected" data-preview-url="/preview">
+  <div class="comment-form-head tabnav">
+    <div class="right">
+      <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank">
+        <span class="octicon octicon-markdown"></span>
+        Markdown supported
+      </a>
+    </div>
+    <nav class="tabnav-tabs" role="tablist">
+      <a href="#" class="tabnav-tab write-tab js-write-tab selected" role="tab" aria-selected="true">Write</a>
+      <a href="#" class="tabnav-tab preview-tab js-preview-tab" role="tab">Preview</a>
+    </nav>
+  </div>
+
+  <div class="comment-form-error js-comment-form-error" style="display:none">    There was an error creating your Gist.
+</div>
+  <div class="write-content js-write-bucket js-uploadable-container js-upload-markdown-image upload-enabled is-default"
+      data-upload-policy-url="/upload/policies/assets"
+      >
+
+    <textarea name="comment[body]"
+              tabindex="1"
+              id="new_comment_field"
+              placeholder="Leave a comment"
+              aria-label="Comment body"
+              class="input-contrast comment-form-textarea js-comment-field js-task-list-field js-quick-submit js-size-to-fit js-quote-selection-target js-session-resumable js-suggester-field"
+              ></textarea>
+
+        <p class="drag-and-drop">
+    <span class="default">
+        Attach images by dragging &amp; dropping or
+        <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+        <a class="manual-file-chooser-text" href="#">selecting them</a>.
+    </span>
+    <span class="loading">
+      <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" /> Uploading your files…
+    </span>
+    <span class="error bad-file">
+      Unfortunately, we don’t support that file type.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <a class="manual-file-chooser-text" href="#">Try again</a> with a
+          PNG, GIF, JPG.
+      </span>
+    </span>
+    <span class="error too-big">
+      Yowza, that’s a big file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <a class="manual-file-chooser-text" href="#">Try again</a> with an image file smaller than 10MB.
+      </span>
+    </span>
+    <span class="error empty">
+      This file is empty.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <a class="manual-file-chooser-text" href="#">Try again</a> with a file that’s not empty.
+      </span>
+    </span>
+    <span class="error bad-browser">
+      This browser doesn’t support file attachments.
+      <span class="drag-and-drop-error-info">
+        We recommend updating to the latest
+        <a href="http://windows.microsoft.com/ie">Internet Explorer</a>,
+        <a href="https://chrome.google.com">Google Chrome</a>, or
+        <a href="https://www.mozilla.org/firefox">Firefox</a>.
+      </span>
+    </span>
+    <span class="error failed-request">
+      Something went really wrong, and we can’t process that file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <a class="manual-file-chooser-text" href="#">Try again.</a>
+      </span>
+    </span>
+  </p>
+
+
+    <div class="suggester-container">
+      <div class="suggester js-suggester js-navigation-container"
+           data-url="/sandcastle/d49b211ad56c45a032c9/suggestions">
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-content">
+    <div class="comment">
+  <div class="comment-content">
+    <div class="comment-body markdown-body js-preview-body">
+      <p>Nothing to preview</p>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+
+  <div class="comment-form-error comment-form-bottom js-comment-update-error"></div>
+</div>
+
+
+      <div class="form-actions">
+        <div id="partial-new-comment-form-actions">
+  <button type="submit" class="btn btn-primary" tabindex="2" data-disable-with data-disable-invalid>
+    Comment
+  </button>
+</div>
+
+
+      </div>
+    </div>
+</form></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+  </div><!-- /.repo-container -->
+  <div class="modal-backdrop"></div>
+</div><!-- /.container -->
+
+    </div><!-- /.gist-pjax-container -->
+  </div><!-- /.site -->
+
+    </div>
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://github.com/pricing" data-ga-click="Footer, go to pricing, text:pricing">Pricing</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2015 <span title="0.07416s from github-fe121-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <span class="octicon octicon-x"></span>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-f8473dece7242da6a20d52313634881b3975c52cebaa1e6c38157c0f26185691.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-7dc0dbace4b94c41084f8dd741c4f94d986049fd214585dcaa84268fbbfd196e.js"></script>
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <span class="octicon octicon-alert"></span>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+  </body>
+</html>
+

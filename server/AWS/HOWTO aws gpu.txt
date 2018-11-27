@@ -1,0 +1,3 @@
+
+see GPU load: nvidia-smi -l 1
+

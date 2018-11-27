@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/debug/drawable-tvdpi-v4/ic_plusone_medium_off_client.png",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/drawable-tvdpi/ic_plusone_medium_off_client.png"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/debug/drawable-tvdpi-v4/ic_plusone_tall_off_client.png",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/drawable-tvdpi/ic_plusone_tall_off_client.png"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/debug/drawable-tvdpi-v4/ic_plusone_small_off_client.png",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/drawable-tvdpi/ic_plusone_small_off_client.png"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/debug/drawable-tvdpi-v4/ic_plusone_standard_off_client.png",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/drawable-tvdpi/ic_plusone_standard_off_client.png"
+    }
+]

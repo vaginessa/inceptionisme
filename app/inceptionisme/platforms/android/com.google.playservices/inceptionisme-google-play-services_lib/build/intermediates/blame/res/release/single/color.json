@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/release/color/wallet_secondary_text_holo_dark.xml",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/color/wallet_secondary_text_holo_dark.xml"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/release/color/wallet_primary_text_holo_light.xml",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/color/wallet_primary_text_holo_light.xml"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/release/color/common_signin_btn_text_dark.xml",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/color/common_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/build/intermediates/res/merged/release/color/common_signin_btn_text_light.xml",
+        "source": "/src/platforms/android/com.google.playservices/inceptionisme-google-play-services_lib/res/color/common_signin_btn_text_light.xml"
+    }
+]

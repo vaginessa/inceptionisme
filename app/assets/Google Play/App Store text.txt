@@ -1,0 +1,42 @@
+
+Apply the Inceptionism style to your photos. Deep Dream yourself.
+---
+
+Choose photos that you would like to run through the Deep Dream neural network.
+This will give you the unique style of Inceptionism.
+Surprise your friends by deep dreaming their profile pictures.
+
+Deep Dream ME distorts the image and tries to find objects and creatures in it.
+What it finds is always surprising and entertaining.
+Beautiful, psychedelic, sometimes horrifying.
+Go ever deeper by dreaming a photo that has already been dreamed - increasing the strangeness.
+
+The images are not published. It's your own decision to share a photo.
+
+You need an internet connection for this app to work.
+
+This free version will display ads to cover for the server costs of the very intensive calculations.
+You photos per hour will be limited. Buy the full version for unlimited and bigger dreams (coming soon!).
+
+
+
+----------------------------------------
+
+Der Inceptionismus Style für deine Photos. Deep Dream dich selbst.
+---
+
+Wähle Fotos aus die du durch das Deep Dream Neuralnetzwerk verändern lassen willst. Dadurch erhalten sie den einzigartigen Inceptionismus Style.
+Überrasche deine Freunde indem du ihre Profilbilder deep dreamst.
+
+Deep Dream ME verzerrt die Bilder geringfügig und versucht Gegenstände und Kreaturen darin zu finden. 
+Was es dabei findet ist immer wieder überraschend und unterhaltsam.
+Wunderschön, psychedelisch, manchmal erschreckend!
+Gehe immer tiefer in die Traumwelt indem du ein Foto das bereits geträumt wurde nochmals träumen lässt - es wird immer fremdartiger.
+
+Die Bilder werden nicht veröffentlicht. Es bleibt deine Entscheidung ob du ein Bild teilen willst.
+
+Du brauchst eine Internetverbindung damit diese App funktionieren kann.
+
+Diese Gratisversion zeigt Werbung an um die Serverkosten für die sehr intensiven Berechnungen zu bezahlen.
+Die Fotos die du pro Stunde träumen kannst sind limitiert.
+Kaufe die Vollversion für unlimitierte und grössere Träume (kommt bald!).

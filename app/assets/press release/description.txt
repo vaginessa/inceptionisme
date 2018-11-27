@@ -1,0 +1,6 @@
+Deep Dream Photo Filter slightly distorts the image and tries to find objects and creatures in it.
+What it finds is always surprising and entertaining.
+Beautiful, psychedelic, sometimes horrifying.
+Go ever deeper by dreaming a photo that has already been dreamed - increasing the strangeness.
+
+The underlying concept is to let artificial neural networks, that have been trained on thousands of images from the internet, hallucinate their way of seeing the world onto the  photos of the app user.

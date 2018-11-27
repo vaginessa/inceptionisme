@@ -1,0 +1,30 @@
+
+@font-face {
+	font-family: "good-times";
+	src: url("./good-times.regular.ttf") format("truetype");   
+}
+
+body {
+    font-family: "good-times";
+}
+
+.grid-sizer, 
+.grid-item { 
+	width: 20%; 
+}
+
+.grid-item--width2 { 
+	width: 40%; 
+}
+
+.grid-item--width3 { 
+	wid_th: 60%; 
+}
+
+a,
+a:link,
+a:visited
+a:active,
+a:hover {
+	color: #3498db;
+}

@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head><link rel="stylesheet" type="text/css" href="http://www.pyimagesearch.com/wp-content/cache/minify/000000/jY7RDsIwCEV_aLXukxCZbWyhKUy3v5dFzXxafCDA5VxgjNhhFQ66ssESUr6l4mHUI6rGmvlDnLwcxgPcElXSiAVUM37zoWUSNr8hDCgOVsgFU64tTNLDs4XWJfoWcmh7BhPh_SLLH6irdThHBH6ARrW10N5uQPGfZtu1aWa0LPyeapJuKFfSH9esJvUF.css" media="all" />
+
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="pingback" href="http://www.pyimagesearch.com/xmlrpc.php" />
+<link rel="shortcut icon" href="http://www.pyimagesearch.com/wp-content/themes/canvas/favicon.ico" />
+
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<!--  Mobile viewport scale -->
+<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport"/>
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v2.2.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks - PyImageSearch</title>
+<meta name="description" content="bat-country is a lightweight, easy to use Python library that makes inceptionism and deep dreaming with Caffe and CNN painless with only 3 lines of code."/>
+<link rel="canonical" href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks - PyImageSearch" />
+<meta property="og:description" content="bat-country is a lightweight, easy to use Python library that makes inceptionism and deep dreaming with Caffe and CNN painless with only 3 lines of code." />
+<meta property="og:url" content="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" />
+<meta property="og:site_name" content="PyImageSearch" />
+<meta property="article:tag" content="bat-country" />
+<meta property="article:tag" content="caffe" />
+<meta property="article:tag" content="convolutional neural network" />
+<meta property="article:tag" content="deep dreaming" />
+<meta property="article:tag" content="deep learning" />
+<meta property="article:tag" content="deep net" />
+<meta property="article:tag" content="inceptionism" />
+<meta property="article:tag" content="library" />
+<meta property="article:section" content="Deep Learning" />
+<meta property="article:published_time" content="2015-07-06T10:00:24+00:00" />
+<meta property="article:modified_time" content="2015-07-09T11:35:26+00:00" />
+<meta property="og:updated_time" content="2015-07-09T11:35:26+00:00" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/batcountry_fal_header_animated.gif" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_01.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_02.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_03.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_04.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_06.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_01.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_02.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_03.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_04.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_05.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_01.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_02.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_03.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_04.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_01.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_02.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_01.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_02.jpg" />
+<meta property="og:image" content="http://www.pyimagesearch.com/wp-content/uploads/2015/07/giraffe.jpg" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="PyImageSearch &raquo; Feed" href="http://feeds.feedburner.com/Pyimagesearch" />
+<link rel="alternate" type="application/rss+xml" title="PyImageSearch &raquo; Comments Feed" href="http://www.pyimagesearch.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="PyImageSearch &raquo; bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks Comments Feed" href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.pyimagesearch.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+
+
+
+
+
+
+
+<!--[if lt IE 9]>
+<link href="http://www.pyimagesearch.com/wp-content/themes/canvas/css/non-responsive.css" rel="stylesheet" type="text/css" />
+<style type="text/css">.col-full, #wrapper { width: 960px; max-width: 960px; } #inner-wrapper { padding: 0; } body.full-width #header, #nav-container, body.full-width #content, body.full-width #footer-widgets, body.full-width #footer { padding-left: 0; padding-right: 0; } body.fixed-mobile #top, body.fixed-mobile #header-container, body.fixed-mobile #footer-container, body.fixed-mobile #nav-container, body.fixed-mobile #footer-widgets-container { min-width: 960px; padding: 0 1em; } body.full-width #content { width: auto; padding: 0 1em;}</style>
+<![endif]-->
+<script type="text/javascript" src="http://www.pyimagesearch.com/wp-content/cache/minify/000000/M9bPKixNLarUMYYydHMz04sSS1L1cjPzAA.js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"2.7.1","is_admin":"0","ajaxurl":"http:\/\/www.pyimagesearch.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.pyimagesearch.com/wp-content/cache/minify/000000/bcrRCoAgDIXhF8pWjzR06EJnbBbZ01fQpRcHfjjfCl6xV3HWpeHlEseU3zVS2AwKyw_mN6cFPMqJBiw-H4HsMy2xBrejtj4GpQZS4VvHdyQhxfwA.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.pyimagesearch.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.pyimagesearch.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.2.2" />
+<link rel='shortlink' href='http://www.pyimagesearch.com/?p=2684' />
+
+<!-- Theme version -->
+<meta name="generator" content="Canvas 5.5.7" />
+<meta name="generator" content="WooFramework 5.5.5" />
+
+<!-- Custom CSS Styling -->
+<style type="text/css">
+#logo .site-title, #logo .site-description { display:none; }
+body {background-repeat:no-repeat;background-position:top left;background-attachment:scroll;border-top:0px solid #000000;}
+#header {background-color:#ffffff;background-repeat:no-repeat;background-position:left top;margin-top:0px;margin-bottom:0px;padding-top:15px;padding-bottom:20px;border:0px solid ;}
+#logo .site-title a {font:bold 32px/1em "Helvetica Neue", Helvetica, sans-serif;color:#222222;}
+#logo .site-description {font:300 13px/1em "Helvetica Neue", Helvetica, sans-serif;color:#999999;}
+#header-container{background-color:#ffffff;}#nav-container{background:#169fe6;}#nav-container{border-top:0px solid #dbdbdb;border-bottom:0px solid #dbdbdb;border-left:none;border-right:none;}#nav-container #navigation ul#main-nav > li:first-child{border-left: 0px solid #dbdbdb;}#footer-widgets-container{background-color:#f0f0f0}#footer-widgets{border:none;}#footer-container{background-color:#169fe6}#footer-container{border-top:0px solid #dbdbdb;}#footer {border-width: 0 !important;}
+body, p { font:300 14px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#555555; }
+h1 { font:bold 28px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }h2 { font:bold 24px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }h3 { font:bold 20px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }h4 { font:bold 16px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }h5 { font:bold 14px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }h6 { font:bold 12px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }
+.page-title, .post .title, .page .title {font:bold 2.2em/1.1em Arial, sans-serif;color:#3E3E3E;}
+.post .title a:link, .post .title a:visited, .page .title a:link, .page .title a:visited {color:#3E3E3E}
+.post-meta { font:300 1em/1.5em Arial, sans-serif;color:#3E3E3E; }
+.entry, .entry p{ font:300 15px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#555555; }
+.post-more {font:300 13px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:;border-top:0px solid #e6e6e6;border-bottom:0px solid #e6e6e6;}
+#post-author, #connect {border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;border-left:1px solid #e6e6e6;border-right:1px solid #e6e6e6;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;background-color:#fafafa}
+.nav-entries a, .woo-pagination { font:300 13px/1em "Helvetica Neue", Helvetica, sans-serif;color:#888; }
+.woo-pagination a, .woo-pagination a:hover {color:#888!important}
+.widget h3 {font:bold 14px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#555555;border-bottom:1px solid #e6e6e6;}
+.widget_recent_comments li, #twitter li { border-color: #e6e6e6;}
+.widget p, .widget .textwidget { font:300 13px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#555555; }
+.widget {font:300 13px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#555555;border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;}
+#tabs .inside li a, .widget_woodojo_tabs .tabbable .tab-pane li a { font:bold 12px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#555555; }
+#tabs .inside li span.meta, .widget_woodojo_tabs .tabbable .tab-pane li span.meta { font:300 11px/1.5em "Helvetica Neue", Helvetica, sans-serif;color:#999999; }
+#tabs ul.wooTabs li a, .widget_woodojo_tabs .tabbable .nav-tabs li a { font:300 11px/2em "Helvetica Neue", Helvetica, sans-serif;color:#999999; }
+@media only screen and (min-width:768px) {
+ul.nav li a, #navigation ul.rss a, #navigation .cart-contents, #navigation ul.rss, #navigation ul.cart .cart_list a{ font:300 13px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#ffffff; } #navigation ul.rss li a:before { color:#ffffff;}
+#navigation ul.nav > li a:hover, #navigation ul.nav > li:hover a, #navigation ul.nav li ul li a, #navigation ul.cart > li:hover > a, #navigation ul.cart > li > ul > div, #navigation ul.cart > li > ul > div p, #navigation ul.cart > li > ul span, #navigation ul.cart .cart_list a, #navigation ul.nav li.current_page_item a, #navigation ul.nav li.current_page_parent a, #navigation ul.nav li.current-menu-ancestor a, #navigation ul.nav li.current-cat a, #navigation ul.nav li.current-menu-item a { color:#169fe6!important; }
+#navigation ul.nav > li a:hover, #navigation ul.nav > li:hover, #navigation ul.nav li ul, #navigation ul.cart > li:hover, #navigation ul.cart > li > ul > div, #navigation ul.nav li.current_page_item a, #navigation ul.nav li.current_page_parent a, #navigation ul.nav li.current-menu-ancestor a, #navigation ul.nav li.current-cat a, #navigation ul.nav li.current-menu-item a{background-color:#ffffff!important}
+#navigation ul.nav li ul, #navigation ul.cart > li > ul > div  { border: 0px solid #dbdbdb; }
+#navigation ul.nav > li > ul  { left: 0; }
+#navigation ul.nav > li  { border-right: 0px solid #dbdbdb; }#navigation ul.nav > li > ul  { left: 0; }
+#navigation  { box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }#navigation ul li:first-child, #navigation ul li:first-child a { border-radius:0px 0 0 0px; -moz-border-radius:0px 0 0 0px; -webkit-border-radius:0px 0 0 0px; }
+#navigation {background:#169fe6;border-top:0px solid #dbdbdb;border-bottom:0px solid #dbdbdb;border-left:0px solid #dbdbdb;border-right:0px solid #dbdbdb;border-radius:0px; -moz-border-radius:0px; -webkit-border-radius:0px;}
+#top ul.nav li a { font:300 12px/1.6em "Helvetica Neue", Helvetica, sans-serif;color:#ddd; }
+}
+#footer, #footer p { font:300 13px/1.4em "Helvetica Neue", Helvetica, sans-serif;color:#ffffff; }
+#footer {background-color:#169fe6;border-top:0px solid #dbdbdb;border-bottom:0px solid ;border-left:0px solid ;border-right:0px solid ;border-radius:0px; -moz-border-radius:0px; -webkit-border-radius:0px;}
+.magazine #loopedSlider .content h2.title a { font:bold 24px/1em Arial, sans-serif;color:#ffffff; }
+.magazine #loopedSlider .content .excerpt p { font:300 13px/1.5em Arial, sans-serif;color:#cccccc; }
+.magazine .block .post .title, .magazine .block .post .title a { font:bold 18px/1.2em "Helvetica Neue", Helvetica, sans-serif;color:#222222; }
+#loopedSlider.business-slider .content h2 { font:bold 24px/1em Arial, sans-serif;color:#ffffff; }
+#loopedSlider.business-slider .content h2.title a { font:bold 24px/1em Arial, sans-serif;color:#ffffff; }
+#wrapper #loopedSlider.business-slider .content p { font:300 13px/1.5em Arial, sans-serif;color:#cccccc; }
+.archive_header { font:bold 18px/1em Arial, sans-serif;color:#222222; }
+.archive_header {border-bottom:1px solid #e6e6e6;}
+</style>
+<!-- Options Panel Custom CSS -->
+<style type="text/css">
+/* Subscribe & Connect button style */
+#mc-embedded-subscribe{background-color: #DF4B4B;}
+
+/* MailChimp for WP Plugin styles */
+.mc4wp-form input[type=submit]{background-color: #DF4B4B;}
+
+/* Hide the header/footer on almost finished pages */
+.page-id-365 #header, .page-id-365 #nav-container, .page-id-365 #footer-container{display: none;}
+.page-id-365 #content{padding-top: 30px;}
+
+/* Hide the header/footer on confirmation pages */
+.page-id-1397 #header, .page-id-1397 #nav-container, .page-id-1397 #footer-container{display: none;}
+.page-id-1382 #header, .page-id-1382 #nav-container, .page-id-1382 #footer-container{display: none;}
+.page-id-1481 #header, .page-id-1481 #nav-container, .page-id-1481 #footer-container{display: none;}
+.page-id-1397 #content, .page-id-1382 #content, .page-id-1481 #content{padding-top: 30px;}
+</style>
+
+
+<!-- Woo Shortcodes CSS -->
+
+
+<!-- Custom Stylesheet -->
+
+
+<!-- start Mixpanel -->
+<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+mixpanel.init("2486e0f021e92605d44d32fce5f1d826");
+</script>
+<!-- end Mixpanel -->
+
+</head>
+<body class="single single-post postid-2684 single-format-standard chrome alt-style-default two-col-left width-960 two-col-left-960 full-width full-header full-footer">
+<div id="wrapper">
+
+	<div id="inner-wrapper">
+
+	    <!--#header-container-->
+    <div id="header-container">
+<h3 class="nav-toggle icon"><a href="#navigation">Navigation</a></h3>
+
+	<header id="header" class="col-full">
+
+		<div id="logo">
+<a href="http://www.pyimagesearch.com/" title="Be awesome at learning OpenCV, Python, and computer vision"><img src="http://www.pyimagesearch.com/wp-content/uploads/2013/12/logo.png" alt="PyImageSearch" /></a>
+<span class="site-title"><a href="http://www.pyimagesearch.com/">PyImageSearch</a></span>
+<span class="site-description">Be awesome at learning OpenCV, Python, and computer vision</span>
+</div>
+
+	</header>
+	    </div><!--/#header-container-->
+    <!--#nav-container-->
+    <div id="nav-container">
+<nav id="navigation" class="col-full" role="navigation">
+
+	<section class="menus">
+
+		<a href="http://www.pyimagesearch.com" class="nav-home"><span>Home</span></a>
+
+	<h3>Main Menu</h3><ul id="main-nav" class="nav fl"><li id="menu-item-2621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-2621"><a href="http://www.pyimagesearch.com/">Home</a></li>
+<li id="menu-item-2616" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2616"><a href="https://www.pyimagesearch.com/practical-python-opencv/">Practical Python and OpenCV</a></li>
+<li id="menu-item-2617" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2617"><a href="http://www.pyimagesearch.com/pyimagesearch-gurus/">PyImageSearch Gurus</a></li>
+<li id="menu-item-2615" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2615"><a href="http://www.pyimagesearch.com/opencv-tutorials-resources-guides/">OpenCV 3 Tutorials</a></li>
+<li id="menu-item-2618" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2618"><a href="http://www.pyimagesearch.com/free-opencv-crash-course/">FREE OpenCV Crash Course</a></li>
+<li id="menu-item-2619" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2619"><a href="http://www.pyimagesearch.com/about/">About</a></li>
+<li id="menu-item-2620" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2620"><a href="http://www.pyimagesearch.com/contact/">Contact</a></li>
+</ul>	<ul class="rss fr">
+						<li class="sub-rss"><a href="http://feeds.feedburner.com/Pyimagesearch"></a></li>
+			</ul>
+	
+	</section><!-- /.menus -->
+
+	<a href="#top" class="nav-close"><span>Return to Content</span></a>
+
+</nav>
+    </div><!--/#nav-container-->
+       
+    <!-- #content Starts -->
+	    <div id="content" class="col-full">
+    
+    	<div id="main-sidebar-container">    
+
+            <!-- #main Starts -->
+                        <section id="main">                       
+<article class="post-2684 post type-post status-publish format-standard hentry category-deep-learning-2 category-libraries tag-bat-country tag-caffe tag-convolutional-neural-network tag-deep-dreaming tag-deep-learning tag-deep-net tag-inceptionism tag-library">
+	<header>
+	<h1 class="title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</h1>	</header>
+<div class="post-meta"><span class="small">By</span> <span class="author vcard"><span class="fn"><a href="http://www.pyimagesearch.com/author/adrian/" title="Posts by Adrian Rosebrock" rel="author">Adrian Rosebrock</a></span></span> <span class="small">on</span> <abbr class="date time published" title="2015-07-06T10:00:24-0400">July 6, 2015</abbr>  <span class="small">in</span> <span class="categories"><a href="http://www.pyimagesearch.com/category/deep-learning-2/" title="View all items in Deep Learning">Deep Learning</a>, <a href="http://www.pyimagesearch.com/category/libraries/" title="View all items in Libraries">Libraries</a></span>  </div>
+	<section class="entry">
+<div id="fsb-social-bar" class="fsb-social-bar" data-post-id="2684" data-socialite="true"><style type="text/css">            #fsb-social-bar { width: 100%; border-bottom: 1px solid #dbdbdb; border-top: 1px solid #dbdbdb; padding: 10px 0; margin: 0px 0 20px 0; float: left; background: #fff; position: relative; clear: both; }            #fsb-social-bar a { border: 0px !important }            #fsb-social-bar.fsb-fixed { position: fixed; top: -2px; z-index: 99999; }            #fsb-social-bar .fsb-title { display: block; float: left; margin: 3px 20px 0 0; font-size: 16px; font-family: Arial, Helvetica, sans-serif; text-decoration: none; color: #333; }            #fsb-social-bar .fsb-share-facebook { width: 120px; float: left; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-facebook.fsb-hide-count { width: 44px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-twitter { float: left; width: 135px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-twitter.fsb-hide-count { width: 61px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-google { float: left; width: 105px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-google.fsb-hide-count { width: 33px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-linkedin { float: left; width: 135px; padding: 3px 0 2px; height: 25px; }            #fsb-social-bar .fsb-share-linkedin.fsb-hide-count { width: 61px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .fsb-share-pinterest { float: left; width: 115px; padding: 3px 0 2px; height: 25px;}            #fsb-social-bar .fsb-share-pinterest.fsb-hide-count { width: 43px; overflow: hidden; margin-right: 30px; }            #fsb-social-bar .socialite { display: block; position: relative; background: url(http://www.pyimagesearch.com/wp-content/plugins/floating-social-bar/images/fsb-sprite.png) no-repeat scroll 0 0; }            #fsb-social-bar .socialite-loaded { background: none !important; }            #fsb-social-bar .fsb-service-title { display: none; }            #fsb-social-bar a { color: #333; text-decoration: none; font-size: 12px; font-family: Arial, Helvetica, sans-serif; }            #fsb-social-bar .fsb-twitter { width: 105px; height: 25px; background-position: -13px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-twitter .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 69px; color: #333; }            #fsb-social-bar .fsb-google { width: 75px; height: 25px; background-position: -136px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-google .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 41px; color: #333; }            #fsb-social-bar .fsb-google .socialite-button { margin: 0 !important; }            #fsb-social-bar .fsb-share-google .socialite-loaded .socialite-button{padding: 2px 0 0}            #fsb-social-bar .fsb-facebook { width: 89px; height: 25px; background-position: -231px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-facebook .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 52px; color: #333; }            #fsb-social-bar .fsb-facebook .socialite-button { margin: 0 !important;}            #fsb-social-bar .fsb-share-facebook .socialite-loaded .socialite-button {padding: 2px 0 0}            #fsb-social-bar .fsb-linkedin { width: 105px; height: 25px; background-position: -347px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-linkedin .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 70px; color: #333; }            #fsb-social-bar .fsb-linkedin .socialite-button { margin: 0 !important; }            #fsb-social-bar .fsb-pinterest { width: 88px; height: 25px; background-position: -484px -10px; line-height: 25px; vertical-align: middle; }            #fsb-social-bar .fsb-pinterest .fsb-count { width: 30px; text-align: center; display: inline-block; margin: 0px 0 0 50px; color: #333; }            #fsb-social-bar .fsb-pinterest .socialite-button { margin: 0 !important; }            .fsb-clear { clear: both; }            .fsb-clear:after { clear:both; content:; display:block; height:0; line-height:0; overflow:auto; visibility:hidden; zoom:1; }            @media (max-width: 768px) { #fsb-social-bar.fsb-fixed { position: relative !important; top: auto !important; } }        </style><div class="fsb-share-twitter"><a href="https://twitter.com/share?original_referer=http%3A%2F%2Fwww.pyimagesearch.com%2F&source=tweetbutton&text=bat-country%3A+an+extendible%2C+lightweight+Python+package+for+deep+dreaming+with+Caffe+and+Convolutional+Neural+Networks&url=http%3A%2F%2Fwww.pyimagesearch.com%2F2015%2F07%2F06%2Fbat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks%2F&via=pyimagesearch" class="socialite twitter fsb-twitter" data-fsb-service="twitter" rel="nofollow" target="_blank" title="87 retweets so far"><span class="fsb-service-title">Twitter</span><span class="fsb-count">87</span></a></div><div class="fsb-share-facebook"><a href="http://www.facebook.com/sharer.php?u=http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" class="socialite facebook fsb-facebook" data-fsb-service="facebook" data-href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" data-send="false" data-layout="button_count" data-width="60" data-show-faces="false" rel="nofollow" target="_blank"><span class="fsb-service-title">Facebook</span><span class="fsb-count">84</span></a></div><div class="fsb-share-google"><a href="https://plus.google.com/share?url=http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" class="socialite googleplus fsb-google" data-fsb-service="google" data-size="medium" data-href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" rel="nofollow" target="_blank"><span class="fsb-service-title">Google+</span><span class="fsb-count">85</span></a></div><div class="fsb-share-linkedin"><a href="https://www.linkedin.com/cws/share?url=http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" class="socialite linkedin fsb-linkedin" data-fsb-service="linkedin" data-size="medium" data-href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/" rel="nofollow" target="_blank"><span class="fsb-service-title">LinkedIn</span><span class="fsb-count">34</span></a></div></div><div class="fsb-clear"></div><p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/batcountry_fal_header_animated.gif"><img class="aligncenter wp-image-2735" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/batcountry_fal_header_animated.gif" alt="batcountry_fal_header_animated" width="600" height="262" /></a></p>
+<blockquote><p>We can&#8217;t stop here, this is bat country.</p></blockquote>
+<p>Just a few days ago, the <a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html" target="_blank">Google Research blog published a post</a> demonstrating a unique, interesting, and perhaps even disturbing method to visualize what&#8217;s going inside the layers of a Convolutional Neural Network (CNN).</p>
+<p><em><strong>Note: </strong>Before you go, <a href="#show_and_tell">I suggest taking a look at the images generated using bat-country</a> &#8212; most of them came out fantastic, especially the Jurassic Park images.</em></p>
+<p>Their approach works by turning the CNN upside down, inputting an image, and gradually tweaking the image to what the network &#8220;thinks&#8221; a particular object or class looks like.</p>
+<p><em>The results are breathtaking to say the least.</em> Lower levels reveal edge-like regions in the images. Intermediate layers are able to represent basic shapes and components of objects (doorknob, eye, nose, etc.). And lastly, the final layers are able to form the complete interpretation (dog, cat, tree, etc.) &#8212; <em>and often in a psychedelic, spaced out manner.</em></p>
+<p>Along with their results, Google also published an <a href="https://github.com/google/deepdream" target="_blank">excellent IPython Notebook</a> allowing you to play around and create some trippy images of your own.</p>
+<p>The IPython Notebook is indeed fantastic. It&#8217;s fun to play around with. And since it&#8217;s an IPython Notebook, it&#8217;s fairly easy to get started with. <em>But I wanted to take it a step further</em>. Make it <strong>modular</strong>. More <strong>customizable</strong>. More like a Python modules that acts and behaves like one. And of course, it has to be <strong>pip-installable</strong> (you&#8217;ll need to bring your own Caffe installation).</p>
+<p><strong>That&#8217;s why I put together <a href="https://github.com/jrosebr1/bat-country" target="_blank">bat-country</a>, an easy to use, highly extendible, lightweight Python module for inceptionism and deep dreaming with Convolutional Neural Networks and Caffe.</strong></p>
+<p>Comparatively, my contributions here are honestly pretty minimal. All the real research has been done by Google &#8212; I&#8217;m simply taking the IPython Notebook, turning it into a Python module, while keeping in mind the importance of extensibility, <em>such as custom step functions</em>.</p>
+<p>Before we dive into the rest of this post, I would like to take a second and call attention to Justin Johnson&#8217;s <a href="https://github.com/jcjohnson/cnn-vis" target="_blank">cnn-vis</a>, a command line tool for generating inceptionism images. His tool is quite powerful and more like what Google is (probably) using for their own research publications. If you&#8217;re looking for a more advanced, complete package, definitely go take a look at cnn-vis. You also might be interested in Vision.ai&#8217;s co-founder Tomasz Malisiewicz&#8217;s <a href="https://github.com/VISIONAI/clouddream" target="_blank">clouddream</a> docker image to quickly get Caffe up and running.</p>
+<p>But in the meantime, if you&#8217;re interested in playing around with a simple, easy to use Python package, go <a href="https://github.com/jrosebr1/bat-country" target="_blank">grab the source from GitHub</a> or install it via 
+			<span id="crayon-55c51c3b7d51a047934675" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-e">pip </span><span class="crayon-e">install </span><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span></p>
+<p><strong>The rest of this blog post is organized as follows:</strong></p>
+<ul>
+<li><strong>A simple example.</strong> 3 lines of code to generate your own deep dream/inceptionism images.</li>
+<li><strong>Requirements.</strong> Libraries and packages required to run 
+			<span id="crayon-55c51c3b7d526345002197" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  (mostly just Caffe and its associated dependencies).</li>
+<li><strong>What&#8217;s going on under the hood?</strong> The anatomy of 
+			<span id="crayon-55c51c3b7d52a659156930" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  and how to extend it.</li>
+<li><strong>Show and tell.</strong> If there is any section of this post that you don&#8217;t want to miss, <em><strong>it&#8217;s this one</strong></em>. I have put together a gallery of some really awesome images generated I generated over the weekend using 
+			<span id="crayon-55c51c3b7d52e882576769" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span> . The results are quite surreal, to say the least.</li>
+</ul>
+<h1>bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and CNNs</h1>
+<p>Again, I want make it clear that the code for <a href="https://github.com/jrosebr1/bat-country">bat-country</a> is heavily based on the work from the <a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html">Google Research Team</a>. My contributions here are mainly refactoring the code into a usable Python package, making the package easily extendible via custom preprocessing, deprocessing, step functions, etc., and ensuring that the package is pip-installable. With that said, let&#8217;s go ahead and get our first look at <a href="https://github.com/jrosebr1/bat-country">bat-country</a>.</p>
+<h2>A simple example.</h2>
+<p>As I mentioned, one of the goals of 
+			<span id="crayon-55c51c3b7d531622360936" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  is simplicity. Provided you have already installed Caffe and 
+			<span id="crayon-55c51c3b7d535553617982" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  on your system, it only takes 3 lines of Python code to generate a deep dream/inceptionism image:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d538051414271" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+# we can't stop here...
+bc = BatCountry("caffe/models/bvlc_googlenet")
+image = bc.dream(np.float32(Image.open("/path/to/image.jpg")))
+bc.cleanup()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d538051414271-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d538051414271-2">2</div><div class="crayon-num" data-line="crayon-55c51c3b7d538051414271-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d538051414271-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d538051414271-1"><span class="crayon-c"># we can't stop here...</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d538051414271-2"><span class="crayon-v">bc</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">BatCountry</span><span class="crayon-sy">(</span><span class="crayon-s">"caffe/models/bvlc_googlenet"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-55c51c3b7d538051414271-3"><span class="crayon-v">image</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">bc</span><span class="crayon-sy">.</span><span class="crayon-e">dream</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">float32</span><span class="crayon-sy">(</span><span class="crayon-v">Image</span><span class="crayon-sy">.</span><span class="crayon-k ">open</span><span class="crayon-sy">(</span><span class="crayon-s">"/path/to/image.jpg"</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d538051414271-4"><span class="crayon-v">bc</span><span class="crayon-sy">.</span><span class="crayon-e">cleanup</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0012 seconds] -->
+<p>After executing this code, you can then take the 
+			<span id="crayon-55c51c3b7d53b787461672" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">image</span></span></span>  returned by the 
+			<span id="crayon-55c51c3b7d53e759988708" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">dream</span></span></span>  method and write it to file:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d542703649185" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+result = Image.fromarray(np.uint8(image))
+result.save("/path/to/output.jpg")</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d542703649185-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d542703649185-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d542703649185-1"><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Image</span><span class="crayon-sy">.</span><span class="crayon-e">fromarray</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">uint8</span><span class="crayon-sy">(</span><span class="crayon-v">image</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d542703649185-2"><span class="crayon-v">result</span><span class="crayon-sy">.</span><span class="crayon-e">save</span><span class="crayon-sy">(</span><span class="crayon-s">"/path/to/output.jpg"</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+<p>And that&#8217;s it! You can see the view source code of 
+			<span id="crayon-55c51c3b7d545662770209" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">demo</span><span class="crayon-sy">.</span><span class="crayon-v">py</span></span></span>  <a href="https://github.com/jrosebr1/bat-country/blob/master/demo.py" target="_blank">here on GitHub</a>.</p>
+<h2>Requirements.</h2>
+<p>The bat-country packages requires <a href="http://caffe.berkeleyvision.org/" target="_blank">Caffe, an open-source CNN implementation from Berkeley</a>, to be already installed on your system. This section will detail the basic steps to get Caffe setup on your system. However, an excellent alternative is to use the <a href="https://github.com/VISIONAI/clouddream" target="_blank">Docker image provided by Tomasz of Vision.ai</a>. Using the Docker image will get you up and running quite painlessly. But for those who would like their own install, keep reading.</p>
+<h3>Step 1: Install Caffe</h3>
+<p>Take a look at the <a href="http://caffe.berkeleyvision.org/installation.html" target="_blank">official installation instructions</a> to get Caffe up and running. Instead of installing Caffe on your own system, I recommend spinning up an <a href="http://www.pyimagesearch.com/2014/10/13/deep-learning-amazon-ec2-gpu-python-nolearn/" target="_blank">Amazon EC2 g2.2xlarge instance</a> (so you have access to the GPU) and working from there.</p>
+<h3>Step 2: Compile Python bindings for Caffe</h3>
+<p>Again, use the <a href="http://caffe.berkeleyvision.org/installation.html#prerequisites" target="_blank">official install instructions from Caffe</a>. Creating a separate virtual environment for all the packages from 
+			<span id="crayon-55c51c3b7d549292174984" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">requirements</span><span class="crayon-sy">.</span><span class="crayon-v">txt</span></span></span>  is a good idea, but certainly not required.</p>
+<p>An important step to do here is update your 
+			<span id="crayon-55c51c3b7d54c709780975" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">$</span><span class="crayon-v">PYTHONPATH</span></span></span>  to include your Caffe installation directory:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d550397311447" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d550397311447-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d550397311447-1"><span class="crayon-e">export </span><span class="crayon-v">PYTHONPATH</span><span class="crayon-o">=</span><span class="crayon-o">/</span><span class="crayon-v">path</span><span class="crayon-o">/</span><span class="crayon-st">to</span><span class="crayon-o">/</span><span class="crayon-v">caffe</span><span class="crayon-o">/</span><span class="crayon-v">python</span><span class="crayon-o">:</span><span class="crayon-v">$PYTHONPATH</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p>On Ubuntu, I also like to but this export in my 
+			<span id="crayon-55c51c3b7d553282501193" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">.</span><span class="crayon-v">bashrc</span></span></span>  file so that it&#8217;s loaded each time I login or open up a new terminal, but that&#8217;s up to you.</p>
+<h3>Step 3: Optionally install cuDNN</h3>
+<p>Caffe works fine out of the box on the CPU. But if you really want to make Caffe scream, you should be using the GPU. <a href="https://developer.nvidia.com/cudnn" target="_blank">Installing cuDNN</a> isn&#8217;t too difficult of a process, but if you&#8217;ve never done it before, be prepared to spend some time working through this step.</p>
+<h3>Step 4: Set your $CAFFE_ROOT</h3>
+<p>The 
+			<span id="crayon-55c51c3b7d556682755018" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">$</span><span class="crayon-v">CAFFE_ROOT</span></span></span>  directory is the base directory of your Caffe install:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d55a955548249" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+export CAFEE_ROOT=/path/to/caffe</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d55a955548249-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d55a955548249-1"><span class="crayon-e">export </span><span class="crayon-v">CAFEE_ROOT</span><span class="crayon-o">=</span><span class="crayon-o">/</span><span class="crayon-v">path</span><span class="crayon-o">/</span><span class="crayon-st">to</span><span class="crayon-o">/</span><span class="crayon-v">caffe</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p>Here&#8217;s what my 
+			<span id="crayon-55c51c3b7d55d385342899" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">$</span><span class="crayon-v">CAFFE_ROOT</span></span></span>  looks like:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d560904263292" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+export CAFFE_ROOT=/home/ubuntu/libraries/caffe</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d560904263292-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d560904263292-1"><span class="crayon-e">export </span><span class="crayon-v">CAFFE_ROOT</span><span class="crayon-o">=</span><span class="crayon-o">/</span><span class="crayon-v">home</span><span class="crayon-o">/</span><span class="crayon-v">ubuntu</span><span class="crayon-o">/</span><span class="crayon-v">libraries</span><span class="crayon-o">/</span><span class="crayon-v">caffe</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p>Again, I would suggest putting this in your 
+			<span id="crayon-55c51c3b7d564004347844" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">.</span><span class="crayon-v">bashrc</span></span></span>  file so it&#8217;s loaded each time you login.</p>
+<h3>Step 5: Download the pre-trained GoogLeNet model</h3>
+<p>You&#8217;ll need a pre-trained model to generate deep dream images. Let&#8217;s go ahead and use the GoogLeNet model which Google used in their blog post. The Caffe package provides a script that downloads the model for you:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d567235369058" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+$ cd $CAFFE_ROOT
+$ ./scripts/download_model_binary.py models/bvlc_googlenet/</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d567235369058-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d567235369058-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d567235369058-1"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-r">cd</span><span class="crayon-h"> </span><span class="crayon-v">$CAFFE_ROOT</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d567235369058-2"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-o">/</span><span class="crayon-v">scripts</span><span class="crayon-o">/</span><span class="crayon-v">download_model_binary</span><span class="crayon-e">.py</span><span class="crayon-h"> </span><span class="crayon-v">models</span><span class="crayon-o">/</span><span class="crayon-v">bvlc_googlenet</span><span class="crayon-o">/</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0009 seconds] -->
+<p></p>
+<h3>Step 6: Install bat-country</h3>
+<p>The 
+			<span id="crayon-55c51c3b7d56a868205741" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  package is dead simple to install. The easiest way is to use pip:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d56e968662334" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+$ pip install bat-country</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d56e968662334-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d56e968662334-1"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-e">pip </span><span class="crayon-e">install </span><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0007 seconds] -->
+<p>But you can also pull down the <a href="https://github.com/jrosebr1/bat-country" target="_blank">source from GitHub</a> if you want to do some hacking:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d571999270773" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+$ git clone https://github.com/jrosebr1/bat-country.git
+$ cd bat-country
+... do some hacking ...
+$ python setup.py install</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d571999270773-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d571999270773-2">2</div><div class="crayon-num" data-line="crayon-55c51c3b7d571999270773-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d571999270773-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d571999270773-1"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-e">git </span><span class="crayon-r">clone</span><span class="crayon-h"> </span><span class="crayon-v">https</span><span class="crayon-o">:</span><span class="crayon-o">/</span><span class="crayon-o">/</span><span class="crayon-v">github</span><span class="crayon-e">.com</span><span class="crayon-o">/</span><span class="crayon-v">jrosebr1</span><span class="crayon-o">/</span><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span><span class="crayon-e">.git</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d571999270773-2"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-r">cd</span><span class="crayon-h"> </span><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-i">country</span></div><div class="crayon-line" id="crayon-55c51c3b7d571999270773-3"><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-h"> </span><span class="crayon-st">do</span><span class="crayon-h"> </span><span class="crayon-e">some </span><span class="crayon-i">hacking</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-sy">.</span><span class="crayon-sy">.</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d571999270773-4"><span class="crayon-sy">$</span><span class="crayon-h"> </span><span class="crayon-e">python </span><span class="crayon-v">setup</span><span class="crayon-e">.py</span><span class="crayon-h"> </span><span class="crayon-v">install</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0020 seconds] -->
+<p></p>
+<h2>What&#8217;s going on under the hood &#8212; and how to extend bat-country</h2>
+<p>The vast majority of the 
+			<span id="crayon-55c51c3b7d574804659948" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  code is from Google&#8217;s IPython Notebook. My contributions are pretty minimal, just re-factoring the code to make it act and behave like a Python module &#8212; and to facilitate easy modifications and customizability.</p>
+<p>The first important method to consider is the 
+			<span id="crayon-55c51c3b7d578490616334" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">BatCountry</span></span></span>  constructor which allows you to pass in custom CNNs like GoogLeNet, MIT Places, or other models from the <a href="https://github.com/BVLC/caffe/wiki/Model-Zoo" target="_blank">Caffe Model Zoo</a>. All you need to do is modify the 
+			<span id="crayon-55c51c3b7d57b933438465" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">base_path</span></span></span> , 
+			<span id="crayon-55c51c3b7d57e118107757" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">deploy_path</span></span></span> , 
+			<span id="crayon-55c51c3b7d582908253554" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">model_path</span></span></span> , and image 
+			<span id="crayon-55c51c3b7d585519149764" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">mean</span></span></span> . The 
+			<span id="crayon-55c51c3b7d588235777991" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">mean</span></span></span>  itself will have to be computed from the original training set. Take a look at the <a href="https://github.com/jrosebr1/bat-country/blob/master/batcountry/batcountry.py" target="_blank">BatCountry constructor</a> for more details.</p>
+<p>The internals of 
+			<span id="crayon-55c51c3b7d58b425982370" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">BatCountry</span></span></span>  take care of patching the model to compute gradients, along with loading the network itself.</p>
+<p>Now, let&#8217;s say you wanted to override the standard gradient ascent function for maximizing the L2-norm activations for a given layer. All you would need to do is provide your custom function to the 
+			<span id="crayon-55c51c3b7d58f271475974" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">dream</span></span></span>  method. Here&#8217;s a trivial example of overriding the default behavior of the gradient ascent function to use a smaller 
+			<span id="crayon-55c51c3b7d592310688989" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">step</span></span></span> , and larger 
+			<span id="crayon-55c51c3b7d595469528094" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">jitter</span></span></span> :</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d599273999582" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+def custom_step(net, step_size=1.25, end="inception_4c/output",
+	jitter=48, clip=True):
+	src = net.blobs["data"]
+	dst = net.blobs[end]
+
+	ox, oy = np.random.randint(-jitter, jitter + 1, 2)
+	src.data[0] = np.roll(np.roll(src.data[0], ox, -1), oy, -2)
+
+	net.forward(end=end)
+	dst.diff[:] = dst.data
+	net.backward(start=end)
+	g = src.diff[0]
+
+	src.data[:] += step_size / np.abs(g).mean() * g
+	src.data[0] = np.roll(np.roll(src.data[0], -ox, -1), -oy, -2)
+
+	if clip:
+		bias = net.transformer.mean["data"]
+		src.data[:] = np.clip(src.data, -bias, 255 - bias)
+
+image = bc.dream(np.float32(Image.open("image.jpg")),
+	step_fn=custom_step)</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-2">2</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-4">4</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-6">6</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-8">8</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-10">10</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-12">12</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-14">14</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-16">16</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-18">18</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-20">20</div><div class="crayon-num" data-line="crayon-55c51c3b7d599273999582-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d599273999582-22">22</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d599273999582-1"><span class="crayon-r">def</span><span class="crayon-h"> </span><span class="crayon-e">custom_step</span><span class="crayon-sy">(</span><span class="crayon-v">net</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">step_size</span><span class="crayon-o">=</span><span class="crayon-cn">1.25</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">end</span><span class="crayon-o">=</span><span class="crayon-s">"inception_4c/output"</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-2"><span class="crayon-h">	</span><span class="crayon-v">jitter</span><span class="crayon-o">=</span><span class="crayon-cn">48</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">clip</span><span class="crayon-o">=</span><span class="crayon-t">True</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-3"><span class="crayon-h">	</span><span class="crayon-v">src</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">net</span><span class="crayon-sy">.</span><span class="crayon-v">blobs</span><span class="crayon-sy">[</span><span class="crayon-s">"data"</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-4"><span class="crayon-h">	</span><span class="crayon-v">dst</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">net</span><span class="crayon-sy">.</span><span class="crayon-v">blobs</span><span class="crayon-sy">[</span><span class="crayon-v">end</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-5">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-6"><span class="crayon-h">	</span><span class="crayon-v">ox</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">oy</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-k ">random</span><span class="crayon-sy">.</span><span class="crayon-e">randint</span><span class="crayon-sy">(</span><span class="crayon-o">-</span><span class="crayon-v">jitter</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">jitter</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-7"><span class="crayon-h">	</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">roll</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">roll</span><span class="crayon-sy">(</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">ox</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">oy</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">2</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-8">&nbsp;</div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-9"><span class="crayon-h">	</span><span class="crayon-v">net</span><span class="crayon-sy">.</span><span class="crayon-e">forward</span><span class="crayon-sy">(</span><span class="crayon-v">end</span><span class="crayon-o">=</span><span class="crayon-v">end</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-10"><span class="crayon-h">	</span><span class="crayon-v">dst</span><span class="crayon-sy">.</span><span class="crayon-v">diff</span><span class="crayon-sy">[</span><span class="crayon-o">:</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">dst</span><span class="crayon-sy">.</span><span class="crayon-e">data</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-11"><span class="crayon-e">	</span><span class="crayon-v">net</span><span class="crayon-sy">.</span><span class="crayon-e">backward</span><span class="crayon-sy">(</span><span class="crayon-v">start</span><span class="crayon-o">=</span><span class="crayon-v">end</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-12"><span class="crayon-h">	</span><span class="crayon-v">g</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">diff</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-14"><span class="crayon-h">	</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-o">:</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">+=</span><span class="crayon-h"> </span><span class="crayon-v">step_size</span><span class="crayon-h"> </span><span class="crayon-o">/</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-k ">abs</span><span class="crayon-sy">(</span><span class="crayon-v">g</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">mean</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-i">g</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-15"><span class="crayon-h">	</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">roll</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">roll</span><span class="crayon-sy">(</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">ox</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">oy</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-cn">2</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-16">&nbsp;</div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-17"><span class="crayon-h">	</span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-v">clip</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-18"><span class="crayon-h">		</span><span class="crayon-v">bias</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">net</span><span class="crayon-sy">.</span><span class="crayon-v">transformer</span><span class="crayon-sy">.</span><span class="crayon-v">mean</span><span class="crayon-sy">[</span><span class="crayon-s">"data"</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-19"><span class="crayon-h">		</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">[</span><span class="crayon-o">:</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">clip</span><span class="crayon-sy">(</span><span class="crayon-v">src</span><span class="crayon-sy">.</span><span class="crayon-v">data</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-v">bias</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">255</span><span class="crayon-h"> </span><span class="crayon-o">-</span><span class="crayon-h"> </span><span class="crayon-v">bias</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-20">&nbsp;</div><div class="crayon-line" id="crayon-55c51c3b7d599273999582-21"><span class="crayon-v">image</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">bc</span><span class="crayon-sy">.</span><span class="crayon-e">dream</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">float32</span><span class="crayon-sy">(</span><span class="crayon-v">Image</span><span class="crayon-sy">.</span><span class="crayon-k ">open</span><span class="crayon-sy">(</span><span class="crayon-s">"image.jpg"</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d599273999582-22"><span class="crayon-h">	</span><span class="crayon-v">step_fn</span><span class="crayon-o">=</span><span class="crayon-v">custom_step</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0062 seconds] -->
+<p>Again, this is just a demonstration of implementing a custom step function and not meant to be anything too exciting.</p>
+<p>You can also override the default 
+			<span id="crayon-55c51c3b7d59d731313041" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">preprocess</span></span></span>  and 
+			<span id="crayon-55c51c3b7d5a1022636364" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">deprocess</span></span></span>  functions by passing in a custom 
+			<span id="crayon-55c51c3b7d5a4156037604" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">preprocess_fn</span></span></span>  and 
+			<span id="crayon-55c51c3b7d5a7692097211" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">deprocess_fn</span></span></span>  to 
+			<span id="crayon-55c51c3b7d5aa886248840" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">dream</span></span></span> :</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d5ae764790547" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Shell</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+def custom_preprocess(net, img):
+	# do something interesting here...
+	pass
+
+def custom_deprocess(net, img):
+	# do something interesting here...
+	pass
+
+image = bc.dream(np.float32(Image.open("image.jpg")),
+	preprocess_fn=custom_preocess, deprocess_fn=custom_deprocess)</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d5ae764790547-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5ae764790547-2">2</div><div class="crayon-num" data-line="crayon-55c51c3b7d5ae764790547-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5ae764790547-4">4</div><div class="crayon-num" data-line="crayon-55c51c3b7d5ae764790547-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5ae764790547-6">6</div><div class="crayon-num" data-line="crayon-55c51c3b7d5ae764790547-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5ae764790547-8">8</div><div class="crayon-num" data-line="crayon-55c51c3b7d5ae764790547-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5ae764790547-10">10</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d5ae764790547-1"><span class="crayon-e">def </span><span class="crayon-e">custom_preprocess</span><span class="crayon-sy">(</span><span class="crayon-v">net</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">img</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5ae764790547-2"><span class="crayon-h">	</span><span class="crayon-c"># do something interesting here...</span></div><div class="crayon-line" id="crayon-55c51c3b7d5ae764790547-3"><span class="crayon-h">	</span><span class="crayon-e">pass</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5ae764790547-4">&nbsp;</div><div class="crayon-line" id="crayon-55c51c3b7d5ae764790547-5"><span class="crayon-e">def </span><span class="crayon-e">custom_deprocess</span><span class="crayon-sy">(</span><span class="crayon-v">net</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">img</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5ae764790547-6"><span class="crayon-h">	</span><span class="crayon-c"># do something interesting here...</span></div><div class="crayon-line" id="crayon-55c51c3b7d5ae764790547-7"><span class="crayon-h">	</span><span class="crayon-e">pass</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5ae764790547-8">&nbsp;</div><div class="crayon-line" id="crayon-55c51c3b7d5ae764790547-9"><span class="crayon-v">image</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">bc</span><span class="crayon-e">.dream</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-e">.float32</span><span class="crayon-sy">(</span><span class="crayon-v">Image</span><span class="crayon-e">.open</span><span class="crayon-sy">(</span><span class="crayon-s">"image.jpg"</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5ae764790547-10"><span class="crayon-h">	</span><span class="crayon-v">preprocess_fn</span><span class="crayon-o">=</span><span class="crayon-v">custom_preocess</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">deprocess_fn</span><span class="crayon-o">=</span><span class="crayon-v">custom_deprocess</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0010 seconds] -->
+<p>Finally, bat-country also supports visualizing each octave, iteration, and layer of the network:</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-55c51c3b7d5b1937049394" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-mac print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title">bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+bc = BatCountry(args.base_model)
+(image, visualizations) = bc.dream(np.float32(Image.open(args.image)),
+	end=args.layer, visualize=True)
+bc.cleanup()
+
+for (k, vis) in visualizations:
+	outputPath = "{}/{}.jpg".format(args.vis, k)
+	result = Image.fromarray(np.uint8(vis))
+	result.save(outputPath)</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-55c51c3b7d5b1937049394-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5b1937049394-2">2</div><div class="crayon-num" data-line="crayon-55c51c3b7d5b1937049394-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5b1937049394-4">4</div><div class="crayon-num" data-line="crayon-55c51c3b7d5b1937049394-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5b1937049394-6">6</div><div class="crayon-num" data-line="crayon-55c51c3b7d5b1937049394-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-55c51c3b7d5b1937049394-8">8</div><div class="crayon-num" data-line="crayon-55c51c3b7d5b1937049394-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-55c51c3b7d5b1937049394-1"><span class="crayon-v">bc</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">BatCountry</span><span class="crayon-sy">(</span><span class="crayon-v">args</span><span class="crayon-sy">.</span><span class="crayon-v">base_model</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5b1937049394-2"><span class="crayon-sy">(</span><span class="crayon-v">image</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">visualizations</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">bc</span><span class="crayon-sy">.</span><span class="crayon-e">dream</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">float32</span><span class="crayon-sy">(</span><span class="crayon-v">Image</span><span class="crayon-sy">.</span><span class="crayon-k ">open</span><span class="crayon-sy">(</span><span class="crayon-v">args</span><span class="crayon-sy">.</span><span class="crayon-v">image</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-55c51c3b7d5b1937049394-3"><span class="crayon-h">	</span><span class="crayon-v">end</span><span class="crayon-o">=</span><span class="crayon-v">args</span><span class="crayon-sy">.</span><span class="crayon-v">layer</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">visualize</span><span class="crayon-o">=</span><span class="crayon-t">True</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5b1937049394-4"><span class="crayon-v">bc</span><span class="crayon-sy">.</span><span class="crayon-e">cleanup</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-55c51c3b7d5b1937049394-5">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5b1937049394-6"><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">k</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">vis</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">visualizations</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-55c51c3b7d5b1937049394-7"><span class="crayon-h">	</span><span class="crayon-v">outputPath</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"{}/{}.jpg"</span><span class="crayon-sy">.</span><span class="crayon-k ">format</span><span class="crayon-sy">(</span><span class="crayon-v">args</span><span class="crayon-sy">.</span><span class="crayon-v">vis</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">k</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-55c51c3b7d5b1937049394-8"><span class="crayon-h">	</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">Image</span><span class="crayon-sy">.</span><span class="crayon-e">fromarray</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">uint8</span><span class="crayon-sy">(</span><span class="crayon-v">vis</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-55c51c3b7d5b1937049394-9"><span class="crayon-h">	</span><span class="crayon-v">result</span><span class="crayon-sy">.</span><span class="crayon-e">save</span><span class="crayon-sy">(</span><span class="crayon-v">outputPath</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0025 seconds] -->
+<p>To see the full 
+			<span id="crayon-55c51c3b7d5b5233436905" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">demo_vis</span><span class="crayon-sy">.</span><span class="crayon-v">py</span></span></span>  script on GitHub, <a href="https://github.com/jrosebr1/bat-country/blob/master/demo_vis.py" target="_blank">just click here</a>.<br />
+<a name="show_and_tell"></a></p>
+<h2>Show and tell.</h2>
+<p>I had a lot of fun playing with 
+			<span id="crayon-55c51c3b7d5b8904703883" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span>  over the weekend, specifically with images from <em>Fear and Loathing in Las Vegas</em>, <em>The Matrix</em>, and <em>Jurassic Park</em>. I also included a few of my favorite desktop wallpapers and photos from my recent vacation on the western part of the United States for fun.</p>
+<p>For each of the original images <em>(top)</em>, I have generated a &#8220;deep dream&#8221; using the 
+			<span id="crayon-55c51c3b7d5bb334039925" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">conv2</span><span class="crayon-o">/</span><span class="crayon-cn">3x3</span></span></span> , 
+			<span id="crayon-55c51c3b7d5bf496667669" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">inception_3b</span><span class="crayon-o">/</span><span class="crayon-cn">5x5_reduce</span></span></span> , 
+			<span id="crayon-55c51c3b7d5c2954438413" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">inception_4c</span><span class="crayon-o">/</span><span class="crayon-v">output</span></span></span>  layers, respectively.</p>
+<p>The 
+			<span id="crayon-55c51c3b7d5c5949170448" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">conv2</span><span class="crayon-o">/</span><span class="crayon-cn">3x3</span></span></span>  and 
+			<span id="crayon-55c51c3b7d5c8601352394" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">inception_3b</span><span class="crayon-o">/</span><span class="crayon-cn">5x5_reduce</span></span></span>  layers are lower level layers in the network that give more &#8220;edge-like&#8221; features. The 
+			<span id="crayon-55c51c3b7d5cc281011149" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">inception_4c</span><span class="crayon-o">/</span><span class="crayon-v">output</span></span></span>  layer is the final output that generates trippy hallucinations of dogs, snails, birds, and fish.</p>
+<h3>Fear and Loathing in Las Vegas</h3>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_01.jpg"><img class="aligncenter wp-image-2727" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_01.jpg" alt="output_fal_01" width="600" height="1078" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_02.jpg"><img class="aligncenter wp-image-2728" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_02.jpg" alt="output_fal_02" width="600" height="1078" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_03.jpg"><img class="aligncenter wp-image-2729" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_03.jpg" alt="output_fal_03" width="600" height="1044" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_04.jpg"><img class="aligncenter wp-image-2730" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_fal_04.jpg" alt="output_fal_04" width="600" height="1046" /></a></p>
+<h3>Jurassic Park</h3>
+<div id="attachment_2726" style="width: 610px" class="wp-caption aligncenter"><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_06.jpg"><img class="wp-image-2726" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_06.jpg" alt="output_jp_06" width="600" height="1375" /></a><p class="wp-caption-text"><strong>This is DEFINITELY my personal favorite.</strong></p></div>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_01.jpg"><img class="aligncenter wp-image-2721" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_01.jpg" alt="output_jp_01" width="600" height="1224" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_02.jpg"><img class="aligncenter wp-image-2722" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_02.jpg" alt="output_jp_02" width="600" height="1322" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_03.jpg"><img class="aligncenter wp-image-2723" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_03.jpg" alt="output_jp_03" width="600" height="1375" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_04.jpg"><img class="aligncenter wp-image-2724" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_04.jpg" alt="output_jp_04" width="600" height="1306" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_05.jpg"><img class="aligncenter wp-image-2725" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_jp_05.jpg" alt="output_jp_05" width="600" height="1638" /></a></p>
+<h3>The Matrix</h3>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_01.jpg"><img class="aligncenter wp-image-2716" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_01.jpg" alt="output_matrix_01" width="600" height="1015" /></a></p>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_02.jpg"><img class="aligncenter size-full wp-image-2717" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_02.jpg" alt="output_matrix_02" width="600" height="1628" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_03.jpg"><img class="aligncenter wp-image-2718" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_03.jpg" alt="output_matrix_03" width="600" height="1375" /></a> <a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_04.jpg"><img class="aligncenter wp-image-2719" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/output_matrix_04.jpg" alt="output_matrix_04" width="600" height="1015" /></a></p>
+<h3>Antelope Canyon (Page, AZ)</h3>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_01.jpg"><img class="aligncenter wp-image-2714" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_01.jpg" alt="antelope_canyon_01" width="600" height="223" /></a></p>
+<p>&nbsp;</p>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_02.jpg"><img class="aligncenter wp-image-2715" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/antelope_canyon_02.jpg" alt="antelope_canyon_02" width="600" height="395" /></a></p>
+<h3>Angels Landing (Zion Canyon; Springdale, UT)</h3>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_01.jpg"><img class="aligncenter wp-image-2712" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_01.jpg" alt="angels_landing_01" width="600" height="395" /></a></p>
+<p>&nbsp;</p>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_02.jpg"><img class="aligncenter wp-image-2713" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/angels_landing_02.jpg" alt="angels_landing_02" width="600" height="223" /></a></p>
+<h3>Zoo (Phoenix, AZ)</h3>
+<p><a href="http://www.pyimagesearch.com/wp-content/uploads/2015/07/giraffe.jpg"><img class="aligncenter wp-image-2711" src="http://www.pyimagesearch.com/wp-content/uploads/2015/07/giraffe.jpg" alt="giraffe" width="600" height="223" /></a></p>
+<h1>Summary</h1>
+<p>In this blog post I introduced <a href="https://github.com/jrosebr1/bat-country" target="_blank">bat-country</a>, an easy to use, highly extendible, lightweight Python module for inceptionism and deep dreaming with Convolutional Neural Networks and Caffe.</p>
+<p>The vast majority of the code is based on the <a href="http://nbviewer.ipython.org/github/google/deepdream/blob/master/dream.ipynb" target="_blank">IPython Notebook</a> published by the <a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html" target="_blank">Google Research blog</a>. My own contribution isn&#8217;t too exciting, I have simply (1) wrapped the code in a Python class, (2) made it easier to extend and customize, and (3) pushed it to PyPI to make it pip-installable.</p>
+<p>If you are looking for a more robust deep dreaming tool using Caffe, I really suggest taking a look at Justin Johnson&#8217;s <a href="https://github.com/jcjohnson/cnn-vis" target="_blank">cnn-vis</a>. And if you want to get your own Caffe installation up and running quickly (not to mention, one that has a web interface for deep dreaming), take a look a <a href="https://github.com/VISIONAI/clouddream" target="_blank">Tomasz&#8217;s docker instance</a>.</p>
+<p>Anyway, I hope you enjoy the 
+			<span id="crayon-55c51c3b7d5d2868917552" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important;"><span class="crayon-pre crayon-code" style="font-size: 12px !important; line-height: 15px !important;font-size: 12px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">bat</span><span class="crayon-o">-</span><span class="crayon-v">country</span></span></span> ! Feel free to comment on this post with your own images generated using the package.</p>
+	</section><!-- /.entry -->
+	<div class="fix"></div>
+		<aside id="connect">
+		<h3>Resource Guide (it’s totally free).</h3>
+
+		<div >
+			<p><img title="Get your FREE 11-page Image Search Engine Resource Guide PDF" src="http://www.pyimagesearch.com/wp-content/uploads/2014/01/imagesearchengine-resourceguide-cover.png" style="padding-right: 10px;float: left" />
+<div style="padding-top: 35px">
+Enter your email address below to get my <strong>free 11-page Image Search Engine Resource Guide PDF</strong>. Uncover <strong>exclusive techniques</strong> that I don't publish on this blog and start building image search engines of your own!</div></p>
+
+			
+						<form action="https://www.getdrip.com/forms/1113813/submissions" method="post" target="_blank" data-drip-embedded-form="1295">
+				<div>
+					<input type="email" name="fields[email]" class="required email" value="" placeholder="Your email address" style="width: 50%;" />
+				</div>
+				<div>
+					<input id="mc-embedded-subscribe" type="submit" name="submit" class="btn submit button" value="Download the Guide!" data-drip-attribute="sign-up-button" />
+				</div>
+			</form>
+			
+						<div class="social">
+		   					</div>
+			
+		</div><!-- col-left -->
+
+		
+        <div class="fix"></div>
+	</aside>
+	<div class="post-utility"><p class="tags"><i class="icon-tag"></i> <a href="http://www.pyimagesearch.com/tag/bat-country/" rel="tag">bat-country</a>, <a href="http://www.pyimagesearch.com/tag/caffe/" rel="tag">caffe</a>, <a href="http://www.pyimagesearch.com/tag/convolutional-neural-network/" rel="tag">convolutional neural network</a>, <a href="http://www.pyimagesearch.com/tag/deep-dreaming/" rel="tag">deep dreaming</a>, <a href="http://www.pyimagesearch.com/tag/deep-learning/" rel="tag">deep learning</a>, <a href="http://www.pyimagesearch.com/tag/deep-net/" rel="tag">deep net</a>, <a href="http://www.pyimagesearch.com/tag/inceptionism/" rel="tag">inceptionism</a>, <a href="http://www.pyimagesearch.com/tag/library/" rel="tag">library</a></p> </div>
+</article><!-- /.post -->
+	        <div class="post-entries">
+	            <div class="nav-prev fl"><a href="http://www.pyimagesearch.com/2015/06/29/install-opencv-3-0-and-python-3-4-on-osx/" rel="prev"><i class="icon-angle-left"></i> Install OpenCV 3.0 and Python 3.4+ on OSX</a></div>
+	            <div class="nav-next fr"><a href="http://www.pyimagesearch.com/2015/07/13/generating-art-with-guided-deep-dreaming/" rel="next">Generating art with guided deep dreaming. <i class="icon-angle-right"></i></a></div>
+	            <div class="fix"></div>
+	        </div>
+
+		<div id="comments">		 	<h3 id="comments-title">13 Responses to <em>bat-country: an extendible, lightweight Python package for deep dreaming with Caffe and Convolutional Neural Networks</em></h3>
+		 	<ol class="commentlist">
+					                 
+		<li class="comment even thread-even depth-1">
+	    
+	    	<a name="comment-333637"></a>
+	      	
+	      	<div id="li-comment-333637" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/63c79b63c104f841f68af0f69c5e21a7?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/63c79b63c104f841f68af0f69c5e21a7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Srikanth</span>           
+	                <span class="date">July 6, 2015 at 11:34 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-333637" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-333637">
+				
+				<p>Thats great! seems the human face is computed after trying several faces like dogs,moneys etc!. I am going to learn deep learning 😀</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=333637#respond' onclick='return addComment.moveForm( "comment-333637", "333637", "respond", "2684" )' aria-label='Reply to Srikanth'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+	                 
+		<li class="comment odd alt thread-odd thread-alt depth-1">
+	    
+	    	<a name="comment-333677"></a>
+	      	
+	      	<div id="li-comment-333677" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/36d989beb8ff0853c120199da4e509ed?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/36d989beb8ff0853c120199da4e509ed?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Richard</span>           
+	                <span class="date">July 6, 2015 at 3:15 pm</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-333677" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-333677">
+				
+				<p>Blow minded! It almost look like a painting from some surrealist pinter! Awesome! I&#8217;m eager to learn a little more about deep learning&#8230;</p>
+<p>Thanks for this great post! Keep the good job.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=333677#respond' onclick='return addComment.moveForm( "comment-333677", "333677", "respond", "2684" )' aria-label='Reply to Richard'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	<ul class="children">
+	                 
+		<li class="comment byuser comment-author-adrian bypostauthor even depth-2">
+	    
+	    	<a name="comment-333685"></a>
+	      	
+	      	<div id="li-comment-333685" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Adrian Rosebrock</span>           
+	                <span class="date">July 6, 2015 at 3:51 pm</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-333685" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-333685">
+				
+				<p>Thanks Richard! 😀</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=333685#respond' onclick='return addComment.moveForm( "comment-333685", "333685", "respond", "2684" )' aria-label='Reply to Adrian Rosebrock'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	                 
+		<li class="comment odd alt thread-even depth-1">
+	    
+	    	<a name="comment-333771"></a>
+	      	
+	      	<div id="li-comment-333771" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/49768814ee6d4ee0f3dac49c49ad28ab?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/49768814ee6d4ee0f3dac49c49ad28ab?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Scott</span>           
+	                <span class="date">July 6, 2015 at 8:12 pm</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-333771" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-333771">
+				
+				<p>Great work! I&#8217;m trying to get this running but keep running into the error:</p>
+<p>Traceback (most recent call last):<br />
+  File &#8220;./bat_country&#8221;, line 3, in<br />
+    bc = batcountry(&#8220;caffe/models/bvlc_googlenet&#8221;)<br />
+TypeError: &#8216;module&#8217; object is not callable</p>
+<p>Any ideas? I&#8217;ve copied and pasted your example.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=333771#respond' onclick='return addComment.moveForm( "comment-333771", "333771", "respond", "2684" )' aria-label='Reply to Scott'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	<ul class="children">
+	                 
+		<li class="comment byuser comment-author-adrian bypostauthor even depth-2">
+	    
+	    	<a name="comment-333939"></a>
+	      	
+	      	<div id="li-comment-333939" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Adrian Rosebrock</span>           
+	                <span class="date">July 7, 2015 at 6:33 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-333939" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-333939">
+				
+				<p>Hey Scott, the actual <strong><em>module</em></strong> is named <code>batcountry</code>, but the <strong><em>class</em></strong> is named <code>BatCountry</code> &#8212; notice how the &#8216;B&#8217; and &#8216;C&#8217; are capitalized. It looks like you may have manually typed the code out rather than copied and pasted. Change the line to:</p>
+<p><code>bc = BatCountry("caffe/models/bvlc_googlenet")</code></p>
+<p>and you won&#8217;t get an error.</p>
+<p>Secondly, I would suggest cloning down the entire <a target="blank" href="https://github.com/jrosebr1/bat-country" rel="nofollow">bat-country repo from GitHub</a> and executing <code>demo.py</code> directly.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=333939#respond' onclick='return addComment.moveForm( "comment-333939", "333939", "respond", "2684" )' aria-label='Reply to Adrian Rosebrock'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	                 
+		<li class="comment odd alt thread-odd thread-alt depth-1">
+	    
+	    	<a name="comment-334753"></a>
+	      	
+	      	<div id="li-comment-334753" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/f18070fbd363551d4389727f09ab39bb?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f18070fbd363551d4389727f09ab39bb?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Isaiah</span>           
+	                <span class="date">July 10, 2015 at 5:12 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-334753" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-334753">
+				
+				<p>I get &#8220;NameError: name &#8216;BatCountry&#8217; is not defined&#8221; when I execute the 3 lines</p>
+<p>What do?</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=334753#respond' onclick='return addComment.moveForm( "comment-334753", "334753", "respond", "2684" )' aria-label='Reply to Isaiah'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	<ul class="children">
+	                 
+		<li class="comment byuser comment-author-adrian bypostauthor even depth-2">
+	    
+	    	<a name="comment-334770"></a>
+	      	
+	      	<div id="li-comment-334770" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Adrian Rosebrock</span>           
+	                <span class="date">July 10, 2015 at 6:15 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-334770" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-334770">
+				
+				<p>Hey Isaiah, you need to first install BatCountry using <code>pip install bat-country</code>. That will install the package on your system. From there, I would suggest getting Caffe compiled and installed correctly as bat-country utilizes Caffe. Finally, take a look at the full <a target="blank" href="https://github.com/jrosebr1/bat-country/blob/master/demo.py" rel="nofollow">demo.py</a> file where those 3 lines came from. You&#8217;ll notice you&#8217;ll need to import the bat-country package: <code>from batcountry import BatCountry</code> before you can actually use it.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=334770#respond' onclick='return addComment.moveForm( "comment-334770", "334770", "respond", "2684" )' aria-label='Reply to Adrian Rosebrock'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	                 
+		<li class="comment odd alt thread-even depth-1">
+	    
+	    	<a name="comment-337312"></a>
+	      	
+	      	<div id="li-comment-337312" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://1.gravatar.com/avatar/a18a838b08595d6df4c96b4281f50ef0?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a18a838b08595d6df4c96b4281f50ef0?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Jeremy M</span>           
+	                <span class="date">July 19, 2015 at 1:19 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-337312" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-337312">
+				
+				<p>Hi Adrian,</p>
+<p>I had an idea for a project of using this to make random/interesting design recommendations on a model trained on thousands of construction drawings. Is Google DeepDream mainly showing eyes and dogs because it&#8217;s training data is overly skewed to eyes and dogs? Perhaps there&#8217;s more to it than that.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=337312#respond' onclick='return addComment.moveForm( "comment-337312", "337312", "respond", "2684" )' aria-label='Reply to Jeremy M'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	<ul class="children">
+	                 
+		<li class="comment byuser comment-author-adrian bypostauthor even depth-2">
+	    
+	    	<a name="comment-337389"></a>
+	      	
+	      	<div id="li-comment-337389" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Adrian Rosebrock</span>           
+	                <span class="date">July 19, 2015 at 7:43 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-337389" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-337389">
+				
+				<p>Hey Jeremy, you&#8217;re absolutely correct. Deep dream is showing more eyes/dogs because (1) there are many classes in ImageNet that contain eyes, and (2) dogs are heavily, <strong>heavily</strong> represented in the ImageNet dataset. If you wanted to show more construction related themes, you would need to train your own model using construction images. However, in the meantime, you may want to take a look at <a target="blank" href="http://places.csail.mit.edu/" rel="nofollow">MIT Places</a> model which does include more of a scene recognition and construction feel.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=337389#respond' onclick='return addComment.moveForm( "comment-337389", "337389", "respond", "2684" )' aria-label='Reply to Adrian Rosebrock'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	                 
+		<li class="comment odd alt thread-odd thread-alt depth-1">
+	    
+	    	<a name="comment-337913"></a>
+	      	
+	      	<div id="li-comment-337913" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/39c7a24ade354217c4ea0ff8402ae839?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/39c7a24ade354217c4ea0ff8402ae839?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">flow</span>           
+	                <span class="date">July 21, 2015 at 1:51 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-337913" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-337913">
+				
+				<p>i broke free of the puppy slugs by changing the iterations by octave. google sets equal, for me, this introduces too much weight to the lower octaves, so i made mine run with curves, and no more puppy slug,. indeed the attractors seem to depend on the weight of the various octaves.</p>
+<p>Is there an easy way to reference the layers rather than using their name? I&#8217;d like to call net.blob.key[5] or whatever, but can&#8217;t figure the syntax</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=337913#respond' onclick='return addComment.moveForm( "comment-337913", "337913", "respond", "2684" )' aria-label='Reply to flow'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	<ul class="children">
+	                 
+		<li class="comment byuser comment-author-adrian bypostauthor even depth-2">
+	    
+	    	<a name="comment-337963"></a>
+	      	
+	      	<div id="li-comment-337963" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' /></div>
+	                        
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Adrian Rosebrock</span>           
+	                <span class="date">July 21, 2015 at 6:35 am</span>
+	                <span class="perma"><a href="http://www.pyimagesearch.com/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#comment-337963" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+		      
+		   		<div class="comment-entry"  id="comment-337963">
+				
+				<p>Hey flow, you can access the layer names by using the <code>layers</code> method: <code>print bt.layers()</code>. This will give you a list of strings corresponding to each layer in the network. Some can be used for deep dreaming, others can&#8217;t. But that should get you started.</p>
+		            
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/?replytocom=337963#respond' onclick='return addComment.moveForm( "comment-337963", "337963", "respond", "2684" )' aria-label='Reply to Adrian Rosebrock'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+			</ol>
+		 				 	<h3 id="comments-title">Trackbacks/Pingbacks</h3>
+			 	<ol class="commentlist">
+						
+		<li id="comment-335635">
+			<span class="author"><a href='https://www.pyimagesearch.com/2015/07/13/generating-art-with-guided-deep-dreaming/' rel='external nofollow' class='url'>Generating art with guided deep dreaming. - PyImageSearch</a></span> - 
+			<span class="date">July 13, 2015</span>
+			<span class="pingcontent"><p>[&#8230;] of the main benefits of the bat-country Python package for deep dreaming and visualization is its ease of use, extensibility, and [&#8230;]</p>
+</span>
+</li><!-- #comment-## -->
+	
+		<li id="comment-342151">
+			<span class="author"><a href='https://www.pyimagesearch.com/2015/08/03/deep-dream-visualizing-every-layer-of-googlenet/' rel='external nofollow' class='url'>Deep dream: Visualizing every layer of GoogLeNet - PyImageSearch</a></span> - 
+			<span class="date">August 3, 2015</span>
+			<span class="pingcontent"><p>[&#8230;] week I introduced bat-country, my implementation of a lightweight, extendible, easy to use Python package for deep dreaming and [&#8230;]</p>
+</span>
+</li><!-- #comment-## -->
+				</ol>
+			</div>						<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2015/07/06/bat-country-an-extendible-lightweight-python-package-for-deep-dreaming-with-caffe-and-convolutional-neural-networks/#respond" style="display:none;">Click here to cancel reply.</a></small></h3>
+									<form action="http://www.pyimagesearch.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<p class="comment-form-author"><input id="author" name="author" type="text" class="txt" tabindex="1" value="" size="30" aria-required='true' /><label for="author">Name <span class="required">(required)</span></label> </p>
+<p class="comment-form-email"><input id="email" name="email" type="text" class="txt" tabindex="2" value="" size="30" aria-required='true' /><label for="email">Email (will not be published) <span class="required">(required)</span></label> </p>
+<p class="comment-form-url"><input id="url" name="url" type="text" class="txt" tabindex="3" value="" size="30" /><label for="url">Website</label></p>
+												<p class="comment-form-comment"><label class="hide" for="comment">Comment</label> <textarea tabindex="4" id="comment" name="comment" cols="50" rows="10" aria-describedby="form-allowed-tags" aria-required="true" required="required"></textarea></p>						
+						<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Submit Comment" /> <input type='hidden' name='comment_post_ID' value='2684' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2f1e9a87ba" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="42"/></p>					</form>
+							</div><!-- #respond -->
+			     
+            </section><!-- /#main -->
+                
+            <aside id="sidebar">
+<div id="text-7" class="widget widget_text"><h3>Resource Guide (it&#8217;s totally free).</h3>			<div class="textwidget"><img title="Get your FREE 11-page Image Search Engine Resource Guide PDF" src="http://www.pyimagesearch.com/wp-content/uploads/2014/01/imagesearchengine-resourceguide-cover.png" style="padding-right: 10px; width: 100px; float: left;"/>
+<p>
+Enter your email address below to get my <strong>free 11-page Image Search Engine Resource Guide PDF</strong>. Uncover <strong>exclusive techniques</strong> that I don't publish on this blog and start building image search engines of your own!
+</p>
+<div style="clear: left;"></div>
+
+<div id="mc4wp-form-1" class="form mc4wp-form mc4wp-form-246"><form action="https://www.getdrip.com/forms/1113813/submissions" method="post" target="_blank" data-drip-embedded-form="1295"><p>
+	<input type="email" name="fields[email]" value="" placeholder="Your email address" style="max-width: 400px;" />
+</p>
+<p>
+	<input type="submit" value="Download the guide!" style="background-color: #DF4B4B;" />
+</p></form></div></div>
+		</div><div id="text-5" class="widget widget_text"><h3>You can detect faces in images &amp; video.</h3>			<div class="textwidget"><a href="http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-face-detection" title="Practical Python and OpenCV"><img title="Learn how to detect faces in images and video" src="http://www.pyimagesearch.com/wp-content/uploads/2014/12/adrian_face_detection_sidebar.png" style="padding-bottom: 5px; width: 300px;" onClick="document.location='http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-face-detection'; return false;"/></a>
+<p>
+Are you interested in <strong>detecting faces in images & video?</strong> But <strong>tired of Googling for tutorials</strong> that <em>never work?</em> Then let me help! I guarantee that my new book will turn you into a <strong>face detection ninja</strong> by the end of this weekend.
+<a href="http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-face-detection" title="Practical Python and OpenCV" onClick="document.location='http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-face-detection'; return false;">Click here to give it a shot yourself.</a>
+</p>
+<p><input type="submit" value="Click here to master face detection" style="background-color: #DF4B4B;" onClick="document.location='http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-face-detection'; return false;" /></p></div>
+		</div><div id="text-8" class="widget widget_text"><h3>The PyImageSearch Gurus Kickstarter is over&#8230;</h3>			<div class="textwidget"><a href="http://www.pyimagesearch.com/pyimagesearch-gurus/?src=sidebar"><img title="PyImageSearch Gurus Kickstarter" src="http://www.pyimagesearch.com/wp-content/uploads/2015/01/overview_kickstarter_small.jpg" style="padding-bottom: 5px; width: 300px;" onClick="document.location='http://www.pyimagesearch.com/pyimagesearch-gurus/?src=sidebar'; return false;"/></a>
+<p>The PyImageSearch Gurus Kickstarter is over...<a href="http://www.pyimagesearch.com/pyimagesearch-gurus/?src=sidebar" style="font-weight: bold;">but you can still claim your spot in line</a> when the computer vision + OpenCV course launches in August!</p>
+<p>
+<input type="submit" value="Click here to claim your spot!" style="background-color: #DF4B4B;" onClick="document.location='http://www.pyimagesearch.com/pyimagesearch-gurus/?src=sidebar'; return false;"  />
+</p></div>
+		</div><div id="woo_blogauthorinfo-2" class="widget widget_woo_blogauthorinfo"><h3>Hello! I&#8217;m Adrian Rosebrock.</h3><span class="left"><img alt='' src='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=90&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02743529311d3b8babbaf6935670ec9c?s=180&amp;d=mm&amp;r=g 2x' class='avatar avatar-90 photo' height='90' width='90' /></span>
+<p>I'm an entrepreneur and Ph.D who has launched two successful image search engines, <a target="blank" href="http://www.idmypill.com">ID My Pill</a> and <a target="blank" href="http://www.chicengine.com">Chic Engine</a>. I'm here to share my tips, tricks, and hacks I've learned along the way.</p>
+<div class="fix"></div>
+</div><div id="text-4" class="widget widget_text"><h3>Learn computer vision in a single weekend.</h3>			<div class="textwidget"><a href="http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-single-weekend" title="Practical Python and OpenCV"><img title="Become an OpenCV guru" src="http://www.pyimagesearch.com/static/templates/practical-python-and-opencv/images/practical_python_and_opencv_cover.png" style="margin-left: 35px; padding-bottom: 15px; width: 215px;"/></a>
+<p>Want to learn computer vision &amp; OpenCV? I can teach you in a <strong>single weekend</strong>. I know. It sounds crazy, but it’s no joke. My new book is your <strong>guaranteed, quick-start guide</strong> to becoming an OpenCV Guru. So why not give it a try? <a href="http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-single-weekend" title="Practical Python and OpenCV">Click here to become a computer vision guru.</a></p>
+<p><input type="submit" value="Click here to become an OpenCV guru" style="background-color: #DF4B4B;" onClick="document.location='http://www.pyimagesearch.com/practical-python-opencv/?src=sidebar-single-weekend'; return false;" /></p></div>
+		</div><div id="text-3" class="widget widget_text"><h3>Subscribe via RSS</h3>			<div class="textwidget"><a target="blank" href="http://feeds.feedburner.com/Pyimagesearch"><img title="PyImageSearch RSS Feed" src="http://www.pyimagesearch.com/wp-content/uploads/2014/01/rss-icon.png"/ style="padding-right: 10px; float: left;"></a>
+<p><strong>Never miss a post!</strong> Subscribe to the PyImageSearch RSS Feed and keep up to date with my image search engine tutorials, tips, and tricks</p></div>
+		</div>
+		<div id="woo_tabs-2" class="widget widget_woo_tabs"> 		<div id="tabs">
+
+            <ul class="wooTabs">
+                                <li class="popular"><a href="#tab-pop">Popular</a></li>                                                            </ul>
+
+            <div class="clear"></div>
+
+            <div class="boxes box inside">
+
+	            
+                                <ul id="tab-pop" class="list">
+                    	<li>
+				<a title="Install OpenCV and Python on your Raspberry Pi 2 and B+" href="http://www.pyimagesearch.com/2015/02/23/install-opencv-and-python-on-your-raspberry-pi-2-and-b/">Install OpenCV and Python on your Raspberry Pi 2 and B+</a>
+		<span class="meta">February 23, 2015</span>
+		<div class="fix"></div>
+	</li>
+		<li>
+				<a title="Histogram of Oriented Gradients and Object Detection" href="http://www.pyimagesearch.com/2014/11/10/histogram-oriented-gradients-object-detection/">Histogram of Oriented Gradients and Object Detection</a>
+		<span class="meta">November 10, 2014</span>
+		<div class="fix"></div>
+	</li>
+		<li>
+				<a title="Home surveillance and motion detection with the Raspberry Pi, Python, OpenCV, and Dropbox" href="http://www.pyimagesearch.com/2015/06/01/home-surveillance-and-motion-detection-with-the-raspberry-pi-python-and-opencv/">Home surveillance and motion detection with the Raspberry Pi, Python, OpenCV, and Dropbox</a>
+		<span class="meta">June 1, 2015</span>
+		<div class="fix"></div>
+	</li>
+		<li>
+				<a title="Accessing the Raspberry Pi Camera with OpenCV and Python" href="http://www.pyimagesearch.com/2015/03/30/accessing-the-raspberry-pi-camera-with-opencv-and-python/">Accessing the Raspberry Pi Camera with OpenCV and Python</a>
+		<span class="meta">March 30, 2015</span>
+		<div class="fix"></div>
+	</li>
+		<li>
+				<a title="Basic motion detection and tracking with Python and OpenCV" href="http://www.pyimagesearch.com/2015/05/25/basic-motion-detection-and-tracking-with-python-and-opencv/">Basic motion detection and tracking with Python and OpenCV</a>
+		<span class="meta">May 25, 2015</span>
+		<div class="fix"></div>
+	</li>
+	                </ul>
+                                                                
+            </div><!-- /.boxes -->
+
+        </div><!-- /wooTabs -->
+
+        </div>         <div id="woo_search-2" class="widget widget_woo_search"><h3>Search</h3><div class="search_main">
+    <form method="get" class="searchform" action="http://www.pyimagesearch.com/" >
+        <input type="text" class="field s" name="s" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
+                <button type="submit" class="icon-search submit" name="submit" value="Search"></button>
+    </form>    
+    <div class="fix"></div>
+</div>
+</div></aside><!-- /#sidebar -->
+
+		</div><!-- /#main-sidebar-container -->         
+
+		
+    </div><!-- /#content -->
+	
+    <!--#footer-widgets-container-->
+    <div id="footer-widgets-container">
+	</div><!--/#footer_widgets_container_end-->
+    <!--#footer_container_start-->
+    <div id="footer-container">
+	<footer id="footer" class="col-full">
+
+		
+		<div id="copyright" class="col-left">
+			Find me on <a target="blank" href="https://twitter.com/pyimagesearch" style="font-weight: bold; color: #FFFFFF;">Twitter</a>, <a target="blank" href="https://www.facebook.com/pyimagesearch" style="font-weight: bold; color: #FFFFFF;">Facebook</a>, <a target="blank" href="https://plus.google.com/115909176846554117735/?rel=author" style="font-weight: bold; color: #FFFFFF;">Google+</a>, and <a target="blank" href="http://www.linkedin.com/pub/adrian-rosebrock/2a/873/59b" style="font-weight: bold; color: #FFFFFF;">LinkedIn</a>.<br/>
+			<p>&copy; 2015 PyImageSearch. All Rights Reserved. </p>		</div>
+
+		<div id="credit" class="col-right">
+		</div>
+
+	</footer>
+
+	    </div><!--/#footer_container_end-->
+
+	</div><!-- /#inner-wrapper -->
+
+</div><!-- /#wrapper -->
+
+<div class="fix"></div><!--/.fix-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46641058-1', 'pyimagesearch.com');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Drip -->
+<script type="text/javascript">
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {}; 
+  _dcs.account = '4768429';
+  
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true; 
+    dc.src = '//tag.getdrip.com/4768429.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script>
+
+<!-- HitTail Code -->
+<script type="text/javascript">
+	(function(){ var ht = document.createElement('script');ht.async = true;
+	  ht.type='text/javascript';ht.src = '//115962.hittail.com/mlt.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ht, s);})();
+</script>
+
+<script type="text/javascript">
+  (function() {
+    window._pa = window._pa || {};
+    // _pa.orderId = "myOrderId"; // OPTIONAL: attach unique conversion identifier to conversions
+    // _pa.revenue = "19.99"; // OPTIONAL: attach dynamic purchase values to conversions
+    // _pa.productId = "myProductId"; // OPTIONAL: Include product ID for use with dynamic ads
+    var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+    pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/54220efd7ab7f03f7e000043.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+
+// visited blog tracking
+window._pq = window._pq || [];
+_pq.push(['track', 'visited blog']);
+  })();
+</script>
+
+<! -- scroll to code -->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("#scroll_to_code").click(function(event){
+		event.preventDefault();
+		jQuery('html, body').animate({scrollTop: jQuery('#post_downloads').offset().top}, 1000);
+	});
+});
+</script>
+<!-- Woo Tabs Widget -->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	// UL = .wooTabs
+	// Tab contents = .inside
+
+	var tag_cloud_class = '#tagcloud';
+
+	//Fix for tag clouds - unexpected height before .hide()
+	var tag_cloud_height = jQuery( '#tagcloud').height();
+
+	jQuery( '.inside ul li:last-child').css( 'border-bottom','0px' ); // remove last border-bottom from list in tab content
+	jQuery( '.wooTabs').each(function(){
+		jQuery(this).children( 'li').children( 'a:first').addClass( 'selected' ); // Add .selected class to first tab on load
+	});
+	jQuery( '.inside > *').hide();
+	jQuery( '.inside > *:first-child').show();
+
+	jQuery( '.wooTabs li a').click(function(evt){ // Init Click funtion on Tabs
+
+		var clicked_tab_ref = jQuery(this).attr( 'href' ); // Strore Href value
+
+		jQuery(this).parent().parent().children( 'li').children( 'a').removeClass( 'selected' ); //Remove selected from all tabs
+		jQuery(this).addClass( 'selected' );
+		jQuery(this).parent().parent().parent().children( '.inside').children( '*').hide();
+
+		jQuery( '.inside ' + clicked_tab_ref).fadeIn(500);
+
+		 evt.preventDefault();
+
+	})
+})
+</script>
+<script type="text/javascript" src="http://www.pyimagesearch.com/wp-content/cache/minify/000000/M9RPzM4szk0t0Y_PzEvWT8svytUx0U_Oz81NzSvRLUotyKnUy83MAwA.js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var fsb = {"ajax":"http:\/\/www.pyimagesearch.com\/wp-admin\/admin-ajax.php","nonce":"dabfca1502"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.pyimagesearch.com/wp-content/cache/minify/000000/M9RPy8lPLMnMS9ctzk_OTMzRTUos0s8q1k8rTgIA.js"></script>
+</body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk
+Page Caching using disk: enhanced
+Database Caching 22/93 queries in 0.025 seconds using disk
+Object Caching 7035/7096 objects using disk
+
+ Served from: www.pyimagesearch.com @ 2015-08-07 16:59:39 by W3 Total Cache -->

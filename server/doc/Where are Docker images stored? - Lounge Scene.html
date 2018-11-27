@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Where are Docker images stored? - Lounge Scene
+    </title>
+    <link rel="alternate" href="http://blog.thoward37.me/feed.xml" type="application/rss+xml" title="The real you has been eaten by cats">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Where are Docker images stored?</h1>
+        <p class="author">Written by <span class="author"><a href="mailto:thoward37@gmail.com">Troy Howard</a></span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>If you&#39;re just starting out with <a href="http://docker.io/">Docker</a>, it&#39;s super easy to follow the examples, get started and run a few things. However, moving to the next step, making your own Dockerfiles, can be a bit confusing. One of the more common points of confusion seems to&nbsp;be:</p>
+<blockquote>
+<p>Where are my Docker images&nbsp;stored? </p>
+<h4 id="-everyone">- Everyone</h4>
+</blockquote>
+<p><span class="more"></span></p>
+<p>I know this certainly left me scratching my head a bit. Even worse, as a n00b, the last thing you want to do is publish your tinkering on the <a href="https://index.docker.io/">public Docker&nbsp;Index</a>. </p>
+<blockquote>
+<p>Checkout my awesome new Docker image <code>thoward/i_have_no_idea_what_im_doing</code>. </p>
+</blockquote>
+<p>Yeah. Not really what I want to&nbsp;do. </p>
+<p>Even worse, for quite a while there was no way to delete something that you had published, so your shamefully awkward learning process was up there for good. Luckily, deleting published Docker repositories is now quite&nbsp;easy.</p>
+<p>So let me start with this small assurance; <em>Nothing you do will become public</em> especially&nbsp;if:</p>
+<ol>
+<li>You haven&#39;t made an account on the public&nbsp;index.</li>
+<li>You haven&#39;t run <code>docker login</code> to authenticate via the command-line&nbsp;client.</li>
+<li>You don&#39;t run <code>docker push</code>, to push an image up to the&nbsp;index.</li>
+</ol>
+<h2 id="vocabulary">Vocabulary</h2>
+<p>One of the things that contributes to much of the confusion around Docker is the language that&#39;s used. There&#39;s a lot of terminology which seem to overlap, or is a bit ambiguous, used somewhat incorrectly, or has a well-established meaning that is different from how Docker uses&nbsp;it.</p>
+<p>I&#39;ll try to clear those up here, in a quick vocabulary&nbsp;lesson. </p>
+<h3 id="image-vs-dockerfile">Image vs&nbsp;Dockerfile</h3>
+<p>This one is the least confusing, but it&#39;s an important distinction. Docker uses <em>images</em> to run your code, not the <em>Dockerfile</em>. The <em>Dockerfile</em> is used to build the image when you run <code>docker build</code>.</p>
+<p>If you go browsing around on the Docker Index, you&#39;ll see lots of images listed there, but weirdly, you can&#39;t see the <em>Dockerfile</em> that built them. The image is an <em>opaque asset</em> that is compiled from the <em>Dockerfile</em>. </p>
+<p>When you run <code>docker push</code> to publish an image, it&#39;s not publishing your source code, it&#39;s publishing the image that was built from your source&nbsp;code.</p>
+<h3 id="registry-vs-index">Registry vs&nbsp;Index</h3>
+<p>The next weird thing is the idea of a <em>Registry</em> and an <em>Index</em>, and how these are separate&nbsp;things. </p>
+<p>An <em>index</em> manages user accounts, permissions, search, tagging, and all that nice stuff that&#39;s in the public web&nbsp;interface.</p>
+<p>A <em>registry</em> stores and serves up the actual image assets, and it delegates authentication to the <em>index</em>.</p>
+<p>When you run <code>docker search</code>, it&#39;s searching the <em>index</em>, not the <em>registry</em>. In fact, it might be searching <em>multiple registries</em> that the index is aware&nbsp;of.</p>
+<p>When you run <code>docker push</code> or <code>docker pull</code>, the <em>index</em> determines if you are allowed to access or modify the image, but the <em>registry</em> is the piece that stores it or sends it down the wire to you after the <em>index</em> approves the operation. Also, the <em>index</em> figures out which <em>registry</em> that particular image lives in and forwards the request&nbsp;appropriately.</p>
+<p>Beyond that, when you&#39;re working locally and running commands like <code>docker images</code>, you&#39;re interacting with something that is neither an index or a registry, but a little of&nbsp;both.</p>
+<h3 id="repository">Repository</h3>
+<p>Docker&#39;s use of this word is similar to its use at <a href="http://github.com/">Github</a>, and other source control systems, but also, kind of&nbsp;not.</p>
+<p>Three common head-scratching questions&nbsp;are:</p>
+<ul>
+<li>What&#39;s the difference between a repository and a&nbsp;registry?</li>
+<li>What&#39;s the difference between a repository and an&nbsp;image?</li>
+<li>What&#39;s the difference between a repository and an index&nbsp;username?</li>
+</ul>
+<p>In fact, this is a problem, because a <em>repository</em> is all of those things and not really any of them either. Further, when you run <code>docker images</code> you get output like&nbsp;this:</p>
+<pre><code>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>So, the list of <em>images</em> seems to be a list of repositories? Huh? Actually the images are the GUIDs, but that&#39;s not how you interact with&nbsp;them. </p>
+<p>Let&#39;s start over with&nbsp;this. </p>
+<p>When you run <code>docker build</code> or <code>docker commit</code>, you can specify a name for the <em>image</em>. The name is usually in the format of <code>username/image_name</code>, but it doesn&#39;t have to be. It could be anything, and it could even be the same as something well known and&nbsp;published.</p>
+<p>However, when the time comes to <code>docker push</code>, the <em>index</em> will look at the name, and will check to see if it has a matching <em>repository</em>. If it does, it will check to see if you have access to that <em>repository</em>, and if so, allow you to push the new version of the <em>image</em> to it. So, a <em>registry</em> holds a collection of named <em>repositories</em>, which themselves are a <em>collection of images</em> tracked by GUIDs. This is also where <em>tags</em> come in. You can tag an image, and store multiple versions of that image with different GUIDs in a single named <em>repository</em>, access different tagged versions of an image with a special syntax like <code>username/image_name:tag</code>.</p>
+<pre><code>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>If we look at the output from <code>docker images</code> again, now it makes a little more sense. We have five different versions of the image named <code>ubuntu</code>, each one tagged slightly differently. The repository holds all of those under that name <code>ubuntu</code>. So, while it may seem like <code>ubuntu</code> is an <em>image name</em>, it&#39;s actually a <em>repository name</em>, indicating where it came from, or where it should go during a&nbsp;push.</p>
+<p>Further, the repository name has a specific schema to it. An <em>index</em> can parse out the username from first part, and figure out where it&nbsp;is. </p>
+<p>So, this the confusing part: Suppose there&#39;s a Docker image called <code>thoward/scooby_snacks</code>. </p>
+<p>The official &quot;repository name&quot; is <code>thoward/scooby_snacks</code>, even though we would normally think of the repository as just being <code>scooby_snacks</code> (eg, in GitHub, or&nbsp;elsewhere). </p>
+<p>In fact, when the Docker documentation refers to a <em>repository</em>, it sometimes means the whole thing, username included, and sometimes only means the part after the&nbsp;username. </p>
+<p>That&#39;s because some repositories don&#39;t have usernames (like <code>ubuntu</code>). The username is very important to handle separately, because it&#39;s used for authentication by the <em>index</em>, so that part of the repository name has its own semantics separate from the name, when it&#39;s&nbsp;there. </p>
+<h2 id="local-storage-on-the-docker-host">Local Storage on the Docker&nbsp;Host</h2>
+<p>So far I&#39;ve been explaining the intricacies of remote storage, and how that relates to the confusing vocabulary, but running <code>docker images</code> shows you only what is local to your&nbsp;machine. </p>
+<p>Where is this stuff? The first place to look is in <code>/var/lib/docker/</code>. </p>
+<p>Open up the file <code>repositories</code> to find a <span class="caps">JSON</span> list of the repositories on your&nbsp;host:</p>
+<pre><code>$ sudo cat /var/lib/docker/repositories | python -mjson.tool
+{
+    &quot;Repositories&quot;: {
+        &quot;ubuntu&quot;: {
+            &quot;12.04&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;12.10&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;,
+            &quot;latest&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;precise&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;quantal&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;
+        }
+    }
+}
+</code></pre><p>Hey, that matches the output from <code>docker images</code>!</p>
+<pre><code>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>Checkout what&#39;s in <code>/var/lib/docker/graph/</code>:</p>
+<pre><code>$ sudo ls -al /var/lib/docker/graph
+total 24
+drwx------ 6 root root 4096 Nov 22 06:52 .
+drwx------ 5 root root 4096 Dec 13 04:25 ..
+drwxr-xr-x 3 root root 4096 Dec 13 04:26 27cf784147099545
+drwxr-xr-x 3 root root 4096 Nov 22 06:52 8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c
+drwxr-xr-x 3 root root 4096 Nov 22 06:52 b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc
+drwx------ 3 root root 4096 Nov 22 06:52 _tmp
+</code></pre><p>Not terribly friendly, but we can see how Docker is keeping track of these, based on the <code>repositories</code> <span class="caps">JSON</span> file which holds a mapping of repository names and tags, to the underlying image&nbsp;GUIDs. </p>
+<p>We have two images from the <code>ubuntu</code> repository, with the tags <strong>12.04</strong>, <strong>precise</strong>, and <strong>latest</strong> all corresponding to the image with id <code>8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c</code> (or <code>8dbd9e392a96</code> for&nbsp;short).</p>
+<p>So what&#39;s actually stored&nbsp;there?</p>
+<pre><code>$ sudo ls -al /var/lib/docker/graph/8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c
+total 20
+drwxr-xr-x  3 root root 4096 Nov 22 06:52 .
+drwx------  6 root root 4096 Nov 22 06:52 ..
+-rw-------  1 root root  437 Nov 22 06:51 json
+drwxr-xr-x 22 root root 4096 Apr 11  2013 layer
+-rw-------  1 root root    9 Nov 22 06:52 layersize
+</code></pre><p>The entries here&nbsp;are:</p>
+<ul>
+<li><code>json</code> - holds metadata about the&nbsp;image</li>
+<li><code>layersize</code> - just a number, indicating the size of the&nbsp;layer</li>
+<li><code>layer/</code> - sub-directory that holds the rootfs for the container&nbsp;image</li>
+</ul>
+<pre><code>$ sudo cat /var/lib/docker/graph/8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c/json | python -mjson.tool
+{
+    &quot;comment&quot;: &quot;Imported from -&quot;,
+    &quot;container_config&quot;: {
+        &quot;AttachStderr&quot;: false,
+        &quot;AttachStdin&quot;: false,
+        &quot;AttachStdout&quot;: false,
+        &quot;Cmd&quot;: null,
+        &quot;Env&quot;: null,
+        &quot;Hostname&quot;: &quot;&quot;,
+        &quot;Image&quot;: &quot;&quot;,
+        &quot;Memory&quot;: 0,
+        &quot;MemorySwap&quot;: 0,
+        &quot;OpenStdin&quot;: false,
+        &quot;PortSpecs&quot;: null,
+        &quot;StdinOnce&quot;: false,
+        &quot;Tty&quot;: false,
+        &quot;User&quot;: &quot;&quot;
+    },
+    &quot;created&quot;: &quot;2013-04-11T14:13:15.57812-07:00&quot;,
+    &quot;docker_version&quot;: &quot;0.1.4&quot;,
+    &quot;id&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;
+}
+</code></pre><pre><code>$ sudo cat /var/lib/docker/graph/8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c/layersize
+131301903
+</code></pre><pre><code>$ sudo ls -al /var/lib/docker/graph/8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c/layer
+total 88
+drwxr-xr-x 22 root root 4096 Apr 11  2013 .
+drwxr-xr-x  3 root root 4096 Nov 22 06:52 ..
+drwxr-xr-x  2 root root 4096 Apr 11  2013 bin
+drwxr-xr-x  2 root root 4096 Apr 19  2012 boot
+drwxr-xr-x  4 root root 4096 Nov 22 06:51 dev
+drwxr-xr-x 41 root root 4096 Nov 22 06:51 etc
+drwxr-xr-x  2 root root 4096 Apr 19  2012 home
+drwxr-xr-x 11 root root 4096 Nov 22 06:51 lib
+drwxr-xr-x  2 root root 4096 Nov 22 06:51 lib64
+drwxr-xr-x  2 root root 4096 Apr 11  2013 media
+drwxr-xr-x  2 root root 4096 Apr 19  2012 mnt
+drwxr-xr-x  2 root root 4096 Apr 11  2013 opt
+drwxr-xr-x  2 root root 4096 Apr 19  2012 proc
+drwx------  2 root root 4096 Nov 22 06:51 root
+drwxr-xr-x  4 root root 4096 Nov 22 06:51 run
+drwxr-xr-x  2 root root 4096 Nov 22 06:51 sbin
+drwxr-xr-x  2 root root 4096 Mar  5  2012 selinux
+drwxr-xr-x  2 root root 4096 Apr 11  2013 srv
+drwxr-xr-x  2 root root 4096 Apr 14  2012 sys
+drwxrwxrwt  2 root root 4096 Apr 11  2013 tmp
+drwxr-xr-x 10 root root 4096 Nov 22 06:51 usr
+drwxr-xr-x 11 root root 4096 Nov 22 06:51 var
+</code></pre><p>Pretty easy. This is the magic behind being able to refer to an image by its repository name, even if you&#39;re not interacting with the remote Docker Index or Docker Registry. Once you&#39;ve pulled it down to your workstation, Docker can work with it by name using these files. This is also where things go when you&#39;re developing a new&nbsp;Dockerfile. </p>
+<h2 id="diy-dockerfiles"><span class="caps">DIY</span>&nbsp;Dockerfiles</h2>
+<p>Let&#39;s try an example. Make a <code>Dockerfile</code> with the following&nbsp;contents:</p>
+<pre><code>FROM ubuntu
+</code></pre><p>This basically doesn&#39;t do anything except say that we&#39;re including the <code>ubuntu</code> image as our base layer, but that&#39;s enough to get&nbsp;started. </p>
+<p>Next, run <code>docker build -t scooby_snacks .</code>. What that will do is look in the directory we specified (<code>.</code>) for a file called <code>Dockerfile</code> and then build it, and use the name <code>scooby_snacks</code> for the&nbsp;repository. </p>
+<pre><code>$ docker build -t scooby_snacks .
+Uploading context 64184320 bytes
+Step 1 : FROM ubuntu
+ ---&gt; 8dbd9e392a96
+Successfully built 8dbd9e392a96
+</code></pre><p>Oh no! It said <em>&quot;Uploading context&quot;</em>&#8230; Did we just upload it to the public&nbsp;registry? </p>
+<p>Let&#39;s&nbsp;check:</p>
+<pre><code>$ docker search scooby_snacks
+NAME      DESCRIPTION   STARS     OFFICIAL   TRUSTED
+</code></pre><p>Whew! Not there. So why did it say&nbsp;that? </p>
+<p>I have no idea, but you can ignore it. Where did it really end&nbsp;up? </p>
+<pre><code>$ sudo cat /var/lib/docker/repositories | python -mjson.tool
+{
+    &quot;Repositories&quot;: {
+        &quot;scooby_snacks&quot;: {
+            &quot;latest&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;
+        },
+        &quot;ubuntu&quot;: {
+            &quot;12.04&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;12.10&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;,
+            &quot;latest&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;precise&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;quantal&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;
+        }
+    }
+}
+</code></pre><p>Well, looks like Docker just <em>&quot;uploaded&quot;</em> it to <code>/var/lib/docker</code>. :) </p>
+<p>It should also show up in <code>docker images</code>.</p>
+<pre><code>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+scooby_snacks       latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>There it is! Docker was smart enough to realize that we didn&#39;t change anything, so it kept the same image id, and didn&#39;t bother copying the <code>ubuntu</code> image. Pretty&nbsp;sweet.</p>
+<p>Next, we&#39;ll make a small change so that Docker will have to build a new&nbsp;layer. </p>
+<p>Edit <code>Dockerfile</code> to have these&nbsp;contents:</p>
+<pre><code>FROM ubuntu
+
+RUN touch scooby_snacks.txt
+</code></pre><p>Then run  <code>docker build -t scooby_snacks .</code> to&nbsp;rebuild.</p>
+<pre><code>$ docker build -t scooby_snacks .
+Uploading context 64184320 bytes
+Step 1 : FROM ubuntu
+ ---&gt; 8dbd9e392a96
+Step 2 : RUN touch scooby_snacks.txt
+ ---&gt; Running in 86664242766c
+ ---&gt; 91acef3a5936
+Successfully built 91acef3a5936
+</code></pre><p>There should be a new directory under <code>/var/lib/docker/graph</code></p>
+<pre><code>$ sudo ls -al /var/lib/docker/graph
+total 28
+drwx------ 7 root root 4096 Dec 13 06:27 .
+drwx------ 5 root root 4096 Dec 13 06:27 ..
+drwxr-xr-x 3 root root 4096 Dec 13 04:26 27cf784147099545
+drwxr-xr-x 3 root root 4096 Nov 22 06:52 8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c
+drwxr-xr-x 3 root root 4096 Dec 13 06:27 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+drwxr-xr-x 3 root root 4096 Nov 22 06:52 b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc
+drwx------ 3 root root 4096 Dec 13 06:27 _tmp
+</code></pre><p>Docker gave it a new image&nbsp;<span class="caps">ID</span>:</p>
+<ul>
+<li><code>91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9</code></li>
+</ul>
+<p>It has also been updated in <code>/var/lib/docker/repositories</code> and <code>docker images</code>.</p>
+<pre><code>$ sudo cat /var/lib/docker/repositories | python -mjson.tool
+{
+    &quot;Repositories&quot;: {
+        &quot;scooby_snacks&quot;: {
+            &quot;latest&quot;: &quot;91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9&quot;
+        },
+        &quot;ubuntu&quot;: {
+            &quot;12.04&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;12.10&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;,
+            &quot;latest&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;precise&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+            &quot;quantal&quot;: &quot;b750fe79269d2ec9a3c593ef05b4332b1d1a02a62b4accb2c21d589ff2f5f2dc&quot;
+        }
+    }
+}
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+scooby_snacks       latest              91acef3a5936        5 minutes ago       12.29 kB (virtual 131.3 MB)
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>Let&#39;s see what <code>/var/lib/docker/graph/91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9</code> looks like&nbsp;now:</p>
+<pre><code>$ sudo cat /var/lib/docker/graph/91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9/json | python -mjson.tool
+{
+    &quot;Size&quot;: 0,
+    &quot;architecture&quot;: &quot;x86_64&quot;,
+    &quot;config&quot;: {
+        &quot;AttachStderr&quot;: false,
+        &quot;AttachStdin&quot;: false,
+        &quot;AttachStdout&quot;: false,
+        &quot;Cmd&quot;: null,
+        &quot;CpuShares&quot;: 0,
+        &quot;Dns&quot;: null,
+        &quot;Domainname&quot;: &quot;&quot;,
+        &quot;Entrypoint&quot;: [],
+        &quot;Env&quot;: [
+            &quot;HOME=/&quot;,
+            &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+        ],
+        &quot;ExposedPorts&quot;: {},
+        &quot;Hostname&quot;: &quot;86664242766c&quot;,
+        &quot;Image&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+        &quot;Memory&quot;: 0,
+        &quot;MemorySwap&quot;: 0,
+        &quot;NetworkDisabled&quot;: false,
+        &quot;OpenStdin&quot;: false,
+        &quot;PortSpecs&quot;: null,
+        &quot;StdinOnce&quot;: false,
+        &quot;Tty&quot;: false,
+        &quot;User&quot;: &quot;&quot;,
+        &quot;Volumes&quot;: {},
+        &quot;VolumesFrom&quot;: &quot;&quot;,
+        &quot;WorkingDir&quot;: &quot;&quot;
+    },
+    &quot;container&quot;: &quot;86664242766c5548f8118716e873835c171811176a710e425c1fcf1fa367b505&quot;,
+    &quot;container_config&quot;: {
+        &quot;AttachStderr&quot;: false,
+        &quot;AttachStdin&quot;: false,
+        &quot;AttachStdout&quot;: false,
+        &quot;Cmd&quot;: [
+            &quot;/bin/sh&quot;,
+            &quot;-c&quot;,
+            &quot;touch scooby_snacks.txt&quot;
+        ],
+        &quot;CpuShares&quot;: 0,
+        &quot;Dns&quot;: null,
+        &quot;Domainname&quot;: &quot;&quot;,
+        &quot;Entrypoint&quot;: [],
+        &quot;Env&quot;: [
+            &quot;HOME=/&quot;,
+            &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+        ],
+        &quot;ExposedPorts&quot;: {},
+        &quot;Hostname&quot;: &quot;86664242766c&quot;,
+        &quot;Image&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;,
+        &quot;Memory&quot;: 0,
+        &quot;MemorySwap&quot;: 0,
+        &quot;NetworkDisabled&quot;: false,
+        &quot;OpenStdin&quot;: false,
+        &quot;PortSpecs&quot;: null,
+        &quot;StdinOnce&quot;: false,
+        &quot;Tty&quot;: false,
+        &quot;User&quot;: &quot;&quot;,
+        &quot;Volumes&quot;: {},
+        &quot;VolumesFrom&quot;: &quot;&quot;,
+        &quot;WorkingDir&quot;: &quot;&quot;
+    },
+    &quot;created&quot;: &quot;2013-12-13T06:27:03.234029255Z&quot;,
+    &quot;docker_version&quot;: &quot;0.6.7&quot;,
+    &quot;id&quot;: &quot;91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9&quot;,
+    &quot;parent&quot;: &quot;8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c&quot;
+}
+</code></pre><pre><code>$ sudo cat /var/lib/docker/graph/91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9/layersize
+12288
+</code></pre><pre><code>$ sudo ls -al /var/lib/docker/graph/91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9/layer
+total 16
+drwxr-xr-x 4 root root 4096 Dec 13 06:27 .
+drwxr-xr-x 3 root root 4096 Dec 13 06:27 ..
+-rw-r--r-- 1 root root    0 Dec 13 06:27 scooby_snacks.txt
+-r--r--r-- 1 root root    0 Dec 13 06:27 .wh..wh.aufs
+drwx------ 2 root root 4096 Dec 13 06:27 .wh..wh.orph
+drwx------ 2 root root 4096 Dec 13 06:27 .wh..wh.plnk
+</code></pre><p>Our tiny change had a big impact! Notice that Docker only kept the <em>differences</em> from the base image. This is the key to the <em>layer</em> concept. </p>
+<h3 id="run-it-">Run&nbsp;it!</h3>
+<p>We can now run our new image and try it out. We&#39;ll just run an interactive <code>bash</code> prompt for&nbsp;now.</p>
+<pre><code>$ docker run -i -t scooby_snacks /bin/bash
+root@1f8602a7d589:/# ls -al
+total 12308
+drwxr-xr-x  30 root root     4096 Dec 13 06:43 .
+drwxr-xr-x  30 root root     4096 Dec 13 06:43 ..
+-rw-------   1 root root      208 Dec 13 06:43 .dockerenv
+-rwxr-xr-x   1 root root 12516574 Nov 22 02:34 .dockerinit
+drwxr-xr-x   2 root root     4096 Apr 11  2013 bin
+drwxr-xr-x   2 root root     4096 Apr 19  2012 boot
+drwxr-xr-x   6 root root     4096 Nov 22 06:52 dev
+drwxr-xr-x  41 root root     4096 Nov 22 06:52 etc
+drwxr-xr-x   2 root root     4096 Apr 19  2012 home
+drwxr-xr-x  11 root root     4096 Nov 22 06:51 lib
+drwxr-xr-x   2 root root     4096 Nov 22 06:51 lib64
+drwxr-xr-x   2 root root     4096 Apr 11  2013 media
+drwxr-xr-x   2 root root     4096 Apr 19  2012 mnt
+drwxr-xr-x   2 root root     4096 Apr 11  2013 opt
+dr-xr-xr-x 102 root root        0 Dec 13 06:43 proc
+drwx------   2 root root     4096 Nov 22 06:51 root
+drwxr-xr-x   4 root root     4096 Nov 22 06:51 run
+drwxr-xr-x   2 root root     4096 Nov 22 06:51 sbin
+-rw-r--r--   1 root root        0 Dec 13 06:27 scooby_snacks.txt
+drwxr-xr-x   2 root root     4096 Mar  5  2012 selinux
+drwxr-xr-x   2 root root     4096 Apr 11  2013 srv
+dr-xr-xr-x  13 root root        0 Dec 13 06:43 sys
+drwxrwxrwt   2 root root     4096 Apr 11  2013 tmp
+drwxr-xr-x  10 root root     4096 Nov 22 06:51 usr
+drwxr-xr-x  11 root root     4096 Nov 22 06:51 var
+root@1f8602a7d589:/#
+</code></pre><p>The effects of our <code>RUN touch scooby_snacks.txt</code> command in the <code>Dockerfile</code> are exactly as&nbsp;expected.</p>
+<h3 id="publish-it-">Publish&nbsp;it!</h3>
+<p>Until now, we&#39;ve been doing everything locally and not interacting with the outside world at all. This is great, we can work up a perfect <code>Dockerfile</code> before we go live. That said, I&#39;m pretty happy with this one now, and I&#39;m ready to publish&nbsp;it. </p>
+<p>If you haven&#39;t already, make sure you <a href="https://index.docker.io/account/signup/">make an account</a>, and then login with <code>docker login</code>. </p>
+<pre><code>$ docker login
+Username: thoward
+Password:
+Email: thoward37@gmail.com
+Login Succeeded
+</code></pre><p>Publish the image with <code>docker push scooby_snacks</code></p>
+<pre><code>$ docker push scooby_snacks
+2013/12/13 06:49:36 Impossible to push a &quot;root&quot; repository. Please rename your repository in &lt;user&gt;/&lt;repo&gt; (ex: thoward/scooby_snacks)
+</code></pre><p>Oops. Docker Index won&#39;t let us publish without our username in the repository name. No big&nbsp;deal. </p>
+<p>Rebuild this with the correct username using <code>docker build -t thoward/scooby_snacks .</code></p>
+<pre><code>$ docker build -t thoward/scooby_snacks .
+Uploading context 64184320 bytes
+Step 1 : FROM ubuntu
+ ---&gt; 8dbd9e392a96
+Step 2 : RUN touch scooby_snacks.txt
+ ---&gt; Using cache
+ ---&gt; 91acef3a5936
+Successfully built 91acef3a5936
+</code></pre><p>Nice! The message <em>&quot;Using cache&quot;</em> means Docker was smart enough to know that we didn&#39;t really change the image, so it didn&#39;t bother rebuilding&nbsp;it. </p>
+<p>Let&#39;s try publishing again, but this time with the correct repository&nbsp;name:</p>
+<pre><code>$ docker push thoward/scooby_snacks
+The push refers to a repository [thoward/scooby_snacks] (len: 1)
+Sending image list
+Pushing repository thoward/scooby_snacks (1 tags)
+Pushing 8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c
+Image 8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c already pushed, skipping
+Pushing tags for rev [8dbd9e392a964056420e5d58ca5cc376ef18e2de93b5cc90e868a1bbc8318c1c] on {https://registry-1.docker.io/v1/repositories/thoward/scooby_snacks/tags/latest}
+Pushing 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+
+
+Pushing tags for rev [91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9] on {https://registry-1.docker.io/v1/repositories/thoward/scooby_snacks/tags/latest}
+</code></pre><p>Now that it&#39;s published, it should show up with <code>docker search</code>.</p>
+<pre><code>$ docker search scooby_snacks
+NAME                    DESCRIPTION   STARS     OFFICIAL   TRUSTED
+thoward/scooby_snacks                 0
+</code></pre><p>There it is. Next, let&#39;s cleanup a bit and delete the old root level&nbsp;one:</p>
+<pre><code>$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+scooby_snacks           latest              91acef3a5936        30 minutes ago      12.29 kB (virtual 131.3 MB)
+thoward/scooby_snacks   latest              91acef3a5936        30 minutes ago      12.29 kB (virtual 131.3 MB)
+ubuntu                  12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu                  quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+
+$ docker rmi scooby_snacks
+Untagged: 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+
+$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+thoward/scooby_snacks   latest              91acef3a5936        29 minutes ago      12.29 kB (virtual 131.3 MB)
+ubuntu                  12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu                  quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>Ok, that one is&nbsp;gone. </p>
+<p>Also, to be honest, this is not a very interesting image to share publicly, and we don&#39;t want to look like n00bs, so let&#39;s delete it as&nbsp;well.</p>
+<pre><code>$ docker rmi thoward/scooby_snacks
+Untagged: 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+Deleted: 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu              12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu              quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>This time, since Docker realized it was the last reference to that image <span class="caps">ID</span>, <code>docker rmi</code> has an additional message indicating that it deleted it instead of just &#39;untagging&#39; it. </p>
+<p>But wait! It is still public at the Docker Index, isn&#39;t it? Let&#39;s&nbsp;check:</p>
+<pre><code>$ docker search scooby_snacks
+NAME                    DESCRIPTION   STARS     OFFICIAL   TRUSTED
+thoward/scooby_snacks                 0
+</code></pre><p>Hmm.. Well this is handy, before we delete it, we can try <code>docker pull</code> and fetch it down like a &quot;real&quot; image and run&nbsp;it.</p>
+<pre><code>$ docker pull thoward/scooby_snacks
+Pulling repository thoward/scooby_snacks
+91acef3a5936: Download complete
+8dbd9e392a96: Download complete
+
+$ docker run -i -t thoward/scooby_snacks /bin/bash
+root@90f6546bf3b7:/# ls -al
+total 12308
+drwxr-xr-x  30 root root     4096 Dec 13 07:03 .
+drwxr-xr-x  30 root root     4096 Dec 13 07:03 ..
+-rw-------   1 root root      208 Dec 13 07:03 .dockerenv
+-rwxr-xr-x   1 root root 12516574 Nov 22 02:34 .dockerinit
+drwxr-xr-x   2 root root     4096 Apr 11  2013 bin
+drwxr-xr-x   2 root root     4096 Apr 19  2012 boot
+drwxr-xr-x   6 root root     4096 Nov 22 06:52 dev
+drwxr-xr-x  41 root root     4096 Nov 22 06:52 etc
+drwxr-xr-x   2 root root     4096 Apr 19  2012 home
+drwxr-xr-x  11 root root     4096 Nov 22 06:51 lib
+drwxr-xr-x   2 root root     4096 Nov 22 06:51 lib64
+drwxr-xr-x   2 root root     4096 Apr 11  2013 media
+drwxr-xr-x   2 root root     4096 Apr 19  2012 mnt
+drwxr-xr-x   2 root root     4096 Apr 11  2013 opt
+dr-xr-xr-x 105 root root        0 Dec 13 07:03 proc
+drwx------   2 root root     4096 Nov 22 06:51 root
+drwxr-xr-x   4 root root     4096 Nov 22 06:51 run
+drwxr-xr-x   2 root root     4096 Nov 22 06:51 sbin
+-rw-r--r--   1 root root        0 Dec 13 06:27 scooby_snacks.txt
+drwxr-xr-x   2 root root     4096 Mar  5  2012 selinux
+drwxr-xr-x   2 root root     4096 Apr 11  2013 srv
+dr-xr-xr-x  13 root root        0 Dec 13 07:03 sys
+drwxrwxrwt   2 root root     4096 Apr 11  2013 tmp
+drwxr-xr-x  10 root root     4096 Nov 22 06:51 usr
+drwxr-xr-x  11 root root     4096 Nov 22 06:51 var
+root@90f6546bf3b7:/#
+</code></pre><p>It&nbsp;works! </p>
+<h3 id="deleting-a-published-repository">Deleting a Published&nbsp;Repository</h3>
+<p>Unfortunately, to delete it from the public index/registry, we have to use the web interface, not the&nbsp;command-line. </p>
+<p>First, <a href="https://index.docker.io/account/login/">login via the web</a> then navigate to the repository at
+<a href="https://index.docker.io/u/thoward/scooby_snacks/">https://index.docker.io/u/thoward/scooby_snacks/</a>.</p>
+<p><img src="/articles/where-are-docker-images-stored/screen-1.jpg" alt=""></p>
+<p>Click on &#39;Settings&#39; tab, then &#39;Delete Repository&#39; tab, then the &#39;Delete Repo&#39; button.</p>
+<p><img src="/articles/where-are-docker-images-stored/screen-2.jpg" alt=""></p>
+<p>Back on the command-line we can verify it&#39;s gone with <code>docker search scooby_snacks</code></p>
+<pre><code>$ docker search scooby_snacks
+NAME      DESCRIPTION   STARS     OFFICIAL   TRUSTED
+</code></pre><p>But of course, since we never deleted the local version of it after we pulled it back down, it&#39;s still going to show up in <code>docker images</code>, since we have a local&nbsp;copy:</p>
+<pre><code>$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+thoward/scooby_snacks   latest              91acef3a5936        46 minutes ago      12.29 kB (virtual 131.3 MB)
+ubuntu                  12.04               8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  latest              8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  precise             8dbd9e392a96        8 months ago        131.3 MB (virtual 131.3 MB)
+ubuntu                  12.10               b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+ubuntu                  quantal             b750fe79269d        8 months ago        24.65 kB (virtual 179.7 MB)
+</code></pre><p>So to completely remove it we need to run <code>docker rmi</code> again.</p>
+<pre><code>$ docker rmi thoward/scooby_snacks
+Untagged: 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+Deleted: 91acef3a5936769f763729529e736681e5079dc6ddf6ab0e61c327a93d163df9
+</code></pre><p>Not to worry, we can always rebuild it with our <code>Dockerfile</code>. :) </p>
+<h3 id="important-security-lesson">Important Security&nbsp;Lesson</h3>
+<p>It&#39;s really important to consider the security implications of what we just saw&nbsp;though. </p>
+<p>Even if a Docker image is deleted from the Docker Index <em>it may still be out there on someones machine</em>. There&#39;s no way to change&nbsp;that. </p>
+<p>Also, as we saw when looking at the files we have locally, it&#39;s not quite an &quot;opaque binary&quot; image. All the information from the Dockerfile was in the <span class="caps">JSON</span> file for the image, and the artifacts of those commands are in the layer, as accessible as a filesystem. If you accidentally published a password or key, or some other critical secret, there&#39;s no getting it back, and people can find as easily as they can find anything else in a published open source code&nbsp;base.</p>
+<p>Be very careful about what you&#39;re publishing. If you do accidentally publish a secret, take it down right away and update credentials on whatever systems it might have&nbsp;compromised. </p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Docker can be a bit confusing with its terminology, but once you wrap your head around the basic workflow described here, it should be very easy to be in-control of what you&#39;re building, knowing exactly when and how you share that with the&nbsp;world. </p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">« Full blog</a></div>
+        <section class="about"><p><img src="http://maps.googleapis.com/maps/api/staticmap?center=Portland,%20OR,%20USA&zoom=11&size=200x225&sensor=false" width="200" height="225" alt="Map of Portland, Oregon" /></p>
+<p>Hi, I&#39;m <a href="http://thoward37.me/">Troy Howard</a> and this is my blog.</p>
+<p>Want to chat? Come find me on <a href="http://twitter.com/thoward37">Twitter</a>, or <a href="http://github.com/thoward">GitHub</a>.</p>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2014 Troy Howard &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-48099279-1', 'thoward37.me');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
